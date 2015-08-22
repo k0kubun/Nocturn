@@ -21,7 +21,7 @@ end
 
 desc 'Start with Electron.app'
 task start: :compile do
-  system('npm start')
+  system('/Applications/Electron.app/Contents/MacOS/Electron .')
 end
 
 task default: :start
