@@ -1,5 +1,15 @@
 {
   "name": "nocturn",
   "version": "0.0.1",
-  "main": "main.js"
+  "main": "main.js",
+  "repository": "k0kubun/nocturn",
+  "author": "k0kubun",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.25.1",
+    "electron-packager": "^3.1.0"
+  }
 }
