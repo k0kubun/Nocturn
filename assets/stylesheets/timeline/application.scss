@@ -14,12 +14,12 @@ $timeline_height: 640px;
     position: fixed;
     top: 0;
     left: 0;
-    background: #d0d0d2;
+    background: #e0e0e2;
     width: 100%;
     height: $header_height;
     z-index: 100;
     overflow: hidden;
-    border-bottom: 2px solid #aaa;
+    border-bottom: 2px solid #ccc;
   }
 
   .editor {
@@ -44,6 +44,25 @@ $timeline_height: 640px;
     overflow: hidden;
     border-top: 1px solid #666;
     border-bottom: 1px solid #888;
+    padding: 0 0 0 8px;
+
+    .tab {
+      height: $tabs_height;
+      width: 60px;
+      padding-top: 6px;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      list-style: none;
+      float: left;
+      border-left: 1px solid #666;
+      border-right: 1px solid #666;
+      margin-right: -1px;
+    }
+
+    .tab.active {
+      background: #eee;
+    }
   }
 
   .tweets {
