@@ -13,7 +13,10 @@ task :compile do
   start = Time.now
   Dir.glob('assets/**/*.scss').each do |path|
     IO.popen("bundle exec sass #{path}", 'r+') do |css|
-      File.write(path.gsub(/^assets/, 'src').gsub(/\.scss$/, '.css'), css.read)
+      src_path = path.
+        gsub(/^assets\/(javascripts|stylesheets)/, 'src').
+        gsub(/\.scss$/, '.css')
+      File.write(src_path, css.read)
     end
   end
   puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
