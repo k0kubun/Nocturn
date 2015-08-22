@@ -1,6 +1,11 @@
 $header_height: 46px;
 $editor_height: 46px;
 $tabs_height: 28px;
+$timeline_height: 640px;
+
+.no-scroll {
+  overflow-y: hidden;
+}
 
 .timeline {
   position: relative;
@@ -14,6 +19,7 @@ $tabs_height: 28px;
     height: $header_height;
     z-index: 100;
     overflow: hidden;
+    border-bottom: 2px solid #aaa;
   }
 
   .editor {
@@ -36,15 +42,17 @@ $tabs_height: 28px;
     height: $tabs_height;
     z-index: 100;
     overflow: hidden;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #888;
   }
 
   .tweets {
     position: absolute;
-    top: 0;
+    top: $header_height + $editor_height + $tabs_height;
     left: 0;
-    padding-top: $header_height + $editor_height + $tabs_height;
     background: #fff;
     width: 100%;
-    height: 100%;
+    height: $timeline_height - ($header_height + $editor_height + $tabs_height + 10);
+    overflow: scroll;
   }
 }
