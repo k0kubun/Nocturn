@@ -29,6 +29,15 @@ YoruFukurou-like Twitter Client built on Electron
 - [ ] Link URL
 - [ ] Open URL shortcut
 
+## Build
+
+```bash
+$ bundle install
+$ rake compile
+$ npm install
+$ npm start
+```
+
 ## License
 
 MIT License
