@@ -5,3 +5,5 @@ compile-cache/
 *.log
 *.html
 *.css
+*.js
+!main.js
