@@ -9,7 +9,7 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({ width: 320, height: 640 });
   mainWindow.loadUrl('file://' + __dirname + '/src/timeline/index.html');
   mainWindow.on('closed', function() {
     mainWindow = null;
