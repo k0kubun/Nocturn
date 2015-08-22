@@ -8,6 +8,7 @@ $timeline_height: 640px;
 }
 
 .timeline {
+  color: #333;
   position: relative;
 
   .header {
@@ -20,6 +21,25 @@ $timeline_height: 640px;
     z-index: 100;
     overflow: hidden;
     border-bottom: 2px solid #ccc;
+    padding: 4px 0 0 8px;
+
+    .button-wrapper {
+      float: left;
+      font-size: 10px;
+      text-align: center;
+      margin-right: 8px;
+    }
+
+    .button {
+      background: #efefef;
+      color: #888;
+      font-size: 14px;
+      width: 38px;
+      margin: auto;
+      height: 24px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
   }
 
   .editor {
@@ -73,5 +93,12 @@ $timeline_height: 640px;
     width: 100%;
     height: $timeline_height - ($header_height + $editor_height + $tabs_height + 10);
     overflow: scroll;
+    padding: 0;
+
+    li.tweet {
+      padding: 8px;
+      list-style: none;
+      border-bottom: 1px solid #ededed;
+    }
   }
 }
