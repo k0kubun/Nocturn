@@ -27,21 +27,14 @@ task :compile do
 
   print 'Compiling coffee script sources...'
   start = Time.now
-  prefix = "window.jQuery = window.$ = require('../jquery');"
   Dir.glob('assets/**/*.coffee').each do |path|
     js = CoffeeScript.compile(File.read(path))
     src_path = path.
       gsub(%r{^assets/javascripts}, 'src').
       gsub(/\.coffee$/, '.js')
-    File.write(src_path, prefix + js)
+    File.write(src_path, js)
   end
   puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
-
-  jquery = open(
-    'https://code.jquery.com/jquery-2.1.4.min.js',
-    ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-  ).read
-  File.write('src/jquery.js', jquery)
 end
 
 desc 'Start with Electron.app'

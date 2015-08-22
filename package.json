@@ -8,6 +8,9 @@
   "scripts": {
     "start": "electron ."
   },
+  "dependencies": {
+    "jquery": "^2.1.4"
+  },
   "devDependencies": {
     "electron-prebuilt": "^0.25.1",
     "electron-packager": "^3.1.0"
