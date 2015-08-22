@@ -7,7 +7,7 @@ task :compile do
       File.write(path.gsub(/\.haml$/, '.html'), html.read)
     end
   end
-  puts "done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
+  puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
 
   print 'Compiling sass templates...'
   start = Time.now
@@ -16,7 +16,7 @@ task :compile do
       File.write(path.gsub(/^assets/, 'src').gsub(/\.scss$/, '.css'), css.read)
     end
   end
-  puts "done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
+  puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
 end
 
 desc 'Start with Electron.app'
