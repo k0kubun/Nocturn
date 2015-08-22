@@ -1,4 +1,5 @@
 var app = require('app');
+var Menu = require('menu');
 var BrowserWindow = require('browser-window');
 var mainWindow = null;
 
@@ -14,4 +15,33 @@ app.on('ready', function() {
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
+
+  var template = [
+    {
+      label: 'Quit',
+      submenu: [
+        {
+          label: 'Quit Nocturn',
+          accelerator: 'Command+Q',
+          click: function() {
+            app.quit();
+          }
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Open DevTools',
+          accelerator: 'Alt+Command+I',
+          click: function() {
+            BrowserWindow.getFocusedWindow().toggleDevTools();
+          }
+        }
+      ]
+    }
+  ];
+  var menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
 });
