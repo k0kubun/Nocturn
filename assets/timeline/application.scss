@@ -1,3 +1,50 @@
-body {
-  padding-top: 10px;
+$header_height: 46px;
+$editor_height: 46px;
+$tabs_height: 28px;
+
+.timeline {
+  position: relative;
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #d0d0d2;
+    width: 100%;
+    height: $header_height;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .editor {
+    position: fixed;
+    top: $header_height;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: $editor_height;
+    z-index: 50;
+    overflow: hidden;
+  }
+
+  .tabs {
+    position: fixed;
+    top: $header_height + $editor_height;
+    left: 0;
+    background: #bbb;
+    width: 100%;
+    height: $tabs_height;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .tweets {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: $header_height + $editor_height + $tabs_height;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+  }
 }

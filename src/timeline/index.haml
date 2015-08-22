@@ -7,12 +7,21 @@
     %link{ rel: 'stylesheet', href: 'application.css' }
 
   %body
-    %h1 Hello World
+    .timeline
+      .header
+        Home
+        Refresh
 
-    We are using io.js
-    :javascript
-      document.write(process.version)
+      .editor
 
-    and Electron
-    :javascript
-      document.write(process.versions['electron'])
+      %ul.tabs
+        %li.tab Timeline
+        %li.tab Mentions
+        %li.tab List
+        %li.tab Search
+
+      %ul.tweets
+        - 100.times do 
+          %li.tweet
+            %p @k0kubun
+            %p hello
