@@ -67,5 +67,5 @@ class TwitterClient
     console.log(JSON.stringify(error)) if error
 
   readJson: (jsonName) ->
-    fullPath = path.resolve(__dirname, '..', '..', jsonName)
+    fullPath = path.resolve(__dirname, '..', jsonName)
     return JSON.parse(fs.readFileSync(fullPath, 'utf-8'))

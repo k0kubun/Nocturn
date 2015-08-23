@@ -14,11 +14,9 @@ task :compile do
 
   print 'Compiling sass sources...'
   start = Time.now
-  Dir.glob('assets/**/*.scss').each do |path|
+  Dir.glob('src/*.scss').each do |path|
     IO.popen("bundle exec sass #{path}", 'r+') do |css|
-      src_path = path.
-        gsub(%r{^assets/stylesheets}, 'src').
-        gsub(/\.scss$/, '.css')
+      src_path = path.gsub(/\.scss$/, '.css')
       File.write(src_path, css.read)
     end
   end
