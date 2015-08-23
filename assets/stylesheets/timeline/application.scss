@@ -3,6 +3,9 @@ $editor_height: 46px;
 $tabs_height: 28px;
 $timeline_height: 640px;
 $magic_offset: 22px;
+$tweet_padding: 8px;
+$icon_size: 48px;
+$icon_column: $icon_size + $tweet_padding * 2;
 
 .no-scroll {
   overflow-y: hidden;
@@ -24,7 +27,7 @@ $magic_offset: 22px;
     border-bottom: 2px solid #ccc;
     padding: 4px 0 0 8px;
 
-    .button-wrapper {
+    .button_wrapper {
       float: left;
       font-size: 10px;
       text-align: center;
@@ -96,14 +99,37 @@ $magic_offset: 22px;
     overflow: scroll;
     padding: 0;
 
-    li.tweet {
-      padding: 8px;
+    .tweet {
+      padding: $tweet_padding;
       list-style: none;
       border-bottom: 1px solid #ededed;
+
+      &.hidden_template {
+        display: none;
+      }
     }
 
-    li.tweet.hidden-template {
-      display: none;
+    .box_wrapper {
+      position: relative;
+      min-height: $icon_column;
+    }
+
+    .left_box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $icon_column;
+      height: $icon_column;
+    }
+
+    .right_box {
+      padding-left: $icon_column;
+    }
+
+    .user_icon {
+      width: $icon_size;
+      height: $icon_size;
+      border-radius: 6px;
     }
   }
 }

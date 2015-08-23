@@ -6,11 +6,12 @@ jQuery ($) ->
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
   appendTweet = (tweet) ->
-    template = $('.tweets .tweet.hidden-template')
+    template = $('.tweets .tweet.hidden_template')
     element  = template.clone(true)
-    element.removeClass('hidden-template')
-    element.find('.tweet-header').text(tweet.user.screen_name)
-    element.find('.tweet-body').text(tweet.text)
+    element.removeClass('hidden_template')
+    element.find('.tweet_header').text(tweet.user.screen_name)
+    element.find('.tweet_body').text(tweet.text)
+    element.find('.user_icon').attr('src', tweet.user.profile_image_url)
     element.insertAfter(template)
 
   # initialize timeline

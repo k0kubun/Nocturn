@@ -13,13 +13,13 @@
   %body.no-scroll
     .timeline
       .header.clearfix
-        .button-wrapper
+        .button_wrapper
           .button ■
           Home
-        .button-wrapper
+        .button_wrapper
           .button ■
           Refresh
-        .button-wrapper
+        .button_wrapper
           .button ■
           Mark as Read
 
@@ -33,6 +33,10 @@
 
       %ul.tweets
         -# Used to add new tweets
-        %li.tweet.hidden-template
-          .tweet-header
-          .tweet-body
+        %li.tweet.hidden_template
+          .box_wrapper
+            .left_box
+              %img.user_icon
+            .right_box
+              .tweet_header
+              .tweet_body
