@@ -2,6 +2,7 @@ $header_height: 46px;
 $editor_height: 46px;
 $tabs_height: 28px;
 $timeline_height: 640px;
+$magic_offset: 22px;
 
 .no-scroll {
   overflow-y: hidden;
@@ -91,7 +92,7 @@ $timeline_height: 640px;
     left: 0;
     background: #fff;
     width: 100%;
-    height: $timeline_height - ($header_height + $editor_height + $tabs_height + 10);
+    height: $timeline_height - ($header_height + $editor_height + $tabs_height + $magic_offset);
     overflow: scroll;
     padding: 0;
 
@@ -99,6 +100,10 @@ $timeline_height: 640px;
       padding: 8px;
       list-style: none;
       border-bottom: 1px solid #ededed;
+    }
+
+    li.tweet.hidden-template {
+      display: none;
     }
   }
 }

@@ -5,10 +5,16 @@ jQuery ($) ->
   # Follow window resize
   $(window).on('resize', ->
     frameHeight = $('.header').height() + $('.editor').height() + $('.tabs').height()
-    $('.tweets').height($(window).height() - frameHeight)
+    magicOffset = 8
+    $('.tweets').height($(window).height() - (frameHeight + magicOffset))
   )
 
+  # initialize timeline
   twitterClient = new TwitterClient()
   twitterClient.homeTimeline (tweet) ->
-    console.log(tweet.user.screen_name)
-    console.log(tweet.text)
+    template = $('.tweets .tweet.hidden-template')
+    element  = template.clone(true)
+    element.removeClass('hidden-template')
+    element.find('.tweet-header').text(tweet.user.screen_name)
+    element.find('.tweet-body').text(tweet.text)
+    element.insertAfter(template)

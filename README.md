@@ -9,7 +9,7 @@ YoruFukurou-like Twitter Client built on Electron
 
 ## TODO
 
-- [ ] Show timeline
+- [x] Show timeline
 - [ ] UserStream
 - [ ] Show Icon
 - [ ] Post Tweet

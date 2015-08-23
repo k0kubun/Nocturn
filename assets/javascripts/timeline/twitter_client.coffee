@@ -29,6 +29,6 @@ class TwitterClient
     @client.get('statuses/home_timeline', {}, (error, tweets, response) ->
       return if error
 
-      for tweet in tweets
+      for tweet in tweets.reverse()
         callback(tweet)
     )
