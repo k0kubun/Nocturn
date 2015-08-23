@@ -33,13 +33,60 @@
           .in_reply_to{ id: 0 }
 
       %ul.tabs.clearfix
-        %li.tab.active Timeline
-        %li.tab Mentions
-        %li.tab Lists
-        %li.tab Search
+        %li.tab.active{ data: { id: 'timeline' } } Timeline
+        %li.tab{ data: { id: 'mentions' } } Mentions
+        %li.tab{ data: { id: 'lists' } } Lists
+        %li.tab{ data: { id: 'search' } } Search
 
-      %ul.tweets
-        -# Cloned to add new tweets
+      %ul#timeline.tweets.active
+        %li.tweet.hidden_template
+          .box_wrapper
+            .left_box
+              %img.user_icon
+            .right_box
+              .tweet_header.clearfix
+                %span.user_name
+                %span.screen_name
+                %span.created_at
+              .tweet_body
+            .right_widget
+              .reply_widget_wrapper
+                %i.fa.fa-reply.reply_button
+              .favorite_widget_wrapper
+                %i.fa.fa-star.favorite_button
+      %ul#mentions.tweets
+        %li.tweet.hidden_template
+          .box_wrapper
+            .left_box
+              %img.user_icon
+            .right_box
+              .tweet_header.clearfix
+                %span.user_name
+                %span.screen_name
+                %span.created_at
+              .tweet_body
+            .right_widget
+              .reply_widget_wrapper
+                %i.fa.fa-reply.reply_button
+              .favorite_widget_wrapper
+                %i.fa.fa-star.favorite_button
+      %ul#lists.tweets
+        %li.tweet.hidden_template
+          .box_wrapper
+            .left_box
+              %img.user_icon
+            .right_box
+              .tweet_header.clearfix
+                %span.user_name
+                %span.screen_name
+                %span.created_at
+              .tweet_body
+            .right_widget
+              .reply_widget_wrapper
+                %i.fa.fa-reply.reply_button
+              .favorite_widget_wrapper
+                %i.fa.fa-star.favorite_button
+      %ul#search.tweets
         %li.tweet.hidden_template
           .box_wrapper
             .left_box

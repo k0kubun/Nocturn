@@ -24,7 +24,7 @@ YoruFukurou-like Twitter Client built on Electron
 - [ ] Basic key bindings (f, Enter, Tab)
 - [ ] Header button detail
 - [x] Authentication
-- [ ] Tab change
+- [x] Tab change
 - [ ] Search
 - [ ] Mention
 - [ ] List

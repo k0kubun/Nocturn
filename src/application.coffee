@@ -9,7 +9,7 @@ jQuery ($) ->
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
   appendTweet = (tweet) ->
-    template = $('.tweets .tweet.hidden_template')
+    template = $('#timeline.tweets .tweet.hidden_template')
     if $(".tweet[data-id=#{tweet.id}]").length == 0
       TweetDecorator.decorate(template.clone(true), tweet).insertAfter(template)
 
@@ -56,6 +56,16 @@ jQuery ($) ->
   # refresh button
   $(document).delegate('.refresh_button', 'click', (event) ->
     twitterClient.homeTimeline(appendTweet)
+  )
+
+  # tab changes
+  $(document).delegate('.tabs .tab', 'click', (event) ->
+    $('.tabs .tab').removeClass('active')
+    tab = $(this)
+    tab.addClass('active')
+
+    $('.tweets').removeClass('active')
+    $("##{tab.data('id')}").addClass('active')
   )
 
   # this is just a workaround to avoid focusing on the invisible third item
