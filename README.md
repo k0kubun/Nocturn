@@ -31,14 +31,15 @@ YoruFukurou-like Twitter Client built on Electron
 - [ ] Search
 - [ ] Mention
 - [ ] List
+- [ ] Refresh
+- [ ] Home
+- [ ] Mark as read
+
 - [ ] Link URL
 - [ ] Open URL shortcut
 - [ ] Show RT properly
 - [ ] Scroll delay animation
 - [ ] Background shadow
-- [ ] Refresh
-- [ ] Home
-- [ ] Mark as read
 
 ## Build
 
