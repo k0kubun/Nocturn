@@ -16,7 +16,7 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Post Tweet
 - [x] Select Tweet
 - [x] Delete Tweet
-- [ ] Reply
+- [x] Reply
 - [ ] Favorite
 - [ ] Retweet
 - [ ] Show time

@@ -25,7 +25,7 @@ class KeyInputTracker
       inReplyTo.data('id', tweetId)
 
       username = activeTweet.find('.screen_name').text()
-      textarea.text("@#{username} ")
+      textarea.val("@#{username} ")
       textarea.focus()
 
     target.on('keypress', (event) ->
