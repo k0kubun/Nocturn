@@ -23,6 +23,24 @@ class TwitterClient
         callback(tweet)
     )
 
+  userStream: (callback) ->
+    @client.stream('user', {}, (stream) ->
+      stream.on('data', (data) ->
+        if data['friends']
+          console.log('friends')
+        else if data['event']
+          console.log('event')
+        else if data['delete']
+          console.log('delete')
+        else if data['created_at']
+          callback(data)
+      )
+
+      stream.on('error', (error) ->
+        console.log(error)
+      )
+    )
+
   readJson: (jsonName) ->
     fullPath = path.resolve(__dirname, '..', '..', jsonName)
     return JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
