@@ -43,10 +43,20 @@ class TwitterClient
 
   updateStatus: (tweet) ->
     return if tweet == ''
-    @client.post('statuses/update', { status: tweet }, (error, tweet, response) ->
-      if error
-        console.log(JSON.stringify(error))
+    @client.post('statuses/update', { status: tweet }, this.errorHandler)
+
+  deleteStatus: (tweetId, callback) ->
+    console.log(tweetId)
+    path = 'statuses/destroy/' + tweetId.toString()
+    console.log(path)
+    @client.post(path, {}, (error, data, response) ->
+      return if error
+      callback()
     )
+
+  errorHandler: (error, data, response) ->
+    if error
+      console.log(JSON.stringify(error))
 
   readJson: (jsonName) ->
     fullPath = path.resolve(__dirname, '..', '..', jsonName)
