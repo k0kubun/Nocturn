@@ -24,6 +24,8 @@
           Read
 
       .editor
+        %form{ action: '#', method: 'post' }
+          %textarea.tweet_editor{ name: 'kanso', rows: 4, cols: 40 }
 
       %ul.tabs.clearfix
         %li.tab.active Timeline
@@ -32,7 +34,7 @@
         %li.tab Search
 
       %ul.tweets
-        -# Used to add new tweets
+        -# Cloned to add new tweets
         %li.tweet.hidden_template
           .box_wrapper
             .left_box

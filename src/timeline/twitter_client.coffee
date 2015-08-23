@@ -4,7 +4,7 @@ Twitter = require('twitter')
 
 module.exports =
 class TwitterClient
-  constructor: () ->
+  constructor: ->
     credentials = this.readJson('credentials.json')
     accessToken = this.readJson('access_token.json')
 
@@ -39,6 +39,11 @@ class TwitterClient
       stream.on('error', (error) ->
         console.log(error)
       )
+    )
+
+  updateStatus: (tweet) ->
+    @client.post('statuses/update', { status: tweet }, (error, tweet, response) ->
+      # noop. needs error check
     )
 
   readJson: (jsonName) ->

@@ -1,4 +1,5 @@
 jQuery = require('jquery')
+TweetSubmitter  = require('./tweet_submitter')
 TwitterClient   = require('./twitter_client')
 TimelineResizer = require('./timeline_resizer')
 
@@ -18,6 +19,10 @@ jQuery ($) ->
   # initialize timeline
   twitterClient = new TwitterClient()
   twitterClient.homeTimeline(appendTweet)
+
+  # watch textarea
+  tweetSubmitter = new TweetSubmitter(twitterClient)
+  tweetSubmitter.watch($('.tweet_editor'))
 
   # loop userstream
   twitterClient.userStream(appendTweet)
