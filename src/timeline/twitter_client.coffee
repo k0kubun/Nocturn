@@ -27,17 +27,18 @@ class TwitterClient
     @client.stream('user', {}, (stream) ->
       stream.on('data', (data) ->
         if data['friends']
-          console.log('friends')
+          # noop
         else if data['event']
-          console.log('event')
+          # noop
         else if data['delete']
-          console.log('delete')
+          # noop
         else if data['created_at']
+          # This is a normal tweet
           callback(data)
       )
 
       stream.on('error', (error) ->
-        console.log(error)
+        console.log(JSON.stringify(error))
       )
     )
 
