@@ -38,67 +38,29 @@
         %li.tab{ data: { id: 'lists' } } Lists
         %li.tab{ data: { id: 'search' } } Search
 
+      -# template to generate element
+      %ul.template_wrapper
+        %li.tweet.hidden_template
+          .box_wrapper
+            .left_box
+              %img.user_icon
+            .right_box
+              .tweet_header.clearfix
+                %span.user_name
+                %span.screen_name
+                %span.created_at
+              .tweet_body
+            .right_widget
+              .reply_widget_wrapper
+                %i.fa.fa-reply.reply_button
+              .favorite_widget_wrapper
+                %i.fa.fa-star.favorite_button
+
       %ul#timeline.tweets.active
-        %li.tweet.hidden_template
-          .box_wrapper
-            .left_box
-              %img.user_icon
-            .right_box
-              .tweet_header.clearfix
-                %span.user_name
-                %span.screen_name
-                %span.created_at
-              .tweet_body
-            .right_widget
-              .reply_widget_wrapper
-                %i.fa.fa-reply.reply_button
-              .favorite_widget_wrapper
-                %i.fa.fa-star.favorite_button
+        %li.insert_target
       %ul#mentions.tweets
-        %li.tweet.hidden_template
-          .box_wrapper
-            .left_box
-              %img.user_icon
-            .right_box
-              .tweet_header.clearfix
-                %span.user_name
-                %span.screen_name
-                %span.created_at
-              .tweet_body
-            .right_widget
-              .reply_widget_wrapper
-                %i.fa.fa-reply.reply_button
-              .favorite_widget_wrapper
-                %i.fa.fa-star.favorite_button
+        %li.insert_target
       %ul#lists.tweets
-        %li.tweet.hidden_template
-          .box_wrapper
-            .left_box
-              %img.user_icon
-            .right_box
-              .tweet_header.clearfix
-                %span.user_name
-                %span.screen_name
-                %span.created_at
-              .tweet_body
-            .right_widget
-              .reply_widget_wrapper
-                %i.fa.fa-reply.reply_button
-              .favorite_widget_wrapper
-                %i.fa.fa-star.favorite_button
+        %li.insert_target
       %ul#search.tweets
-        %li.tweet.hidden_template
-          .box_wrapper
-            .left_box
-              %img.user_icon
-            .right_box
-              .tweet_header.clearfix
-                %span.user_name
-                %span.screen_name
-                %span.created_at
-              .tweet_body
-            .right_widget
-              .reply_widget_wrapper
-                %i.fa.fa-reply.reply_button
-              .favorite_widget_wrapper
-                %i.fa.fa-star.favorite_button
+        %li.insert_target

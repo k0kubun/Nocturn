@@ -9,9 +9,10 @@ jQuery ($) ->
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
   appendTweet = (tweet) ->
-    template = $('#timeline.tweets .tweet.hidden_template')
-    if $(".tweet[data-id=#{tweet.id}]").length == 0
-      TweetDecorator.decorate(template.clone(true), tweet).insertAfter(template)
+    template = $('.template_wrapper .hidden_template')
+    element = TweetDecorator.decorate(template.clone(true), tweet)
+    if $("#timeline .tweet[data-id=#{tweet.id}]").length == 0
+      element.insertAfter($('#timeline .insert_target'))
 
   # initialize timeline
   twitterClient = new TwitterClient()
