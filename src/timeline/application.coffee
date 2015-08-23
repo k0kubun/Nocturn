@@ -18,14 +18,7 @@ jQuery ($) ->
   twitterClient.userStream(appendTweet)
 
   # watch key inputs
-  activeTweetFunc = ->
-    $('.tweet.active')
-  keyInputTracker = new KeyInputTracker(
-    twitterClient,
-    $('.tweet_editor'),
-    activeTweetFunc,
-    $('.in_reply_to'),
-  )
+  keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))
 
   # tweet selection

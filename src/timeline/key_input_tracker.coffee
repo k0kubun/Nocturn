@@ -1,24 +1,25 @@
 module.exports =
 class KeyInputTracker
+  $ = null
+
   @keycodes: {
     enter:     13,
     backspace: 8,
   }
 
-  constructor: (twitterClient, textarea, activeTweetFunc, inReplyTo) ->
+  constructor: (twitterClient, jQuery) ->
+    $ = jQuery
     @twitterClient   = twitterClient
-    @textarea        = textarea
-    @activeTweetFunc = activeTweetFunc
-    @inReplyTo       = inReplyTo
+    @textarea        = $('.tweet_editor')
+    @inReplyTo       = $('.in_reply_to')
 
   watch: (target) ->
     twitterClient   = @twitterClient
     textarea        = @textarea
-    activeTweetFunc = @activeTweetFunc
     inReplyTo       = @inReplyTo
 
     invokeReply = ->
-      activeTweet = activeTweetFunc()
+      activeTweet = $('.tweet.active')
       return if activeTweet.length == 0
 
       tweetId = activeTweet.data('id')
@@ -49,7 +50,7 @@ class KeyInputTracker
         when KeyInputTracker.keycodes['backspace']
           return if event.metaKey != true
 
-          activeTweet = activeTweetFunc()
+          activeTweet = $('.tweet.active')
           return if activeTweet.length == 0
 
           tweetId = activeTweet.data('id')
