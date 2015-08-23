@@ -1,13 +1,9 @@
 jQuery = require('jquery')
-TwitterClient = require('./twitter_client')
+TwitterClient   = require('./twitter_client')
+TimelineResizer = require('./timeline_resizer')
 
 jQuery ($) ->
-  # Follow window resize
-  $(window).on('resize', ->
-    frameHeight = $('.header').height() + $('.editor').height() + $('.tabs').height()
-    magicOffset = 8
-    $('.tweets').height($(window).height() - (frameHeight + magicOffset))
-  )
+  TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
   # initialize timeline
   twitterClient = new TwitterClient()
