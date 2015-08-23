@@ -49,18 +49,21 @@ class TwitterClient
       params['in_reply_to_status_id'] = inReplyTo
     @client.post('statuses/update', params, this.errorHandler)
 
+  favoriteStatus: (tweetId, callback) ->
+    @client.post('favorites/create', { id: tweetId }, (error, data, response) ->
+      return console.log(JSON.stringify(error)) if error
+      callback()
+    )
+
   deleteStatus: (tweetId, callback) ->
-    console.log(tweetId)
     path = 'statuses/destroy/' + tweetId.toString()
-    console.log(path)
     @client.post(path, {}, (error, data, response) ->
-      return if error
+      return console.log(JSON.stringify(error)) if error
       callback()
     )
 
   errorHandler: (error, data, response) ->
-    if error
-      console.log(JSON.stringify(error))
+    console.log(JSON.stringify(error)) if error
 
   readJson: (jsonName) ->
     fullPath = path.resolve(__dirname, '..', '..', jsonName)

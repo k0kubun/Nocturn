@@ -12,4 +12,7 @@ class TweetDecorator
     element.find('.user_icon').attr('src', tweet.user.profile_image_url)
     element.find('.tweet_body').html(tweet.text.replace("\n", '<br>'))
 
+    if tweet.favorited
+      element.find('.favorite_button').addClass('active')
+
     element

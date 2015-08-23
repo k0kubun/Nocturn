@@ -34,6 +34,15 @@ jQuery ($) ->
     $(this).addClass('active')
   )
 
+  # favorite tweet
+  $(document).delegate('.favorite_button', 'click', ->
+    button = $(this)
+    tweet  = button.closest('.tweet')
+    twitterClient.favoriteStatus(tweet.data('id'), ->
+      button.addClass('active')
+    )
+  )
+
   # this is just a workaround to avoid focusing on the invisible third item
   $('.focus_trigger').focus ->
     $('.focus_standby').focus()
