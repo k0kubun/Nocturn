@@ -5,23 +5,14 @@ Twitter = require('twitter')
 module.exports =
 class TwitterClient
   constructor: () ->
-    # read consumer
-    consumerPath   = path.resolve(__dirname, '..', '..', 'consumer.json')
-    consumer       = JSON.parse(fs.readFileSync(consumerPath, 'utf-8'))
-    consumerKey    = consumer['consumer_key']
-    consumerSecret = consumer['consumer_secret']
-
-    # read credential
-    credentialsPath = path.resolve(__dirname, '..', '..', 'credentials.json')
-    credentials     = JSON.parse(fs.readFileSync(credentialsPath, 'utf-8'))
-    tokenKey        = credentials['access_token_key']
-    tokenSecret     = credentials['access_token_secret']
+    credentials = this.readJson('credentials.json')
+    accessToken = this.readJson('access_token.json')
 
     @client = Twitter({
-      consumer_key:        consumer['consumer_key'],
-      consumer_secret:     consumer['consumer_secret'],
-      access_token_key:    credentials['access_token_key'],
-      access_token_secret: credentials['access_token_secret'],
+      consumer_key:        credentials['consumer_key'],
+      consumer_secret:     credentials['consumer_secret'],
+      access_token_key:    accessToken['access_token_key'],
+      access_token_secret: accessToken['access_token_secret'],
     })
 
   homeTimeline: (callback) ->
@@ -31,3 +22,7 @@ class TwitterClient
       for tweet in tweets.reverse()
         callback(tweet)
     )
+
+  readJson: (jsonName) ->
+    fullPath = path.resolve(__dirname, '..', '..', jsonName)
+    return JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
