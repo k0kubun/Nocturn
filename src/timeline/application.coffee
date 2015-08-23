@@ -21,8 +21,12 @@ jQuery ($) ->
   keyInputTracker = new KeyInputTracker(twitterClient, $('.tweet_editor'))
   keyInputTracker.watch($(window))
 
-  # this is just a workaround...
-  $('.focus_trigger').focus( ->
-    $('.focus_standby').focus()
+  $(document).delegate('.tweet', 'click', ->
+    $('.tweet').removeClass('active')
+    $(this).addClass('active')
   )
+
+  # this is just a workaround to avoid focusing on the invisible third item
+  $('.focus_trigger').focus ->
+    $('.focus_standby').focus()
   $('.focus_standby').focus()
