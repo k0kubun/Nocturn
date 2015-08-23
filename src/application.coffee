@@ -36,6 +36,19 @@ jQuery ($) ->
     )
   )
 
+  # reply tweet
+  $(document).delegate('.reply_button', 'click', ->
+    button = $(this)
+    tweet  = button.closest('.tweet')
+
+    $('.in_reply_to').data('id', tweet.data('id'))
+
+    textarea = $('.tweet_editor')
+    username = tweet.find('.screen_name').text()
+    textarea.val("@#{username} ")
+    textarea.focus()
+  )
+
   # this is just a workaround to avoid focusing on the invisible third item
   $('.focus_trigger').focus ->
     $('.focus_standby').focus()
