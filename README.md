@@ -28,7 +28,7 @@ YoruFukurou-like Twitter Client built on Electron
 - [ ] Search
 - [ ] Mention
 - [ ] List
-- [ ] Refresh
+- [x] Refresh
 - [x] Home
 - [ ] Background shadow
 
