@@ -1,4 +1,5 @@
 jQuery = require('jquery')
+TweetDecorator  = require('./tweet_decorator')
 TweetSubmitter  = require('./tweet_submitter')
 TwitterClient   = require('./twitter_client')
 TimelineResizer = require('./timeline_resizer')
@@ -8,12 +9,7 @@ jQuery ($) ->
 
   appendTweet = (tweet) ->
     template = $('.tweets .tweet.hidden_template')
-    element  = template.clone(true)
-    element.removeClass('hidden_template')
-    element.find('.user_name').text(tweet.user.name)
-    element.find('.screen_name').text(tweet.user.screen_name)
-    element.find('.tweet_body').text(tweet.text)
-    element.find('.user_icon').attr('src', tweet.user.profile_image_url)
+    element  = TweetDecorator.decorate(template.clone(true), tweet)
     element.insertAfter(template)
 
   # initialize timeline
