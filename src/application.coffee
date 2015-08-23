@@ -10,7 +10,8 @@ jQuery ($) ->
 
   appendTweet = (tweet) ->
     template = $('.tweets .tweet.hidden_template')
-    TweetDecorator.decorate(template.clone(true), tweet).insertAfter(template)
+    if $(".tweet[data-id=#{tweet.id}]").length == 0
+      TweetDecorator.decorate(template.clone(true), tweet).insertAfter(template)
 
   # initialize timeline
   twitterClient = new TwitterClient()
@@ -38,15 +39,23 @@ jQuery ($) ->
 
   # reply tweet
   $(document).delegate('.reply_button', 'click', ->
-    button = $(this)
-    tweet  = button.closest('.tweet')
-
+    tweet = $(this).closest('.tweet')
     $('.in_reply_to').data('id', tweet.data('id'))
 
     textarea = $('.tweet_editor')
     username = tweet.find('.screen_name').text()
     textarea.val("@#{username} ")
     textarea.focus()
+  )
+
+  # home button
+  $(document).delegate('.home_button', 'click', (event) ->
+    require('shell').openExternal('https://twitter.com')
+  )
+
+  # refresh button
+  $(document).delegate('.refresh_button', 'click', (event) ->
+    twitterClient.homeTimeline(appendTweet)
   )
 
   # this is just a workaround to avoid focusing on the invisible third item
