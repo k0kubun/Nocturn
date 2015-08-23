@@ -9,16 +9,13 @@ jQuery ($) ->
 
   appendTweet = (tweet) ->
     template = $('.tweets .tweet.hidden_template')
-    element  = TweetDecorator.decorate(template.clone(true), tweet)
-    element.insertAfter(template)
+    TweetDecorator.decorate(template.clone(true), tweet).insertAfter(template)
 
   # initialize timeline
   twitterClient = new TwitterClient()
   twitterClient.homeTimeline(appendTweet)
+  twitterClient.userStream(appendTweet)
 
   # watch textarea
   tweetSubmitter = new TweetSubmitter(twitterClient)
   tweetSubmitter.watch($('.tweet_editor'))
-
-  # loop userstream
-  twitterClient.userStream(appendTweet)
