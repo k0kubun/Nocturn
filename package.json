@@ -9,6 +9,7 @@
     "start": "electron ."
   },
   "dependencies": {
+    "coffee-script": "^1.9.2",
     "jquery": "^2.1.4",
     "twitter": "^1.2.5"
   },

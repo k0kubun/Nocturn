@@ -1,4 +1,3 @@
-require 'coffee_script'
 require 'open-uri'
 require 'openssl'
 
@@ -22,17 +21,6 @@ task :compile do
         gsub(/\.scss$/, '.css')
       File.write(src_path, css.read)
     end
-  end
-  puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
-
-  print 'Compiling coffee script sources...'
-  start = Time.now
-  Dir.glob('assets/**/*.coffee').each do |path|
-    js = CoffeeScript.compile(File.read(path))
-    src_path = path.
-      gsub(%r{^assets/javascripts}, 'src').
-      gsub(/\.coffee$/, '.js')
-    File.write(src_path, js)
   end
   puts " done! (#{"%d" % ((Time.now - start) * 1000.0)}ms)"
 end

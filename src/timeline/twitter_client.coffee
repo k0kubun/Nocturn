@@ -17,7 +17,6 @@ class TwitterClient
     tokenKey        = credentials['access_token_key']
     tokenSecret     = credentials['access_token_secret']
 
-    # initialize timeline
     @client = Twitter({
       consumer_key:        consumer['consumer_key'],
       consumer_secret:     consumer['consumer_secret'],

@@ -1,12 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.9.1.1)
     escape_utils (1.1.0)
-    execjs (2.5.2)
     hamlit (1.7.2)
       escape_utils
       temple (~> 0.7.6)
@@ -22,7 +17,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-script
   hamlit
   rake
   sass
