@@ -42,8 +42,10 @@ class TwitterClient
     )
 
   updateStatus: (tweet) ->
+    return if tweet == ''
     @client.post('statuses/update', { status: tweet }, (error, tweet, response) ->
-      # noop. needs error check
+      if error
+        console.log(JSON.stringify(error))
     )
 
   readJson: (jsonName) ->

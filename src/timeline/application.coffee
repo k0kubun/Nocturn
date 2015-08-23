@@ -1,10 +1,11 @@
-jQuery = require('jquery')
-TweetDecorator  = require('./tweet_decorator')
-TweetSubmitter  = require('./tweet_submitter')
-TwitterClient   = require('./twitter_client')
+KeyInputTracker = require('./key_input_tracker')
 TimelineResizer = require('./timeline_resizer')
+TweetDecorator  = require('./tweet_decorator')
+TwitterClient   = require('./twitter_client')
 
+jQuery = require('jquery')
 jQuery ($) ->
+  # floating height for .tweets
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
   appendTweet = (tweet) ->
@@ -16,6 +17,6 @@ jQuery ($) ->
   twitterClient.homeTimeline(appendTweet)
   twitterClient.userStream(appendTweet)
 
-  # watch textarea
-  tweetSubmitter = new TweetSubmitter(twitterClient)
-  tweetSubmitter.watch($('.tweet_editor'))
+  # watch key inputs
+  keyInputTracker = new KeyInputTracker(twitterClient, $('.tweet_editor'))
+  keyInputTracker.watch($(window))
