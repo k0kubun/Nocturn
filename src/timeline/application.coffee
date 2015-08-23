@@ -24,6 +24,7 @@ jQuery ($) ->
     twitterClient,
     $('.tweet_editor'),
     activeTweetFunc,
+    $('.in_reply_to'),
   )
   keyInputTracker.watch($(window))
 

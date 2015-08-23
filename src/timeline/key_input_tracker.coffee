@@ -5,26 +5,43 @@ class KeyInputTracker
     backspace: 8,
   }
 
-  constructor: (twitterClient, textarea, activeTweetFunc) ->
+  constructor: (twitterClient, textarea, activeTweetFunc, inReplyTo) ->
     @twitterClient   = twitterClient
     @textarea        = textarea
     @activeTweetFunc = activeTweetFunc
+    @inReplyTo       = inReplyTo
 
   watch: (target) ->
     twitterClient   = @twitterClient
     textarea        = @textarea
     activeTweetFunc = @activeTweetFunc
+    inReplyTo       = @inReplyTo
+
+    invokeReply = ->
+      activeTweet = activeTweetFunc()
+      return if activeTweet.length == 0
+
+      tweetId = activeTweet.data('id')
+      inReplyTo.data('id', tweetId)
+
+      username = activeTweet.find('.screen_name').text()
+      textarea.text("@#{username} ")
+      textarea.focus()
 
     target.on('keypress', (event) ->
       switch event.keyCode
         when KeyInputTracker.keycodes['enter']
-          return unless textarea.is(':focus')
+          unless textarea.is(':focus')
+            event.preventDefault()
+            invokeReply()
+            return
           return if event.altKey
 
           event.preventDefault()
           tweet = textarea.val()
           textarea.val('')
-          twitterClient.updateStatus(tweet)
+          twitterClient.updateStatus(tweet, inReplyTo.data('id'))
+          inReplyTo.data('id', 0)
     )
 
     target.on('keydown', (event) ->

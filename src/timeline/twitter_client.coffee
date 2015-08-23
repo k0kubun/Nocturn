@@ -41,9 +41,13 @@ class TwitterClient
       )
     )
 
-  updateStatus: (tweet) ->
+  updateStatus: (tweet, inReplyTo) ->
     return if tweet == ''
-    @client.post('statuses/update', { status: tweet }, this.errorHandler)
+
+    params = { status: tweet }
+    if inReplyTo != 0
+      params['in_reply_to_status_id'] = inReplyTo
+    @client.post('statuses/update', params, this.errorHandler)
 
   deleteStatus: (tweetId, callback) ->
     console.log(tweetId)
