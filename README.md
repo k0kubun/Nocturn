@@ -3,15 +3,16 @@
 YoruFukurou-like Twitter Client built on Electron
 
 ## Features
-- Realtime timeline using UserStream
-- Multi-account support
-- Vim-like key bindings
+- [x] Realtime timeline using UserStream
+- [ ] Multi-account support
+- [ ] Vim-like key bindings
 
 ## TODO
 
 - [x] Show timeline
 - [x] UserStream
-- [ ] Show Icon
+- [x] Show Icon
+- [ ] Tweet view
 - [ ] Post Tweet
 - [ ] Delete Tweet
 - [ ] Reply
