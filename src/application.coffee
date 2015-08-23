@@ -8,16 +8,44 @@ jQuery ($) ->
   # floating height for .tweets
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
 
+  insertInside = (target, element) ->
+    insertId = element.data('id')
+    return if target.find(".tweet[data-id=#{insertId}]").length > 0
+
+    if target.find('.tweet').length == 0
+      element.insertAfter(target.find('.insert_target'))
+      return
+
+    target.find('.tweet').each(->
+      tweet = $(this)
+      if tweet.data('id') < insertId
+        element.insertBefore(tweet)
+        return false
+    )
+    if target.find(".tweet[data-id=#{insertId}]").length == 0
+      element.insertAfter(target.find('.insert_target'))
+
   appendTweet = (tweet) ->
     template = $('.template_wrapper .hidden_template')
-    element = TweetDecorator.decorate(template.clone(true), tweet)
-    if $("#timeline .tweet[data-id=#{tweet.id}]").length == 0
-      element.insertAfter($('#timeline .insert_target'))
+    if $("#timeline .tweet[data-id=#{tweet.id_str}]").length == 0
+      element = TweetDecorator.decorate(template.clone(false), tweet)
+      insertInside($('#timeline'), element)
+
+    screenName = $('.current_user').data('name')
+    if tweet.text.match(new RegExp("@#{screenName}"))
+      if $("#mentions .tweet[data-id=#{tweet.id_str}]").length == 0
+        element = TweetDecorator.decorate(template.clone(false), tweet)
+        insertInside('#mentions', element)
 
   # initialize timeline
   twitterClient = new TwitterClient()
-  twitterClient.homeTimeline(appendTweet)
-  twitterClient.userStream(appendTweet)
+  twitterClient.verifyCredentials((user) ->
+    $('.current_user').data('id', user.id_str)
+    $('.current_user').data('name', user.screen_name)
+
+    twitterClient.homeTimeline(appendTweet)
+    twitterClient.userStream(appendTweet)
+  )
 
   # watch key inputs
   keyInputTracker = new KeyInputTracker(twitterClient, $)

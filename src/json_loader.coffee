@@ -9,4 +9,5 @@ class JsonLoader
 
   @read: (name) ->
     jsonPath = path.resolve(__dirname, '..', name)
+    return {} unless fs.existsSync(jsonPath)
     return JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
