@@ -25,7 +25,10 @@
 
       .editor
         %form{ action: '#', method: 'post' }
-          %textarea.tweet_editor{ name: 'tweet' }
+          -# this is just a workaround...
+          .focus_standby{ tabindex: 1 }
+          %textarea.tweet_editor{ name: 'tweet', tabindex: 2 }
+          .focus_trigger{ tabindex: 3 }
 
       %ul.tabs.clearfix
         %li.tab.active Timeline

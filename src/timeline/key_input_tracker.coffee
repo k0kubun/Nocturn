@@ -15,8 +15,8 @@ class KeyInputTracker
     target.on('keypress', (event) ->
       switch event.keyCode
         when KeyInputTracker.keycodes['enter']
-          if event.altKey
-            return
+          return unless textarea.is(':focus')
+          return if event.altKey
 
           event.preventDefault()
           tweet = textarea.val()

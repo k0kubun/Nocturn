@@ -20,3 +20,9 @@ jQuery ($) ->
   # watch key inputs
   keyInputTracker = new KeyInputTracker(twitterClient, $('.tweet_editor'))
   keyInputTracker.watch($(window))
+
+  # this is just a workaround...
+  $('.focus_trigger').focus( ->
+    $('.focus_standby').focus()
+  )
+  $('.focus_standby').focus()
