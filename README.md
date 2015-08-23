@@ -28,6 +28,7 @@ YoruFukurou-like Twitter Client built on Electron
 - [ ] View favorites
 - [ ] Link URL
 - [ ] Open URL shortcut
+- [ ] Show RT properly
 
 ## Build
 

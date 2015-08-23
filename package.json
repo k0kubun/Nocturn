@@ -9,7 +9,8 @@
     "start": "electron ."
   },
   "dependencies": {
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "twitter": "^1.2.5"
   },
   "devDependencies": {
     "electron-prebuilt": "^0.25.1",

@@ -7,3 +7,4 @@ compile-cache/
 *.css
 *.js
 !main.js
+credentials.json
