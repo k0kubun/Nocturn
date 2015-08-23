@@ -11,7 +11,8 @@
   "dependencies": {
     "coffee-script": "^1.9.2",
     "jquery": "^2.1.4",
-    "twitter": "^1.2.5"
+    "twitter": "^1.2.5",
+    "node-twitter-api": "^1.6.0"
   },
   "devDependencies": {
     "electron-prebuilt": "^0.25.1",

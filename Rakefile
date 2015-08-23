@@ -27,6 +27,8 @@ task :compile do
   start = Time.now
   %w[
     src/main.coffee
+    src/authentication.coffee
+    src/json_loader.coffee
   ].each do |path|
     js = CoffeeScript.compile(File.read(path))
     src_path = path.gsub(/\.coffee$/, '.js')
@@ -37,7 +39,7 @@ end
 
 desc 'Start with Electron.app'
 task start: :compile do
-  system('/Applications/Electron.app/Contents/MacOS/Electron .')
+  system('npm start')
 end
 
 task default: :start

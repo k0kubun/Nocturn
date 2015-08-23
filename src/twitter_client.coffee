@@ -9,10 +9,10 @@ class TwitterClient
     accessToken = this.readJson('access_token.json')
 
     @client = Twitter({
-      consumer_key:        credentials['consumer_key'],
-      consumer_secret:     credentials['consumer_secret'],
-      access_token_key:    accessToken['access_token_key'],
-      access_token_secret: accessToken['access_token_secret'],
+      consumer_key:        credentials['consumerKey'],
+      consumer_secret:     credentials['consumerSecret'],
+      access_token_key:    accessToken['accessToken'],
+      access_token_secret: accessToken['accessTokenSecret'],
     })
 
   homeTimeline: (callback) ->

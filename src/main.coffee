@@ -1,7 +1,9 @@
-mainWindow    = null
-app           = require('app')
-Menu          = require('menu')
-BrowserWindow = require('browser-window')
+mainWindow     = null
+app            = require('app')
+Authentication = require('./authentication')
+BrowserWindow  = require('browser-window')
+JsonLoader     = require('./json_loader')
+Menu           = require('menu')
 
 app.on('window-all-closed', ->
   if process.platform != 'darwin'
@@ -9,11 +11,21 @@ app.on('window-all-closed', ->
 )
 
 app.on('ready', ->
-  mainWindow = new BrowserWindow({ width: 350, height: 640 })
-  mainWindow.loadUrl('file://' + __dirname + '/index.html')
-  mainWindow.on('closed', ->
-    mainWindow = null
-  )
+  mainRoutine = ->
+    mainWindow = new BrowserWindow({ width: 350, height: 640 })
+    mainWindow.loadUrl('file://' + __dirname + '/index.html')
+    mainWindow.on('closed', ->
+      mainWindow = null
+    )
+
+  accessToken = JsonLoader.read('access_token.json')
+  unless accessToken['accessToken']
+    tokenWriter = (token) ->
+      JsonLoader.write('access_token.json', token)
+      mainRoutine()
+    new Authentication(tokenWriter)
+  else
+    mainRoutine()
 
   template = [
     {
