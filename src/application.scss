@@ -199,5 +199,10 @@ $icon_column: $icon_size + $tweet_padding * 2;
       height: $icon_size;
       border-radius: 6px;
     }
+
+    .created_at {
+      float: right;
+      color: #999;
+    }
   }
 }

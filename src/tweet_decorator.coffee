@@ -12,6 +12,15 @@ class TweetDecorator
     element.find('.user_icon').attr('src', tweet.user.profile_image_url)
     element.find('.tweet_body').html(tweet.text.replace("\n", '<br>'))
 
+    formatDate = (date, format) ->
+      format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2))
+      format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2))
+      format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2))
+      return format
+
+    date = new Date(tweet.created_at)
+    element.find('.created_at').text(formatDate(date, 'hh:mm:ss'))
+
     if tweet.favorited
       element.find('.favorite_button').addClass('active')
 
