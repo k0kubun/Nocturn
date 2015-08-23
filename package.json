@@ -1,7 +1,7 @@
 {
   "name": "nocturn",
   "version": "0.0.1",
-  "main": "main.js",
+  "main": "src/main.js",
   "repository": "k0kubun/nocturn",
   "author": "k0kubun",
   "license": "MIT",
