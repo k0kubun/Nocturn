@@ -19,26 +19,17 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Reply
 - [x] Show command buttons
 - [x] Favorite
-- [ ] Drop down menu
-- [ ] Retweet
 - [ ] Show time
 - [ ] Vim-like Key Binding (j, k, 0)
 - [ ] Basic key bindings (f, Enter, Tab)
 - [ ] Header button detail
-- [ ] Authentication
-- [ ] Multi-account
+- [x] Authentication
 - [ ] Tab change
 - [ ] Search
 - [ ] Mention
 - [ ] List
 - [ ] Refresh
-- [ ] Home
-- [ ] Mark as read
-
-- [ ] Link URL
-- [ ] Open URL shortcut
-- [ ] Show RT properly
-- [ ] Scroll delay animation
+- [x] Home
 - [ ] Background shadow
 
 ## Build
