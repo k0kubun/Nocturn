@@ -56,6 +56,9 @@ class KeyInputTracker
         $(this).addClass('active')
         return false
 
+      # immediately scroll to top
+      activeTabPane().animate({ scrollTop: 0 }, 0)
+
     selectNextTweet = ->
       activeTweet = activeTabPane().find('.tweet.active')
       return selectFirstTweet() if activeTweet.length == 0
@@ -65,6 +68,13 @@ class KeyInputTracker
 
       $('.tweet').removeClass('active')
       nextTweet.addClass('active')
+
+      pane = activeTabPane()
+      visibleLimit = pane.height()
+      activeBottom = nextTweet.offset().top
+      if visibleLimit < activeBottom
+        pane.finish()
+        pane.animate({ scrollTop: pane.scrollTop() + pane.height() / 2 }, 'fast')
 
     selectPrevTweet = ->
       activeTweet = activeTabPane().find('.tweet.active')
@@ -77,6 +87,14 @@ class KeyInputTracker
 
       $('.tweet').removeClass('active')
       prevTweet.addClass('active')
+
+      pane = activeTabPane()
+      visibleLimit = 0
+      activeTop    = prevTweet.offset().top - prevTweet.height()
+      console.log([visibleLimit, activeTop])
+      if visibleLimit > activeTop
+        pane.finish()
+        pane.animate({ scrollTop: pane.scrollTop() - pane.height() / 2 }, 'fast')
 
     target.on('keypress', (event) ->
       switch event.keyCode
