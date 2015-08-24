@@ -245,9 +245,24 @@ $tweets_header_height: 34px;
     background: linear-gradient(#efefef, #cccbcc);
     border-bottom: 1px solid #888;
     display: none;
+    padding: 0 20px;
 
     &.active {
       display: block;
+    }
+
+    .lists_field {
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    .search_field {
+      margin-top: 6px;
+      width: 100%;
+      font-size: 12px;
+      border-radius: 3px;
+      border: 1px solid #aaa;
+      padding: 1px 8px;
     }
   }
 }
