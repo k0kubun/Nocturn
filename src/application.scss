@@ -1,4 +1,4 @@
-$header_height: 46px;
+$header_height: 47px;
 $editor_height: 46px;
 $tabs_height: 28px;
 $timeline_height: 640px;
@@ -20,31 +20,34 @@ $tweets_header_height: 34px;
     position: fixed;
     top: 0;
     left: 0;
-    background: #e0e0e2;
+    background: linear-gradient(#e0e0e0, #cccbcc);
     width: 100%;
     height: $header_height;
-    z-index: 100;
+    z-index: 400;
     overflow: hidden;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #b4b4b4;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.12);
+    box-sizing: border-box;
     padding: 4px 0 0 8px;
 
     .button_wrapper {
       float: left;
-      font-size: 10px;
+      font-size: 11px;
       text-align: center;
       margin: 0 12px 0 4px;
+      color: #403638;
     }
 
     .button {
-      background: #efefef;
-      color: #888;
+      background: #fbfafb;
+      color: #606060;
       font-size: 14px;
       width: 38px;
       margin: auto;
       height: 24px;
-      border: 1px solid #ccc;
+      padding-top: 2px;
       border-radius: 3px;
-      padding-top: 1px;
+      border-bottom: 1px solid #b5b2b5;
     }
 
     .button:active {
@@ -59,8 +62,9 @@ $tweets_header_height: 34px;
     background: #fff;
     width: 100%;
     height: $editor_height;
-    z-index: 50;
+    z-index: 300;
     overflow: hidden;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.06);
 
     .tweet_editor {
       width: 100%;
@@ -82,9 +86,10 @@ $tweets_header_height: 34px;
     height: $tabs_height;
     z-index: 100;
     overflow: hidden;
-    border-top: 1px solid #666;
+    border-top: 1px solid #777;
     border-bottom: 1px solid #888;
     padding: 0 0 0 8px;
+    box-shadow: 0 -1px 3px 1px rgba(0,0,0,0.06) inset;
 
     .tab {
       height: $tabs_height;
@@ -100,8 +105,13 @@ $tweets_header_height: 34px;
       margin-right: -1px;
     }
 
+    .tab:hover {
+      background: #aaa;
+    }
+
     .tab.active {
-      background: #eee;
+      background: linear-gradient(#fbfbfb, #d9d9d9);
+      z-index: 800;
     }
   }
 
@@ -228,7 +238,7 @@ $tweets_header_height: 34px;
     top: $header_height + $editor_height + $tabs_height;
     width: 100%;
     height: $tweets_header_height;
-    background: #e0e0e2;
+    background: linear-gradient(#efefef, #cccbcc);
     border-bottom: 1px solid #888;
     display: none;
 

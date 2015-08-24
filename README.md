@@ -25,12 +25,12 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Mention
 - [x] Refresh
 - [x] Home
+- [x] Background shadow
+- [x] Header button detail
 - [ ] Search
 - [ ] List
 - [ ] Vim-like Key Binding (j, k, 0)
 - [ ] Basic key bindings (f, Enter, Tab)
-- [ ] Header button detail
-- [ ] Background shadow
 
 ## Build
 
