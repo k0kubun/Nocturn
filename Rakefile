@@ -6,7 +6,7 @@ desc 'Compile all haml templates into html'
 task :compile do
   print 'Compiling haml sources...'
   start = Time.now
-  Dir.glob('src/**/*.haml').each do |path|
+  Dir.glob('app/**/*.haml').each do |path|
     IO.popen("bundle exec hamlit #{path}", 'r+') do |html|
       File.write(path.gsub(/\.haml$/, '.html'), html.read)
     end
@@ -15,7 +15,7 @@ task :compile do
 
   print 'Compiling sass sources...'
   start = Time.now
-  Dir.glob('src/*.scss').each do |path|
+  Dir.glob('app/*.scss').each do |path|
     IO.popen("bundle exec sass #{path}", 'r+') do |css|
       src_path = path.gsub(/\.scss$/, '.css')
       File.write(src_path, css.read)
@@ -26,9 +26,9 @@ task :compile do
   print 'Compiling coffee sources...'
   start = Time.now
   %w[
-    src/main.coffee
-    src/authentication.coffee
-    src/json_loader.coffee
+    app/main.coffee
+    app/authentication.coffee
+    app/json_loader.coffee
   ].each do |path|
     js = CoffeeScript.compile(File.read(path))
     src_path = path.gsub(/\.coffee$/, '.js')

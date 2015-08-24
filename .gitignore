@@ -7,5 +7,6 @@ tmp/
 *.html
 *.css
 *.js
+!gulpfile.js
 access_token.json
 packages
