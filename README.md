@@ -23,10 +23,11 @@ https://github.com/k0kubun/Nocturn/releases
 |Key|Command|
 |:---|:---|
 |Enter| Tweet, Reply, Search |
-|j, ↓|Select next tweet|
-|k, ↑|Select previous tweet|
-|0, space|Select first tweet|
-|f|Add tweet to favorites|
+|j, ↓|Select a next tweet|
+|k, ↑|Select a previous tweet|
+|0, space|Select the first tweet|
+|f|Add a tweet to favorites|
+|Cmd-backspace|Delete a tweet|
 
 ## Development
 
