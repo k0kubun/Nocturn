@@ -6,6 +6,8 @@ JsonLoader     = require('./json_loader')
 Menu           = require('menu')
 
 app.on('ready', ->
+  return if mainWindow
+
   mainRoutine = ->
     mainWindow = new BrowserWindow({ width: 350, height: 640 })
     mainWindow.loadUrl('file://' + __dirname + '/index.html')
