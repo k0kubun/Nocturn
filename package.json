@@ -6,7 +6,8 @@
   "author": "k0kubun",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0"
   },
   "dependencies": {
     "coffee-script": "^1.9.2",
@@ -16,6 +17,6 @@
   },
   "devDependencies": {
     "electron-prebuilt": "^0.25.1",
-    "electron-packager": "^3.1.0"
+    "electron-packager": "^5.0.2"
   }
 }
