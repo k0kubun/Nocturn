@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "package": "echo '{}' > access_token.json && electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/*",
+    "build": "rm -f access_token.json && rake compile && npm run package && npm run zip",
+    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/*",
     "zip": "npm run zip-darwin && npm run zip-linux && npm run zip-win32",
     "zip-darwin": "cd packages/v0.0.1 && zip -r Nocturn-darwin-x64.zip Nocturn-darwin-x64",
     "zip-linux": "cd packages/v0.0.1 && zip -r Nocturn-linux-x64.zip Nocturn-linux-x64",
