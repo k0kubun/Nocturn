@@ -16,6 +16,7 @@ app.on('ready', ->
     mainWindow.loadUrl('file://' + __dirname + '/index.html')
     mainWindow.on('closed', ->
       mainWindow = null
+      app.quit()
     )
 
   accessToken = JsonLoader.read('access_token.json')
