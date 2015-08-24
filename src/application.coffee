@@ -73,7 +73,7 @@ jQuery ($) ->
   )
 
   # watch key inputs
-  keyInputTracker = new KeyInputTracker(twitterClient, $)
+  keyInputTracker = new KeyInputTracker(twitterClient, $, insertInside)
   keyInputTracker.watch($(window))
 
   # tweet selection

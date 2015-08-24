@@ -100,6 +100,13 @@ class TwitterClient
         callback(tweet)
     )
 
+  searchTweets: (query, callback) ->
+    @client.get('search/tweets', { q: query }, (error, data, response) ->
+      return console.log(JSON.stringify(error)) if error
+      for tweet in data['statuses'].reverse()
+        callback(tweet)
+    )
+
   errorHandler: (error, data, response) ->
     console.log(JSON.stringify(error)) if error
 
