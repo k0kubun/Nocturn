@@ -6,7 +6,7 @@ desc 'Compile all haml templates into html'
 task :compile do
   print 'Compiling haml sources...'
   start = Time.now
-  Dir.glob('**/*.haml').each do |path|
+  Dir.glob('src/**/*.haml').each do |path|
     IO.popen("bundle exec hamlit #{path}", 'r+') do |html|
       File.write(path.gsub(/\.haml$/, '.html'), html.read)
     end

@@ -5,10 +5,6 @@ BrowserWindow  = require('browser-window')
 JsonLoader     = require('./json_loader')
 Menu           = require('menu')
 
-app.on('window-all-closed', ->
-  # noop
-)
-
 app.on('ready', ->
   mainRoutine = ->
     mainWindow = new BrowserWindow({ width: 350, height: 640 })
@@ -19,13 +15,12 @@ app.on('ready', ->
     )
 
   accessToken = JsonLoader.read('access_token.json')
-  unless accessToken['accessToken']
-    tokenWriter = (token) ->
+  if accessToken['accessToken']
+    mainRoutine()
+  else
+    new Authentication (token) ->
       JsonLoader.write('access_token.json', token)
       mainRoutine()
-    new Authentication(tokenWriter)
-  else
-    mainRoutine()
 
   template = [
     {
@@ -53,4 +48,8 @@ app.on('ready', ->
   ]
   menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
+)
+
+app.on('window-all-closed', ->
+  # noop
 )

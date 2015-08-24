@@ -2,7 +2,6 @@ BrowserWindow  = require('browser-window')
 JsonLoader     = require('./json_loader')
 NodeTwitterApi = require('node-twitter-api')
 
-succeed = false
 authWindow = null
 
 module.exports =
@@ -20,18 +19,23 @@ class Authentication
       url = nodeTwitterApi.getAuthUrl(requestToken)
       authWindow = new BrowserWindow({ width: 800, height: 600 })
       authWindow.webContents.on('will-navigate', (event, url) =>
+        event.preventDefault()
         if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
           nodeTwitterApi.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) =>
-            return if error
-            succeed = true
-            callback({ accessToken: accessToken, accessTokenSecret: accessTokenSecret })
+            if error
+              authWindow.close()
+              new Authentication(callback)
+            else
+              authWindow.close()
+              authWindow = null
+              callback({ accessToken: accessToken, accessTokenSecret: accessTokenSecret })
           )
-        event.preventDefault()
-        authWindow.close()
+        else
+          authWindow.close()
+          new Authentication(callback)
       )
       authWindow.on('closed', ->
-        authWindow = null
-        new Authentication(callback) unless succeed
+        # noop
       )
       authWindow.loadUrl(url)
     )
