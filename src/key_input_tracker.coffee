@@ -5,9 +5,17 @@ class KeyInputTracker
   $ = null
 
   @keycodes: {
+    # keydown
     backspace: 8,
+    up:        38,
+    down:      40,
+
+    # keypress
     enter:     13,
+    space:     32,
+    zero:      48,
     f:         102,
+    j:         106,
   }
 
   constructor: (twitterClient, jQuery, insertInside) ->
@@ -70,6 +78,18 @@ class KeyInputTracker
           twitterClient.favoriteStatus(activeTweet.data('id'), ->
             activeTweet.find('.favorite_button').addClass('active')
           )
+
+        when KeyInputTracker.keycodes['space'], KeyInputTracker.keycodes['zero']
+          return if textarea.is(':focus')
+          event.preventDefault()
+
+        when KeyInputTracker.keycodes['j']
+          return if textarea.is(':focus')
+          event.preventDefault()
+
+        when KeyInputTracker.keycodes['k']
+          return if textarea.is(':focus')
+          event.preventDefault()
     )
 
     target.on('keydown', (event) ->
@@ -84,4 +104,12 @@ class KeyInputTracker
           twitterClient.deleteStatus(tweetId, ->
             activeTweet.remove()
           )
+
+        when KeyInputTracker.keycodes['up']
+          return if textarea.is(':focus')
+          event.preventDefault()
+
+        when KeyInputTracker.keycodes['down']
+          return if textarea.is(':focus')
+          event.preventDefault()
     )
