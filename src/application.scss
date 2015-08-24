@@ -15,6 +15,8 @@ $tweets_header_height: 34px;
 .timeline {
   color: #333;
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 
   .header {
     position: fixed;
@@ -167,6 +169,8 @@ $tweets_header_height: 34px;
       color: #555;
       line-height: 1.3;
       padding-right: 16px;
+      user-select: auto;
+      -webkit-user-select: auto;
     }
 
     .active .user_name,
