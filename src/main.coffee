@@ -10,7 +10,7 @@ app.on('ready', ->
 
   mainRoutine = ->
     mainWindow = new BrowserWindow({ width: 350, height: 640 })
-    mainWindow.loadUrl('file://' + __dirname + '/index.html')
+    mainWindow.loadUrl('file://' + __dirname + '/views/index.html')
     mainWindow.on('closed', ->
       mainWindow = null
       app.quit()

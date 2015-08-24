@@ -11,7 +11,7 @@ gulp.task(
 gulp.task(
   'compile-haml',
   function () {
-    gulp.src('src/*.haml')
+    gulp.src('src/**/*.haml')
       .pipe(haml())
       .pipe(gulp.dest('app'));
   }
