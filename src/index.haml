@@ -2,17 +2,17 @@
 %html
   %head
     %title Nocturn
-    %meta{ charset: 'utf-8' }
-    %link{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' }
-    %link{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' }
-    %link{ rel: 'stylesheet', href: 'stylesheets/application.css' }
+    %meta{ charset: "utf-8" }
+    %link{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" }
+    %link{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" }
+    %link{ rel: "stylesheet", href: "stylesheets/application.css" }
 
     :javascript
       require('coffee-script/register');
       require('./application');
 
   %body
-    .current_user{ data: { id: 0, name: '' } }
+    .current_user{ data-id: 0, name: "" }
 
     .timeline
       .header.clearfix
@@ -26,19 +26,19 @@
           Refresh
 
       .editor
-        %form{ action: '#', method: 'post' }
+        %form{ action: "#", method: "post" }
           -# this is just a workaround...
           .focus_standby{ tabindex: 1 }
-          %textarea.tweet_editor{ name: 'tweet', tabindex: 2 }
+          %textarea.tweet_editor{ name: "tweet", tabindex: 2 }
           .focus_trigger{ tabindex: 3 }
 
           .in_reply_to{ id: 0 }
 
       %ul.tabs.clearfix
-        %li.tab.active{ data: { id: 'timeline' } } Timeline
-        %li.tab{ data: { id: 'mentions' } } Mentions
-        %li.tab{ data: { id: 'lists' } } Lists
-        %li.tab{ data: { id: 'search' } } Search
+        %li.tab.active{ data-id: "timeline" } Timeline
+        %li.tab{ data-id: "mentions" } Mentions
+        %li.tab{ data-id: "lists" } Lists
+        %li.tab{ data-id: "search" } Search
 
       -# template to generate element
       %ul.template_wrapper
@@ -68,7 +68,7 @@
         %li.insert_target
 
       .tweets_header.lists_selector
-        %select.lists_field{ name: 'lists' }
+        %select.lists_field{ name: "lists" }
           %option.list_default{ value: 0 } Select List...
       .tweets_header.search_box
-        %input.search_field{ type: 'text', placeholder: 'Twitter Search' }
+        %input.search_field{ type: "text", placeholder: "Twitter Search" }
