@@ -48,6 +48,17 @@ jQuery ($) ->
     twitterClient.userStream(appendTweet)
   )
 
+  # initialize list
+  twitterClient.listsList((lists) ->
+    for list in lists
+      fullName = list['full_name']
+      element = $('.list_default').clone(false)
+      element.removeClass('list_default')
+      element.attr('value', fullName)
+      element.text(fullName)
+      element.insertAfter($('.list_default'))
+  )
+
   # watch key inputs
   keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))

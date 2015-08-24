@@ -77,6 +77,12 @@ class TwitterClient
       callback(data)
     )
 
+  listsList: (callback) ->
+    @client.get('lists/list', {}, (error, data, response) ->
+      return console.log(JSON.stringify(error)) if error
+      callback(data)
+    )
+
   errorHandler: (error, data, response) ->
     console.log(JSON.stringify(error)) if error
 
