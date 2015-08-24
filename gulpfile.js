@@ -1,10 +1,11 @@
-var gulp = require('gulp');
-var haml = require('gulp-haml');
-var sass = require('gulp-sass');
+var gulp   = require('gulp');
+var coffee = require('gulp-coffee');
+var haml   = require('gulp-haml');
+var sass   = require('gulp-sass');
 
 gulp.task(
   'compile',
-  ['compile-haml', 'compile-scss']
+  ['compile-haml', 'compile-coffee', 'compile-scss']
 );
 
 gulp.task(
@@ -12,7 +13,16 @@ gulp.task(
   function () {
     gulp.src('src/*.haml')
       .pipe(haml())
-      .pipe(gulp.dest('app'))
+      .pipe(gulp.dest('app'));
+  }
+)
+
+gulp.task(
+  'compile-coffee',
+  function () {
+    gulp.src('src/**/*.coffee')
+      .pipe(coffee())
+      .pipe(gulp.dest('app'));
   }
 )
 

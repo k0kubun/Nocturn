@@ -6,9 +6,9 @@
   "author": "k0kubun",
   "license": "MIT",
   "scripts": {
-    "start": "npm run compile && rake compile && electron .",
+    "start": "npm run compile && electron .",
     "compile": "gulp compile",
-    "build": "rm -f access_token.json && find . -name .DS_Store | xargs rm && rm -rf packages && rake compile && npm run package && npm run zip",
+    "build": "rm -f access_token.json && find . -name .DS_Store | xargs rm && rm -rf packages && npm run package && npm run zip",
     "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/*",
     "zip": "npm run zip-darwin && npm run zip-linux && npm run zip-win32",
     "zip-darwin": "cd packages/v0.0.1 && zip -r Nocturn-darwin-x64.zip Nocturn-darwin-x64",
