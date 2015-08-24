@@ -7,7 +7,11 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0"
+    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0",
+    "zip": "npm run zip-darwin && npm run zip-linux && npm run zip-win32",
+    "zip-darwin": "cd packages/v0.0.1 && zip -r Nocturn-darwin-x64.zip Nocturn-darwin-x64",
+    "zip-linux": "cd packages/v0.0.1 && zip -r Nocturn-linux-x64.zip Nocturn-linux-x64",
+    "zip-win32": "cd packages/v0.0.1 && zip -r Nocturn-win32-x64.zip Nocturn-win32-x64"
   },
   "dependencies": {
     "coffee-script": "^1.9.2",
