@@ -6,8 +6,7 @@ JsonLoader     = require('./json_loader')
 Menu           = require('menu')
 
 app.on('window-all-closed', ->
-  if process.platform != 'darwin'
-    app.quit()
+  # noop
 )
 
 app.on('ready', ->
