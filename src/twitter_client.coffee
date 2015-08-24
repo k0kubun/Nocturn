@@ -93,6 +93,13 @@ class TwitterClient
       callback(data)
     )
 
+  listsStatuses: (id, callback) ->
+    @client.get('lists/statuses', { list_id: id }, (error, tweets, response) ->
+      return console.log(JSON.stringify(error)) if error
+      for tweet in tweets.reverse()
+        callback(tweet)
+    )
+
   errorHandler: (error, data, response) ->
     console.log(JSON.stringify(error)) if error
 

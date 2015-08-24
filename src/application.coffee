@@ -52,12 +52,24 @@ jQuery ($) ->
   # initialize list
   twitterClient.listsList((lists) ->
     for list in lists
-      fullName = list['full_name']
       element = $('.list_default').clone(false)
       element.removeClass('list_default')
-      element.attr('value', fullName)
-      element.text(fullName)
+      element.attr('value', list['id'])
+      element.text(list['full_name'])
       element.insertAfter($('.list_default'))
+  )
+  appendList = (tweet) ->
+    if $("#lists .tweet[data-id=#{tweet.id_str}]").length == 0
+      template = $('.template_wrapper .hidden_template')
+      element = TweetDecorator.decorate(template.clone(false), tweet)
+      insertInside($('#lists'), element)
+  $(document).delegate('.lists_field', 'change', (event) ->
+    $('#lists .tweet').remove()
+
+    id = $('.lists_field').val()
+    return if id == '0'
+
+    twitterClient.listsStatuses(id, appendList)
   )
 
   # watch key inputs
@@ -99,6 +111,10 @@ jQuery ($) ->
   $(document).delegate('.refresh_button', 'click', (event) ->
     twitterClient.homeTimeline(appendTweet)
     twitterClient.mentionsTimeline(appendTweet)
+
+    listId = $('.lists_field').val()
+    if listId != '0'
+      twitterClient.listsStatuses(listId, appendList)
   )
 
   # tab changes

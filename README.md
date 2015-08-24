@@ -4,7 +4,6 @@ YoruFukurou-like Twitter Client built on Electron
 
 ## Features
 - [x] Realtime timeline using UserStream
-- [ ] Multi-account support
 - [ ] Vim-like key bindings
 
 ## TODO
@@ -27,8 +26,8 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Home
 - [x] Background shadow
 - [x] Header button detail
+- [x] List
 - [ ] Search
-- [ ] List
 - [ ] Vim-like Key Binding (j, k, 0)
 - [ ] Basic key bindings (f, Enter, Tab)
 
