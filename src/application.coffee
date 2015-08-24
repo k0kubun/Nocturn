@@ -97,6 +97,12 @@ jQuery ($) ->
 
     $('.tweets').removeClass('active')
     $("##{tab.data('id')}").addClass('active')
+
+    $('.tweets_header').removeClass('active')
+    if $('#lists').hasClass('active')
+      $('.lists_selector').addClass('active')
+    else if $('#search').hasClass('active')
+      $('.search_box').addClass('active')
   )
 
   # this is just a workaround to avoid focusing on the invisible third item
