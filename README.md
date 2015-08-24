@@ -28,8 +28,8 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Header button detail
 - [x] List
 - [x] Search
+- [x] Basic key bindings (f, Enter, Tab)
 - [ ] Vim-like Key Binding (j, k, 0)
-- [ ] Basic key bindings (f, Enter, Tab)
 
 ## Build
 

@@ -5,8 +5,9 @@ class KeyInputTracker
   $ = null
 
   @keycodes: {
-    enter:     13,
     backspace: 8,
+    enter:     13,
+    f:         102,
   }
 
   constructor: (twitterClient, jQuery, insertInside) ->
@@ -60,6 +61,15 @@ class KeyInputTracker
           textarea.val('')
           twitterClient.updateStatus(tweet, inReplyTo.data('id'))
           inReplyTo.data('id', 0)
+
+        when KeyInputTracker.keycodes['f']
+          return if textarea.is(':focus')
+          activeTweet = $('.tweet.active')
+          return if activeTweet.length == 0
+
+          twitterClient.favoriteStatus(activeTweet.data('id'), ->
+            activeTweet.find('.favorite_button').addClass('active')
+          )
     )
 
     target.on('keydown', (event) ->
