@@ -43,8 +43,8 @@ jQuery ($) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
 
-    twitterClient.homeTimeline(appendTweet)
     twitterClient.mentionsTimeline(appendTweet)
+    twitterClient.homeTimeline(appendTweet)
     twitterClient.userStream(appendTweet)
   )
 
@@ -86,6 +86,7 @@ jQuery ($) ->
   # refresh button
   $(document).delegate('.refresh_button', 'click', (event) ->
     twitterClient.homeTimeline(appendTweet)
+    twitterClient.mentionsTimeline(appendTweet)
   )
 
   # tab changes

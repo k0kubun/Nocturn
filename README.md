@@ -20,16 +20,16 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] Show command buttons
 - [x] Favorite
 - [x] Show time
+- [x] Authentication
+- [x] Tab change
+- [x] Mention
+- [x] Refresh
+- [x] Home
+- [ ] Search
+- [ ] List
 - [ ] Vim-like Key Binding (j, k, 0)
 - [ ] Basic key bindings (f, Enter, Tab)
 - [ ] Header button detail
-- [x] Authentication
-- [x] Tab change
-- [ ] Search
-- [ ] Mention
-- [ ] List
-- [x] Refresh
-- [x] Home
 - [ ] Background shadow
 
 ## Build

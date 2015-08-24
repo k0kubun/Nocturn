@@ -4,7 +4,7 @@ class TweetDecorator
     element.removeClass('hidden_template')
 
     # use id_str to avoid overflow
-    element.data('id', tweet.id_str)
+    element.attr('data-id', tweet.id_str)
 
     element.find('.user_name').text(tweet.user.name)
     element.find('.screen_name').text(tweet.user.screen_name)
