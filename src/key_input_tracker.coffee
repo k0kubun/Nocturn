@@ -90,8 +90,7 @@ class KeyInputTracker
 
       pane = activeTabPane()
       visibleLimit = 0
-      activeTop    = prevTweet.offset().top - prevTweet.height()
-      console.log([visibleLimit, activeTop])
+      activeTop    = prevTweet.offset().top - prevTweet.height() * 2
       if visibleLimit > activeTop
         pane.finish()
         pane.animate({ scrollTop: pane.scrollTop() - pane.height() / 2 }, 'fast')
@@ -147,8 +146,6 @@ class KeyInputTracker
           return if textarea.is(':focus')
           event.preventDefault()
           selectPrevTweet()
-        else
-          console.log(event.keyCode)
     )
 
     target.on('keydown', (event) ->

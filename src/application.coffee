@@ -19,7 +19,10 @@ jQuery ($) ->
     target.find('.tweet').each(->
       tweet = $(this)
       if insertId > tweet.data('id')
+        $('.tweet').finish()
+        element.hide()
         element.insertBefore(tweet)
+        element.slideDown('fast')
         return false
     )
     if target.find(".tweet[data-id='#{insertId}']").length == 0
