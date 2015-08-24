@@ -43,8 +43,9 @@ jQuery ($) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
 
-    twitterClient.mentionsTimeline(appendTweet)
-    twitterClient.homeTimeline(appendTweet)
+    twitterClient.mentionsTimelineWithCallback(appendTweet, ->
+      twitterClient.homeTimeline(appendTweet)
+    )
     twitterClient.userStream(appendTweet)
   )
 

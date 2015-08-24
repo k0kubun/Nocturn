@@ -31,6 +31,16 @@ class TwitterClient
         callback(tweet)
     )
 
+  # workaround...
+  mentionsTimelineWithCallback: (callback, callback2) ->
+    @client.get('statuses/mentions_timeline', {}, (error, tweets, response) ->
+      return console.log(JSON.stringify(error)) if error
+
+      for tweet in tweets.reverse()
+        callback(tweet)
+      callback2()
+    )
+
   userStream: (callback) ->
     @client.stream('user', {}, (stream) ->
       stream.on('data', (data) ->
