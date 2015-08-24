@@ -17,7 +17,15 @@ class TwitterClient
 
   homeTimeline: (callback) ->
     @client.get('statuses/home_timeline', {}, (error, tweets, response) ->
-      return if error
+      return console.log(JSON.stringify(error)) if error
+
+      for tweet in tweets.reverse()
+        callback(tweet)
+    )
+
+  mentionsTimeline: (callback) ->
+    @client.get('statuses/mentions_timeline', {}, (error, tweets, response) ->
+      return console.log(JSON.stringify(error)) if error
 
       for tweet in tweets.reverse()
         callback(tweet)

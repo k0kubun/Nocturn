@@ -18,11 +18,11 @@ jQuery ($) ->
 
     target.find('.tweet').each(->
       tweet = $(this)
-      if tweet.data('id') < insertId
+      if insertId > tweet.data('id')
         element.insertBefore(tweet)
         return false
     )
-    if target.find(".tweet[data-id=#{insertId}]").length == 0
+    if target.find(".tweet[data-id='#{insertId}']").length == 0
       element.insertAfter(target.find('.insert_target'))
 
   appendTweet = (tweet) ->
@@ -35,7 +35,7 @@ jQuery ($) ->
     if tweet.text.match(new RegExp("@#{screenName}"))
       if $("#mentions .tweet[data-id=#{tweet.id_str}]").length == 0
         element = TweetDecorator.decorate(template.clone(false), tweet)
-        insertInside('#mentions', element)
+        insertInside($('#mentions'), element)
 
   # initialize timeline
   twitterClient = new TwitterClient()
@@ -44,6 +44,7 @@ jQuery ($) ->
     $('.current_user').data('name', user.screen_name)
 
     twitterClient.homeTimeline(appendTweet)
+    twitterClient.mentionsTimeline(appendTweet)
     twitterClient.userStream(appendTweet)
   )
 
