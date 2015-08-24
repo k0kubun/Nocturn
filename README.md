@@ -29,7 +29,9 @@ YoruFukurou-like Twitter Client built on Electron
 - [x] List
 - [x] Search
 - [x] Basic key bindings (f, Enter, Tab)
-- [ ] Vim-like Key Binding (j, k, 0)
+- [x] Vim-like Key Binding (j, k, 0)
+- [ ] Moving scroll animation
+- [ ] Delayed tweet animation
 
 ## Build
 

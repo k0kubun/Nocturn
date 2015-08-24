@@ -16,6 +16,7 @@ class KeyInputTracker
     zero:      48,
     f:         102,
     j:         106,
+    k:         107,
   }
 
   constructor: (twitterClient, jQuery, insertInside) ->
@@ -41,6 +42,41 @@ class KeyInputTracker
       username = activeTweet.find('.screen_name').text()
       textarea.val("@#{username} ")
       textarea.focus()
+
+    activeTabPane = ->
+      activeTab = $('.tab.active')
+      $(".tweets##{activeTab.data('id')}")
+
+    selectFirstTweet = ->
+      $('.tweet').removeClass('active')
+      tweets = activeTabPane().find('.tweet')
+      return if tweets.length == 0
+
+      tweets.each ->
+        $(this).addClass('active')
+        return false
+
+    selectNextTweet = ->
+      activeTweet = activeTabPane().find('.tweet.active')
+      return selectFirstTweet() if activeTweet.length == 0
+
+      nextTweet = activeTweet.next()
+      return if nextTweet.length == 0
+
+      $('.tweet').removeClass('active')
+      nextTweet.addClass('active')
+
+    selectPrevTweet = ->
+      activeTweet = activeTabPane().find('.tweet.active')
+      return if activeTweet.length == 0
+
+      prevTweet = activeTweet.prev()
+      return if prevTweet.length == 0
+
+      return if prevTweet.is('.insert_target')
+
+      $('.tweet').removeClass('active')
+      prevTweet.addClass('active')
 
     target.on('keypress', (event) ->
       switch event.keyCode
@@ -82,14 +118,19 @@ class KeyInputTracker
         when KeyInputTracker.keycodes['space'], KeyInputTracker.keycodes['zero']
           return if textarea.is(':focus')
           event.preventDefault()
+          selectFirstTweet()
 
         when KeyInputTracker.keycodes['j']
           return if textarea.is(':focus')
           event.preventDefault()
+          selectNextTweet()
 
         when KeyInputTracker.keycodes['k']
           return if textarea.is(':focus')
           event.preventDefault()
+          selectPrevTweet()
+        else
+          console.log(event.keyCode)
     )
 
     target.on('keydown', (event) ->
@@ -108,8 +149,10 @@ class KeyInputTracker
         when KeyInputTracker.keycodes['up']
           return if textarea.is(':focus')
           event.preventDefault()
+          selectPrevTweet()
 
         when KeyInputTracker.keycodes['down']
           return if textarea.is(':focus')
           event.preventDefault()
+          selectNextTweet()
     )
