@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run compile && electron .",
-    "compile": "rm -rf app && gulp compile",
+    "compile": "rm -rf app && gulp bower && gulp compile",
     "build": "rm -f access_token.json && find . -name .DS_Store | xargs rm && rm -rf packages && npm run package && npm run zip",
     "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/*",
     "zip": "npm run zip-darwin && npm run zip-linux && npm run zip-win32",
@@ -25,8 +25,9 @@
     "electron-prebuilt": "^0.25.1",
     "electron-packager": "^5.0.2",
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.0.4",
+    "gulp-bower": "^0.0.10",
     "gulp-coffee": "^2.3.1",
-    "gulp-haml": "^0.1.5"
+    "gulp-haml": "^0.1.5",
+    "gulp-ruby-sass": "^1.3.0"
   }
 }

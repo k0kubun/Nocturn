@@ -1,4 +1,7 @@
 {
   "name": "Nocturn",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5"
+  }
 }
