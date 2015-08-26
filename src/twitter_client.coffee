@@ -1,12 +1,13 @@
-fs      = require('fs')
-path    = require('path')
-Twitter = require('twitter')
+fs         = require('fs')
+path       = require('path')
+JsonLoader = require('./json_loader')
+Twitter    = require('twitter')
 
 module.exports =
 class TwitterClient
   constructor: ->
-    credentials = this.readJson('credentials.json')
-    accessToken = this.readJson('access_token.json')
+    credentials = JsonLoader.read('credentials.json')
+    accessToken = JsonLoader.read('access_token.json')
 
     @client = Twitter({
       consumer_key:        credentials['consumerKey'],
@@ -109,7 +110,3 @@ class TwitterClient
 
   errorHandler: (error, data, response) ->
     console.log(JSON.stringify(error)) if error
-
-  readJson: (jsonName) ->
-    fullPath = path.resolve(__dirname, '..', jsonName)
-    return JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
