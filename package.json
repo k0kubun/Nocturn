@@ -21,6 +21,7 @@
     "node-twitter-api": "^1.6.0"
   },
   "devDependencies": {
+    "bower": "^1.5.2",
     "electron-prebuilt": "^0.25.1",
     "electron-packager": "^5.0.2",
     "gulp": "^3.9.0",
