@@ -11,3 +11,4 @@ tmp/
 !gulpfile.js
 access_token.json
 packages
+fonts
