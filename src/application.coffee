@@ -46,7 +46,9 @@ jQuery ($) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
 
-    twitterClient.mentionsTimelineWithCallback(appendTweet, ->
+    twitterClient.mentionsTimeline((tweets) ->
+      for tweet in tweets.reverse()
+        appendTweet(tweet)
       twitterClient.homeTimeline(appendTweet)
     )
     twitterClient.userStream(appendTweet)
@@ -113,7 +115,10 @@ jQuery ($) ->
   # refresh button
   $(document).delegate('.refresh_button', 'click', (event) ->
     twitterClient.homeTimeline(appendTweet)
-    twitterClient.mentionsTimeline(appendTweet)
+    twitterClient.mentionsTimeline((tweets) ->
+      for tweet in tweets.reverse()
+        appendTweet(tweet)
+    )
 
     listId = $('.lists_field').val()
     if listId != '0'
