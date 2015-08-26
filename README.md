@@ -33,6 +33,7 @@ https://github.com/k0kubun/Nocturn/releases
 
 ```bash
 $ npm install
+$ npm run bower
 $ npm start
 ```
 
