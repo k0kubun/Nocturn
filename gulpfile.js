@@ -5,17 +5,8 @@ var sass   = require('gulp-sass');
 
 gulp.task(
   'compile',
-  ['compile-haml', 'compile-coffee', 'compile-scss']
+  ['compile-coffee', 'compile-haml', 'compile-scss']
 );
-
-gulp.task(
-  'compile-haml',
-  function () {
-    gulp.src('src/**/*.haml')
-      .pipe(haml())
-      .pipe(gulp.dest('app'));
-  }
-)
 
 gulp.task(
   'compile-coffee',
@@ -27,9 +18,18 @@ gulp.task(
 )
 
 gulp.task(
+  'compile-haml',
+  function () {
+    gulp.src('static/**/*.haml')
+      .pipe(haml())
+      .pipe(gulp.dest('app'));
+  }
+)
+
+gulp.task(
   'compile-scss',
   function () {
-    gulp.src('src/**/*.scss')
+    gulp.src('static/**/*.scss')
       .pipe(sass({ includePaths: ['node_modules'] }).on('error', sass.logError))
       .pipe(gulp.dest('app'));
   }
