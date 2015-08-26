@@ -1,7 +1,7 @@
-KeyInputTracker = require('./key_input_tracker')
-TimelineResizer = require('./timeline_resizer')
-TweetDecorator  = require('./tweet_decorator')
-TwitterClient   = require('./twitter_client')
+KeyInputTracker = require('./key-input-tracker')
+TimelineResizer = require('./timeline-resizer')
+TweetDecorator  = require('./tweet-decorator')
+TwitterClient   = require('./twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->

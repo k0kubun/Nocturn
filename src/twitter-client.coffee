@@ -1,6 +1,6 @@
 fs         = require('fs')
 path       = require('path')
-JsonLoader = require('./json_loader')
+JsonLoader = require('./json-loader')
 Twitter    = require('twitter')
 
 module.exports =

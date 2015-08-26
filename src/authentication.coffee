@@ -1,5 +1,5 @@
 BrowserWindow  = require('browser-window')
-JsonLoader     = require('./json_loader')
+JsonLoader     = require('./json-loader')
 NodeTwitterApi = require('node-twitter-api')
 
 authWindow = null

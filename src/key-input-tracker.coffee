@@ -1,4 +1,4 @@
-TweetDecorator  = require('./tweet_decorator')
+TweetDecorator  = require('./tweet-decorator')
 
 module.exports =
 class KeyInputTracker

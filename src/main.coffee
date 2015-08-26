@@ -2,7 +2,7 @@ mainWindow     = null
 app            = require('app')
 Authentication = require('./authentication')
 BrowserWindow  = require('browser-window')
-JsonLoader     = require('./json_loader')
+JsonLoader     = require('./json-loader')
 Menu           = require('menu')
 
 app.on('ready', ->
