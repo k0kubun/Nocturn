@@ -1,12 +1,13 @@
 KeyInputTracker = require('./key-input-tracker')
+TabManager      = require('./tab-manager')
 TimelineResizer = require('./timeline-resizer')
 TweetDecorator  = require('./tweet-decorator')
 TwitterClient   = require('./twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->
-  # floating height for .tweets
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
+  TabManager.bind($)
 
   insertInside = (target, element) ->
     insertId = element.data('id')
@@ -121,22 +122,6 @@ jQuery ($) ->
     listId = $('.lists_field').val()
     if listId != '0'
       twitterClient.listsStatuses(listId, appendList)
-  )
-
-  # tab changes
-  $(document).delegate('.tabs .tab', 'click', (event) ->
-    $('.tabs .tab').removeClass('active')
-    tab = $(this)
-    tab.addClass('active')
-
-    $('.tweets').removeClass('active')
-    $("##{tab.data('id')}").addClass('active')
-
-    $('.tweets_header').removeClass('active')
-    if $('#lists').hasClass('active')
-      $('.lists_selector').addClass('active')
-    else if $('#search').hasClass('active')
-      $('.search_box').addClass('active')
   )
 
   # this is just a workaround to avoid focusing on the invisible third item

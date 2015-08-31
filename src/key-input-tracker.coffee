@@ -1,4 +1,5 @@
-TweetDecorator  = require('./tweet-decorator')
+TabManager     = require('./tab-manager')
+TweetDecorator = require('./tweet-decorator')
 
 module.exports =
 class KeyInputTracker
@@ -6,17 +7,19 @@ class KeyInputTracker
 
   @keycodes: {
     # keydown
-    backspace: 8,
-    up:        38,
-    down:      40,
+    backspace:     8,
+    up:            38,
+    down:          40,
+    left_bracket:  219,
+    right_bracket: 221,
 
     # keypress
-    enter:     13,
-    space:     32,
-    zero:      48,
-    f:         102,
-    j:         106,
-    k:         107,
+    enter: 13,
+    space: 32,
+    zero:  48,
+    f:     102,
+    j:     106,
+    k:     107,
   }
 
   constructor: (twitterClient, jQuery, insertInside) ->
@@ -170,4 +173,14 @@ class KeyInputTracker
           return if textarea.is(':focus')
           event.preventDefault()
           selectNextTweet()
+
+        when KeyInputTracker.keycodes['left_bracket']
+          return if event.metaKey != true
+          event.preventDefault()
+          TabManager.selectPrev($)
+
+        when KeyInputTracker.keycodes['right_bracket']
+          return if event.metaKey != true
+          event.preventDefault()
+          TabManager.selectNext($)
     )
