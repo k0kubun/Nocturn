@@ -19,15 +19,17 @@ class MenuBuilder
         }
       ]
     },
-    {
-      label: 'View',
-      submenu: [
-        {
-          label: 'Open DevTools',
-          accelerator: 'Alt+Command+I',
-          click: ->
-            BrowserWindow.getFocusedWindow().toggleDevTools()
-        }
-      ]
-    }
   ]
+
+  # For debug
+  @devTool: {
+    label: 'View',
+    submenu: [
+      {
+        label: 'Open DevTools',
+        accelerator: 'Alt+Command+I',
+        click: ->
+          BrowserWindow.getFocusedWindow().toggleDevTools()
+      }
+    ]
+  }
