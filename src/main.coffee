@@ -9,7 +9,7 @@ app.on('ready', ->
 
   Authentication.authorized ->
     mainWindow = new BrowserWindow({ width: 350, height: 640 })
-    mainWindow.loadUrl('file://' + __dirname + '/index.html')
+    mainWindow.loadUrl('file://' + __dirname + '/timeline.html')
     mainWindow.on('closed', -> app.quit())
     MenuBuilder.build(app)
 )
