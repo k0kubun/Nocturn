@@ -6,6 +6,15 @@ authWindow = null
 
 module.exports =
 class Authentication
+  @authorized: (callback) ->
+    accessToken = JsonLoader.read('access_token.json')
+    if accessToken['accessToken']
+      callback()
+    else
+      new Authentication (token) ->
+        JsonLoader.write('access_token.json', token)
+        callback()
+
   constructor: (callback) ->
     credentials = JsonLoader.read('credentials.json')
     nodeTwitterApi = new NodeTwitterApi({
