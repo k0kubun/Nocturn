@@ -1,6 +1,6 @@
 {
   "name": "nocturn",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "app/main.js",
   "repository": "k0kubun/nocturn",
   "author": "k0kubun",
@@ -10,11 +10,11 @@
     "bower": "gulp bower",
     "compile": "rm -rf app && gulp compile",
     "build": "rm -f access_token.json && find . -name .DS_Store | xargs rm && rm -rf packages && npm run package && npm run zip",
-    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.1 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/* --ignore=node_modules/bower --ignore=node_modules/coffee-script --ignore=node_modules/electron-prebuilt --ignore=node_modules/electron-packager --ignore=node_modules/gulp --ignore=node_modules/gulp-bower --ignore=node_modules/gulp-coffee --ignore=node_modules/gulp-haml --ignore=node_modules/gulp-ruby-sass",
+    "package": "electron-packager . Nocturn --arch=x64 --out=packages/v0.0.2 --platform=darwin,linux,win32 --version=0.31.0 --ignore=packages/* --ignore=node_modules/bower --ignore=node_modules/coffee-script --ignore=node_modules/electron-prebuilt --ignore=node_modules/electron-packager --ignore=node_modules/gulp --ignore=node_modules/gulp-bower --ignore=node_modules/gulp-coffee --ignore=node_modules/gulp-haml --ignore=node_modules/gulp-ruby-sass",
     "zip": "npm run zip-darwin && npm run zip-linux && npm run zip-win32",
-    "zip-darwin": "cd packages/v0.0.1 && zip -r Nocturn-darwin-x64.zip Nocturn-darwin-x64",
-    "zip-linux": "cd packages/v0.0.1 && zip -r Nocturn-linux-x64.zip Nocturn-linux-x64",
-    "zip-win32": "cd packages/v0.0.1 && zip -r Nocturn-win32-x64.zip Nocturn-win32-x64"
+    "zip-darwin": "cd packages/v0.0.2 && zip -r Nocturn-darwin-x64.zip Nocturn-darwin-x64",
+    "zip-linux": "cd packages/v0.0.2 && zip -r Nocturn-linux-x64.zip Nocturn-linux-x64",
+    "zip-win32": "cd packages/v0.0.2 && zip -r Nocturn-win32-x64.zip Nocturn-win32-x64"
   },
   "dependencies": {
     "jquery": "^2.1.4",
