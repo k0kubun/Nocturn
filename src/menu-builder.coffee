@@ -3,11 +3,11 @@ Menu          = require('menu')
 
 module.exports =
 class MenuBuilder
-  @build: ->
-    menu = Menu.buildFromTemplate(MenuBuilder.template)
+  @build: (app) ->
+    menu = Menu.buildFromTemplate(MenuBuilder.template(app))
     Menu.setApplicationMenu(menu)
 
-  @template: [
+  @template: (app) -> [
     {
       label: 'Quit',
       submenu: [
