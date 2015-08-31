@@ -1,4 +1,5 @@
 BrowserWindow = require('browser-window')
+Configuration = require('./configuration')
 Menu          = require('menu')
 
 module.exports =
@@ -9,8 +10,14 @@ class MenuBuilder
 
   @template: (app) -> [
     {
-      label: 'Quit',
+      label: 'Nocturn',
       submenu: [
+        {
+          label: 'Configuration',
+          accelerator: 'Command+,',
+          click: ->
+            Configuration.open()
+        },
         {
           label: 'Quit Nocturn',
           accelerator: 'Command+Q',
