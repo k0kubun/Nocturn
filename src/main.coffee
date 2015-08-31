@@ -3,7 +3,7 @@ app            = require('app')
 Authentication = require('./authentication')
 BrowserWindow  = require('browser-window')
 JsonLoader     = require('./json-loader')
-Menu           = require('menu')
+MenuBuilder    = require('./menu-builder')
 
 app.on('ready', ->
   return if mainWindow
@@ -15,6 +15,7 @@ app.on('ready', ->
       mainWindow = null
       app.quit()
     )
+    MenuBuilder.build()
 
   accessToken = JsonLoader.read('access_token.json')
   if accessToken['accessToken']
@@ -23,33 +24,6 @@ app.on('ready', ->
     new Authentication (token) ->
       JsonLoader.write('access_token.json', token)
       mainRoutine()
-
-  template = [
-    {
-      label: 'Quit',
-      submenu: [
-        {
-          label: 'Quit Nocturn',
-          accelerator: 'Command+Q',
-          click: ->
-            app.quit()
-        }
-      ]
-    },
-    {
-      label: 'View',
-      submenu: [
-        {
-          label: 'Open DevTools',
-          accelerator: 'Alt+Command+I',
-          click: ->
-            BrowserWindow.getFocusedWindow().toggleDevTools()
-        }
-      ]
-    }
-  ]
-  menu = Menu.buildFromTemplate(template)
-  Menu.setApplicationMenu(menu)
 )
 
 app.on('window-all-closed', ->
