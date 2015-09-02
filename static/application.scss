@@ -82,8 +82,26 @@ body {
       resize: none;
       border: 0;
       outline: 0;
-      padding: 4px 8px;
+      padding: 4px 8px 4px 41px;
       font-size: 13px;
+    }
+
+    .account_wrapper {
+      position: relative;
+    }
+
+    .twitter_icon {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      width: 24px;
+      height: 24px;
+      border-radius: 3px;
+      box-shadow: 0 0 1px 1px rgba(0,0,0,0.14);
+
+      &:hover {
+        -webkit-filter: brightness(0.60);
+      }
     }
   }
 
