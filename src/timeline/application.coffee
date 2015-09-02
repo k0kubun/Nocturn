@@ -128,3 +128,12 @@ jQuery ($) ->
   $('.focus_trigger').focus ->
     $('.focus_standby').focus()
   $('.focus_standby').focus()
+
+  # Account changer
+  $(document).delegate('.twitter_icon', 'click', (e) ->
+    e.preventDefault()
+    dropdown = document.getElementById('account_selector')
+    event = document.createEvent('MouseEvents')
+    event.initMouseEvent('mousedown', true, true, window)
+    dropdown.dispatchEvent(event)
+  )
