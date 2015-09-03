@@ -303,5 +303,48 @@ body {
 
 .configuration {
   background: #e7e7e7;
-  padding: 12px 16px;
+  padding: 16px;
+
+  .accounts {
+    height: 224px;
+    padding: 0;
+    border: 1px solid #aaa;
+    background-image: -webkit-gradient(linear,0 0,0 100%, color-stop(.5,#fff), color-stop(.5,transparent),to(transparent));
+    -webkit-background-size: 60px;
+    background-color: #eee;
+    margin: 0;
+  }
+
+  .account {
+    padding: 3px 4px;
+    list-style: none;
+    height: 30px;
+
+    .account_icon {
+      float: left;
+      width: 24px;
+      height: 24px;
+      border-radius: 3px;
+    }
+
+    .screen_name {
+      height: 24px;
+      padding: 2px 8px;
+      float: left;
+    }
+  }
+
+  .button_wrapper {
+    border: 1px solid #aaa;
+    border-top: none;
+    background: #eee;
+  }
+
+  .button {
+    border-right: 1px solid #aaa;
+    float: left;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
 }

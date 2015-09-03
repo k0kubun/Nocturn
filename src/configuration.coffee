@@ -7,6 +7,6 @@ class Configuration
   @open: ->
     return if configWindow
 
-    configWindow = new BrowserWindow({ width: 240, height: 400 })
+    configWindow = new BrowserWindow({ width: 240, height: 300 })
     configWindow.loadUrl('file://' + __dirname + '/config.html')
     configWindow.on('closed', -> configWindow = null)
