@@ -1,4 +1,5 @@
-Authentication = require('./authentication')
+remote = require('remote')
+Authentication = remote.require('./authentication')
 
 jQuery = require('jquery')
 jQuery ($) ->
