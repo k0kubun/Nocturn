@@ -13,12 +13,6 @@ class MenuBuilder
       label: 'Nocturn',
       submenu: [
         {
-          label: 'Configuration',
-          accelerator: 'Command+,',
-          click: ->
-            Configuration.open()
-        },
-        {
           label: 'Quit Nocturn',
           accelerator: 'Command+Q',
           click: ->
@@ -26,6 +20,7 @@ class MenuBuilder
         }
       ]
     },
+    # @devTool,
   ]
 
   # For debug
