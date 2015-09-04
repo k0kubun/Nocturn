@@ -1,13 +1,15 @@
-fs         = require('fs')
-path       = require('path')
-JsonLoader = require('./json-loader')
-Twitter    = require('twitter')
+fs             = require('fs')
+path           = require('path')
+remote         = require('remote')
+Authentication = remote.require('./authentication')
+JsonLoader     = require('./json-loader')
+Twitter        = require('twitter')
 
 module.exports =
 class TwitterClient
   constructor: ->
     credentials = JsonLoader.read('credentials.json')
-    accessToken = JsonLoader.read('access_token.json')
+    accessToken = Authentication.defaultToken()
 
     @client = Twitter({
       consumer_key:        credentials['consumerKey'],

@@ -7,13 +7,27 @@ authWindow = null
 module.exports =
 class Authentication
   @authorized: (callback) ->
-    accessToken = JsonLoader.read('access_token.json')
-    if accessToken['accessToken']
+    token = Authentication.defaultToken()
+    if token && token['accessToken']
       callback()
-    else
-      new Authentication (token) ->
-        JsonLoader.write('access_token.json', token)
-        callback()
+      return
+
+    new Authentication (token) ->
+      Authentication.addToken(token)
+      callback()
+
+  @addToken: (token) ->
+    tokens = JsonLoader.read('access_token.json')
+    tokens = [] unless tokens
+    tokens.push(token)
+    JsonLoader.write('access_token.json', tokens)
+
+  @defaultToken: ->
+    accessTokens = JsonLoader.read('access_token.json')
+    return {} unless accessTokens
+    return {} if accessTokens.length == 0
+
+    accessTokens[0]
 
   constructor: (callback) ->
     credentials = JsonLoader.read('credentials.json')
