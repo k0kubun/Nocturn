@@ -137,3 +137,12 @@ jQuery ($) ->
     event.initMouseEvent('mousedown', true, true, window)
     dropdown.dispatchEvent(event)
   )
+
+  $(document).delegate('#account_selector', 'change', (event) ->
+    value = $('#account_selector').val()
+
+    if value == 'add-account'
+      console.log('add account')
+    else
+      console.log(value)
+  )
