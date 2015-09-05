@@ -8,6 +8,7 @@ YoruFukurou-like Twitter Client built on Electron
 - Realtime timeline using UserStream
 - Multi-account support
 - Vim-like key bindings
+- Works on Windows, OSX and Linux
 
 ### Demo
 
@@ -19,7 +20,9 @@ Download an archive from following link and unzip it.
 
 https://github.com/k0kubun/Nocturn/releases
 
-## Key bindings
+## Usage
+
+### Key bindings
 
 |Key|Command|
 |:---|:---|
@@ -34,6 +37,12 @@ https://github.com/k0kubun/Nocturn/releases
 |Cmd-o, Cmd-Shift-[|Select a previous tab|
 |Cmd-j|Select a next account|
 |Cmd-k|Select a previous account|
+
+Regard Cmd as Windows or Meta key if you're not using OSX.
+
+### Multi account
+
+![](https://i.gyazo.com/be91e798686c0a83a89b9b42a94b24c1.gif)
 
 ## Development
 
