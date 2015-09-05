@@ -30,11 +30,6 @@ jQuery ($) ->
   $('#account_selector').data('prev', currentAccount['screenName'])
   $('.twitter_icon').attr('src', currentAccount['profileImage'])
 
-  # FIXME: move this inside TimelineController.createTimeline() later
-  timeline = $('.timeline')
-  timeline.addClass('active')
-  timeline.attr('data-screen-name', currentAccount['screenName'])
-
   TimelineController.createTimeline(currentAccount, $)
 
   # Account changer
