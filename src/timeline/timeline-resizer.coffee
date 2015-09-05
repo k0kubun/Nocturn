@@ -2,11 +2,12 @@ module.exports =
 class TimelineResizer
   @magicOffset: 8
 
-  @register: (parent, target, frames) ->
+  @register: ($, frames) ->
     height = 0
     for frame in frames
       height += frame.height()
 
-    parent.on('resize', ->
-      target.height(parent.height() - (height + TimelineResizer.magicOffset))
-    )
+    $(window).on('resize', ->
+      resized = $(window).height() - (height + TimelineResizer.magicOffset)
+      $('.tweets').height(resized)
+    ).trigger('resize') # on page load

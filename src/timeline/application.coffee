@@ -15,7 +15,7 @@ jQuery = require('jquery')
 jQuery ($) ->
   AccountList.build($)
   TimelineDelegation.delegate($)
-  TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
+  TimelineResizer.register($, [$('.header'), $('.editor'), $('.tabs')])
   HeaderMenu.register($)
   FocusManager.bind($)
   TabManager.bind($)
