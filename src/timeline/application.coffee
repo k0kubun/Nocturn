@@ -1,5 +1,7 @@
 remote             = require('remote')
 Authentication     = remote.require('./authentication')
+FocusManager       = require('./focus-manager')
+HeaderMenu         = require('./header-menu')
 KeyInputTracker    = require('./key-input-tracker')
 TabManager         = require('./tab-manager')
 TimelineController = require('./timeline-controller')
@@ -10,6 +12,8 @@ TwitterClient      = require('../twitter-client')
 jQuery = require('jquery')
 jQuery ($) ->
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
+  HeaderMenu.register($)
+  FocusManager.bind($)
   TabManager.bind($)
 
   insertInside = (target, element) ->
@@ -83,30 +87,6 @@ jQuery ($) ->
     textarea.val("@#{username} ")
     textarea.focus()
   )
-
-  # home button
-  $(document).delegate('.home_button', 'click', (event) ->
-    require('shell').openExternal('https://twitter.com')
-  )
-
-  # refresh button
-  $(document).delegate('.refresh_button', 'click', (event) ->
-    timeline = $('.timeline.active')
-
-    screenName = timeline.data('screen-name')
-    controller = new TimelineController(Authentication.byScreenName(screenName))
-    controller.loadHome()
-    controller.loadMentions()
-
-    listId = timeline.find('.lists_field').val()
-    if listId != '0'
-      twitterClient.listsStatuses(listId, appendList)
-  )
-
-  # this is just a workaround to avoid focusing on the invisible third item
-  $('.focus_trigger').focus ->
-    $('.focus_standby').focus()
-  $('.focus_standby').focus()
 
   # Initialize account list
   for account in Authentication.allAccounts()
