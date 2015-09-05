@@ -7,7 +7,8 @@ class TimelineController
 
   @createTimeline: (account, jQuery) ->
     $ = jQuery
-    timeline = $('.timeline').clone(false)
+    timeline = $('.timeline.timeline_template').clone(false)
+    timeline.removeClass('timeline_template')
     timeline.attr('data-screen-name', account['screenName'])
     $('.timelines').append(timeline)
 

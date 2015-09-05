@@ -57,6 +57,9 @@ jQuery ($) ->
           AccountList.rebuild($)
         )
     else
-      $('#account_selector').data('prev', $('#account_selector').val())
-      # TODO: change timeline
+      screenName = $('#account_selector').val()
+      $('#account_selector').data('prev', screenName)
+      $('.timeline').removeClass('active')
+      timeline = $(".timeline[data-screen-name='#{screenName}']")
+      timeline.addClass('active')
   )
