@@ -17,6 +17,8 @@ class KeyInputTracker
     enter: 13,
     space: 32,
     zero:  48,
+    o:     79,
+    p:     80,
     f:     102,
     j:     106,
     k:     107,
@@ -190,12 +192,12 @@ class KeyInputTracker
           event.preventDefault()
           selectNextTweet()
 
-        when KeyInputTracker.keycodes['left_bracket']
+        when KeyInputTracker.keycodes['left_bracket'], KeyInputTracker.keycodes['o']
           return if event.metaKey != true
           event.preventDefault()
           TabManager.selectPrev($)
 
-        when KeyInputTracker.keycodes['right_bracket']
+        when KeyInputTracker.keycodes['right_bracket'], KeyInputTracker.keycodes['p']
           return if event.metaKey != true
           event.preventDefault()
           TabManager.selectNext($)

@@ -28,8 +28,8 @@ https://github.com/k0kubun/Nocturn/releases
 |0, space|Select the first tweet|
 |f|Add a tweet to favorites|
 |Cmd-backspace|Delete a tweet|
-|Cmd-{|Select a previous tab|
-|Cmd-}|Select a next tab|
+|Cmd-o, Cmd-{|Select a previous tab|
+|Cmd-o, Cmd-}|Select a next tab|
 
 ## Development
 
