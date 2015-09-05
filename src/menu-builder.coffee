@@ -1,5 +1,4 @@
 BrowserWindow = require('browser-window')
-Configuration = require('./configuration')
 Menu          = require('menu')
 
 module.exports =
