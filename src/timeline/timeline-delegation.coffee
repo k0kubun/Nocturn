@@ -9,6 +9,7 @@ class TimelineDelegation
     TimelineDelegation.delegateLists($)
     TimelineDelegation.delegateTweetSelection($)
     TimelineDelegation.delegateFavorite($)
+    TimelineDelegation.delegateReply($)
 
   @delegateLists: ($) ->
     $(document).delegate('.lists_field', 'change', (event) ->
@@ -39,4 +40,15 @@ class TimelineDelegation
       twitterClient.favoriteStatus(tweet.data('id'), ->
         button.addClass('active')
       )
+    )
+
+  @delegateReply: ($) ->
+    $(document).delegate('.reply_button', 'click', ->
+      tweet = $(this).closest('.tweet')
+      $('.in_reply_to').data('id', tweet.data('id'))
+
+      textarea = $('.tweet_editor')
+      username = tweet.find('.screen_name').text()
+      textarea.val("@#{username} ")
+      textarea.focus()
     )

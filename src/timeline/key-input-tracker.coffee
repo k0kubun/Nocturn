@@ -52,7 +52,7 @@ class KeyInputTracker
     insertInside    = @insertInside
 
     invokeReply = ->
-      activeTweet = $('.tweet.active')
+      activeTweet = $('.timeline.active .tweets.active .tweet.active')
       return if activeTweet.length == 0
 
       tweetId = activeTweet.data('id')
