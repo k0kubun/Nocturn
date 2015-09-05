@@ -30,22 +30,8 @@ jQuery ($) ->
     if target.find(".tweet[data-id='#{insertId}']").length == 0
       element.insertAfter(target.find('.insert_target'))
 
-  appendTweet = (tweet) ->
-    template = $('.template_wrapper .hidden_template')
-    if $("#home .tweet[data-id=#{tweet.id_str}]").length == 0
-      element = TweetDecorator.decorate(template.clone(false), tweet)
-      insertInside($('#home'), element)
-
-  # initialize timeline
-  twitterClient = new TwitterClient(Authentication.defaultAccount())
-  twitterClient.verifyCredentials((user) ->
-    $('.current_user').data('id', user.id_str)
-    $('.current_user').data('name', user.screen_name)
-
-    twitterClient.userStream(appendTweet)
-  )
-
   # initialize list
+  twitterClient = new TwitterClient(Authentication.defaultAccount())
   twitterClient.listsList((lists) ->
     for list in lists
       element = $('.list_default').clone(false)
@@ -105,14 +91,16 @@ jQuery ($) ->
 
   # refresh button
   $(document).delegate('.refresh_button', 'click', (event) ->
-    screenName = $('.timeline.active').data('screen-name')
+    timeline = $('.timeline.active')
+
+    screenName = timeline.data('screen-name')
     controller = new TimelineController(Authentication.byScreenName(screenName))
     controller.loadHome()
     controller.loadMentions()
 
-    # listId = $('.lists_field').val()
-    # if listId != '0'
-    #   twitterClient.listsStatuses(listId, appendList)
+    listId = timeline.find('.lists_field').val()
+    if listId != '0'
+      twitterClient.listsStatuses(listId, appendList)
   )
 
   # this is just a workaround to avoid focusing on the invisible third item
