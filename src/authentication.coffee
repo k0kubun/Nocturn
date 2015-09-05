@@ -88,5 +88,5 @@ class Authentication
       authWindow.on('closed', ->
         # noop
       )
-      authWindow.loadUrl(url)
+      authWindow.loadUrl(url + '&force_login=true')
     )
