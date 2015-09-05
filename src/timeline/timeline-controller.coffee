@@ -8,11 +8,23 @@ class TimelineController
   @createTimeline: (account, jQuery) ->
     $ = jQuery
     controller = new TimelineController(account)
+    controller.loadHome()
     controller.loadMentions()
 
   constructor: (account) ->
     @client   = new TwitterClient(account)
     @timeline = $(".timeline[data-screen-name='#{account['screenName']}']")
+
+  loadHome: ->
+    tab         = this.homeTab()
+    hasTweet    = this.hasTweetIn(tab)
+    appendTweet = this.appendTweetIn(tab)
+
+    @client.homeTimeline((tweets) ->
+      for tweet in tweets
+        continue if hasTweet(tweet.id_str)
+        appendTweet(tweet)
+    )
 
   loadMentions: ->
     tab         = this.mentionTab()
@@ -24,6 +36,9 @@ class TimelineController
         continue if hasTweet(tweet.id_str)
         appendTweet(tweet)
     )
+
+  homeTab: ->
+    @timeline.find('#home')
 
   mentionTab: ->
     @timeline.find('#mentions')
