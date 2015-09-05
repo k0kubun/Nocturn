@@ -20,7 +20,7 @@ body {
   font-family: Helvetica, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
 }
 
-.timeline {
+.timeline_container {
   color: #333;
   position: relative;
   user-select: none;
@@ -297,6 +297,14 @@ body {
       border-radius: 3px;
       border: 1px solid #aaa;
       padding: 1px 8px;
+    }
+  }
+
+  .timeline {
+    display: none;
+
+    &.active {
+      display: block;
     }
   }
 }

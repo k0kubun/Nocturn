@@ -10,7 +10,7 @@
   %body
     .current_user{ data-id: 0, name: "" }
 
-    .timeline
+    .timeline_container
       .header.clearfix
         .button_wrapper
           .button.home_button
@@ -60,17 +60,19 @@
               .favorite_widget_wrapper
                 %i.fa.fa-star.favorite_button
 
-      %ul#timeline.tweets.active
-        %li.insert_target
-      %ul#mentions.tweets
-        %li.insert_target
-      %ul#lists.tweets.with_header
-        %li.insert_target
-      %ul#search.tweets.with_header
-        %li.insert_target
+      .timelines
+        .timeline
+          %ul#timeline.tweets.active
+            %li.insert_target
+          %ul#mentions.tweets
+            %li.insert_target
+          %ul#lists.tweets.with_header
+            %li.insert_target
+          %ul#search.tweets.with_header
+            %li.insert_target
 
-      .tweets_header.lists_selector
-        %select.lists_field{ name: "lists" }
-          %option.list_default{ value: 0 } Select List...
-      .tweets_header.search_box
-        %input.search_field{ type: "text", placeholder: "Twitter Search" }
+          .tweets_header.lists_selector
+            %select.lists_field{ name: "lists" }
+              %option.list_default{ value: 0 } Select List...
+          .tweets_header.search_box
+            %input.search_field{ type: "text", placeholder: "Twitter Search" }

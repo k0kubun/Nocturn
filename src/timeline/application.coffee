@@ -1,10 +1,11 @@
-remote          = require('remote')
-Authentication  = remote.require('./authentication')
-KeyInputTracker = require('./key-input-tracker')
-TabManager      = require('./tab-manager')
-TimelineResizer = require('./timeline-resizer')
-TweetDecorator  = require('./tweet-decorator')
-TwitterClient   = require('../twitter-client')
+remote             = require('remote')
+Authentication     = remote.require('./authentication')
+KeyInputTracker    = require('./key-input-tracker')
+TabManager         = require('./tab-manager')
+TimelineController = require('./timeline-controller')
+TimelineResizer    = require('./timeline-resizer')
+TweetDecorator     = require('./tweet-decorator')
+TwitterClient      = require('../twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->
@@ -142,6 +143,13 @@ jQuery ($) ->
   $('#account_selector').val(currentAccount['screenName'])
   $('#account_selector').data('prev', currentAccount['screenName'])
   $('.twitter_icon').attr('src', currentAccount['profileImage'])
+
+  # FIXME: move this inside TimelineController.createTimeline() later
+  timeline = $('.timeline')
+  timeline.addClass('active')
+  timeline.data('screenName', currentAccount['screenName'])
+
+  TimelineController.createTimeline(currentAccount)
 
   # Account changer
   $(document).delegate('.twitter_icon', 'click', (e) ->
