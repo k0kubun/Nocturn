@@ -140,6 +140,7 @@ jQuery ($) ->
 
   currentAccount = Authentication.defaultAccount()
   $('#account_selector').val(currentAccount['screenName'])
+  $('#account_selector').data('prev', currentAccount['screenName'])
   $('.twitter_icon').attr('src', currentAccount['profileImage'])
 
   # Account changer
@@ -155,7 +156,12 @@ jQuery ($) ->
     value = $('#account_selector').val()
 
     if value == 'add-account'
-      console.log('add account')
+      $('#account_selector').val($('#account_selector').data('prev'))
+      new Authentication (token) ->
+        Authentication.addToken(token, ->
+          # TODO: add timeline
+        )
     else
-      console.log(value)
+      $('#account_selector').data('prev', $('#account_selector').val())
+      # TODO: change timeline
   )
