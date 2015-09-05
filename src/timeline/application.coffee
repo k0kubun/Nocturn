@@ -5,49 +5,23 @@ HeaderMenu         = require('./header-menu')
 KeyInputTracker    = require('./key-input-tracker')
 TabManager         = require('./tab-manager')
 TimelineController = require('./timeline-controller')
+TimelineDelegation = require('./timeline-delegation')
 TimelineResizer    = require('./timeline-resizer')
 TweetDecorator     = require('./tweet-decorator')
 TwitterClient      = require('../twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->
+  TimelineDelegation.delegate($)
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
   HeaderMenu.register($)
   FocusManager.bind($)
   TabManager.bind($)
 
-  # initialize list
-  twitterClient = new TwitterClient(Authentication.defaultAccount())
-  $(document).delegate('.lists_field', 'change', (event) ->
-    timeline = $(this).closest('.timeline')
-    timeline.find('#lists .tweet').remove()
-
-    id = timeline.find('.lists_field').val()
-    return if id == '0'
-
-    screenName = timeline.data('screen-name')
-    controller = new TimelineController(Authentication.byScreenName(screenName))
-    controller.loadList(id)
-  )
-
   # watch key inputs
+  twitterClient = new TwitterClient(Authentication.defaultAccount())
   keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))
-
-  # tweet selection
-  $(document).delegate('.tweet', 'click', ->
-    $('.tweet').removeClass('active')
-    $(this).addClass('active')
-  )
-
-  # favorite tweet
-  $(document).delegate('.favorite_button', 'click', ->
-    button = $(this)
-    tweet  = button.closest('.tweet')
-    twitterClient.favoriteStatus(tweet.data('id'), ->
-      button.addClass('active')
-    )
-  )
 
   # reply tweet
   $(document).delegate('.reply_button', 'click', ->
