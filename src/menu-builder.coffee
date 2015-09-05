@@ -19,7 +19,6 @@ class MenuBuilder
         }
       ]
     },
-    @devTool,
   ]
 
   # For debug
