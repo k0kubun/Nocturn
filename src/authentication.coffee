@@ -10,7 +10,7 @@ class Authentication
   @json_storage = 'accounts.json'
 
   @authorized: (callback) ->
-    token = Authentication.defaultToken()
+    token = Authentication.defaultAccount()
     if token && token['accessToken']
       callback()
       return
@@ -34,12 +34,14 @@ class Authentication
       callback()
     )
 
-  @defaultToken: ->
-    accessTokens = JsonLoader.read(Authentication.json_storage)
-    return {} unless accessTokens
-    return {} if accessTokens.length == 0
+  @defaultAccount: ->
+    accounts = Authentication.allAccounts()
+    return {} if accounts.length == 0
 
-    accessTokens[0]
+    accounts[0]
+
+  @allAccounts: ->
+    JsonLoader.read(Authentication.json_storage) || []
 
   constructor: (callback) ->
     credentials = JsonLoader.read('credentials.json')

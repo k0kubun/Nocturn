@@ -42,7 +42,7 @@ jQuery ($) ->
         insertInside($('#mentions'), element)
 
   # initialize timeline
-  twitterClient = new TwitterClient(Authentication.defaultToken())
+  twitterClient = new TwitterClient(Authentication.defaultAccount())
   twitterClient.verifyCredentials((user) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
@@ -130,6 +130,16 @@ jQuery ($) ->
   $('.focus_trigger').focus ->
     $('.focus_standby').focus()
   $('.focus_standby').focus()
+
+  # Initialize account list
+  for account in Authentication.allAccounts()
+    option = $('<option>')
+    option.attr('value', account['screenName'])
+    option.text(account['screenName'])
+    option.insertBefore('#account_selector option[value="add-account"]')
+
+  currentAccount = Authentication.defaultAccount()
+  $('#account_selector').val(currentAccount['screenName'])
 
   # Account changer
   $(document).delegate('.twitter_icon', 'click', (e) ->
