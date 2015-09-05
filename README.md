@@ -6,6 +6,7 @@ YoruFukurou-like Twitter Client built on Electron
 
 ## Features
 - Realtime timeline using UserStream
+- Multi-account support
 - Vim-like key bindings
 
 ### Demo
