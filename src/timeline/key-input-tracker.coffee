@@ -63,8 +63,8 @@ class KeyInputTracker
       textarea.focus()
 
     activeTabPane = ->
-      activeTab = $('.tab.active')
-      $(".tweets##{activeTab.data('id')}")
+      activeTab = $('.timeline.active .tab.active')
+      $(".tweets#{activeTab.data('selector')}")
 
     selectFirstTweet = ->
       $('.tweet').removeClass('active')
@@ -85,7 +85,7 @@ class KeyInputTracker
       nextTweet = activeTweet.next()
       return if nextTweet.length == 0
 
-      $('.tweet').removeClass('active')
+      activeTabPane().find('.tweet').removeClass('active')
       nextTweet.addClass('active')
 
       pane = activeTabPane()
@@ -104,7 +104,7 @@ class KeyInputTracker
 
       return if prevTweet.is('.insert_target')
 
-      $('.tweet').removeClass('active')
+      activeTabPane().find('.tweet').removeClass('active')
       prevTweet.addClass('active')
 
       pane = activeTabPane()
@@ -121,9 +121,9 @@ class KeyInputTracker
             event.preventDefault()
             $('#search .tweet').remove()
 
-            query = $('.search_field').val()
+            query = $('.timeline.active .search_field').val()
             twitterClient.searchTweets(query, (tweet) ->
-              if $("#search .tweet[data-id=#{tweet.id_str}]").length == 0
+              if $(".timeline.active #search .tweet[data-id=#{tweet.id_str}]").length == 0
                 template = $('.template_wrapper .hidden_template')
                 element = TweetDecorator.decorate(template.clone(false), tweet)
                 insertInside($('#search'), element)
