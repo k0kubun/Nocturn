@@ -11,6 +11,7 @@ class TimelineController
     controller.loadHome()
     controller.loadMentions()
     controller.startHomeStream()
+    controller.initLists()
 
   constructor: (account) ->
     @client   = new TwitterClient(account)
@@ -30,6 +31,24 @@ class TimelineController
         prependTweet(tweet)
     )
 
+  initLists: ->
+    timeline = @timeline
+    @client.listsList((lists) ->
+      for list in lists
+        target  = timeline.find('.list_default')
+        element = target.clone(false)
+        element.removeClass('list_default')
+        element.attr('value', list['id'])
+        element.text(list['full_name'])
+        element.insertAfter(target)
+    )
+
+  loadList: (listId) ->
+    prependTweet = this.prependTweetIn(this.listsTab())
+    @client.listsStatuses(listId, (tweet) ->
+      prependTweet(tweet)
+    )
+
   startHomeStream: ->
     prependTweet = this.prependTweetIn(this.homeTab())
     @client.userStream((tweet) ->
@@ -41,6 +60,9 @@ class TimelineController
 
   mentionTab: ->
     @timeline.find('#mentions')
+
+  listsTab: ->
+    @timeline.find('#lists')
 
   prependTweetIn: (tab) ->
     hasTweet = this.hasTweetIn(tab)

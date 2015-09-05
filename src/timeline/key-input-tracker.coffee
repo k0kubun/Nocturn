@@ -22,12 +22,28 @@ class KeyInputTracker
     k:     107,
   }
 
-  constructor: (twitterClient, jQuery, insertInside) ->
+  constructor: (twitterClient, jQuery) ->
     $ = jQuery
     @twitterClient   = twitterClient
     @textarea        = $('.tweet_editor')
     @inReplyTo       = $('.in_reply_to')
-    @insertInside    = insertInside
+    @insertInside    = (target, element) ->
+      insertId = element.data('id')
+      return if target.find(".tweet[data-id=#{insertId}]").length > 0
+
+      if target.find('.tweet').length == 0
+        element.insertAfter(target.find('.insert_target'))
+        return
+
+      target.find('.tweet').each(->
+        tweet = $(this)
+        if insertId > tweet.data('id')
+          $('.tweet').finish()
+          element.insertBefore(tweet)
+          return false
+      )
+      if target.find(".tweet[data-id='#{insertId}']").length == 0
+        element.insertAfter(target.find('.insert_target'))
 
   watch: (target) ->
     twitterClient   = @twitterClient

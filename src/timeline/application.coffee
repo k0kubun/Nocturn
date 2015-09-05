@@ -16,50 +16,22 @@ jQuery ($) ->
   FocusManager.bind($)
   TabManager.bind($)
 
-  insertInside = (target, element) ->
-    insertId = element.data('id')
-    return if target.find(".tweet[data-id=#{insertId}]").length > 0
-
-    if target.find('.tweet').length == 0
-      element.insertAfter(target.find('.insert_target'))
-      return
-
-    target.find('.tweet').each(->
-      tweet = $(this)
-      if insertId > tweet.data('id')
-        $('.tweet').finish()
-        element.insertBefore(tweet)
-        return false
-    )
-    if target.find(".tweet[data-id='#{insertId}']").length == 0
-      element.insertAfter(target.find('.insert_target'))
-
   # initialize list
   twitterClient = new TwitterClient(Authentication.defaultAccount())
-  twitterClient.listsList((lists) ->
-    for list in lists
-      element = $('.list_default').clone(false)
-      element.removeClass('list_default')
-      element.attr('value', list['id'])
-      element.text(list['full_name'])
-      element.insertAfter($('.list_default'))
-  )
-  appendList = (tweet) ->
-    if $("#lists .tweet[data-id=#{tweet.id_str}]").length == 0
-      template = $('.template_wrapper .hidden_template')
-      element = TweetDecorator.decorate(template.clone(false), tweet)
-      insertInside($('#lists'), element)
   $(document).delegate('.lists_field', 'change', (event) ->
-    $('#lists .tweet').remove()
+    timeline = $(this).closest('.timeline')
+    timeline.find('#lists .tweet').remove()
 
-    id = $('.lists_field').val()
+    id = timeline.find('.lists_field').val()
     return if id == '0'
 
-    twitterClient.listsStatuses(id, appendList)
+    screenName = timeline.data('screen-name')
+    controller = new TimelineController(Authentication.byScreenName(screenName))
+    controller.loadList(id)
   )
 
   # watch key inputs
-  keyInputTracker = new KeyInputTracker(twitterClient, $, insertInside)
+  keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))
 
   # tweet selection

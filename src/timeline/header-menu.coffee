@@ -24,6 +24,5 @@ class HeaderMenu
 
       listId = timeline.find('.lists_field').val()
       if listId != '0'
-        console.log('a')
-        # twitterClient.listsStatuses(listId, appendList)
+        controller.loadList(listId)
     )
