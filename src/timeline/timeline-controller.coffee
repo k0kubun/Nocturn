@@ -17,34 +17,22 @@ class TimelineController
     @timeline = $(".timeline[data-screen-name='#{account['screenName']}']")
 
   loadHome: ->
-    tab          = this.homeTab()
-    hasTweet     = this.hasTweetIn(tab)
-    prependTweet = this.prependTweetIn(tab)
-
+    prependTweet = this.prependTweetIn(this.homeTab())
     @client.homeTimeline((tweets) ->
       for tweet in tweets.reverse()
-        continue if hasTweet(tweet.id_str)
         prependTweet(tweet)
     )
 
   loadMentions: ->
-    tab          = this.mentionTab()
-    hasTweet     = this.hasTweetIn(tab)
-    prependTweet = this.prependTweetIn(tab)
-
+    prependTweet = this.prependTweetIn(this.mentionTab())
     @client.mentionsTimeline((tweets) ->
       for tweet in tweets.reverse()
-        continue if hasTweet(tweet.id_str)
         prependTweet(tweet)
     )
 
   startHomeStream: ->
-    tab          = this.homeTab()
-    hasTweet     = this.hasTweetIn(tab)
-    prependTweet = this.prependTweetIn(tab)
-
+    prependTweet = this.prependTweetIn(this.homeTab())
     @client.userStream((tweet) ->
-      return if hasTweet(tweet.id_str)
       prependTweet(tweet)
     )
 
@@ -54,10 +42,12 @@ class TimelineController
   mentionTab: ->
     @timeline.find('#mentions')
 
+  prependTweetIn: (tab) ->
+    hasTweet = this.hasTweetIn(tab)
+    (tweet) ->
+      return if hasTweet(tweet.id_str)
+      tab.prepend(TweetDecorator.create(tweet, $))
+
   hasTweetIn: (tab) ->
     (id) ->
       tab.find(".tweet[data-id=#{id}]").length > 0
-
-  prependTweetIn: (tab) ->
-    (tweet) ->
-      tab.prepend(TweetDecorator.create(tweet, $))
