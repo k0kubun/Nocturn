@@ -1,4 +1,5 @@
 remote             = require('remote')
+AccountList        = require('./account-list')
 Authentication     = remote.require('./authentication')
 FocusManager       = require('./focus-manager')
 HeaderMenu         = require('./header-menu')
@@ -12,6 +13,7 @@ TwitterClient      = require('../twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->
+  AccountList.build($)
   TimelineDelegation.delegate($)
   TimelineResizer.register($(window), $('.tweets'), [$('.header'), $('.editor'), $('.tabs')])
   HeaderMenu.register($)
@@ -22,24 +24,6 @@ jQuery ($) ->
   twitterClient = new TwitterClient(Authentication.defaultAccount())
   keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))
-
-  # reply tweet
-  $(document).delegate('.reply_button', 'click', ->
-    tweet = $(this).closest('.tweet')
-    $('.in_reply_to').data('id', tweet.data('id'))
-
-    textarea = $('.tweet_editor')
-    username = tweet.find('.screen_name').text()
-    textarea.val("@#{username} ")
-    textarea.focus()
-  )
-
-  # Initialize account list
-  for account in Authentication.allAccounts()
-    option = $('<option>')
-    option.attr('value', account['screenName'])
-    option.text(account['screenName'])
-    option.insertBefore('#account_selector option[value="add-account"]')
 
   currentAccount = Authentication.defaultAccount()
   $('#account_selector').val(currentAccount['screenName'])
@@ -69,7 +53,7 @@ jQuery ($) ->
       $('#account_selector').val($('#account_selector').data('prev'))
       new Authentication (token) ->
         Authentication.addToken(token, ->
-          # TODO: add timeline
+          AccountList.rebuild($)
         )
     else
       $('#account_selector').data('prev', $('#account_selector').val())
