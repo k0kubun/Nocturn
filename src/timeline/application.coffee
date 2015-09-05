@@ -140,6 +140,7 @@ jQuery ($) ->
 
   currentAccount = Authentication.defaultAccount()
   $('#account_selector').val(currentAccount['screenName'])
+  $('.twitter_icon').attr('src', currentAccount['profileImage'])
 
   # Account changer
   $(document).delegate('.twitter_icon', 'click', (e) ->
