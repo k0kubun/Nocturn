@@ -105,15 +105,14 @@ jQuery ($) ->
 
   # refresh button
   $(document).delegate('.refresh_button', 'click', (event) ->
-    twitterClient.homeTimeline(appendTweet)
-    twitterClient.mentionsTimeline((tweets) ->
-      for tweet in tweets.reverse()
-        appendTweet(tweet)
-    )
+    screenName = $('.timeline.active').data('screen-name')
+    controller = new TimelineController(Authentication.byScreenName(screenName))
+    controller.loadHome()
+    controller.loadMentions()
 
-    listId = $('.lists_field').val()
-    if listId != '0'
-      twitterClient.listsStatuses(listId, appendList)
+    # listId = $('.lists_field').val()
+    # if listId != '0'
+    #   twitterClient.listsStatuses(listId, appendList)
   )
 
   # this is just a workaround to avoid focusing on the invisible third item

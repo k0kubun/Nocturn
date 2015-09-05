@@ -18,23 +18,23 @@ class TimelineController
   loadHome: ->
     tab         = this.homeTab()
     hasTweet    = this.hasTweetIn(tab)
-    appendTweet = this.appendTweetIn(tab)
+    prependTweet = this.prependTweetIn(tab)
 
     @client.homeTimeline((tweets) ->
-      for tweet in tweets
+      for tweet in tweets.reverse()
         continue if hasTweet(tweet.id_str)
-        appendTweet(tweet)
+        prependTweet(tweet)
     )
 
   loadMentions: ->
     tab         = this.mentionTab()
     hasTweet    = this.hasTweetIn(tab)
-    appendTweet = this.appendTweetIn(tab)
+    prependTweet = this.prependTweetIn(tab)
 
     @client.mentionsTimeline((tweets) ->
-      for tweet in tweets
+      for tweet in tweets.reverse()
         continue if hasTweet(tweet.id_str)
-        appendTweet(tweet)
+        prependTweet(tweet)
     )
 
   homeTab: ->
@@ -47,6 +47,6 @@ class TimelineController
     (id) ->
       tab.find(".tweet[data-id=#{id}]").length > 0
 
-  appendTweetIn: (tab) ->
+  prependTweetIn: (tab) ->
     (tweet) ->
-      tab.append(TweetDecorator.create(tweet, $))
+      tab.prepend(TweetDecorator.create(tweet, $))

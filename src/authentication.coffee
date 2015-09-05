@@ -34,6 +34,11 @@ class Authentication
       callback()
     )
 
+  @byScreenName: (screenName) ->
+    for account in Authentication.allAccounts()
+      return account if account['screenName'] == screenName
+    {}
+
   @defaultAccount: ->
     accounts = Authentication.allAccounts()
     return {} if accounts.length == 0
