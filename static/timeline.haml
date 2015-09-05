@@ -37,7 +37,7 @@
           .in_reply_to{ id: 0 }
 
       %ul.tabs.clearfix
-        %li.tab.active{ data-id: "timeline" } Timeline
+        %li.tab.active{ data-id: "home" } Timeline
         %li.tab{ data-id: "mentions" } Mentions
         %li.tab{ data-id: "lists" } Lists
         %li.tab{ data-id: "search" } Search
@@ -62,10 +62,9 @@
 
       .timelines
         .timeline
-          %ul#timeline.tweets.active
+          %ul#home.tweets.active
             %li.insert_target
           %ul#mentions.tweets
-            %li.insert_target
           %ul#lists.tweets.with_header
             %li.insert_target
           %ul#search.tweets.with_header

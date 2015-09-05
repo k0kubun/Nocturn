@@ -25,3 +25,7 @@ class TweetDecorator
       element.find('.favorite_button').addClass('active')
 
     element
+
+  @create: (tweet, $) ->
+    template = $('.template_wrapper .hidden_template')
+    TweetDecorator.decorate(template.clone(false), tweet)

@@ -32,15 +32,9 @@ jQuery ($) ->
 
   appendTweet = (tweet) ->
     template = $('.template_wrapper .hidden_template')
-    if $("#timeline .tweet[data-id=#{tweet.id_str}]").length == 0
+    if $("#home .tweet[data-id=#{tweet.id_str}]").length == 0
       element = TweetDecorator.decorate(template.clone(false), tweet)
-      insertInside($('#timeline'), element)
-
-    screenName = $('.current_user').data('name')
-    if tweet.text.match(new RegExp("@#{screenName}"))
-      if $("#mentions .tweet[data-id=#{tweet.id_str}]").length == 0
-        element = TweetDecorator.decorate(template.clone(false), tweet)
-        insertInside($('#mentions'), element)
+      insertInside($('#home'), element)
 
   # initialize timeline
   twitterClient = new TwitterClient(Authentication.defaultAccount())
@@ -48,11 +42,7 @@ jQuery ($) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
 
-    twitterClient.mentionsTimeline((tweets) ->
-      for tweet in tweets.reverse()
-        appendTweet(tweet)
-      twitterClient.homeTimeline(appendTweet)
-    )
+    twitterClient.homeTimeline(appendTweet)
     twitterClient.userStream(appendTweet)
   )
 
@@ -147,9 +137,9 @@ jQuery ($) ->
   # FIXME: move this inside TimelineController.createTimeline() later
   timeline = $('.timeline')
   timeline.addClass('active')
-  timeline.data('screenName', currentAccount['screenName'])
+  timeline.attr('data-screen-name', currentAccount['screenName'])
 
-  TimelineController.createTimeline(currentAccount)
+  TimelineController.createTimeline(currentAccount, $)
 
   # Account changer
   $(document).delegate('.twitter_icon', 'click', (e) ->
