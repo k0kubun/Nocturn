@@ -61,11 +61,8 @@ class KeyInputTracker
       screenName = $('.timeline.active').data('screen-name')
       new TwitterClient(Authentication.byScreenName(screenName))
 
-    activeTweetFunc = ->
-      $('.timeline.active .tweets.active .tweet.active')
-
     invokeReply = ->
-      activeTweet = activeTweetFunc()
+      activeTweet = $('.timeline.active .tweets.active .tweet.active')
       return if activeTweet.length == 0
 
       tweetId = activeTweet.data('id')
@@ -76,7 +73,7 @@ class KeyInputTracker
       textarea.focus()
 
     activeTabPane = ->
-      activeTab = activeTweetFunc()
+      activeTab = $('.timeline.active .tab.active')
       $('.timeline.active').find(".tweets#{activeTab.data('selector')}")
 
     selectFirstTweet = ->
@@ -92,7 +89,7 @@ class KeyInputTracker
       activeTabPane().animate({ scrollTop: 0 }, 0)
 
     selectNextTweet = ->
-      activeTweet = activeTweetFunc()
+      activeTweet = activeTabPane().find('.tweet.active')
       return selectFirstTweet() if activeTweet.length == 0
 
       nextTweet = activeTweet.next()
@@ -158,7 +155,7 @@ class KeyInputTracker
         when KeyInputTracker.keycodes['backspace']
           return if event.metaKey != true
 
-          activeTweet = activeTweetFunc()
+          activeTweet = $('.tweet.active')
           return if activeTweet.length == 0
 
           tweetId = activeTweet.data('id')
@@ -238,7 +235,7 @@ class KeyInputTracker
 
         when KeyInputTracker.keycodes['f']
           return if textarea.is(':focus')
-          activeTweet = activeTweetFunc()
+          activeTweet = $('.tweet.active')
           return if activeTweet.length == 0
 
           currentClient().favoriteStatus(activeTweet.data('id'), ->
