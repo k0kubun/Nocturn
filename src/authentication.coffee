@@ -29,10 +29,19 @@ class Authentication
       tokens = JsonLoader.read(Authentication.json_storage)
       tokens = [] unless tokens
       tokens.push(token)
-      JsonLoader.write(Authentication.json_storage, tokens)
+      JsonLoader.write(Authentication.json_storage, Authentication.uniqTokens(tokens))
 
       callback()
     )
+
+  @uniqTokens: (tokens) ->
+    names  = []
+    uniqed = []
+    for token in tokens
+      if names.indexOf(token['screenName']) < 0
+        uniqed.push(token)
+        names.push(token['screenName'])
+    uniqed
 
   @byScreenName: (screenName) ->
     for account in Authentication.allAccounts()
