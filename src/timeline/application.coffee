@@ -9,7 +9,6 @@ TimelineController = require('./timeline-controller')
 TimelineDelegation = require('./timeline-delegation')
 TimelineResizer    = require('./timeline-resizer')
 TweetDecorator     = require('./tweet-decorator')
-TwitterClient      = require('../twitter-client')
 
 jQuery = require('jquery')
 jQuery ($) ->
@@ -21,8 +20,7 @@ jQuery ($) ->
   TabManager.bind($)
 
   # watch key inputs
-  twitterClient = new TwitterClient(Authentication.defaultAccount())
-  keyInputTracker = new KeyInputTracker(twitterClient, $)
+  keyInputTracker = new KeyInputTracker($)
   keyInputTracker.watch($(window))
 
   # Initialize timelines

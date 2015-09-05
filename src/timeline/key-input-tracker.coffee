@@ -1,6 +1,8 @@
 AccountList    = require('./account-list')
+Authentication = require('remote').require('./authentication')
 TabManager     = require('./tab-manager')
 TweetDecorator = require('./tweet-decorator')
+TwitterClient  = require('../twitter-client')
 
 module.exports =
 class KeyInputTracker
@@ -27,12 +29,11 @@ class KeyInputTracker
     k:     107,
   }
 
-  constructor: (twitterClient, jQuery) ->
+  constructor: (jQuery) ->
     $ = jQuery
-    @twitterClient   = twitterClient
-    @textarea        = $('.tweet_editor')
-    @inReplyTo       = $('.in_reply_to')
-    @insertInside    = (target, element) ->
+    @textarea     = $('.tweet_editor')
+    @inReplyTo    = $('.in_reply_to')
+    @insertInside = (target, element) ->
       insertId = element.data('id')
       return if target.find(".tweet[data-id=#{insertId}]").length > 0
 
@@ -51,10 +52,13 @@ class KeyInputTracker
         element.insertAfter(target.find('.insert_target'))
 
   watch: (target) ->
-    twitterClient   = @twitterClient
-    textarea        = @textarea
-    inReplyTo       = @inReplyTo
-    insertInside    = @insertInside
+    textarea     = @textarea
+    inReplyTo    = @inReplyTo
+    insertInside = @insertInside
+
+    currentClient = ->
+      screenName = $('.timeline.active').data('screen-name')
+      new TwitterClient(Authentication.byScreenName(screenName))
 
     invokeReply = ->
       activeTweet = $('.timeline.active .tweets.active .tweet.active')
@@ -154,7 +158,7 @@ class KeyInputTracker
           return if activeTweet.length == 0
 
           tweetId = activeTweet.data('id')
-          twitterClient.deleteStatus(tweetId, ->
+          currentClient().deleteStatus(tweetId, ->
             activeTweet.remove()
           )
 
@@ -197,7 +201,7 @@ class KeyInputTracker
             $('#search .tweet').remove()
 
             query = $('.timeline.active .search_field').val()
-            twitterClient.searchTweets(query, (tweet) ->
+            currentClient().searchTweets(query, (tweet) ->
               if $(".timeline.active #search .tweet[data-id=#{tweet.id_str}]").length == 0
                 template = $('.template_wrapper .hidden_template')
                 element = TweetDecorator.decorate(template.clone(false), tweet)
@@ -214,7 +218,7 @@ class KeyInputTracker
           event.preventDefault()
           tweet = textarea.val()
           textarea.val('')
-          twitterClient.updateStatus(tweet, inReplyTo.data('id'))
+          currentClient().updateStatus(tweet, inReplyTo.data('id'))
           inReplyTo.data('id', 0)
 
         when KeyInputTracker.keycodes['f']
@@ -222,7 +226,7 @@ class KeyInputTracker
           activeTweet = $('.tweet.active')
           return if activeTweet.length == 0
 
-          twitterClient.favoriteStatus(activeTweet.data('id'), ->
+          currentClient().favoriteStatus(activeTweet.data('id'), ->
             activeTweet.find('.favorite_button').addClass('active')
           )
 
