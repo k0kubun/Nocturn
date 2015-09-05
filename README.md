@@ -30,8 +30,8 @@ https://github.com/k0kubun/Nocturn/releases
 |Cmd-backspace|Delete a tweet|
 |Cmd-p, Cmd-}|Select a next tab|
 |Cmd-o, Cmd-{|Select a previous tab|
-|Cmd-j, Cmd-{|Select a next account|
-|Cmd-k, Cmd-}|Select a previous account|
+|Cmd-j|Select a next account|
+|Cmd-k|Select a previous account|
 
 ## Development
 
