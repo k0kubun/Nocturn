@@ -155,7 +155,7 @@ class KeyInputTracker
         when KeyInputTracker.keycodes['backspace']
           return if event.metaKey != true
 
-          activeTweet = $('.tweet.active')
+          activeTweet = activeTabPane().find('.tweet.active')
           return if activeTweet.length == 0
 
           tweetId = activeTweet.data('id')
@@ -198,7 +198,7 @@ class KeyInputTracker
           return if event.shiftKey != true
           event.preventDefault()
 
-          activeTweet = activeTweetFunc()
+          activeTweet = activeTabPane().find('.tweet.active')
           return if activeTweet.length == 0
 
           tweetId = activeTweet.data('id')
