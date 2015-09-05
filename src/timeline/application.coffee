@@ -1,3 +1,5 @@
+remote          = require('remote')
+Authentication  = remote.require('./authentication')
 KeyInputTracker = require('./key-input-tracker')
 TabManager      = require('./tab-manager')
 TimelineResizer = require('./timeline-resizer')
@@ -40,7 +42,7 @@ jQuery ($) ->
         insertInside($('#mentions'), element)
 
   # initialize timeline
-  twitterClient = new TwitterClient()
+  twitterClient = new TwitterClient(Authentication.defaultToken())
   twitterClient.verifyCredentials((user) ->
     $('.current_user').data('id', user.id_str)
     $('.current_user').data('name', user.screen_name)
