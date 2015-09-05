@@ -1,3 +1,4 @@
+AccountList    = require('./account-list')
 TabManager     = require('./tab-manager')
 TweetDecorator = require('./tweet-decorator')
 
@@ -10,6 +11,10 @@ class KeyInputTracker
     backspace:     8,
     up:            38,
     down:          40,
+    cmd_j:         74,
+    cmd_k:         75,
+    o:             79,
+    p:             80,
     left_bracket:  219,
     right_bracket: 221,
 
@@ -17,8 +22,6 @@ class KeyInputTracker
     enter: 13,
     space: 32,
     zero:  48,
-    o:     79,
-    p:     80,
     f:     102,
     j:     106,
     k:     107,
@@ -116,6 +119,76 @@ class KeyInputTracker
         pane.finish()
         pane.animate({ scrollTop: pane.scrollTop() - pane.height() / 2 }, 'fast')
 
+    screenNames = ->
+      names = []
+      $('#account_selector option').each ->
+        name = $(this).val()
+        unless name == 'add-account'
+          names.push(name)
+      names
+
+    selectNextAccount = ->
+      names = screenNames()
+      currentIndex = names.indexOf($('#account_selector').val())
+      nextIndex = currentIndex + 1
+      if nextIndex < names.length
+        screenName = names[nextIndex]
+        $('#account_selector').val(screenName)
+        AccountList.switchTo(screenName, $)
+
+    selectPrevAccount = ->
+      names = screenNames()
+      currentIndex = names.indexOf($('#account_selector').val())
+      prevIndex = currentIndex - 1
+      if 0 <= prevIndex
+        screenName = names[prevIndex]
+        $('#account_selector').val(screenName)
+        AccountList.switchTo(screenName, $)
+
+    target.on('keydown', (event) ->
+      switch event.keyCode
+        when KeyInputTracker.keycodes['backspace']
+          return if event.metaKey != true
+
+          activeTweet = $('.tweet.active')
+          return if activeTweet.length == 0
+
+          tweetId = activeTweet.data('id')
+          twitterClient.deleteStatus(tweetId, ->
+            activeTweet.remove()
+          )
+
+        when KeyInputTracker.keycodes['up']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          selectPrevTweet()
+
+        when KeyInputTracker.keycodes['down']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          selectNextTweet()
+
+        when KeyInputTracker.keycodes['left_bracket'], KeyInputTracker.keycodes['o']
+          return if event.metaKey != true
+          event.preventDefault()
+          TabManager.selectPrev($)
+
+        when KeyInputTracker.keycodes['right_bracket'], KeyInputTracker.keycodes['p']
+          return if event.metaKey != true
+          event.preventDefault()
+          TabManager.selectNext($)
+
+        when KeyInputTracker.keycodes['cmd_j']
+          return if event.metaKey != true
+          event.preventDefault()
+          selectNextAccount()
+
+        when KeyInputTracker.keycodes['cmd_k']
+          return if event.metaKey != true
+          event.preventDefault()
+          selectPrevAccount()
+    )
+
     target.on('keypress', (event) ->
       switch event.keyCode
         when KeyInputTracker.keycodes['enter']
@@ -167,38 +240,4 @@ class KeyInputTracker
           return if textarea.is(':focus')
           event.preventDefault()
           selectPrevTweet()
-    )
-
-    target.on('keydown', (event) ->
-      switch event.keyCode
-        when KeyInputTracker.keycodes['backspace']
-          return if event.metaKey != true
-
-          activeTweet = $('.tweet.active')
-          return if activeTweet.length == 0
-
-          tweetId = activeTweet.data('id')
-          twitterClient.deleteStatus(tweetId, ->
-            activeTweet.remove()
-          )
-
-        when KeyInputTracker.keycodes['up']
-          return if textarea.is(':focus')
-          event.preventDefault()
-          selectPrevTweet()
-
-        when KeyInputTracker.keycodes['down']
-          return if textarea.is(':focus')
-          event.preventDefault()
-          selectNextTweet()
-
-        when KeyInputTracker.keycodes['left_bracket'], KeyInputTracker.keycodes['o']
-          return if event.metaKey != true
-          event.preventDefault()
-          TabManager.selectPrev($)
-
-        when KeyInputTracker.keycodes['right_bracket'], KeyInputTracker.keycodes['p']
-          return if event.metaKey != true
-          event.preventDefault()
-          TabManager.selectNext($)
     )

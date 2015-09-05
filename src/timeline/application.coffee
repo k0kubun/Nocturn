@@ -58,11 +58,5 @@ jQuery ($) ->
         )
     else
       screenName = $('#account_selector').val()
-      $('#account_selector').data('prev', screenName)
-      $('.timeline').removeClass('active')
-      timeline = $(".timeline[data-screen-name='#{screenName}']")
-      timeline.addClass('active')
-
-      account = Authentication.byScreenName(screenName)
-      $('.twitter_icon').attr('src', account['profileImage'])
+      AccountList.switchTo(screenName, $)
   )

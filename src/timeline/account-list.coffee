@@ -18,3 +18,12 @@ class AccountList
     option.attr('value', 'add-account')
     option.text('Add...')
     $('#account_selector').append(option)
+
+  @switchTo: (screenName, $) ->
+    $('#account_selector').data('prev', screenName)
+    $('.timeline').removeClass('active')
+    timeline = $(".timeline[data-screen-name='#{screenName}']")
+    timeline.addClass('active')
+
+    account = Authentication.byScreenName(screenName)
+    $('.twitter_icon').attr('src', account['profileImage'])
