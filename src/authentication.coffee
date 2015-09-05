@@ -1,6 +1,7 @@
 BrowserWindow  = require('browser-window')
 JsonLoader     = require('./json-loader')
 NodeTwitterApi = require('node-twitter-api')
+TwitterClient  = require('./twitter-client')
 
 authWindow = null
 
@@ -15,14 +16,23 @@ class Authentication
       return
 
     new Authentication (token) ->
-      Authentication.addToken(token)
-      callback()
+      Authentication.addToken(token, ->
+        callback()
+      )
 
-  @addToken: (token) ->
-    tokens = JsonLoader.read(Authentication.json_storage)
-    tokens = [] unless tokens
-    tokens.push(token)
-    JsonLoader.write(Authentication.json_storage, tokens)
+  @addToken: (token, callback) ->
+    twitterClient = new TwitterClient(token)
+    twitterClient.verifyCredentials((user) ->
+      token['screenName']   = user.screen_name
+      token['profileImage'] = user.profile_image_url
+
+      tokens = JsonLoader.read(Authentication.json_storage)
+      tokens = [] unless tokens
+      tokens.push(token)
+      JsonLoader.write(Authentication.json_storage, tokens)
+
+      callback()
+    )
 
   @defaultToken: ->
     accessTokens = JsonLoader.read(Authentication.json_storage)
