@@ -49,10 +49,14 @@ jQuery ($) ->
     value = $('#account_selector').val()
 
     if value == 'add-account'
+      oldLength = Authentication.allAccounts().length
       $('#account_selector').val($('#account_selector').data('prev'))
       new Authentication (token) ->
         Authentication.addToken(token, ->
-          AccountList.rebuild($)
+          if Authentication.allAccounts().length > oldLength
+            AccountList.rebuild($)
+            TimelineController.createTimeline(token, $)
+            AccountList.switchTo(token['screenName'], $)
         )
     else
       screenName = $('#account_selector').val()

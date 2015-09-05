@@ -21,18 +21,12 @@ class Authentication
       )
 
   @addToken: (token, callback) ->
-    twitterClient = new TwitterClient(token)
-    twitterClient.verifyCredentials((user) ->
-      token['screenName']   = user.screen_name
-      token['profileImage'] = user.profile_image_url
+    tokens = JsonLoader.read(Authentication.json_storage)
+    tokens = [] unless tokens
+    tokens.push(token)
+    JsonLoader.write(Authentication.json_storage, Authentication.uniqTokens(tokens))
 
-      tokens = JsonLoader.read(Authentication.json_storage)
-      tokens = [] unless tokens
-      tokens.push(token)
-      JsonLoader.write(Authentication.json_storage, Authentication.uniqTokens(tokens))
-
-      callback()
-    )
+    callback()
 
   @uniqTokens: (tokens) ->
     names  = []
@@ -79,7 +73,13 @@ class Authentication
             else
               authWindow.close()
               authWindow = null
-              callback({ accessToken: accessToken, accessTokenSecret: accessTokenSecret })
+              token = { accessToken: accessToken, accessTokenSecret: accessTokenSecret }
+              client = new TwitterClient(token)
+              client.verifyCredentials((user) ->
+                token['screenName']   = user.screen_name
+                token['profileImage'] = user.profile_image_url
+                callback(token)
+              )
           )
         else
           authWindow.close()
