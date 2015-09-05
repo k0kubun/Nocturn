@@ -6,27 +6,31 @@ class TabManager
     )
 
   @activate: (tab, $) ->
-    $('.tabs .tab').removeClass('active')
+    timeline = tab.closest('.timeline')
+    timeline.find('.tabs .tab').removeClass('active')
     tab.addClass('active')
 
-    $('.tweets').removeClass('active')
-    $("##{tab.data('id')}").addClass('active')
+    timeline.find('.tweets').removeClass('active')
+    timeline.find(tab.data('selector')).addClass('active')
 
-    $('.tweets_header').removeClass('active')
-    if $('#lists').hasClass('active')
-      $('.lists_selector').addClass('active')
-    else if $('#search').hasClass('active')
-      $('.search_box').addClass('active')
+    TabManager.switchHeader(timeline, tab, $)
+
+  @switchHeader: (timeline, tab, $) ->
+    timeline.find('.tweets_header').removeClass('active')
+    selector = tab.data('activate')
+    return unless selector
+
+    timeline.find(selector).addClass('active')
 
   @selectNext: ($) ->
-    activeTab = $('.tabs .tab.active')
+    activeTab = $('.timeline.active .tabs .tab.active')
     nextTab = activeTab.next()
     return if nextTab.length == 0
 
     TabManager.activate(nextTab, $)
 
   @selectPrev: ($) ->
-    activeTab = $('.tabs .tab.active')
+    activeTab = $('.timeline.active .tabs .tab.active')
     prevTab = activeTab.prev()
     return if prevTab.length == 0
 

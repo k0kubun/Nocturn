@@ -36,32 +36,32 @@
 
           .in_reply_to{ id: 0 }
 
-      %ul.tabs.clearfix
-        %li.tab.active{ data-id: "home" } Timeline
-        %li.tab{ data-id: "mentions" } Mentions
-        %li.tab{ data-id: "lists" } Lists
-        %li.tab{ data-id: "search" } Search
-
-      -# template to generate element
-      %ul.template_wrapper
-        %li.tweet.hidden_template
-          .box_wrapper
-            .left_box
-              %img.user_icon
-            .right_box
-              .tweet_header.clearfix
-                %span.user_name
-                %span.screen_name
-                %span.created_at
-              .tweet_body
-            .right_widget
-              .reply_widget_wrapper
-                %i.fa.fa-reply.reply_button
-              .favorite_widget_wrapper
-                %i.fa.fa-star.favorite_button
-
       .timelines
         .timeline
+          %ul.tabs.clearfix
+            %li.tab.active{ data-selector: "#home" } Timeline
+            %li.tab{ data-selector: "#mentions" } Mentions
+            %li.tab{ data-selector: "#lists", data-activate: ".lists_selector" } Lists
+            %li.tab{ data-selector: "#search", data-activate: ".search_box" } Search
+
+          -# template to generate element
+          %ul.template_wrapper
+            %li.tweet.hidden_template
+              .box_wrapper
+                .left_box
+                  %img.user_icon
+                .right_box
+                  .tweet_header.clearfix
+                    %span.user_name
+                    %span.screen_name
+                    %span.created_at
+                  .tweet_body
+                .right_widget
+                  .reply_widget_wrapper
+                    %i.fa.fa-reply.reply_button
+                  .favorite_widget_wrapper
+                    %i.fa.fa-star.favorite_button
+
           %ul#home.tweets.active
             %li.insert_target
           %ul#mentions.tweets
