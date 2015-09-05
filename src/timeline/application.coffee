@@ -57,6 +57,7 @@ jQuery ($) ->
             AccountList.rebuild($)
             TimelineController.createTimeline(token, $)
             AccountList.switchTo(token['screenName'], $)
+            $('#account_selector').val(token['screenName'])
         )
     else
       screenName = $('#account_selector').val()
