@@ -9,6 +9,6 @@ tmp/
 *.css
 *.js
 !gulpfile.js
-access_token.json
+accounts.json
 packages
 fonts

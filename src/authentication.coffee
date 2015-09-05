@@ -6,6 +6,8 @@ authWindow = null
 
 module.exports =
 class Authentication
+  @json_storage = 'accounts.json'
+
   @authorized: (callback) ->
     token = Authentication.defaultToken()
     if token && token['accessToken']
@@ -17,13 +19,13 @@ class Authentication
       callback()
 
   @addToken: (token) ->
-    tokens = JsonLoader.read('access_token.json')
+    tokens = JsonLoader.read(Authentication.json_storage)
     tokens = [] unless tokens
     tokens.push(token)
-    JsonLoader.write('access_token.json', tokens)
+    JsonLoader.write(Authentication.json_storage, tokens)
 
   @defaultToken: ->
-    accessTokens = JsonLoader.read('access_token.json')
+    accessTokens = JsonLoader.read(Authentication.json_storage)
     return {} unless accessTokens
     return {} if accessTokens.length == 0
 
