@@ -62,4 +62,7 @@ jQuery ($) ->
       $('.timeline').removeClass('active')
       timeline = $(".timeline[data-screen-name='#{screenName}']")
       timeline.addClass('active')
+
+      account = Authentication.byScreenName(screenName)
+      $('.twitter_icon').attr('src', account['profileImage'])
   )
