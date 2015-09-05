@@ -27,5 +27,5 @@ class TweetDecorator
     element
 
   @create: (tweet, $) ->
-    template = $('.template_wrapper .hidden_template')
+    template = $('.timeline_template .template_wrapper .hidden_template')
     TweetDecorator.decorate(template.clone(false), tweet)
