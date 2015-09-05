@@ -25,14 +25,19 @@ jQuery ($) ->
   keyInputTracker = new KeyInputTracker(twitterClient, $)
   keyInputTracker.watch($(window))
 
+  # Initialize timelines
+  for account in Authentication.allAccounts()
+    TimelineController.createTimeline(account, $)
+
+  # Activate first account
   currentAccount = Authentication.defaultAccount()
+  timeline = $(".timeline[data-screen-name='#{currentAccount['screenName']}']")
+  timeline.addClass('active')
   $('#account_selector').val(currentAccount['screenName'])
   $('#account_selector').data('prev', currentAccount['screenName'])
   $('.twitter_icon').attr('src', currentAccount['profileImage'])
 
-  TimelineController.createTimeline(currentAccount, $)
-
-  # Account changer
+  # Hack to create account selector view
   $(document).delegate('.twitter_icon', 'click', (e) ->
     e.preventDefault()
     dropdown = document.getElementById('account_selector')
@@ -41,6 +46,7 @@ jQuery ($) ->
     dropdown.dispatchEvent(event)
   )
 
+  # Invoke account selector
   $(document).delegate('#account_selector', 'change', (event) ->
     value = $('#account_selector').val()
 

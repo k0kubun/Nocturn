@@ -7,10 +7,9 @@ class TimelineController
 
   @createTimeline: (account, jQuery) ->
     $ = jQuery
-
-    timeline = $('.timeline')
-    timeline.addClass('active')
+    timeline = $('.timeline').clone(false)
     timeline.attr('data-screen-name', account['screenName'])
+    $('.timelines').append(timeline)
 
     controller = new TimelineController(account)
     controller.loadHome()

@@ -64,7 +64,7 @@ class KeyInputTracker
 
     activeTabPane = ->
       activeTab = $('.timeline.active .tab.active')
-      $(".tweets#{activeTab.data('selector')}")
+      $('.timeline.active').find(".tweets#{activeTab.data('selector')}")
 
     selectFirstTweet = ->
       $('.tweet').removeClass('active')
