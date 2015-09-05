@@ -59,6 +59,11 @@ class TwitterClient
       callback()
     )
 
+  retweetStatus: (tweetId) ->
+    @client.post('statuses/retweet/' + tweetId, {}, (error, data, response) ->
+      console.log(JSON.stringify(error)) if error
+    )
+
   deleteStatus: (tweetId, callback) ->
     path = 'statuses/destroy/' + tweetId.toString()
     @client.post(path, {}, (error, data, response) ->

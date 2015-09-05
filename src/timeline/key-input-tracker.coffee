@@ -17,6 +17,7 @@ class KeyInputTracker
     cmd_k:         75,
     o:             79,
     p:             80,
+    v:             86,
     left_bracket:  219,
     right_bracket: 221,
 
@@ -194,6 +195,17 @@ class KeyInputTracker
           return if event.metaKey != true
           event.preventDefault()
           selectPrevAccount()
+
+        when KeyInputTracker.keycodes['v']
+          return if event.metaKey != true
+          return if event.shiftKey != true
+          event.preventDefault()
+
+          activeTweet = activeTweetFunc()
+          return if activeTweet.length == 0
+
+          tweetId = activeTweet.data('id')
+          currentClient().retweetStatus(tweetId)
     )
 
     target.on('keypress', (event) ->

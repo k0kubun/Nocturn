@@ -27,9 +27,10 @@ https://github.com/k0kubun/Nocturn/releases
 |k, ↑|Select a previous tweet|
 |0, space|Select the first tweet|
 |f|Add a tweet to favorites|
+|Cmd-Shift-v|Retweet a tweet|
 |Cmd-backspace|Delete a tweet|
-|Cmd-p, Cmd-}|Select a next tab|
-|Cmd-o, Cmd-{|Select a previous tab|
+|Cmd-p, Cmd-Shift-]|Select a next tab|
+|Cmd-o, Cmd-Shift-[|Select a previous tab|
 |Cmd-j|Select a next account|
 |Cmd-k|Select a previous account|
 
