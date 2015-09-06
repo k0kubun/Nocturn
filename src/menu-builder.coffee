@@ -12,12 +12,30 @@ class MenuBuilder
       label: 'Nocturn',
       submenu: [
         {
+          label: 'Open GitHub',
+          click: ->
+            require('shell').openExternal('https://github.com/k0kubun/Nocturn')
+        },
+        { type: "separator" },
+        {
           label: 'Quit Nocturn',
           accelerator: 'Command+Q',
           click: ->
             app.quit()
-        }
+        },
       ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        { label: "Undo", accelerator: "Command+Z", selector: "undo:" },
+        { label: "Redo", accelerator: "Shift+Command+Z", selector: "redo:" },
+        { type: "separator" },
+        { label: "Cut", accelerator: "Command+X", selector: "cut:" },
+        { label: "Copy", accelerator: "Command+C", selector: "copy:" },
+        { label: "Paste", accelerator: "Command+V", selector: "paste:" },
+        { label: "Select All", accelerator: "Command+A", selector: "selectAll:" },
+      ],
     },
   ]
 
