@@ -1,8 +1,9 @@
-AccountList    = require('./account-list')
-Authentication = require('remote').require('./authentication')
-TabManager     = require('./tab-manager')
-TweetDecorator = require('./tweet-decorator')
-TwitterClient  = require('../twitter-client')
+AccountList        = require('./account-list')
+Authentication     = require('remote').require('./authentication')
+TabManager         = require('./tab-manager')
+TimelineController = require('./timeline-controller')
+TweetDecorator     = require('./tweet-decorator')
+TwitterClient      = require('../twitter-client')
 
 module.exports =
 class KeyInputTracker
@@ -208,17 +209,13 @@ class KeyInputTracker
     target.on('keypress', (event) ->
       switch event.keyCode
         when KeyInputTracker.keycodes['enter']
-          if $('.search_field').is(':focus')
+          if $('.timeline.active .search_field').is(':focus')
             event.preventDefault()
-            $('#search .tweet').remove()
-
             query = $('.timeline.active .search_field').val()
-            currentClient().searchTweets(query, (tweet) ->
-              if $(".timeline.active #search .tweet[data-id=#{tweet.id_str}]").length == 0
-                template = $('.template_wrapper .hidden_template')
-                element = TweetDecorator.decorate(template.clone(false), tweet)
-                insertInside($('#search'), element)
-            )
+
+            screenName = $('.timeline.active').data('screen-name')
+            controller = new TimelineController(Authentication.byScreenName(screenName))
+            controller.loadSearch(query)
             return
 
           unless textarea.is(':focus')

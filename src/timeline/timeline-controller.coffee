@@ -54,6 +54,13 @@ class TimelineController
       prependTweet(tweet)
     )
 
+  loadSearch: (query) ->
+    this.searchTab().find('.tweet').remove()
+    prependTweet = this.prependTweetIn(this.searchTab())
+    @client.searchTweets(query, (tweet) ->
+      prependTweet(tweet)
+    )
+
   startHomeStream: ->
     prependTweet = this.prependTweetIn(this.homeTab())
     @client.userStream((tweet) ->
@@ -68,6 +75,9 @@ class TimelineController
 
   listsTab: ->
     @timeline.find('#lists')
+
+  searchTab: ->
+    @timeline.find('#search')
 
   prependTweetIn: (tab) ->
     hasTweet = this.hasTweetIn(tab)
