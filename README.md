@@ -26,17 +26,17 @@ https://github.com/k0kubun/Nocturn/releases
 
 |Key|Command|
 |:---|:---|
-|Enter| Tweet, Reply, Search |
-|j, ↓|Select a next tweet|
-|k, ↑|Select a previous tweet|
-|0, space|Select the first tweet|
-|f|Add a tweet to favorites|
-|Cmd-Shift-v|Retweet a tweet|
-|Cmd-backspace|Delete a tweet|
-|h, Cmd-Shift-]|Select a next tab|
-|l, Cmd-Shift-[|Select a previous tab|
-|n, Cmd-j|Select a next account|
-|p, Cmd-k|Select a previous account|
+|<kbd>Enter</kbd>| Tweet, Reply, Search |
+|<kbd>j</kbd>, <kbd>↓</kbd>|Select a next tweet|
+|<kbd>k</kbd>, <kbd>↑</kbd>|Select a previous tweet|
+|<kbd>0</kbd>, <kbd>space</kbd>|Select the first tweet|
+|<kbd>f</kbd>|Add a tweet to favorites|
+|<kbd>Cmd-Shift-v</kbd>|Retweet a tweet|
+|<kbd>Cmd-backspace</kbd>|Delete a tweet|
+|<kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd>|Select a next tab|
+|<kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd>|Select a previous tab|
+|<kbd>n</kbd>, <kbd>Cmd-j</kbd>|Select a next account|
+|<kbd>p</kbd>, <kbd>Cmd-k</kbd>|Select a previous account|
 
 Regard Cmd as Windows or Meta key if you're not using OSX.
 
