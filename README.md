@@ -33,10 +33,10 @@ https://github.com/k0kubun/Nocturn/releases
 |f|Add a tweet to favorites|
 |Cmd-Shift-v|Retweet a tweet|
 |Cmd-backspace|Delete a tweet|
-|Cmd-Shift-]|Select a next tab|
-|Cmd-Shift-[|Select a previous tab|
-|Cmd-j|Select a next account|
-|Cmd-k|Select a previous account|
+|h, Cmd-Shift-]|Select a next tab|
+|l, Cmd-Shift-[|Select a previous tab|
+|n, Cmd-j|Select a next account|
+|p, Cmd-k|Select a previous account|
 
 Regard Cmd as Windows or Meta key if you're not using OSX.
 

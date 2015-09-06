@@ -25,8 +25,12 @@ class KeyInputTracker
     space: 32,
     zero:  48,
     f:     102,
+    h:     104,
     j:     106,
     k:     107,
+    l:     108,
+    n:     110,
+    p:     112,
   }
 
   constructor: (jQuery) ->
@@ -251,4 +255,24 @@ class KeyInputTracker
           return if textarea.is(':focus')
           event.preventDefault()
           selectPrevTweet()
+
+        when KeyInputTracker.keycodes['h']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          TabManager.selectPrev($)
+
+        when KeyInputTracker.keycodes['l']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          TabManager.selectNext($)
+
+        when KeyInputTracker.keycodes['n']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          selectNextAccount()
+
+        when KeyInputTracker.keycodes['p']
+          return if textarea.is(':focus')
+          event.preventDefault()
+          selectPrevAccount()
     )
