@@ -48,14 +48,14 @@ Regard Cmd as Windows or Meta key if you're not using OSX.
 
 ```bash
 $ npm install
-$ npm run bower
+$ npm run setup
 $ npm start
 ```
 
 ## Build package
 
 ```bash
-$ npm build
+$ npm run build
 ```
 
 ## License
