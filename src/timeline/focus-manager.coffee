@@ -5,8 +5,8 @@ class FocusManager
   @bind: ($) ->
     $(document).on('keydown', (event) ->
       return if event.keyCode != FocusManager.tabKeyCode
+      return if $('.tweet_editor').is(':focus')
 
-      unless $('.tweet_editor').is(':focus')
-        event.preventDefault()
-        $('.tweet_editor').focus()
+      event.preventDefault()
+      $('.tweet_editor').focus()
     )
