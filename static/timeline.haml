@@ -26,11 +26,7 @@
           %img.twitter_icon
 
         %form{ action: "#", method: "post" }
-          -# this is just a workaround...
-          .focus_standby{ tabindex: 1 }
-          %textarea.tweet_editor{ name: "tweet", tabindex: 2 }
-          .focus_trigger{ tabindex: 3 }
-
+          %textarea.tweet_editor{ name: "tweet", tabindex: 1 }
           .in_reply_to{ id: 0 }
 
       .timelines

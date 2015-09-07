@@ -1,7 +1,12 @@
 module.exports =
 class FocusManager
+  @tabKeyCode = 9
+
   @bind: ($) ->
-    # this is just a workaround to avoid focusing on the invisible third item
-    $('.focus_trigger').focus ->
-      $('.focus_standby').focus()
-    $('.focus_standby').focus()
+    $(document).on('keydown', (event) ->
+      return if event.keyCode != FocusManager.tabKeyCode
+
+      unless $('.tweet_editor').is(':focus')
+        event.preventDefault()
+        $('.tweet_editor').focus()
+    )
