@@ -9,11 +9,11 @@ class MenuBuilder
 
   @template: (app) ->
     if process.platform == 'darwin'
-      [MenuBuilder.commonMenu, MenuBuilder.macMenu]
+      [MenuBuilder.commonMenu(app), MenuBuilder.macMenu]
     else
-      [MenuBuilder.commonMenu]
+      [MenuBuilder.commonMenu(app)]
 
-  @commonMenu: {
+  @commonMenu: (app) -> {
     label: 'Nocturn',
     submenu: [
       {
