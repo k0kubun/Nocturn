@@ -26,7 +26,7 @@
   "devDependencies": {
     "bower": "^1.5.2",
     "coffee-script": "^1.9.2",
-    "electron-prebuilt": "^0.31.1",
+    "electron-prebuilt": "^0.32.3",
     "electron-packager": "^5.0.2",
     "gulp": "^3.9.0",
     "gulp-bower": "^0.0.10",
