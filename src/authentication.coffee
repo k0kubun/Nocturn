@@ -62,7 +62,9 @@ class Authentication
     klass = @
     nodeTwitterApi.getRequestToken((error, requestToken, requestTokenSecret) =>
       url = nodeTwitterApi.getAuthUrl(requestToken)
+      oldWindow  = authWindow if authWindow
       authWindow = new BrowserWindow({ width: 800, height: 600 })
+
       authWindow.webContents.on('will-navigate', (event, url) =>
         event.preventDefault()
         if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
@@ -82,11 +84,14 @@ class Authentication
               )
           )
         else
-          authWindow.close()
           new Authentication(callback)
       )
       authWindow.on('closed', ->
         # noop
       )
+
+      if oldWindow
+        oldWindow.close()
+        oldWindow = null
       authWindow.loadUrl(url + '&force_login=true')
     )
