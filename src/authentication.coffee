@@ -70,28 +70,25 @@ class Authentication
         if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
           nodeTwitterApi.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) =>
             if error
-              authWindow.close()
               new Authentication(callback)
             else
-              authWindow.close()
-              authWindow = null
               token = { accessToken: accessToken, accessTokenSecret: accessTokenSecret }
               client = new TwitterClient(token)
               client.verifyCredentials((user) ->
                 token['screenName']   = user.screen_name
                 token['profileImage'] = user.profile_image_url
                 callback(token)
+                authWindow.close() if authWindow
               )
           )
         else
           new Authentication(callback)
       )
       authWindow.on('closed', ->
-        # noop
+        authWindow = null
       )
 
       if oldWindow
         oldWindow.close()
-        oldWindow = null
       authWindow.loadUrl(url + '&force_login=true')
     )
