@@ -63,7 +63,7 @@ class Authentication
     nodeTwitterApi.getRequestToken((error, requestToken, requestTokenSecret) =>
       url = nodeTwitterApi.getAuthUrl(requestToken)
       oldWindow  = authWindow if authWindow
-      authWindow = new BrowserWindow({ width: 800, height: 600 })
+      authWindow = new BrowserWindow({ width: 800, height: 600, 'node-integration': false })
 
       authWindow.webContents.on('will-navigate', (event, url) =>
         event.preventDefault()
