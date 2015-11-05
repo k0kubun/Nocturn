@@ -188,6 +188,11 @@ body {
       &.active {
         background: #389cd7;
       }
+
+      &.active .external-link {
+        color: white;
+        text-decoration: underline;
+      }
     }
 
     .user_name {
