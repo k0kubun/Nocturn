@@ -9,5 +9,7 @@ class TimelineResizer
 
     $(window).on('resize', ->
       resized = $(window).height() - (height + TimelineResizer.magicOffset)
+      if $('body').hasClass('darwin')
+        resized -= 20
       $('.tweets').height(resized)
     ).trigger('resize') # on page load

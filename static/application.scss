@@ -332,6 +332,7 @@ body {
   }
 
   .tweets {
+    height: $timeline_height - ($header_height + $editor_height + $tabs_height + $magic_offset);
     top: $header_height + $editor_height + $tabs_height;
 
     &.with_header {
