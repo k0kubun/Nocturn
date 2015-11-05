@@ -63,3 +63,7 @@ jQuery ($) ->
       screenName = $('#account_selector').val()
       AccountList.switchTo(screenName, $)
   )
+
+  # To adjust browser window size for Mac's title-bar-style: hidden,
+  # embedding platform name as class.
+  $('body').addClass(remote.process.platform)

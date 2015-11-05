@@ -1,7 +1,7 @@
 @import "bootstrap";
 @import "font-awesome";
 
-$header_height: 66px;
+$header_height: 46px;
 $editor_height: 47px;
 $tabs_height: 28px;
 $timeline_height: 640px;
@@ -38,7 +38,7 @@ body {
     border-bottom: 1px solid #b4b4b4;
     box-shadow: 0 1px 2px 1px rgba(0,0,0,0.14);
     box-sizing: border-box;
-    padding: 25px 0 0 8px;
+    padding: 5px 0 0 8px;
 
     .button_wrapper {
       float: left;
@@ -306,5 +306,36 @@ body {
     &.active {
       display: block;
     }
+  }
+}
+
+.darwin .timeline_container {
+  $title_bar_offset: 20px;
+  $header_height: $header_height + $title_bar_offset;
+
+  .header {
+    height: $header_height;
+    padding-top: 5px + $title_bar_offset;
+  }
+
+  .editor {
+    top: $header_height;
+  }
+
+  .tabs {
+    top: $header_height + $editor_height;
+  }
+
+  .tweets {
+    top: $header_height + $editor_height + $tabs_height;
+
+    &.with_header {
+      height: $timeline_height - ($header_height + $editor_height + $tabs_height + $magic_offset + $tweets_header_height);
+      top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+    }
+  }
+
+  .tweets_header {
+    top: $header_height + $editor_height + $tabs_height;
   }
 }
