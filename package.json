@@ -19,9 +19,10 @@
     "zip-win32": "cd packages/v0.1.5 && zip -r Nocturn-win32-x64.zip Nocturn-win32-x64"
   },
   "dependencies": {
+    "autolinker": "^0.19.0",
     "jquery": "^2.1.4",
-    "twitter": "^1.2.5",
-    "node-twitter-api": "^1.6.0"
+    "node-twitter-api": "^1.6.0",
+    "twitter": "^1.2.5"
   },
   "devDependencies": {
     "bower": "^1.5.2",

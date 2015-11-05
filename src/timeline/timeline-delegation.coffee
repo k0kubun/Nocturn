@@ -2,6 +2,7 @@ remote             = require('remote')
 Authentication     = remote.require('./authentication')
 TimelineController = require('./timeline-controller')
 TwitterClient      = require('../twitter-client')
+Shell              = require('shell')
 
 module.exports =
 class TimelineDelegation
@@ -10,6 +11,7 @@ class TimelineDelegation
     TimelineDelegation.delegateTweetSelection($)
     TimelineDelegation.delegateFavorite($)
     TimelineDelegation.delegateReply($)
+    TimelineDelegation.delegateLinkClick($)
 
   @delegateLists: ($) ->
     $(document).delegate('.lists_field', 'change', (event) ->
@@ -51,4 +53,11 @@ class TimelineDelegation
       username = tweet.find('.screen_name').text()
       textarea.val("@#{username} ")
       textarea.focus()
+    )
+
+  @delegateLinkClick: ($) ->
+    $(document).delegate('.external-link', 'click', (e)->
+      e.preventDefault()
+      url = $(this).attr('href')
+      Shell.openExternal(url)
     )
