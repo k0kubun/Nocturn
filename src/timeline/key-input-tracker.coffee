@@ -106,7 +106,7 @@ class KeyInputTracker
       activeBottom = nextTweet.offset().top
       if visibleLimit < activeBottom
         pane.finish()
-        pane.animate({ scrollTop: pane.scrollTop() + pane.height() / 2 }, 'fast')
+        pane.animate({ scrollTop: pane.scrollTop() + pane.height() / 2 }, 0)
 
     selectPrevTweet = ->
       activeTweet = activeTabPane().find('.tweet.active')
@@ -125,7 +125,7 @@ class KeyInputTracker
       activeTop    = prevTweet.offset().top - prevTweet.height() * 2
       if visibleLimit > activeTop
         pane.finish()
-        pane.animate({ scrollTop: pane.scrollTop() - pane.height() / 2 }, 'fast')
+        pane.animate({ scrollTop: pane.scrollTop() - pane.height() / 2 }, 0)
 
     screenNames = ->
       names = []
