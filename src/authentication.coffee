@@ -66,8 +66,8 @@ class Authentication
       authWindow = new BrowserWindow({ width: 800, height: 600, 'node-integration': false })
 
       authWindow.webContents.on('will-navigate', (event, url) =>
-        event.preventDefault()
         if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/))
+          event.preventDefault()
           nodeTwitterApi.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) =>
             if error
               new Authentication(callback)
@@ -81,7 +81,14 @@ class Authentication
                 authWindow.close() if authWindow
               )
           )
+        else if url.match(/\/account\/login_verification/)
+          # noop (start of 2FA session)
+        else if url.match(/\/oauth\/authenticate/)
+          # noop (redirection to successful callback)
         else
+          event.preventDefault()
+
+          # regard current session as invalid submission and retry
           new Authentication(callback)
       )
       authWindow.on('closed', ->
