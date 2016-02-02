@@ -187,12 +187,12 @@ class KeyInputTracker
           TabManager.selectNext($)
 
         when KeyInputTracker.keycodes['cmd_j']
-          return if event.metaKey != true
+          return if event.metaKey == false && event.altKey == false
           event.preventDefault()
           selectNextAccount()
 
         when KeyInputTracker.keycodes['cmd_k']
-          return if event.metaKey != true
+          return if event.metaKey == false && event.altKey == false
           event.preventDefault()
           selectPrevAccount()
 
