@@ -1,0 +1,67 @@
+!!!
+%html
+  %head
+    %title Nocturn
+    %meta{ charset: "utf-8" }
+    %link{ rel: "stylesheet", href: "./application.css" }
+
+  %body
+    %script{ src: "index.js" }
+    .timeline_container
+      .header.clearfix
+        .button_wrapper
+          .button.home_button
+            %i.fa.fa-home
+          Home
+        .button_wrapper
+          .button.refresh_button
+            %i.fa.fa-refresh
+          Refresh
+
+      %select#account_selector{ name: "account_list" }
+
+      .editor
+        .account_wrapper
+          %img.twitter_icon
+
+        %form{ action: "#", method: "post" }
+          %textarea.tweet_editor{ name: "tweet", tabindex: 1 }
+          .in_reply_to{ id: 0 }
+
+      .timelines
+        .timeline.timeline_template
+          %ul.tabs.clearfix
+            %li.tab.active{ data-selector: "#home" } Timeline
+            %li.tab{ data-selector: "#mentions" } Mentions
+            %li.tab{ data-selector: "#lists", data-activate: ".lists_selector" } Lists
+            %li.tab{ data-selector: "#search", data-activate: ".search_box" } Search
+
+          -# template to generate element
+          %ul.template_wrapper
+            %li.tweet.hidden_template
+              .box_wrapper
+                .left_box
+                  %img.user_icon
+                .right_box
+                  .tweet_header.clearfix
+                    %span.user_name
+                    %span.screen_name
+                    %span.created_at
+                  .tweet_body
+                .right_widget
+                  .reply_widget_wrapper
+                    %i.fa.fa-reply.reply_button
+                  .favorite_widget_wrapper
+                    %i.fa.fa-star.favorite_button
+
+          %ul#home.tweets.active
+          %ul#mentions.tweets
+          %ul#lists.tweets.with_header
+          %ul#search.tweets.with_header
+            %li.insert_target
+
+          .tweets_header.lists_selector
+            %select.lists_field{ name: "lists" }
+              %option.list_default{ value: 0 } Select List...
+          .tweets_header.search_box
+            %input.search_field{ type: "text", placeholder: "Twitter Search" }
