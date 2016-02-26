@@ -1,17 +1,17 @@
-var app = require("app");
-var BrowserWindow = require("browser-window");
+'use strict';
 
-app.on("ready", function() {
-  var mainWindow = new BrowserWindow({
-    width: 350,
-    height: 640
-  });
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+let mainWindow = null;
 
-  mainWindow.loadUrl("file://" + __dirname + "/app/index.html");
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({ width: 350, height: 640 });
+  mainWindow.loadUrl(`file://${__dirname}/app/index.html`);
 
-  return mainWindow.on("closed", function() {
-    return app.quit();
+  mainWindow.on('closed', () => {
+    app.quit();
   });
 });
 
-app.on("window-all-closed", function() {});
+app.on('window-all-closed', () => {});
