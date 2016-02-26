@@ -7,7 +7,7 @@ let mainWindow = null;
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({ width: 350, height: 640 });
-  mainWindow.loadUrl(`file://${__dirname}/app/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 
   mainWindow.on('closed', () => {
     app.quit();
