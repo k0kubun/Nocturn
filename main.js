@@ -7,7 +7,7 @@ app.on("ready", function() {
     height: 640
   });
 
-  mainWindow.loadUrl("file://" + __dirname + "/index.html");
+  mainWindow.loadUrl("file://" + __dirname + "/app/index.html");
 
   return mainWindow.on("closed", function() {
     return app.quit();
