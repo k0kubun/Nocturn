@@ -1,4 +1,5 @@
 gulp   = require('gulp')
+babel  = require('gulp-babel')
 bower  = require('gulp-bower')
 coffee = require('gulp-coffee')
 haml   = require('gulp-haml')
@@ -8,7 +9,11 @@ gulp.task('bower', ->
   bower().pipe(gulp.dest('./bower_components'))
 )
 
-gulp.task('compile', ['compile-coffee', 'compile-fonts', 'compile-haml', 'compile-scss'])
+gulp.task('compile', ['compile-es6', 'compile-coffee', 'compile-fonts', 'compile-haml', 'compile-scss'])
+
+gulp.task('compile-es6', ->
+  gulp.src('src/**/*.js').pipe(babel()).pipe(gulp.dest('app'))
+)
 
 gulp.task('compile-coffee', ->
   gulp.src('src/**/*.coffee').pipe(coffee()).pipe(gulp.dest('app'))
