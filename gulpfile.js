@@ -1,9 +1,8 @@
-var gulp = require("gulp");
+var gulp  = require("gulp");
 var babel = require("gulp-babel");
 var bower = require("gulp-bower");
-var coffee = require("gulp-coffee");
-var haml = require("gulp-haml");
-var sass = require("gulp-ruby-sass");
+var haml  = require("gulp-haml");
+var sass  = require("gulp-ruby-sass");
 
 gulp.task("bower", function() {
   return bower().pipe(gulp.dest("./bower_components"));
@@ -11,15 +10,11 @@ gulp.task("bower", function() {
 
 gulp.task(
   "compile",
-  ["compile-es6", "compile-coffee", "compile-fonts", "compile-haml", "compile-scss"]
+  ["compile-es6", "compile-fonts", "compile-haml", "compile-scss"]
 );
 
 gulp.task("compile-es6", function() {
   return gulp.src("src/**/*.js").pipe(babel()).pipe(gulp.dest("app"));
-});
-
-gulp.task("compile-coffee", function() {
-  return gulp.src("src/**/*.coffee").pipe(coffee()).pipe(gulp.dest("app"));
 });
 
 gulp.task("compile-fonts", function() {
