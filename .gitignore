@@ -7,7 +7,7 @@ tmp/
 *.log
 *.html
 *.css
-*.js
+app/
 !gulpfile.js
 accounts.json
 packages
