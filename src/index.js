@@ -8,5 +8,5 @@ render(
 );
 
 if (process.env.NODE_ENV !== 'production') {
-  require('./open-dev-tools')
+  require('./utils/open-dev-tools')
 }
