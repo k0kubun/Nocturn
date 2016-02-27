@@ -14,7 +14,7 @@ gulp.task(
 );
 
 gulp.task("compile-es6", function() {
-  return gulp.src("src/**/*.js").pipe(babel({ presets: ['es2015'] })).pipe(gulp.dest("app"));
+  return gulp.src("src/**/*.js").pipe(babel({ presets: ['es2015', 'react'] })).pipe(gulp.dest("app"));
 });
 
 gulp.task("compile-fonts", function() {
