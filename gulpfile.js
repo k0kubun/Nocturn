@@ -39,14 +39,14 @@ gulp.task('compile-fonts', () => {
 
 gulp.task('compile-haml', () => {
   return gulp.
-    src('static/**/*.haml').
+    src('src/**/*.haml').
     pipe(haml()).
     pipe(gulp.dest('app'));
 });
 
 gulp.task('compile-scss', () => {
   return gulp.
-    src('static/**/*.scss').
+    src('src/**/*.scss').
     pipe(
       sass({
         includePaths: [
