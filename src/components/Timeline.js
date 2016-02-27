@@ -1,9 +1,9 @@
 import React        from 'react';
-import ListSelector from './list-selector'
-import SearchBox    from './search-box'
-import Tweet        from './tweet'
-import TweetList    from './tweet-list'
-import TweetTab     from './tweet-tab'
+import ListSelector from './ListSelector'
+import SearchBox    from './SearchBox'
+import Tweet        from './Tweet'
+import TweetList    from './TweetList'
+import TweetTab     from './TweetTab'
 
 export default class Timeline extends React.Component {
   render() {

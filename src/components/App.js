@@ -1,9 +1,9 @@
 import React    from 'react';
-import Editor   from './editor';
-import Header   from './header';
-import Timeline from './timeline';
+import Editor   from './Editor';
+import Header   from './Header';
+import Timeline from './Timeline';
 
-export default class Root extends React.Component {
+export default class App extends React.Component {
   render() {
     return(
       <div className='timeline_container'>

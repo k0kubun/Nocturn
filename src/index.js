@@ -2,18 +2,18 @@ import React           from 'react';
 import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
-import Root            from './components/root'
+import App             from './components/App';
 import nocturn         from './reducers';
 
 let store = createStore(nocturn);
 
 render(
   <Provider store={store}>
-    <Root />
+    <App />
   </Provider>,
   document.body
 );
 
 if (process.env.NODE_ENV !== 'production') {
-  require('./utils/open-dev-tools')
+  require('./utils/open-dev-tools');
 }

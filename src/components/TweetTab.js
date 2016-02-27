@@ -7,6 +7,5 @@ export default class TweetTab extends React.Component {
         {this.props.children}
       </li>
     );
-    //%li.tab.active{ data-selector: "#home" } Timeline
   }
 }
