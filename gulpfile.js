@@ -3,8 +3,11 @@ const babel = require('gulp-babel');
 const bower = require('gulp-bower');
 const sass  = require('gulp-sass');
 
-gulp.task('setup', () => {
-  bower().pipe(gulp.dest('./bower_components'));
+gulp.task('bower', () => {
+  return bower().pipe(gulp.dest('./bower_components'));
+});
+
+gulp.task('compile-fonts', () => {
   return gulp.
     src('./bower_components/font-awesome/fonts/**.*').
     pipe(gulp.dest('fonts'));
