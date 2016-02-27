@@ -28,13 +28,6 @@
           .in_reply_to{ id: 0 }
 
       .timelines
-        .timeline.timeline_template
-          %ul.tabs.clearfix
-            %li.tab.active{ data-selector: "#home" } Timeline
-            %li.tab{ data-selector: "#mentions" } Mentions
-            %li.tab{ data-selector: "#lists", data-activate: ".list_selector" } Lists
-            %li.tab{ data-selector: "#search", data-activate: ".search_box" } Search
-
         #root
 
     %script{ src: "index.js" }
