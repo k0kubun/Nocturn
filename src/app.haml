@@ -6,28 +6,4 @@
     %link{ rel: "stylesheet", href: "./app.css" }
 
   %body
-    .timeline_container
-      .header.clearfix
-        .button_wrapper
-          .button.home_button
-            %i.fa.fa-home
-          Home
-        .button_wrapper
-          .button.refresh_button
-            %i.fa.fa-refresh
-          Refresh
-
-      %select#account_selector{ name: "account_list" }
-
-      .editor
-        .account_wrapper
-          %img.twitter_icon
-
-        %form{ action: "#", method: "post" }
-          %textarea.tweet_editor{ name: "tweet", tabindex: 1 }
-          .in_reply_to{ id: 0 }
-
-      .timelines
-        #root
-
     %script{ src: "index.js" }
