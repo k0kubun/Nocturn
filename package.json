@@ -1,20 +1,24 @@
 {
-  "name": "nocturn",
+  "name": "Nocturn",
   "version": "0.2.0",
   "main": "main.js",
-  "repository": "k0kubun/nocturn",
-  "author": "k0kubun",
+  "repository": "https://github.com/k0kubun/Nocturn",
+  "author": {
+    "name": "Takashi Kokubun",
+    "email": "takashikkbn@gmail.com",
+    "url": "https://github.com/k0kubun"
+  },
   "license": "MIT",
   "scripts": {
-    "start": "npm run compile && electron .",
-    "setup": "gulp bower",
+    "build": "npm run package && npm run zip",
     "compile": "rm -rf app && gulp compile",
-    "build": "rm -rf packages && npm run package && npm run zip",
-    "package": "node script/package.js",
-    "upload": "node script/upload.js",
+    "decaf": "node script/decaf.js",
+    "package": "npm run compile && rm -rf packages && node script/package.js",
     "release": "npm run build && npm run upload",
-    "zip": "node script/zip.js",
-    "decaf": "node script/decaf.js"
+    "setup": "gulp bower",
+    "start": "npm run compile && electron .",
+    "upload": "node script/upload.js",
+    "zip": "node script/zip.js"
   },
   "dependencies": {
     "autolinker": "^0.19.0",
@@ -28,15 +32,15 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
     "bower": "^1.5.2",
-    "electron-prebuilt": "^0.36.2",
+    "decafjs": "^0.3.1",
     "electron-packager": "^5.2.0",
+    "electron-prebuilt": "^0.36.2",
+    "glob": "^7.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-bower": "^0.0.10",
     "gulp-haml": "^0.1.6",
     "gulp-ruby-sass": "^1.3.0",
-    "decafjs": "^0.3.1",
-    "shelljs": "^0.6.0",
-    "glob": "^7.0.0"
+    "shelljs": "^0.6.0"
   }
 }
