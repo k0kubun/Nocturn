@@ -2,7 +2,7 @@ const gulp  = require('gulp');
 const babel = require('gulp-babel');
 const bower = require('gulp-bower');
 const haml  = require('gulp-haml');
-const sass  = require('gulp-ruby-sass');
+const sass  = require('gulp-sass');
 
 gulp.task('bower', () => {
   return bower().
@@ -45,11 +45,15 @@ gulp.task('compile-haml', () => {
 });
 
 gulp.task('compile-scss', () => {
-  return sass('static/', {
-    style: 'compressed',
-    loadPath: [
-      './bower_components/bootstrap-sass/assets/stylesheets',
-      './bower_components/font-awesome/scss'
-    ]
-  }).pipe(gulp.dest('./app'));
+  return gulp.
+    src('static/**/*.scss').
+    pipe(
+      sass({
+        includePaths: [
+          './bower_components/bootstrap-sass/assets/stylesheets',
+          './bower_components/font-awesome/scss',
+        ],
+      }).on('error', sass.logError)
+    ).
+    pipe(gulp.dest('app'));
 });
