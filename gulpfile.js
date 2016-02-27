@@ -1,7 +1,6 @@
 const gulp  = require('gulp');
 const babel = require('gulp-babel');
 const bower = require('gulp-bower');
-const haml  = require('gulp-haml');
 const sass  = require('gulp-sass');
 
 gulp.task('bower', () => {
@@ -14,7 +13,7 @@ gulp.task(
   [
     'compile-es6',
     'compile-fonts',
-    'compile-haml',
+    'compile-html',
     'compile-scss',
   ]
 );
@@ -37,10 +36,9 @@ gulp.task('compile-fonts', () => {
     pipe(gulp.dest('fonts'));
 });
 
-gulp.task('compile-haml', () => {
+gulp.task('compile-html', () => {
   return gulp.
-    src('src/**/*.haml').
-    pipe(haml()).
+    src('src/**/*.html').
     pipe(gulp.dest('app'));
 });
 
