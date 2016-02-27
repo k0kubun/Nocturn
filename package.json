@@ -26,6 +26,8 @@
     "node-twitter-api": "^1.6.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
     "twitter": "^1.2.5"
   },
   "devDependencies": {
