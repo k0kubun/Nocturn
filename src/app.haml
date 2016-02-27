@@ -32,7 +32,7 @@
           %ul.tabs.clearfix
             %li.tab.active{ data-selector: "#home" } Timeline
             %li.tab{ data-selector: "#mentions" } Mentions
-            %li.tab{ data-selector: "#lists", data-activate: ".lists_selector" } Lists
+            %li.tab{ data-selector: "#lists", data-activate: ".list_selector" } Lists
             %li.tab{ data-selector: "#search", data-activate: ".search_box" } Search
 
           -# template to generate element
@@ -59,9 +59,6 @@
           %ul#search.tweets.with_header
             %li.insert_target
 
-          .tweets_header.lists_selector
-            %select.lists_field{ name: "lists" }
-              %option.list_default{ value: 0 } Select List...
           #root
 
     %script{ src: "index.js" }
