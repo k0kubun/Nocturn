@@ -1,17 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-class HelloWorld extends React.Component {
-  render() {
-    return(
-      <div className="hello">
-        Hello World
-      </div>
-    );
-  }
-}
+import Root from './components/Root'
 
 render(
-  <HelloWorld />,
+  <Root />,
   document.getElementById('root')
-)
+);
