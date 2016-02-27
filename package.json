@@ -15,7 +15,7 @@
     "decaf": "node script/decaf.js",
     "package": "cross-env NODE_ENV=production npm run compile && rm -rf packages && node script/package.js",
     "release": "npm run build && npm run upload",
-    "setup": "gulp bower",
+    "setup": "gulp setup",
     "start": "cross-env NODE_ENV=development npm run compile && electron .",
     "upload": "node script/upload.js",
     "zip": "node script/zip.js"

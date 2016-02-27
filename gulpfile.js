@@ -3,16 +3,17 @@ const babel = require('gulp-babel');
 const bower = require('gulp-bower');
 const sass  = require('gulp-sass');
 
-gulp.task('bower', () => {
-  return bower().
-    pipe(gulp.dest('./bower_components'));
+gulp.task('setup', () => {
+  bower().pipe(gulp.dest('./bower_components'));
+  return gulp.
+    src('./bower_components/font-awesome/fonts/**.*').
+    pipe(gulp.dest('fonts'));
 });
 
 gulp.task(
   'compile',
   [
     'compile-es6',
-    'compile-fonts',
     'compile-html',
     'compile-scss',
   ]
@@ -28,12 +29,6 @@ gulp.task('compile-es6', () => {
       })
     ).
     pipe(gulp.dest('app'));
-});
-
-gulp.task('compile-fonts', () => {
-  return gulp.
-    src('./bower_components/font-awesome/fonts/**.*').
-    pipe(gulp.dest('fonts'));
 });
 
 gulp.task('compile-html', () => {
