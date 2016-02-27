@@ -14,7 +14,7 @@
     "upload": "node script/upload.js",
     "release": "npm run build && npm run upload",
     "zip": "node script/zip.js",
-    "decaf": "node decaf.js"
+    "decaf": "node script/decaf.js"
   },
   "dependencies": {
     "autolinker": "^0.19.0",
