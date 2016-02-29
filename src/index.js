@@ -11,7 +11,7 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.body
+  document.getElementById('root')
 );
 
 if (process.env.NODE_ENV !== 'production') {
