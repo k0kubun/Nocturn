@@ -4,8 +4,10 @@ var NodeTwitterApi = require("node-twitter-api");
 var TwitterClient = require("./twitter-client");
 var authWindow = null;
 
-module.exports = class Authentication {
-  static json_storage = "accounts.json";
+export default class Authentication {
+  static json_storage() {
+    return "accounts.json";
+  }
 
   static authorized(callback) {
     var token = Authentication.defaultAccount();
@@ -23,10 +25,12 @@ module.exports = class Authentication {
   }
 
   static addToken(token, callback) {
-    var tokens = JsonLoader.read(Authentication.json_storage);
-    (!tokens ? tokens = [] : undefined);
+    var tokens = JsonLoader.read(Authentication.json_storage());
+    if (tokens == null) {
+      tokens = [];
+    }
     tokens.push(token);
-    JsonLoader.write(Authentication.json_storage, Authentication.uniqTokens(tokens));
+    JsonLoader.write(Authentication.json_storage(), Authentication.uniqTokens(tokens));
     return callback();
   }
 
@@ -34,7 +38,7 @@ module.exports = class Authentication {
     var names = [];
     var uniqed = [];
 
-    for (let token in tokens) {
+    for (let token of tokens) {
       if (names.indexOf(token["screenName"]) < 0) {
         uniqed.push(token);
         names.push(token["screenName"]);
@@ -65,7 +69,7 @@ module.exports = class Authentication {
   }
 
   static allAccounts() {
-    return JsonLoader.read(Authentication.json_storage) || [];
+    return JsonLoader.read(Authentication.json_storage()) || [];
   }
 
   constructor(callback) {
@@ -133,7 +137,7 @@ module.exports = class Authentication {
       });
 
       (oldWindow ? oldWindow.close() : undefined);
-      return authWindow.loadUrl(url + "&force_login=true");
+      return authWindow.loadURL(url + "&force_login=true");
     });
   }
 };
