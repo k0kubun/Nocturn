@@ -8,7 +8,7 @@ export default class Editor extends React.Component {
           <img className='twitter_icon' />
         </div>
         <form action='#' method='post'>
-          <textarea className='tweet_editor' name='tweet' tabindex='1'></textarea>
+          <textarea className='tweet_editor' name='tweet' tabIndex='1'></textarea>
           <div className='in_reply_to' id='0'></div>
         </form>
       </div>
