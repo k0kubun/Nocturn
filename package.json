@@ -1,7 +1,7 @@
 {
   "name": "Nocturn",
   "version": "0.2.0",
-  "main": "main.js",
+  "main": "app/main.js",
   "repository": "https://github.com/k0kubun/Nocturn",
   "author": {
     "name": "Takashi Kokubun",

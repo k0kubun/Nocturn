@@ -15,7 +15,6 @@ render(
 );
 
 if (process.env.NODE_ENV !== 'production') {
-  require('./utils/open-dev-tools');
   store.subscribe(() => {
     console.log(store.getState())
   })
