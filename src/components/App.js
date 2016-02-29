@@ -1,7 +1,7 @@
-import React    from 'react';
-import Editor   from './Editor';
-import Header   from './Header';
-import Timeline from './Timeline';
+import React  from 'react';
+import Editor from './Editor';
+import Header from './Header';
+import StreamingTimeline from '../containers/StreamingTimeline';
 
 export default class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ export default class App extends React.Component {
         <Editor />
 
         <div className='timelines'>
-          <Timeline />
+          <StreamingTimeline />
         </div>
       </div>
     );
