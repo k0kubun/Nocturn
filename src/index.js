@@ -3,9 +3,9 @@ import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
 import App             from './components/App';
-import nocturn         from './reducers';
+import rootReducer     from './reducers';
 
-let store = createStore(nocturn);
+let store = createStore(rootReducer);
 
 render(
   <Provider store={store}>

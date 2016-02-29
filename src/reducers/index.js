@@ -1,5 +1,17 @@
+import { ADD_TWEET } from '../actions'
 import { combineReducers } from 'redux';
 
-const nocturn = combineReducers({});
+const tweets = (state = [], action) => {
+  switch (action.type) {
+    case ADD_TWEET:
+      return state;
+    default:
+      return state;
+  }
+}
 
-export default nocturn
+const rootReducer = combineReducers({
+  tweets,
+});
+
+export default rootReducer
