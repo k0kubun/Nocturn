@@ -3,8 +3,8 @@ import JsonLoader        from './json-loader'
 import NodeTwitterApi    from 'node-twitter-api'
 import TwitterClient     from './twitter-client'
 
-const ACCOUNTS_JSON    = 'accounts.json';
-const CREDENTIALS_JSON = 'credentials.json';
+export const ACCOUNTS_JSON    = 'accounts.json';
+export const CREDENTIALS_JSON = 'credentials.json';
 
 let authWindow = null;
 

@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-module.exports = class JsonLoader {
+export default class JsonLoader {
   static write(name, data) {
     var path = `${__dirname}/../../resources/${name}`;
     return fs.writeFileSync(path, JSON.stringify(data));
