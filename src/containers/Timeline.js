@@ -1,8 +1,11 @@
-import React        from 'react';
-import ListSelector from './ListSelector'
-import SearchBox    from './SearchBox'
-import TweetList    from './TweetList'
-import TweetTab     from './TweetTab'
+import React         from 'react';
+import ListSelector  from '../components/ListSelector'
+import SearchBox     from '../components/SearchBox'
+import TweetList     from '../components/TweetList'
+import TweetTab      from '../components/TweetTab'
+import { connect }   from 'react-redux';
+import { addTweet }  from '../actions';
+import TwitterClient from '../utils/TwitterClient'
 
 export default class Timeline extends React.Component {
   componentDidMount() {
@@ -30,3 +33,29 @@ export default class Timeline extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    activeAccountId: state.activeAccountId,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    startStreaming: (account) => {
+      let accountId = account.user_id;
+      let client = new TwitterClient(account);
+      client.userStream((tweet) => {
+        dispatch(addTweet(tweet));
+      });
+    },
+    onTweetReceived: (tweet) => {
+      dispatch(addTweet(tweet))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timeline);

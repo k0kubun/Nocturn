@@ -2,7 +2,7 @@ import React           from 'react';
 import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
-import AppContainer    from './containers/AppContainer';
+import App             from './containers/App';
 import rootReducer     from './reducers';
 
 let store = createStore(rootReducer);
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 render(
   <Provider store={store}>
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
