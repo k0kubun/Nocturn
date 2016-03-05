@@ -4,6 +4,10 @@ import Header from './Header';
 import StreamingTimeline from '../containers/StreamingTimeline';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    this.props.onAppInit();
+  }
+
   render() {
     return(
       <div className='timeline_container'>
@@ -13,7 +17,12 @@ export default class App extends React.Component {
         <Editor />
 
         <div className='timelines'>
-          <StreamingTimeline />
+          {this.props.accounts.map((account) =>
+            <StreamingTimeline
+              key={account.screenName}
+              account={account}
+            />
+          )}
         </div>
       </div>
     );
