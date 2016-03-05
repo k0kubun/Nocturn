@@ -13,7 +13,7 @@
     "build": "npm run package && npm run zip",
     "compile": "rm -rf app && gulp compile",
     "decaf": "node script/decaf.js",
-    "package": "cross-env NODE_ENV=production npm run compile && rm -rf packages && node script/package.js",
+    "package": "cross-env NODE_ENV=production npm run compile && node script/package.js",
     "release": "npm run build && npm run upload",
     "setup": "gulp bower && gulp compile-fonts",
     "start": "cross-env NODE_ENV=development npm run compile && electron .",
