@@ -21,6 +21,7 @@ export default class App extends React.Component {
             <StreamingTimeline
               key={account.userId}
               account={account}
+              tweets={this.props.tweetsByAccountId[account.userId] || []}
             />
           )}
         </div>

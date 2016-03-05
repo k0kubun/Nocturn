@@ -5,8 +5,9 @@ import Authentication from '../utils/Authentication'
 
 const mapStateToProps = (state) => {
   return {
-    accounts:     state.accounts,
-    accountIndex: state.accountIndex,
+    accounts:          state.accounts,
+    activeAccountId:   state.activeAccountId,
+    tweetsByAccountId: state.tweetsByAccountId,
   }
 }
 

@@ -150,11 +150,6 @@ body {
     }
   }
 
-  .template_wrapper,
-  .insert_target {
-    display: none;
-  }
-
   .tweets {
     position: absolute;
     top: $header_height + $editor_height + $tabs_height;
@@ -181,10 +176,6 @@ body {
       list-style: none;
       border-bottom: 1px solid #ededed;
       font-size: 11px;
-
-      &.hidden_template {
-        display: none;
-      }
 
       &.active {
         background: #389cd7;

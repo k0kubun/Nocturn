@@ -1,9 +1,11 @@
 import { ADD_TWEET, ADD_ACCOUNT, ACTIVATE_ACCOUNT } from '../actions'
 import { combineReducers } from 'redux';
 
-const tweets = (state = [], action) => {
+const tweetsByAccountId = (state = {}, action) => {
   switch (action.type) {
     case ADD_TWEET:
+      if (!state[action.accountId]) { state[action.accountId] = [] }
+      state[action.accountId] = [action.tweet, ...state[action.accountId]];
       return state;
     default:
       return state;
@@ -29,7 +31,7 @@ const activeAccountId = (state = 0, action) => {
 }
 
 const rootReducer = combineReducers({
-  tweets,
+  tweetsByAccountId,
   accounts,
   activeAccountId,
 });

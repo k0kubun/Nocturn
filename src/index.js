@@ -7,15 +7,15 @@ import rootReducer     from './reducers';
 
 let store = createStore(rootReducer);
 
+if (process.env.NODE_ENV !== 'production') {
+  store.subscribe(() => {
+    console.log(store.getState());
+  })
+}
+
 render(
   <Provider store={store}>
     <AppContainer />
   </Provider>,
   document.getElementById('root')
 );
-
-if (process.env.NODE_ENV !== 'production') {
-  store.subscribe(() => {
-    console.log(store.getState())
-  })
-}

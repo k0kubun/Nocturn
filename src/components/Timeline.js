@@ -1,11 +1,14 @@
 import React        from 'react';
 import ListSelector from './ListSelector'
 import SearchBox    from './SearchBox'
-import Tweet        from './Tweet'
 import TweetList    from './TweetList'
 import TweetTab     from './TweetTab'
 
 export default class Timeline extends React.Component {
+  componentDidMount() {
+    this.props.startStreaming(this.props.account);
+  }
+
   render() {
     return(
       <div className={this.props.account.userId == this.props.activeAccountId ? 'timeline active' : 'timeline'}>
@@ -16,15 +19,10 @@ export default class Timeline extends React.Component {
           <TweetTab selector='#search' activate='.search_box'>Search</TweetTab>
         </ul>
 
-        // template to generate element
-        <Tweet />
-
-        <TweetList id='home' active='true' />
-        <TweetList id='mentions' />
-        <TweetList id='lists' withHeader='true' />
-        <TweetList id='search' withHeader='true'>
-          <li className='insert_target'></li>
-        </TweetList>
+        <TweetList id='home' active='true' tweets={this.props.tweets} />
+        <TweetList id='mentions' tweets={[]}/>
+        <TweetList id='lists' withHeader='true' tweets={[]} />
+        <TweetList id='search' withHeader='true' tweets={[]} />
 
         <ListSelector />
         <SearchBox />
