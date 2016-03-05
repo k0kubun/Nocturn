@@ -1,6 +1,6 @@
 'use strict';
 
-import Authentication from './utils/authentication'
+import Authentication from './utils/Authentication'
 import { app, BrowserWindow } from 'electron'
 let mainWindow = null;
 

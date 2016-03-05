@@ -1,8 +1,8 @@
-import JsonLoader from './json-loader';
+import JsonLoader from './JsonLoader';
 import Twitter    from 'twitter';
 import fs         from 'fs';
 import path       from 'path';
-import { CREDENTIALS_JSON } from './authentication';
+import { CREDENTIALS_JSON } from './Authentication';
 
 export default class TwitterClient {
   constructor(accessToken) {
