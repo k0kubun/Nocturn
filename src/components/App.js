@@ -19,7 +19,7 @@ export default class App extends React.Component {
         <div className='timelines'>
           {this.props.accounts.map((account) =>
             <StreamingTimeline
-              key={account.screenName}
+              key={account.userId}
               account={account}
             />
           )}

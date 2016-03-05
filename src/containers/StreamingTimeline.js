@@ -5,6 +5,7 @@ import Timeline from '../components/Timeline';
 const mapStateToProps = (state) => {
   return {
     tweets: state.tweets,
+    activeAccountId: state.activeAccountId,
   }
 }
 

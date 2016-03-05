@@ -8,7 +8,7 @@ import TweetTab     from './TweetTab'
 export default class Timeline extends React.Component {
   render() {
     return(
-      <div className='timeline timeline_template'>
+      <div className={this.props.account.userId == this.props.activeAccountId ? 'timeline active' : 'timeline'}>
         <ul className='tabs clearfix'>
           <TweetTab selector='#home' active='true'>Timeline</TweetTab>
           <TweetTab selector='#mentions'>Mentions</TweetTab>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addAccount } from '../actions';
+import { addAccount, activateAccount } from '../actions';
 import App from '../components/App';
 import Authentication from '../utils/Authentication'
 
@@ -13,9 +13,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAppInit: () => {
-      for (let account of Authentication.allAccounts()) {
+      let accounts = Authentication.allAccounts();
+      for (let account of accounts) {
         dispatch(addAccount(account));
       }
+      dispatch(activateAccount(accounts[0]));
     },
     onTweetReceived: (tweet) => {
       dispatch(addTweet(tweet))
