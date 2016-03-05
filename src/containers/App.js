@@ -24,7 +24,6 @@ class App extends React.Component {
             <Timeline
               key={account.userId}
               account={account}
-              tweets={this.props.tweetsByAccountId[account.userId] || []}
             />
           )}
         </div>
@@ -35,9 +34,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    accounts:          state.accounts,
-    activeAccountId:   state.activeAccountId,
-    tweetsByAccountId: state.tweetsByAccountId,
+    accounts:        state.accounts,
+    activeAccountId: state.activeAccountId,
   }
 }
 
@@ -49,9 +47,6 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(addAccount(account));
       }
       dispatch(activateAccount(accounts[0]));
-    },
-    onTweetReceived: (tweet) => {
-      dispatch(addTweet(tweet))
     },
   }
 }

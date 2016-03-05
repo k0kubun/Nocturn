@@ -37,7 +37,7 @@ export default class TwitterClient {
   }
 
   userStream(callback) {
-    return this.client.stream('user', {}, (stream) => {
+    this.client.stream('user', {}, (stream) => {
       stream.on('data', function(data) {
         if (data['friends']) {
           // noop
@@ -51,8 +51,9 @@ export default class TwitterClient {
         }
       });
 
-      return stream.on('error', (error) => {
-        return console.log(JSON.stringify(error));
+      stream.on('error', (error) => {
+        // ignoring because of too many errors
+        // return console.log(JSON.stringify(error));
       });
     });
   }

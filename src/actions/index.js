@@ -3,8 +3,8 @@ export const POST_TWEET = 'POST_TWEET';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const ACTIVATE_ACCOUNT = 'ACTIVATE_ACCOUNT';
 
-export const addTweet = (accountId, tweet) => {
-  return { type: ADD_TWEET, accountId, tweet }
+export const addTweet = (tweet) => {
+  return { type: ADD_TWEET, tweet }
 }
 
 export const postTweet = (text) => {

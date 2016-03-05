@@ -2,6 +2,7 @@ import React         from 'react';
 import ListSelector  from '../components/ListSelector'
 import SearchBox     from '../components/SearchBox'
 import TweetList     from '../components/TweetList'
+import Tweet         from '../components/Tweet'
 import TweetTab      from '../components/TweetTab'
 import { connect }   from 'react-redux';
 import { addTweet }  from '../actions';
@@ -23,9 +24,9 @@ export default class Timeline extends React.Component {
         </ul>
 
         <TweetList id='home' active='true' tweets={this.props.tweets} />
-        <TweetList id='mentions' tweets={[]}/>
-        <TweetList id='lists' withHeader='true' tweets={[]} />
-        <TweetList id='search' withHeader='true' tweets={[]} />
+        <TweetList id='mentions' tweets={this.props.tweets} />
+        <TweetList id='lists' withHeader='true' tweets={this.props.tweets} />
+        <TweetList id='search' withHeader='true' tweets={this.props.tweets} />
 
         <ListSelector />
         <SearchBox />
@@ -37,6 +38,7 @@ export default class Timeline extends React.Component {
 const mapStateToProps = (state) => {
   return {
     activeAccountId: state.activeAccountId,
+    tweets: state.tweets,
   }
 }
 
