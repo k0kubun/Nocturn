@@ -1,11 +1,12 @@
-import React  from 'react';
-import Editor from './Editor';
-import Header from '../components/Header';
-import Timeline from './Timeline';
-import Authentication from '../utils/Authentication'
-import TwitterClient from '../utils/TwitterClient'
+import React from 'react';
 import { connect } from 'react-redux';
-import * as Actions from '../actions';
+import AccountSelector from './AccountSelector';
+import Authentication  from '../utils/Authentication'
+import Editor          from './Editor';
+import Header          from '../components/Header';
+import Timeline        from './Timeline';
+import TwitterClient   from '../utils/TwitterClient'
+import * as Actions    from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -29,12 +30,7 @@ class App extends React.Component {
       <div className='timeline_container'>
         <Header />
 
-        <select id='account_selector' name='account_list'>
-          {this.props.accounts.map((account) =>
-            <option value={account.id} key={account.id}>{account.screenName}</option>
-          )}
-          <option value='add-account'>Add...</option>
-        </select>
+        <AccountSelector />
         <Editor user={this.props.activeUser} />
 
         <div className='timelines'>
