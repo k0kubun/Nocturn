@@ -1,17 +1,9 @@
 import { combineReducers } from 'redux';
 import {
   app,
+  editor,
   timeline,
 } from '../actions'
-
-const tweets = (state = [], action) => {
-  switch (action.type) {
-    case timeline.ADD_TWEET:
-      return [...state, action.tweet];
-    default:
-      return state;
-  }
-}
 
 const accounts = (state = [], action) => {
   switch (action.type) {
@@ -31,6 +23,26 @@ const activeAccountId = (state = 0, action) => {
   }
 }
 
+const text = (state = '', action) => {
+  switch (action.type) {
+    case editor.SET_TEXT:
+      return action.text;
+    case editor.CLEAR_TEXT:
+      return '';
+    default:
+      return state;
+  }
+}
+
+const tweets = (state = [], action) => {
+  switch (action.type) {
+    case timeline.ADD_TWEET:
+      return [...state, action.tweet];
+    default:
+      return state;
+  }
+}
+
 const userByUserId = (state = {}, action) => {
   switch (action.type) {
     case app.REFRESH_USER_INFO:
@@ -42,9 +54,10 @@ const userByUserId = (state = {}, action) => {
 }
 
 const rootReducer = combineReducers({
-  tweets,
   accounts,
   activeAccountId,
+  text,
+  tweets,
   userByUserId,
 });
 

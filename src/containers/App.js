@@ -1,5 +1,5 @@
 import React  from 'react';
-import Editor from '../components/Editor';
+import Editor from './Editor';
 import Header from '../components/Header';
 import Timeline from './Timeline';
 import Authentication from '../utils/Authentication'

@@ -4,9 +4,9 @@ import SearchBox     from '../components/SearchBox'
 import TweetList     from '../components/TweetList'
 import Tweet         from '../components/Tweet'
 import TweetTab      from '../components/TweetTab'
-import { connect }   from 'react-redux';
 import * as Actions  from '../actions';
 import TwitterClient from '../utils/TwitterClient'
+import { connect }   from 'react-redux';
 
 export default class Timeline extends React.Component {
   componentDidMount() {
