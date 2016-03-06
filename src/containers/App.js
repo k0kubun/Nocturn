@@ -9,7 +9,21 @@ import { addAccount, activateAccount, refreshUserInfo } from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initializeAccounts();
+    this.initializeAccounts();
+  }
+
+  initializeAccounts() {
+    let accounts = Authentication.allAccounts();
+    for (let account of accounts) {
+      this.props.addAccount(account);
+
+      let client = new TwitterClient(account);
+      client.verifyCredentials((user) => {
+        this.props.refreshUserInfo(user);
+      })
+    }
+
+    this.props.activateAccount(accounts[0]);
   }
 
   render() {
@@ -40,25 +54,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    initializeAccounts: () => {
-      let accounts = Authentication.allAccounts();
-      for (let account of accounts) {
-        dispatch(addAccount(account));
-
-        let client = new TwitterClient(account);
-        client.verifyCredentials((user) => {
-          dispatch(refreshUserInfo(user));
-        })
-      }
-
-      dispatch(activateAccount(accounts[0]));
-    },
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, {
+  addAccount,
+  refreshUserInfo,
+  activateAccount,
+})(App);

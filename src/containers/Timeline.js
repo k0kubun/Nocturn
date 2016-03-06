@@ -10,8 +10,24 @@ import TwitterClient from '../utils/TwitterClient'
 
 export default class Timeline extends React.Component {
   componentDidMount() {
-    this.props.loadHome(this.props.account);
-    this.props.startStreaming(this.props.account);
+    this.loadHome();
+    this.startStreaming();
+  }
+
+  loadHome() {
+    let client = new TwitterClient(this.props.account);
+    client.homeTimeline((tweets) => {
+      for (let tweet of tweets.reverse()) {
+        this.props.addTweet(tweet);
+      }
+    })
+  }
+
+  startStreaming() {
+    let client = new TwitterClient(this.props.account);
+    client.userStream((tweet) => {
+      this.props.addTweet(tweet);
+    });
   }
 
   render() {
@@ -43,29 +59,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadHome: (account) => {
-      let client = new TwitterClient(account);
-      client.homeTimeline((tweets) => {
-        for (let tweet of tweets.reverse()) {
-          dispatch(addTweet(tweet));
-        }
-      })
-    },
-    startStreaming: (account) => {
-      let client = new TwitterClient(account);
-      client.userStream((tweet) => {
-        dispatch(addTweet(tweet));
-      });
-    },
-    onTweetReceived: (tweet) => {
-      dispatch(addTweet(tweet))
-    },
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Timeline);
+export default connect(mapStateToProps, {
+  addTweet,
+})(Timeline);
