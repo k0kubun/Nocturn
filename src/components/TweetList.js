@@ -5,7 +5,7 @@ export default class TweetList extends React.Component {
   render() {
     return(
       <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.props.active ? 'active' : ''}`}>
-        {this.props.tweets.map((tweet) =>
+        {this.props.tweets.reverse().map((tweet) =>
           <Tweet key={tweet.id} tweet={tweet}/>
         )}
       </ul>
