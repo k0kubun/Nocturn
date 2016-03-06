@@ -29,7 +29,12 @@ class App extends React.Component {
       <div className='timeline_container'>
         <Header />
 
-        <select id='account_selector' name='account_list'></select>
+        <select id='account_selector' name='account_list'>
+          {this.props.accounts.map((account) =>
+            <option value={account.id} key={account.id}>{account.screenName}</option>
+          )}
+          <option value='add-account'>Add...</option>
+        </select>
         <Editor user={this.props.activeUser} />
 
         <div className='timelines'>

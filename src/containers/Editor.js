@@ -19,11 +19,26 @@ export default class Editor extends React.Component {
     }
   }
 
+  onTwitterIconClicked(event) {
+    // Dirty hack to toggle select element
+    event.preventDefault();
+    let document = event.target.ownerDocument;
+
+    let dropdown = document.getElementById('account_selector');
+    let mouseEvent = document.createEvent('MouseEvents');
+    mouseEvent.initMouseEvent('mousedown', true, true, window);
+    dropdown.dispatchEvent(mouseEvent);
+  }
+
   render() {
     return(
       <div className='editor'>
         <div className='account_wrapper'>
-          <img className='twitter_icon' src={this.props.user ? this.props.user.profile_image_url : ''} />
+          <img
+            className='twitter_icon'
+            src={this.props.user ? this.props.user.profile_image_url : ''}
+            onClick={this.onTwitterIconClicked.bind(this)}
+          />
         </div>
         <form action='#' method='post'>
           <textarea
