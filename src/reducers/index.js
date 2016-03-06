@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 import {
+  app,
   timeline,
-  ADD_ACCOUNT,
-  ACTIVATE_ACCOUNT,
-  REFRESH_USER_INFO,
 } from '../actions'
 
 const tweets = (state = [], action) => {
@@ -17,7 +15,7 @@ const tweets = (state = [], action) => {
 
 const accounts = (state = [], action) => {
   switch (action.type) {
-    case ADD_ACCOUNT:
+    case app.ADD_ACCOUNT:
       return [...state, action.account];
     default:
       return state;
@@ -26,7 +24,7 @@ const accounts = (state = [], action) => {
 
 const activeAccountId = (state = 0, action) => {
   switch (action.type) {
-    case ACTIVATE_ACCOUNT:
+    case app.ACTIVATE_ACCOUNT:
       return action.account.userId;
     default:
       return state;
@@ -35,7 +33,7 @@ const activeAccountId = (state = 0, action) => {
 
 const userByUserId = (state = {}, action) => {
   switch (action.type) {
-    case REFRESH_USER_INFO:
+    case app.REFRESH_USER_INFO:
       state[action.user.id] = action.user;
       return state;
     default:

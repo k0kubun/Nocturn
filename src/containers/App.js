@@ -5,7 +5,7 @@ import Timeline from './Timeline';
 import Authentication from '../utils/Authentication'
 import TwitterClient from '../utils/TwitterClient'
 import { connect } from 'react-redux';
-import { addAccount, activateAccount, refreshUserInfo } from '../actions';
+import * as Actions from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -54,8 +54,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  addAccount,
-  refreshUserInfo,
-  activateAccount,
-})(App);
+export default connect(mapStateToProps, Actions.app)(App);
