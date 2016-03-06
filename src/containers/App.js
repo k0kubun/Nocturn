@@ -3,12 +3,13 @@ import Editor from '../components/Editor';
 import Header from '../components/Header';
 import Timeline from './Timeline';
 import Authentication from '../utils/Authentication'
+import TwitterClient from '../utils/TwitterClient'
 import { connect } from 'react-redux';
-import { addAccount, activateAccount } from '../actions';
+import { addAccount, activateAccount, refreshUserInfo } from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.onAppInit();
+    this.props.initializeAccounts();
   }
 
   render() {
@@ -17,7 +18,7 @@ class App extends React.Component {
         <Header />
 
         <select id='account_selector' name='account_list'></select>
-        <Editor />
+        <Editor user={this.props.activeAccount} />
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
@@ -34,18 +35,24 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    accounts:        state.accounts,
-    activeAccountId: state.activeAccountId,
+    accounts:      state.accounts,
+    activeAccount: state.userByUserId[state.activeAccountId],
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAppInit: () => {
+    initializeAccounts: () => {
       let accounts = Authentication.allAccounts();
       for (let account of accounts) {
         dispatch(addAccount(account));
+
+        let client = new TwitterClient(account);
+        client.verifyCredentials((user) => {
+          dispatch(refreshUserInfo(user));
+        })
       }
+
       dispatch(activateAccount(accounts[0]));
     },
   }

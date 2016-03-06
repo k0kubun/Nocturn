@@ -1,5 +1,10 @@
-import { ADD_TWEET, ADD_ACCOUNT, ACTIVATE_ACCOUNT } from '../actions'
 import { combineReducers } from 'redux';
+import {
+  ADD_TWEET,
+  ADD_ACCOUNT,
+  ACTIVATE_ACCOUNT,
+  REFRESH_USER_INFO,
+} from '../actions'
 
 const tweets = (state = [], action) => {
   switch (action.type) {
@@ -28,10 +33,21 @@ const activeAccountId = (state = 0, action) => {
   }
 }
 
+const userByUserId = (state = {}, action) => {
+  switch (action.type) {
+    case REFRESH_USER_INFO:
+      state[action.user.id] = action.user;
+      return state;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   tweets,
   accounts,
   activeAccountId,
+  userByUserId,
 });
 
 export default rootReducer
