@@ -1,5 +1,6 @@
-import React from 'react';
+import React      from 'react';
 import Autolinker from 'autolinker'
+import Time       from './Time'
 
 export default class Tweet extends React.Component {
   resizedProfileImage() {
@@ -27,7 +28,7 @@ export default class Tweet extends React.Component {
             <div className='tweet_header clearfix'>
               <span className='user_name'>{this.props.tweet.user.name}</span>
               <span className='screen_name'>{this.props.tweet.user.screen_name}</span>
-              <span className='created_at'></span>
+              <Time className='created_at' time={this.props.tweet.created_at} />
             </div>
             <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
           </div>
