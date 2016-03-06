@@ -6,10 +6,11 @@ import Editor          from './Editor';
 import Header          from '../components/Header';
 import Timeline        from './Timeline';
 import TwitterClient   from '../utils/TwitterClient'
-import * as Actions    from '../actions';
+import Actions         from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
+    console.log(Actions);
     this.initializeAccounts();
   }
 
@@ -54,4 +55,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions.app)(App);
+export default connect(mapStateToProps, Actions)(App);

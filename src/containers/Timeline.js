@@ -4,7 +4,7 @@ import SearchBox     from '../components/SearchBox'
 import TweetList     from '../components/TweetList'
 import Tweet         from '../components/Tweet'
 import TweetTab      from '../components/TweetTab'
-import * as Actions  from '../actions';
+import Actions       from '../actions';
 import TwitterClient from '../utils/TwitterClient'
 import { connect }   from 'react-redux';
 
@@ -59,4 +59,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions.timeline)(Timeline);
+export default connect(mapStateToProps, Actions)(Timeline);

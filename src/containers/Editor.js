@@ -1,7 +1,7 @@
 import React from 'react';
 import TwitterClient from '../utils/TwitterClient'
-import * as Keycode from '../utils/Keycode';
-import * as Actions from '../actions';
+import * as Keycode  from '../utils/Keycode';
+import Actions       from '../actions';
 import { connect }   from 'react-redux';
 
 export default class Editor extends React.Component {
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions.editor)(Editor);
+export default connect(mapStateToProps, Actions)(Editor);
