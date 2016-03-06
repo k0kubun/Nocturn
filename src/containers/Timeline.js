@@ -3,7 +3,7 @@ import ListSelector  from '../components/ListSelector'
 import SearchBox     from '../components/SearchBox'
 import TweetList     from '../components/TweetList'
 import Tweet         from '../components/Tweet'
-import TweetTab      from '../components/TweetTab'
+import TweetTab      from './TweetTab'
 import Actions       from '../actions';
 import TwitterClient from '../utils/TwitterClient'
 import { connect }   from 'react-redux';
@@ -34,16 +34,16 @@ export default class Timeline extends React.Component {
     return(
       <div className={this.props.account.id == this.props.activeAccount.id ? 'timeline active' : 'timeline'}>
         <ul className='tabs clearfix'>
-          <TweetTab selector='#home' active='true'>Timeline</TweetTab>
-          <TweetTab selector='#mentions'>Mentions</TweetTab>
-          <TweetTab selector='#lists' activate='.list_selector'>Lists</TweetTab>
-          <TweetTab selector='#search' activate='.search_box'>Search</TweetTab>
+          <TweetTab tab='home'     selectedTab={this.props.selectedTab} account={this.props.account}>Timeline</TweetTab>
+          <TweetTab tab='mentions' selectedTab={this.props.selectedTab} account={this.props.account}>Mentions</TweetTab>
+          <TweetTab tab='lists'    selectedTab={this.props.selectedTab} account={this.props.account} activate='.list_selector'>Lists</TweetTab>
+          <TweetTab tab='search'   selectedTab={this.props.selectedTab} account={this.props.account} activate='.search_box'>Search</TweetTab>
         </ul>
 
-        <TweetList id='home' active='true' tweets={this.props.tweets} />
-        <TweetList id='mentions' tweets={[]} />
-        <TweetList id='lists' withHeader='true' tweets={[]} />
-        <TweetList id='search' withHeader='true' tweets={[]} />
+        <TweetList tab='home'     selectedTab={this.props.selectedTab} tweets={this.props.tweets} />
+        <TweetList tab='mentions' selectedTab={this.props.selectedTab} tweets={[]} />
+        <TweetList tab='lists'    selectedTab={this.props.selectedTab} withHeader='true' tweets={[]} />
+        <TweetList tab='search'   selectedTab={this.props.selectedTab} withHeader='true' tweets={[]} />
 
         <ListSelector />
         <SearchBox />

@@ -19,6 +19,18 @@ const activeAccountIndex = (state = 0, action) => {
   }
 }
 
+const selectedTabByUserId = (state = {}, action) => {
+  switch (action.type) {
+    case Actions.SELECT_TAB:
+      return {
+        ...state,
+        [action.account.id]: action.tab,
+      };
+    default:
+      return state;
+  }
+}
+
 const text = (state = '', action) => {
   switch (action.type) {
     case Actions.SET_TEXT:
@@ -55,6 +67,7 @@ const userByUserId = (state = {}, action) => {
 const rootReducer = combineReducers({
   accounts,
   activeAccountIndex,
+  selectedTabByUserId,
   text,
   tweetsByUserId,
   userByUserId,

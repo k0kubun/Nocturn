@@ -39,6 +39,7 @@ class App extends React.Component {
               key={account.id}
               account={account}
               tweets={this.props.tweetsByUserId[account.id] || []}
+              selectedTab={this.props.selectedTabByUserId[account.id] || 'home'}
             />
           )}
         </div>
@@ -50,9 +51,10 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   let activeAccount = state.accounts[state.activeAccountIndex];
   return {
-    accounts:   state.accounts,
-    activeUser: activeAccount && state.userByUserId[activeAccount.id],
-    tweetsByUserId: state.tweetsByUserId,
+    accounts:            state.accounts,
+    activeUser:          activeAccount && state.userByUserId[activeAccount.id],
+    selectedTabByUserId: state.selectedTabByUserId,
+    tweetsByUserId:      state.tweetsByUserId,
   }
 }
 
