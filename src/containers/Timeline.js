@@ -41,9 +41,9 @@ export default class Timeline extends React.Component {
         </ul>
 
         <TweetList id='home' active='true' tweets={this.props.tweets} />
-        <TweetList id='mentions' tweets={this.props.tweets} />
-        <TweetList id='lists' withHeader='true' tweets={this.props.tweets} />
-        <TweetList id='search' withHeader='true' tweets={this.props.tweets} />
+        <TweetList id='mentions' tweets={[]} />
+        <TweetList id='lists' withHeader='true' tweets={[]} />
+        <TweetList id='search' withHeader='true' tweets={[]} />
 
         <ListSelector />
         <SearchBox />
@@ -53,12 +53,9 @@ export default class Timeline extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  let activeAccount = state.accounts[state.activeAccountIndex];
-
   return {
-    activeAccount: activeAccount,
-    tweets: (activeAccount && state.tweetsByUserId[activeAccount.id]) || [],
-  }
+    activeAccount: state.accounts[state.activeAccountIndex],
+  };
 }
 
 export default connect(mapStateToProps, Actions)(Timeline);

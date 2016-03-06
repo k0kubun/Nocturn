@@ -38,6 +38,7 @@ class App extends React.Component {
             <Timeline
               key={account.id}
               account={account}
+              tweets={this.props.tweetsByUserId[account.id] || []}
             />
           )}
         </div>
@@ -51,6 +52,7 @@ const mapStateToProps = (state) => {
   return {
     accounts:   state.accounts,
     activeUser: activeAccount && state.userByUserId[activeAccount.id],
+    tweetsByUserId: state.tweetsByUserId,
   }
 }
 
