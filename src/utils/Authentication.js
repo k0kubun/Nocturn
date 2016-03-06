@@ -106,7 +106,7 @@ export default class Authentication {
               var client = new TwitterClient(token);
 
               return client.verifyCredentials((user) => {
-                token['userId']     = user.id;
+                token['id']         = user.id;
                 token['screenName'] = user.screen_name;
                 callback(token);
                 if (authWindow) {

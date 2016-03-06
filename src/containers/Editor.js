@@ -12,8 +12,9 @@ export default class Editor extends React.Component {
   onTextareaKeyDown(event) {
     if (event.keyCode === Keycode.ENTER && !event.altKey) {
       event.preventDefault();
-      // let client = new TwitterClient(this.props.account);
-      // client.updateStatus(this.props.text, 0); // TODO: in-reply-to
+
+      let client = new TwitterClient(this.props.activeAccount);
+      client.updateStatus(this.props.text, 0); // TODO: in-reply-to
       this.props.clearText();
     }
   }
@@ -42,6 +43,7 @@ export default class Editor extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    activeAccount: state.accounts[state.activeAccountIndex],
     text: state.text,
   }
 }

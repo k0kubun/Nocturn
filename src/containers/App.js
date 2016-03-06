@@ -35,7 +35,7 @@ class App extends React.Component {
         <div className='timelines'>
           {this.props.accounts.map((account) =>
             <Timeline
-              key={account.userId}
+              key={account.id}
               account={account}
             />
           )}
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
   let activeAccount = state.accounts[state.activeAccountIndex];
   return {
     accounts:   state.accounts,
-    activeUser: activeAccount && state.userByUserId[activeAccount.userId],
+    activeUser: activeAccount && state.userByUserId[activeAccount.id],
   }
 }
 
