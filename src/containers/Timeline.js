@@ -18,7 +18,7 @@ export default class Timeline extends React.Component {
     let client = new TwitterClient(this.props.account);
     client.homeTimeline((tweets) => {
       for (let tweet of tweets.reverse()) {
-        this.props.addTweet(tweet);
+        this.props.addTweet(tweet, this.props.account);
       }
     })
   }
@@ -26,7 +26,7 @@ export default class Timeline extends React.Component {
   startStreaming() {
     let client = new TwitterClient(this.props.account);
     client.userStream((tweet) => {
-      this.props.addTweet(tweet);
+      this.props.addTweet(tweet, this.props.account);
     });
   }
 
@@ -53,9 +53,11 @@ export default class Timeline extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  let activeAccount = state.accounts[state.activeAccountIndex];
+
   return {
-    activeAccount: state.accounts[state.activeAccountIndex],
-    tweets: state.tweets,
+    activeAccount: activeAccount,
+    tweets: (activeAccount && state.tweetsByUserId[activeAccount.id]) || [],
   }
 }
 

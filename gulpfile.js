@@ -28,7 +28,10 @@ gulp.task('compile-es6', () => {
     pipe(
       babel({
         presets: ['es2015', 'react'],
-        plugins: ['transform-inline-environment-variables'],
+        plugins: [
+          'transform-inline-environment-variables',
+          'transform-object-rest-spread',
+        ],
       })
     ).
     pipe(gulp.dest('app'));
