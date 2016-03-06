@@ -42,12 +42,18 @@ const text = (state = '', action) => {
   }
 }
 
-const tweetsByUserId = (state = {}, action) => {
+const tabsByUserId = (state = {}, action) => {
   switch (action.type) {
     case Actions.ADD_TWEET:
       return {
         ...state,
-        [action.account.id]: [...(state[action.account.id] || []), action.tweet],
+        [action.account.id]: {
+          ...(state[action.account.id] || {}),
+          [action.tab]: [
+            ...((state[action.account.id] && state[action.account.id][action.tab]) || []),
+            action.tweet,
+          ],
+        }
       };
     default:
       return state;
@@ -69,7 +75,7 @@ const rootReducer = combineReducers({
   activeAccountIndex,
   selectedTabByUserId,
   text,
-  tweetsByUserId,
+  tabsByUserId,
   userByUserId,
 });
 

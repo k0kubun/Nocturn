@@ -15,19 +15,21 @@ export default class Timeline extends React.Component {
   }
 
   loadHome() {
-    let client = new TwitterClient(this.props.account);
-    client.homeTimeline((tweets) => {
+    this.client().homeTimeline((tweets) => {
       for (let tweet of tweets.reverse()) {
-        this.props.addTweet(tweet, this.props.account);
+        this.props.addTweet(tweet, this.props.account, 'home');
       }
     })
   }
 
   startStreaming() {
-    let client = new TwitterClient(this.props.account);
-    client.userStream((tweet) => {
-      this.props.addTweet(tweet, this.props.account);
+    this.client().userStream((tweet) => {
+      this.props.addTweet(tweet, this.props.account, 'home');
     });
+  }
+
+  client() {
+    return new TwitterClient(this.props.account);
   }
 
   render() {
@@ -40,10 +42,10 @@ export default class Timeline extends React.Component {
           <TweetTab tab='search'   selectedTab={this.props.selectedTab} account={this.props.account} activate='.search_box'>Search</TweetTab>
         </ul>
 
-        <TweetList tab='home'     selectedTab={this.props.selectedTab} tweets={this.props.tweets} />
-        <TweetList tab='mentions' selectedTab={this.props.selectedTab} tweets={[]} />
-        <TweetList tab='lists'    selectedTab={this.props.selectedTab} withHeader='true' tweets={[]} />
-        <TweetList tab='search'   selectedTab={this.props.selectedTab} withHeader='true' tweets={[]} />
+        <TweetList tab='home'     selectedTab={this.props.selectedTab} tweets={this.props.tweetsByTab['home'] || []} />
+        <TweetList tab='mentions' selectedTab={this.props.selectedTab} tweets={this.props.tweetsByTab['mentions'] || []} />
+        <TweetList tab='lists'    selectedTab={this.props.selectedTab} tweets={this.props.tweetsByTab['lists'] || []}  withHeader='true'/>
+        <TweetList tab='search'   selectedTab={this.props.selectedTab} tweets={this.props.tweetsByTab['search'] || []} withHeader='true'/>
 
         <ListSelector />
         <SearchBox />

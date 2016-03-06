@@ -38,7 +38,7 @@ class App extends React.Component {
             <Timeline
               key={account.id}
               account={account}
-              tweets={this.props.tweetsByUserId[account.id] || []}
+              tweetsByTab={this.props.tabsByUserId[account.id] || {}}
               selectedTab={this.props.selectedTabByUserId[account.id] || 'home'}
             />
           )}
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
     accounts:            state.accounts,
     activeUser:          activeAccount && state.userByUserId[activeAccount.id],
     selectedTabByUserId: state.selectedTabByUserId,
-    tweetsByUserId:      state.tweetsByUserId,
+    tabsByUserId:        state.tabsByUserId,
   }
 }
 
