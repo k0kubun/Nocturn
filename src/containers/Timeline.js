@@ -32,7 +32,7 @@ export default class Timeline extends React.Component {
 
   render() {
     return(
-      <div className={this.props.account.userId == this.props.activeAccountId ? 'timeline active' : 'timeline'}>
+      <div className={this.props.account.userId == this.props.activeAccount.userId ? 'timeline active' : 'timeline'}>
         <ul className='tabs clearfix'>
           <TweetTab selector='#home' active='true'>Timeline</TweetTab>
           <TweetTab selector='#mentions'>Mentions</TweetTab>
@@ -54,7 +54,7 @@ export default class Timeline extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    activeAccountId: state.activeAccountId,
+    activeAccount: state.accounts[state.activeAccountIndex],
     tweets: state.tweets,
   }
 }

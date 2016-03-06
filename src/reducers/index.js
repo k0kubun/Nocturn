@@ -14,10 +14,10 @@ const accounts = (state = [], action) => {
   }
 }
 
-const activeAccountId = (state = 0, action) => {
+const activeAccountIndex = (state = 0, action) => {
   switch (action.type) {
     case app.ACTIVATE_ACCOUNT:
-      return action.account.userId;
+      return action.account.index;
     default:
       return state;
   }
@@ -55,7 +55,7 @@ const userByUserId = (state = {}, action) => {
 
 const rootReducer = combineReducers({
   accounts,
-  activeAccountId,
+  activeAccountIndex,
   text,
   tweets,
   userByUserId,

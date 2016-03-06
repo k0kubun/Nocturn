@@ -22,8 +22,6 @@ class App extends React.Component {
         this.props.refreshUserInfo(user);
       })
     }
-
-    this.props.activateAccount(accounts[0]);
   }
 
   render() {
@@ -32,7 +30,7 @@ class App extends React.Component {
         <Header />
 
         <select id='account_selector' name='account_list'></select>
-        <Editor user={this.props.activeAccount} />
+        <Editor user={this.props.activeUser} />
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
@@ -48,9 +46,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  let activeAccount = state.accounts[state.activeAccountIndex];
   return {
-    accounts:      state.accounts,
-    activeAccount: state.userByUserId[state.activeAccountId],
+    accounts:   state.accounts,
+    activeUser: activeAccount && state.userByUserId[activeAccount.userId],
   }
 }
 

@@ -11,8 +11,8 @@ export const addAccount = (account) => {
   return { type: ADD_ACCOUNT, account }
 }
 
-export const activateAccount = (account) => {
-  return { type: ACTIVATE_ACCOUNT, account }
+export const activateAccount = (index) => {
+  return { type: ACTIVATE_ACCOUNT, index }
 }
 
 export const refreshUserInfo = (user) => {
