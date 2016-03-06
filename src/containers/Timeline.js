@@ -11,6 +11,7 @@ import { connect }   from 'react-redux';
 export default class Timeline extends React.Component {
   componentDidMount() {
     this.loadHome();
+    this.loadMentions();
     this.startStreaming();
   }
 
@@ -18,6 +19,14 @@ export default class Timeline extends React.Component {
     this.client().homeTimeline((tweets) => {
       for (let tweet of tweets.reverse()) {
         this.props.addTweet(tweet, this.props.account, 'home');
+      }
+    })
+  }
+
+  loadMentions() {
+    this.client().mentionsTimeline((tweets) => {
+      for (let tweet of tweets.reverse()) {
+        this.props.addTweet(tweet, this.props.account, 'mentions');
       }
     })
   }
