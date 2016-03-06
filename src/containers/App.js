@@ -10,7 +10,6 @@ import Actions         from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
-    console.log(Actions);
     this.initializeAccounts();
   }
 
@@ -22,7 +21,7 @@ class App extends React.Component {
       let client = new TwitterClient(account);
       client.verifyCredentials((user) => {
         this.props.refreshUserInfo(user);
-      })
+      });
     }
   }
 

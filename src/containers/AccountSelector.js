@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
+import Actions from '../actions'
+import TwitterClient from '../utils/TwitterClient'
 
 class AccountSelector extends React.Component {
   componentDidMount() {
     ipcRenderer.on('finish-authentication', (event, token) => {
-      // dispatch token
+      this.props.addAccount(token);
+
+      let client = new TwitterClient(token);
+      client.verifyCredentials((user) => {
+        this.props.refreshUserInfo(user);
+      });
     });
   }
 
@@ -14,15 +21,15 @@ class AccountSelector extends React.Component {
       event.preventDefault();
       ipcRenderer.send('start-authentication');
     } else {
-      // dispatch
+      this.props.activateAccount(event.target.value);
     }
   }
 
   render() {
     return(
-      <select id='account_selector' name='account_list' onChange={this.onAccountChange.bind(this)} value={this.props.activeAccount && this.props.activeAccount.id}>
-        {this.props.accounts.map((account) =>
-          <option value={account.id} key={account.id}>{account.screenName}</option>
+      <select id='account_selector' name='account_list' onChange={this.onAccountChange.bind(this)} value={this.props.activeAccountIndex}>
+        {this.props.accounts.map((account, index) =>
+          <option value={index} key={account.id}>{account.screenName}</option>
         )}
         <option value='add-account'>Add...</option>
       </select>
@@ -33,8 +40,8 @@ class AccountSelector extends React.Component {
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
-    activeAccount: state.accounts[state.activeAccountIndex],
+    activeAccountIndex: state.activeAccountIndex,
   }
 }
 
-export default connect(mapStateToProps, {})(AccountSelector);
+export default connect(mapStateToProps, Actions)(AccountSelector);

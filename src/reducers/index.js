@@ -13,7 +13,7 @@ const accounts = (state = [], action) => {
 const activeAccountIndex = (state = 0, action) => {
   switch (action.type) {
     case Actions.ACTIVATE_ACCOUNT:
-      return action.account.index;
+      return action.index;
     default:
       return state;
   }
