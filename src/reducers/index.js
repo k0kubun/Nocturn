@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
-  ADD_TWEET,
+  timeline,
   ADD_ACCOUNT,
   ACTIVATE_ACCOUNT,
   REFRESH_USER_INFO,
@@ -8,7 +8,7 @@ import {
 
 const tweets = (state = [], action) => {
   switch (action.type) {
-    case ADD_TWEET:
+    case timeline.ADD_TWEET:
       return [...state, action.tweet];
     default:
       return state;

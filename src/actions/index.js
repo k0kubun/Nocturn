@@ -1,12 +1,7 @@
-export const ADD_TWEET  = 'ADD_TWEET';
 export const POST_TWEET = 'POST_TWEET';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const ACTIVATE_ACCOUNT = 'ACTIVATE_ACCOUNT';
 export const REFRESH_USER_INFO = 'REFRESH_USER_INFO';
-
-export const addTweet = (tweet) => {
-  return { type: ADD_TWEET, tweet }
-}
 
 export const postTweet = (text) => {
   return { type: POST_TWEET, text }
@@ -22,4 +17,10 @@ export const activateAccount = (account) => {
 
 export const refreshUserInfo = (user) => {
   return { type: REFRESH_USER_INFO, user }
+}
+
+import * as timeline from './timeline';
+
+export {
+  timeline,
 }

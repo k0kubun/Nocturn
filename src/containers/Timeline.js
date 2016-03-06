@@ -5,7 +5,7 @@ import TweetList     from '../components/TweetList'
 import Tweet         from '../components/Tweet'
 import TweetTab      from '../components/TweetTab'
 import { connect }   from 'react-redux';
-import { addTweet }  from '../actions';
+import * as Actions  from '../actions';
 import TwitterClient from '../utils/TwitterClient'
 
 export default class Timeline extends React.Component {
@@ -59,6 +59,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  addTweet,
-})(Timeline);
+export default connect(mapStateToProps, Actions.timeline)(Timeline);
