@@ -9,7 +9,11 @@ app.on('ready', () => {
   if (mainWindow) return;
 
   Authentication.authorized(() => {
-    mainWindow = new BrowserWindow({ width: 350, height: 640 });
+    mainWindow = new BrowserWindow({
+      width:  350,
+      height: 640,
+      titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'normal',
+    });
     mainWindow.webContents.on('new-window', (event, url) => {
       event.preventDefault();
       shell.openExternal(url);
