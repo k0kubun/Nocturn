@@ -1,7 +1,7 @@
 'use strict';
 
 import Authentication from './utils/Authentication'
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 
 let mainWindow = null;
 
@@ -10,6 +10,10 @@ app.on('ready', () => {
 
   Authentication.authorized(() => {
     mainWindow = new BrowserWindow({ width: 350, height: 640 });
+    mainWindow.webContents.on('new-window', (event, url) => {
+      event.preventDefault();
+      shell.openExternal(url);
+    })
     mainWindow.loadURL(`file://${__dirname}/app.html`);
 
     mainWindow.on('closed', () => {
