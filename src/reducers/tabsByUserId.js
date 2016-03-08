@@ -1,5 +1,7 @@
 import Actions from '../actions';
 
+const MAX_TWEETS_FOR_EACH_TAB = 1000;
+
 // Return set order by id DESC.
 const sortedAdd = (set, tweet) => {
   for (let i in set) {
@@ -26,7 +28,7 @@ export const tabsByUserId = (state = {}, action) => {
           [action.tab]: sortedAdd(
             (state[action.account.id] && state[action.account.id][action.tab]) || [],
             action.tweet
-          ),
+          ).slice(0, MAX_TWEETS_FOR_EACH_TAB),
         }
       };
     default:
