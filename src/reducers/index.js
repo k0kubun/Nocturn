@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import Actions from '../actions';
+import SortedSet from 'js-sorted-set';
 
 const accounts = (state = [], action) => {
   switch (action.type) {
@@ -49,10 +50,12 @@ const tabsByUserId = (state = {}, action) => {
         ...state,
         [action.account.id]: {
           ...(state[action.account.id] || {}),
-          [action.tab]: [
-            ...((state[action.account.id] && state[action.account.id][action.tab]) || []),
-            action.tweet,
-          ],
+          [action.tab]: (
+            (
+              (state[action.account.id] && state[action.account.id][action.tab]) ||
+              new SortedSet({ comparator: (a, b) => { return b.id_str.localeCompare(a.id_str) } })
+            ).insert(action.tweet)
+          ),
         }
       };
     default:
