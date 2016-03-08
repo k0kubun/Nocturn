@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return(
       <div className={`timeline_container ${process.platform}`}>
-        <Header />
+        <Header activeUser={this.props.activeUser} />
 
         <AccountSelector />
         <Editor user={this.props.activeUser} />
