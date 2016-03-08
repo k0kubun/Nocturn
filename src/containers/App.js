@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AccountSelector from './AccountSelector';
 import Authentication  from '../utils/Authentication'
 import Editor          from './Editor';
-import Header          from '../components/Header';
+import Header          from './Header';
 import Timeline        from './Timeline';
 import TwitterClient   from '../utils/TwitterClient'
 import Actions         from '../actions';
@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return(
       <div className={`timeline_container ${process.platform}`}>
-        <Header activeUser={this.props.activeUser} />
+        <Header />
 
         <AccountSelector />
         <Editor user={this.props.activeUser} />
