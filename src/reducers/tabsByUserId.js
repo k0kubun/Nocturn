@@ -12,7 +12,8 @@ const sortedAdd = (set, tweet) => {
       return set;
     }
   }
-  return [tweet, ...set];
+  // Append tweet if all tweets in set is larger than a given tweet.
+  return [...set, tweet];
 };
 
 export const tabsByUserId = (state = {}, action) => {

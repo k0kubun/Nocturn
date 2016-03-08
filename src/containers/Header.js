@@ -2,6 +2,7 @@ import React from 'react';
 import { connect }   from 'react-redux';
 import { shell } from 'electron';
 import TwitterClient from '../utils/TwitterClient'
+import TimelineProxy from '../utils/TimelineProxy'
 import Actions       from '../actions';
 
 export default class Header extends React.Component {
@@ -12,9 +13,10 @@ export default class Header extends React.Component {
 
   onRefreshClicked() {
     let client = new TwitterClient(this.props.activeAccount);
+    let proxy  = new TimelineProxy(this.props.addTweet, this.props.activeAccount);
     client.homeTimeline((tweets) => {
-      for (let tweet of tweets.reverse()) {
-        this.props.addTweet(tweet, this.props.activeAccount, 'home');
+      for (let tweet of tweets) {
+        proxy.addTweet(tweet);
       }
     });
   }

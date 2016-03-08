@@ -124,7 +124,7 @@ export default class TwitterClient {
         return console.log(JSON.stringify(error));
       }
 
-      for (let tweet of tweets.reverse()) {
+      for (let tweet of tweets) {
         callback(tweet);
       }
     });
@@ -136,7 +136,7 @@ export default class TwitterClient {
         return console.log(JSON.stringify(error));
       }
 
-      for (let tweet of data['statuses'].reverse()) {
+      for (let tweet of data['statuses']) {
         callback(tweet);
       }
     });

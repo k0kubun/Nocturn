@@ -6,6 +6,7 @@ import Tweet         from '../components/Tweet'
 import TweetTab      from './TweetTab'
 import Actions       from '../actions';
 import TwitterClient from '../utils/TwitterClient'
+import TimelineProxy from '../utils/TimelineProxy'
 import { connect }   from 'react-redux';
 
 export default class Timeline extends React.Component {
@@ -16,24 +17,27 @@ export default class Timeline extends React.Component {
   }
 
   loadHome() {
+    let proxy = new TimelineProxy(this.props.addTweet, this.props.account);
     this.client().homeTimeline((tweets) => {
-      for (let tweet of tweets.reverse()) {
-        this.props.addTweet(tweet, this.props.account, 'home');
+      for (let tweet of tweets) {
+        proxy.addTweet(tweet, this.props.account, 'home');
       }
     })
   }
 
   loadMentions() {
+    let proxy = new TimelineProxy(this.props.addTweet, this.props.account);
     this.client().mentionsTimeline((tweets) => {
-      for (let tweet of tweets.reverse()) {
-        this.props.addTweet(tweet, this.props.account, 'mentions');
+      for (let tweet of tweets) {
+        proxy.addTweet(tweet, this.props.account, 'mentions');
       }
     })
   }
 
   startStreaming() {
+    let proxy = new TimelineProxy(this.props.addTweet, this.props.account);
     this.client().userStream((tweet) => {
-      this.props.addTweet(tweet, this.props.account, 'home');
+      proxy.addTweet(tweet, this.props.account, 'home');
     });
   }
 
