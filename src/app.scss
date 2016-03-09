@@ -162,7 +162,7 @@ body {
     display: none;
 
     &.with_header {
-      height: $timeline_height - ($header_height + $editor_height + $tabs_height + $tweets_header_height);
+      height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
       top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
     }
 
@@ -327,7 +327,7 @@ body {
     top: $header_height + $editor_height + $tabs_height;
 
     &.with_header {
-      height: $timeline_height - ($header_height + $editor_height + $tabs_height + $tweets_header_height);
+      height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
       top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
     }
   }
