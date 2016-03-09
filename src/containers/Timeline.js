@@ -13,6 +13,7 @@ export default class Timeline extends React.Component {
   componentDidMount() {
     this.loadHome();
     this.loadMentions();
+    this.loadLists();
     this.startStreaming();
   }
 
@@ -32,6 +33,14 @@ export default class Timeline extends React.Component {
         proxy.addTweet(tweet, this.props.account, 'mentions');
       }
     })
+  }
+
+  loadLists() {
+    this.client().listsList((lists) => {
+      for (let list of lists) {
+        this.props.setLists(lists, this.props.account);
+      }
+    });
   }
 
   startStreaming() {
