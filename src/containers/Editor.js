@@ -4,7 +4,7 @@ import * as Keycode  from '../utils/Keycode';
 import Actions       from '../actions';
 import { connect }   from 'react-redux';
 
-export default class Editor extends React.Component {
+class Editor extends React.Component {
   onTextareaChanged(event) {
     this.props.setText(event.target.value);
   }

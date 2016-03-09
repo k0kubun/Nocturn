@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect }   from 'react-redux';
-import Actions       from '../actions';
+import { connect } from 'react-redux';
+import Actions from '../actions';
 
-export default class TweetTab extends React.Component {
+class TweetTab extends React.Component {
   isActive() {
     return this.props.selectedTab === this.props.tab;
   }

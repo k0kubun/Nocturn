@@ -9,7 +9,7 @@ import TwitterClient from '../utils/TwitterClient'
 import TimelineProxy from '../utils/TimelineProxy'
 import { connect }   from 'react-redux';
 
-export default class Timeline extends React.Component {
+class Timeline extends React.Component {
   componentDidMount() {
     this.loadHome();
     this.loadMentions();

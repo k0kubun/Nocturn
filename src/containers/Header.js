@@ -5,7 +5,7 @@ import TwitterClient from '../utils/TwitterClient'
 import TimelineProxy from '../utils/TimelineProxy'
 import Actions       from '../actions';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   onHomeClicked() {
     let url = `https://twitter.com/${this.props.activeAccount.screenName}`;
     shell.openExternal(url);
