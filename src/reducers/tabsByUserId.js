@@ -31,12 +31,12 @@ export const tabsByUserId = (state = {}, action) => {
           ).slice(0, MAX_TWEETS_FOR_EACH_TAB),
         },
       };
-    case Actions.RESET_LIST_TWEETS:
+    case Actions.CLEAR_AND_SET_TWEETS:
       return {
         ...state,
         [action.account.id]: {
           ...(state[action.account.id] || {}),
-          ['lists']: action.tweets,
+          [action.tab]: action.tweets,
         },
       };
     default:

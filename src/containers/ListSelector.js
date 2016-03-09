@@ -19,7 +19,7 @@ class ListSelector extends React.Component {
 
       let client = new TwitterClient(this.props.account);
       client.listsStatuses(listId, (tweets) => {
-        this.props.resetListTweets(tweets, this.props.account);
+        this.props.clearAndSetTweets(tweets, this.props.account, 'lists');
       });
     }
   }

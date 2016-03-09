@@ -134,9 +134,7 @@ export default class TwitterClient {
         return console.log(JSON.stringify(error));
       }
 
-      for (let tweet of data['statuses']) {
-        callback(tweet);
-      }
+      callback(data['statuses']);
     });
   }
 
