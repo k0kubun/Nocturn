@@ -1,6 +1,6 @@
 import React         from 'react';
-import ListSelector  from '../components/ListSelector'
-import SearchBox     from '../components/SearchBox'
+import ListSelector  from './ListSelector'
+import SearchBox     from './SearchBox'
 import TweetList     from '../components/TweetList'
 import Tweet         from '../components/Tweet'
 import TweetTab      from './TweetTab'
@@ -67,8 +67,8 @@ export default class Timeline extends React.Component {
         <ul className='tabs clearfix'>
           <TweetTab {...this.tabPropsFor('home')}>Timeline</TweetTab>
           <TweetTab {...this.tabPropsFor('mentions')}>Mentions</TweetTab>
-          <TweetTab {...this.tabPropsFor('lists')} activate='.list_selector'>Lists</TweetTab>
-          <TweetTab {...this.tabPropsFor('search')} activate='.search_box'>Search</TweetTab>
+          <TweetTab {...this.tabPropsFor('lists')}>Lists</TweetTab>
+          <TweetTab {...this.tabPropsFor('search')}>Search</TweetTab>
         </ul>
 
         <TweetList {...this.listPropsFor('home')} />
@@ -76,8 +76,8 @@ export default class Timeline extends React.Component {
         <TweetList {...this.listPropsFor('lists')}  withHeader='true'/>
         <TweetList {...this.listPropsFor('search')} withHeader='true'/>
 
-        <ListSelector />
-        <SearchBox />
+        <ListSelector account={this.props.account} />
+        <SearchBox account={this.props.account} />
       </div>
     );
   }
