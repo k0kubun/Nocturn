@@ -20,11 +20,11 @@ class Header extends React.Component {
         proxy.addTweet(tweet);
       }
     });
-    this.refreshListsTab();
-    this.refreshSearchTab();
+    this.refreshListsTab(client);
+    this.refreshSearchTab(client);
   }
 
-  refreshListsTab() {
+  refreshListsTab(client) {
     if (this.props.activeListId) {
       client.listsStatuses(this.props.activeListId, (tweets) => {
         for (let tweet of tweets) {
@@ -34,7 +34,7 @@ class Header extends React.Component {
     }
   }
 
-  refreshSearchTab() {
+  refreshSearchTab(client) {
     if (this.props.activeSearchQuery) {
       client.searchTweets(this.props.activeSearchQuery, (tweets) => {
         for (let tweet of tweets) {
