@@ -20,11 +20,25 @@ class Header extends React.Component {
         proxy.addTweet(tweet);
       }
     });
+    this.refreshListsTab();
+    this.refreshSearchTab();
+  }
 
+  refreshListsTab() {
     if (this.props.activeListId) {
       client.listsStatuses(this.props.activeListId, (tweets) => {
         for (let tweet of tweets) {
           this.props.addTweet(tweet, this.props.activeAccount, 'lists');
+        }
+      })
+    }
+  }
+
+  refreshSearchTab() {
+    if (this.props.activeSearchQuery) {
+      client.searchTweets(this.props.activeSearchQuery, (tweets) => {
+        for (let tweet of tweets) {
+          this.props.addTweet(tweet, this.props.activeAccount, 'search');
         }
       })
     }
@@ -55,6 +69,7 @@ const mapStateToProps = (state) => {
   return {
     activeAccount: activeAccount,
     activeListId: activeAccount && state.activeListIdByUserId[activeAccount.id],
+    activeSearchQuery: activeAccount && state.searchQueryByUserId[activeAccount.id],
   }
 }
 

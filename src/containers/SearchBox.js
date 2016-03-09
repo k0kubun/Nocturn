@@ -13,7 +13,9 @@ class SearchBox extends React.Component {
     if (event.keyCode === Keycode.ENTER) {
       let query = event.target.value;
       let client = new TwitterClient(this.props.account);
+
       client.searchTweets(query, (tweets) => {
+        this.props.setSearchQuery(query, this.props.account);
         this.props.clearAndSetTweets(tweets, this.props.account, 'search');
       });
     }
