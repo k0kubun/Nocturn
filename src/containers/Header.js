@@ -14,11 +14,20 @@ export default class Header extends React.Component {
   onRefreshClicked() {
     let client = new TwitterClient(this.props.activeAccount);
     let proxy  = new TimelineProxy(this.props.addTweet, this.props.activeAccount);
+
     client.homeTimeline((tweets) => {
       for (let tweet of tweets) {
         proxy.addTweet(tweet);
       }
     });
+
+    if (this.props.activeListId) {
+      client.listsStatuses(this.props.activeListId, (tweets) => {
+        for (let tweet of tweets) {
+          this.props.addTweet(tweet, this.props.activeAccount, 'lists');
+        }
+      })
+    }
   }
 
   render() {
@@ -42,8 +51,10 @@ export default class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  let activeAccount = state.accounts[state.activeAccountIndex];
   return {
-    activeAccount: state.accounts[state.activeAccountIndex],
+    activeAccount: activeAccount,
+    activeListId: activeAccount && state.activeListIdByUserId[activeAccount.id],
   }
 }
 
