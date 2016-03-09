@@ -29,6 +29,7 @@ gulp.task('compile-es6', () => {
       babel({
         presets: ['es2015', 'react'],
         plugins: [
+          'syntax-trailing-function-commas',
           'transform-inline-environment-variables',
           'transform-object-rest-spread',
         ],

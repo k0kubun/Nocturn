@@ -12,7 +12,7 @@ export default class Tweet extends React.Component {
     return {
       __html: Autolinker.link(
         this.props.tweet.text.replace(/\n/g, '<br>'),
-        { className: 'external-link' }
+        { className: 'external-link' },
       ),
     };
   }

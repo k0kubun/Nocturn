@@ -27,7 +27,7 @@ export const tabsByUserId = (state = {}, action) => {
           ...(state[action.account.id] || {}),
           [action.tab]: sortedAdd(
             (state[action.account.id] && state[action.account.id][action.tab]) || [],
-            action.tweet
+            action.tweet,
           ).slice(0, MAX_TWEETS_FOR_EACH_TAB),
         }
       };

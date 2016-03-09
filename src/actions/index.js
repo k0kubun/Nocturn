@@ -9,5 +9,5 @@ export default Object.assign(
   app,
   editor,
   timeline,
-  tweetTab
+  tweetTab,
 )

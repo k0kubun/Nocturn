@@ -17,9 +17,9 @@ moment.locale(
       past: "%s",
       s: "now",
       y: "1y",
-      yy: "%dy"
-    }
-  }
+      yy: "%dy",
+    },
+  },
 );
 
 export default class Time extends React.Component {
