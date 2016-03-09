@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { accounts } from './accounts';
 import { activeAccountIndex } from './activeAccountIndex';
+import { activeListIdByUserId } from './activeListIdByUserId';
 import { listsByUserId } from './listsByUserId';
 import { selectedTabByUserId } from './selectedTabByUserId';
 import { text } from './text';
@@ -10,6 +11,7 @@ import { userByUserId } from './userByUserId';
 const rootReducer = combineReducers({
   accounts,
   activeAccountIndex,
+  activeListIdByUserId,
   listsByUserId,
   selectedTabByUserId,
   text,
