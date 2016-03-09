@@ -20,10 +20,10 @@ class Editor extends React.Component {
   }
 
   onTwitterIconClicked(event) {
-    // Dirty hack to toggle select element
     event.preventDefault();
     let document = event.target.ownerDocument;
 
+    // Dirty hack to toggle select element
     let dropdown = document.getElementById('account_selector');
     let mouseEvent = document.createEvent('MouseEvents');
     mouseEvent.initMouseEvent('mousedown', true, true, window);
