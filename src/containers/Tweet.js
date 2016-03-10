@@ -1,8 +1,10 @@
 import React       from 'react';
 import Autolinker  from 'autolinker'
+import ReplyButton from './ReplyButton'
 import Time        from '../components/Time'
 import Actions     from '../actions';
 import { connect } from 'react-redux';
+import FavoriteButton from './FavoriteButton'
 
 class Tweet extends React.Component {
   onTweetClicked(event) {
@@ -39,12 +41,8 @@ class Tweet extends React.Component {
             <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
           </div>
           <div className='right_widget'>
-            <div className='reply_widget_wrapper'>
-              <i className='fa fa-reply reply_button' />
-            </div>
-            <div className='favorite_widget_wrapper'>
-              <i className='fa fa-star favorite_button' />
-            </div>
+            <ReplyButton />
+            <FavoriteButton />
           </div>
         </div>
       </li>
