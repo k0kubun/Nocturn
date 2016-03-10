@@ -1,9 +1,9 @@
-export const POST_TWEET = 'POST_TWEET';
+export const ACTIVATE_ACCOUNT = 'ACTIVATE_ACCOUNT';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const REFRESH_USER_INFO = 'REFRESH_USER_INFO';
 
-export const postTweet = (text) => {
-  return { type: POST_TWEET, text }
+export const activateAccount = (index) => {
+  return { type: ACTIVATE_ACCOUNT, index: parseInt(index) }
 }
 
 export const addAccount = (account) => {
