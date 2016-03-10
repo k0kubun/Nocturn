@@ -42,7 +42,7 @@ class Tweet extends React.Component {
           </div>
           <div className='right_widget'>
             <ReplyButton />
-            <FavoriteButton />
+            <FavoriteButton tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>
       </li>

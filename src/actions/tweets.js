@@ -1,5 +1,6 @@
 export const ADD_TWEET = 'ADD_TWEET';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
+export const FAVORITE_TWEET = 'FAVORITE_TWEET';
 export const POST_TWEET = 'POST_TWEET';
 export const SELECT_TWEET = 'SELECT_TWEET';
 

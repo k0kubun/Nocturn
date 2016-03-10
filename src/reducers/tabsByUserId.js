@@ -10,8 +10,8 @@ const sortedAdd = (set, tweet) => {
       // If set[i].id_str is smaller than tweet.id_str, prepend tweet to set[i].
       return [...set.slice(0, i), tweet, ...set.slice(i)];
     } else if (result == 0) {
-      // If tweet is already exist, ignore it.
-      return set;
+      // If tweet is already exist, replace it.
+      return [...set.slice(0, i), tweet, ...set.slice(i).slice(1)];
     }
   }
   // Append tweet if all tweets in set is larger than a given tweet.

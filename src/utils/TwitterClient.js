@@ -79,10 +79,11 @@ export default class TwitterClient {
   favoriteStatus(tweetId, callback) {
     return this.client.post('favorites/create', { id: tweetId }, (error, data, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
 
-      return callback();
+      return callback(data);
     });
   }
 
