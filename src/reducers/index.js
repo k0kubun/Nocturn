@@ -4,6 +4,7 @@ import { activeAccountIndex } from './activeAccountIndex';
 import { activeListIdByUserId } from './activeListIdByUserId';
 import { listsByUserId } from './listsByUserId';
 import { searchQueryByUserId } from './searchQueryByUserId';
+import { selectedTweetIdsByUserId } from './selectedTweetIdsByUserId';
 import { selectedTabByUserId } from './selectedTabByUserId';
 import { text } from './text';
 import { tabsByUserId } from './tabsByUserId';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   listsByUserId,
   searchQueryByUserId,
   selectedTabByUserId,
+  selectedTweetIdsByUserId,
   text,
   tabsByUserId,
   userByUserId,

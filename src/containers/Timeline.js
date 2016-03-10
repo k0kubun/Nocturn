@@ -2,7 +2,6 @@ import React         from 'react';
 import ListSelector  from './ListSelector'
 import SearchBox     from './SearchBox'
 import TweetList     from '../components/TweetList'
-import Tweet         from '../components/Tweet'
 import TweetTab      from './TweetTab'
 import Actions       from '../actions';
 import TwitterClient from '../utils/TwitterClient'
@@ -63,6 +62,7 @@ class Timeline extends React.Component {
       selectedTab: this.props.selectedTab,
       tab:         tab,
       tweets:      this.props.tweetsByTab[tab] || [],
+      account:     this.props.account,
     };
   }
 

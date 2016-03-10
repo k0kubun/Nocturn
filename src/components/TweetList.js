@@ -1,5 +1,5 @@
 import React from 'react';
-import Tweet from './Tweet'
+import Tweet from '../containers/Tweet'
 
 export default class TweetList extends React.Component {
   isActive() {
@@ -10,7 +10,12 @@ export default class TweetList extends React.Component {
     return(
       <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.isActive() ? 'active' : ''}`}>
         {this.props.tweets.map((tweet) =>
-          <Tweet key={tweet.id} tweet={tweet}/>
+          <Tweet
+            key={tweet.id}
+            tweet={tweet}
+            tab={this.props.tab}
+            account={this.props.account}
+          />
         )}
       </ul>
     );

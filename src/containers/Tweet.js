@@ -1,8 +1,14 @@
-import React      from 'react';
-import Autolinker from 'autolinker'
-import Time       from './Time'
+import React       from 'react';
+import Autolinker  from 'autolinker'
+import Time        from '../components/Time'
+import Actions     from '../actions';
+import { connect } from 'react-redux';
 
-export default class Tweet extends React.Component {
+class Tweet extends React.Component {
+  onTweetClicked(event) {
+    this.props.selectTweet(this.props.tweet, this.props.tab, this.props.account);
+  }
+
   resizedProfileImage() {
     let baseUrl = this.props.tweet.user.profile_image_url;
     return baseUrl.replace(/_normal\./, '_400x400.');
@@ -17,9 +23,17 @@ export default class Tweet extends React.Component {
     };
   }
 
+  selectedTweetIdByTab() {
+    return this.props.selectedTweetIdsByUserId[this.props.account.id] || {};
+  }
+
+  isActive() {
+    return this.selectedTweetIdByTab()[this.props.tab] == this.props.tweet.id;
+  }
+
   render() {
     return(
-      <li className='tweet'>
+      <li className={`tweet ${this.isActive() ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
         <div className='box_wrapper'>
           <div className='left_box'>
             <img className='user_icon' src={this.resizedProfileImage()} />
@@ -45,3 +59,11 @@ export default class Tweet extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    selectedTweetIdsByUserId: state.selectedTweetIdsByUserId,
+  }
+}
+
+export default connect(mapStateToProps, Actions)(Tweet);
