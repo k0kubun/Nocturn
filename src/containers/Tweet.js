@@ -41,7 +41,7 @@ class Tweet extends React.Component {
             <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
           </div>
           <div className='right_widget'>
-            <ReplyButton />
+            <ReplyButton tweet={this.props.tweet} account={this.props.account} />
             <FavoriteButton tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>

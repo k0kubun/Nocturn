@@ -16,8 +16,7 @@ class Editor extends React.Component {
 
       let client = new TwitterClient(this.props.activeAccount);
       let proxy  = new TimelineProxy(this.props.addTweet, this.props.activeAccount);
-      // TODO: in-reply-to
-      client.updateStatus(this.props.text, 0, (tweet) => {
+      client.updateStatus(this.props.text, this.props.inReplyTo, (tweet) => {
         proxy.addTweet(tweet);
       });
       this.props.clearText();
@@ -47,6 +46,7 @@ class Editor extends React.Component {
         </div>
         <form action='#' method='post'>
           <textarea
+            id='tweet_editor'
             className='tweet_editor'
             name='tweet'
             tabIndex='1'
@@ -65,6 +65,7 @@ const mapStateToProps = (state) => {
   return {
     activeAccount: state.accounts[state.activeAccountIndex],
     text: state.text,
+    inReplyTo: state.inReplyTo,
   }
 }
 

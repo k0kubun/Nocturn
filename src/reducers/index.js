@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { accounts } from './accounts';
 import { activeAccountIndex } from './activeAccountIndex';
 import { activeListIdByUserId } from './activeListIdByUserId';
+import { inReplyTo } from './inReplyTo';
 import { listsByUserId } from './listsByUserId';
 import { searchQueryByUserId } from './searchQueryByUserId';
 import { selectedTweetIdsByUserId } from './selectedTweetIdsByUserId';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   accounts,
   activeAccountIndex,
   activeListIdByUserId,
+  inReplyTo,
   listsByUserId,
   searchQueryByUserId,
   selectedTabByUserId,
