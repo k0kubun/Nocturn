@@ -58,7 +58,7 @@ export default class TwitterClient {
     });
   }
 
-  updateStatus(tweet, inReplyTo) {
+  updateStatus(tweet, inReplyTo, callback) {
     if (tweet === '') {
       return;
     }
@@ -67,7 +67,13 @@ export default class TwitterClient {
     if (inReplyTo !== 0) {
       params['in_reply_to_status_id'] = inReplyTo;
     }
-    return this.client.post('statuses/update', params, this.errorHandler);
+    this.client.post('statuses/update', params, (error, data, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(data);
+    });
   }
 
   favoriteStatus(tweetId, callback) {
@@ -136,11 +142,5 @@ export default class TwitterClient {
 
       callback(data['statuses']);
     });
-  }
-
-  errorHandler(error, data, response) {
-    if (error) {
-      console.log(JSON.stringify(error));
-    }
   }
 }

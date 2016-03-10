@@ -1,5 +1,6 @@
 import React from 'react';
 import TwitterClient from '../utils/TwitterClient'
+import TimelineProxy from '../utils/TimelineProxy'
 import * as Keycode  from '../utils/Keycode';
 import Actions       from '../actions';
 import { connect }   from 'react-redux';
@@ -14,7 +15,11 @@ class Editor extends React.Component {
       event.preventDefault();
 
       let client = new TwitterClient(this.props.activeAccount);
-      client.updateStatus(this.props.text, 0); // TODO: in-reply-to
+      let proxy  = new TimelineProxy(this.props.addTweet, this.props.activeAccount);
+      // TODO: in-reply-to
+      client.updateStatus(this.props.text, 0, (tweet) => {
+        proxy.addTweet(tweet);
+      });
       this.props.clearText();
     }
   }
