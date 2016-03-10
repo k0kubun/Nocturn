@@ -23,17 +23,9 @@ class Tweet extends React.Component {
     };
   }
 
-  selectedTweetIdByTab() {
-    return this.props.selectedTweetIdsByUserId[this.props.account.id] || {};
-  }
-
-  isActive() {
-    return this.selectedTweetIdByTab()[this.props.tab] == this.props.tweet.id;
-  }
-
   render() {
     return(
-      <li className={`tweet ${this.isActive() ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
+      <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
         <div className='box_wrapper'>
           <div className='left_box'>
             <img className='user_icon' src={this.resizedProfileImage()} />
@@ -61,9 +53,7 @@ class Tweet extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    selectedTweetIdsByUserId: state.selectedTweetIdsByUserId,
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, Actions)(Tweet);
