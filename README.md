@@ -24,19 +24,24 @@ https://github.com/k0kubun/Nocturn/releases
 
 ### Key bindings
 
-| Command                   | OSX                                  | Linux, Windows                       |
-|:--------------------------|:-------------------------------------|:-------------------------------------|
-|  Tweet, Reply, Search     | <kbd>Enter</kbd>                     | <kbd>Enter</kbd>                     |
-| Select a next tweet       | <kbd>j</kbd>, <kbd>↓</kbd>           | <kbd>j</kbd>, <kbd>↓</kbd>           |
-| Select a previous tweet   | <kbd>k</kbd>, <kbd>↑</kbd>           | <kbd>k</kbd>, <kbd>↑</kbd>           |
-| Select the first tweet    | <kbd>0</kbd>, <kbd>space</kbd>       | <kbd>0</kbd>, <kbd>space</kbd>       |
-| Add a tweet to favorites  | <kbd>f</kbd>                         | <kbd>f</kbd>                         |
-| Retweet a tweet           | <kbd>Cmd-Shift-v</kbd>               | <kbd>Cmd-Shift-v</kbd>               |
-| Delete a tweet            | <kbd>Cmd-backspace</kbd>             | <kbd>Cmd-backspace</kbd>             |
-| Select a next tab         | <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> | <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> |
-| Select a previous tab     | <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> | <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> |
-| Select a next account     | <kbd>n</kbd>, <kbd>Cmd-j</kbd>       | <kbd>n</kbd>, <kbd>Cmd-j</kbd>       |
-| Select a previous account | <kbd>p</kbd>, <kbd>Cmd-k</kbd>       | <kbd>p</kbd>, <kbd>Cmd-k</kbd>       |
+<table>
+<thead>
+<tr><td>Command</td><td>OSX</td><td>Linux, Windows</td></tr>
+</thead>
+<tbody>
+<tr><td> Tweet, Reply, Search     </td><td colspan='2'> <kbd>Enter</kbd> </td></tr>
+<tr><td>Select a next tweet       </td><td colspan='2'> <kbd>j</kbd>, <kbd>↓</kbd> </td></tr>
+<tr><td>Select a previous tweet   </td><td colspan='2'> <kbd>k</kbd>, <kbd>↑</kbd> </td></tr>
+<tr><td>Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>space</kbd> </td></tr>
+<tr><td>Add a tweet to favorites  </td><td colspan='2'> <kbd>f</kbd>  </td></tr>
+<tr><td>Retweet a tweet           </td><td> <kbd>Cmd-Shift-v</kbd>               </td><td> <kbd>Cmd-Shift-v</kbd>               </td></tr>
+<tr><td>Delete a tweet            </td><td> <kbd>Cmd-backspace</kbd>             </td><td> <kbd>Cmd-backspace</kbd>             </td></tr>
+<tr><td>Select a next tab         </td><td> <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> </td><td> <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> </td></tr>
+<tr><td>Select a previous tab     </td><td> <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> </td><td> <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> </td></tr>
+<tr><td>Select a next account     </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td></tr>
+<tr><td>Select a previous account </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td></tr>
+</tbody>
+</table>
 
 ### TODO
 
