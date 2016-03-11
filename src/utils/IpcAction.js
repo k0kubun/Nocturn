@@ -85,5 +85,11 @@ export default class IpcAction {
       let tab   = state.nextTab();
       store.dispatch(Actions.selectTab(tab, state.activeAccount()));
     });
+
+    ipcRenderer.on('select-prev-tab', (event) => {
+      let state = new RichState(store);
+      let tab   = state.prevTab();
+      store.dispatch(Actions.selectTab(tab, state.activeAccount()));
+    });
   }
 }

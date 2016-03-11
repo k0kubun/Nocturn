@@ -22,6 +22,15 @@ export default class RichState {
     }[this.activeTab()];
   }
 
+  prevTab() {
+    return {
+      home:     'home',
+      mentions: 'home',
+      lists:    'mentions',
+      search:   'lists',
+    }[this.activeTab()];
+  }
+
   selectedTweetId() {
     if (this.selectedTweetIdCache) return this.selectedTweetIdCache;
     return this.selectedTweetIdCache = (
