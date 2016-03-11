@@ -43,6 +43,33 @@ export default class MenuBuilder {
           { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
         ]
       }, {
+        label: 'Tweet',
+        submenu: [
+          { label: 'Reply',           accelerator: 'Enter',             click() { window.webContents.send('invoke-reply') } },
+          { label: 'Favorite',        accelerator: 'F',                 click() { window.webContents.send('invoke-favorite') } },
+          { label: 'Retweet',         accelerator: 'Command+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
+          { label: 'Delete',          accelerator: 'Command+Backspace', click() { window.webContents.send('invoke-delete') } },
+          { label: 'Select Next',     accelerator: 'Down',              click() { window.webContents.send('select-next-tweet') } },
+          { label: 'Select Previous', accelerator: 'Up',                click() { window.webContents.send('select-prev-tweet') } },
+          { label: 'Select First',    accelerator: 'Space',             click() { window.webContents.send('select-first-tweet') } },
+          { type: 'separator' },
+          {
+            label: 'Optional Keybinds', submenu: [
+              { label: 'Select Next',     accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
+              { label: 'Select Previous', accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
+              { label: 'Select First',    accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
+            ]
+          },
+        ],
+      }, {
+        label: 'Timeline',
+        submenu: [
+          { label: 'Next Tab',         accelerator: 'Command+Shift+]', click() { window.webContents.send('select-next-tab') } },
+          { label: 'Previous Tab',     accelerator: 'Command+Shift+[', click() { window.webContents.send('select-prev-tab') } },
+          { label: 'Next Account',     accelerator: 'Command+J', click() { window.webContents.send('select-next-account') } },
+          { label: 'Previous Account', accelerator: 'Command+K', click() { window.webContents.send('select-prev-account') } },
+        ],
+      }, {
         label: 'Window',
         submenu: [
           { label: 'Minimize', accelerator: 'Command+M', selector: 'performMiniaturize:' },

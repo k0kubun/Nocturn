@@ -26,7 +26,7 @@ https://github.com/k0kubun/Nocturn/releases
 
 <table>
 <thead>
-<tr><td></td><td>OSX</td><td>Linux, Windows</td></tr>
+<tr><th></th><th>OSX</th><th>Linux, Windows</th></tr>
 </thead>
 <tbody>
 <tr><td> Tweet, Reply, Search      </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
@@ -38,26 +38,10 @@ https://github.com/k0kubun/Nocturn/releases
 <tr><td> Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
 <tr><td> Select a next tab         </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd>         </td></tr>
 <tr><td> Select a previous tab     </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd>         </td></tr>
-<tr><td> Select a next account     </td><td>             <kbd>n</kbd>, <kbd>Cmd-j</kbd> </td><td> <kbd>Alt-J</kbd>         </td></tr>
-<tr><td> Select a previous account </td><td>             <kbd>p</kbd>, <kbd>Cmd-k</kbd> </td><td> <kbd>Alt-K</kbd>         </td></tr>
+<tr><td> Select a next account     </td><td>             <kbd>Cmd-J</kbd>               </td><td> <kbd>Alt-J</kbd>         </td></tr>
+<tr><td> Select a previous account </td><td>             <kbd>Cmd-K</kbd>               </td><td> <kbd>Alt-K</kbd>         </td></tr>
 </tbody>
 </table>
-
-### TODO
-
-| Command                   | OSX | Linux, Windows |
-|:--------------------------|:----|:---------------|
-|  Tweet, Reply, Search     |     | o              |
-| Select a next tweet       |     | o              |
-| Select a previous tweet   |     | o              |
-| Select the first tweet    |     | o              |
-| Add a tweet to favorites  |     | o              |
-| Retweet a tweet           |     | o              |
-| Delete a tweet            |     | o              |
-| Select a next tab         |     | o              |
-| Select a previous tab     |     | o              |
-| Select a next account     |     | o              |
-| Select a previous account |     | o              |
 
 ### Multi account
 
