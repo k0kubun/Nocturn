@@ -9,7 +9,7 @@ const vElectron = json['devDependencies']['electron-prebuilt'];
 
 exec('rm -rf packages');
 exec(
-  `electron-packager . Nocturn --arch=x64 --out=packages/v${vNocturn} ` +
+  `electron-packager . Nocturn --arch=ia32,x64 --out=packages/v${vNocturn} ` +
   `--platform=darwin,linux,win32 --version=${vElectron} --ignore=.DS_Store --ignore=accounts.json ` +
   '--ignore=packages/* --ignore=node_modules/bower --ignore=node_modules/electron-prebuilt ' +
   '--ignore=node_modules/electron-packager --ignore=node_modules/gulp --ignore=node_modules/gulp-bower ' +
