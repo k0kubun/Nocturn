@@ -2,6 +2,7 @@ export const ADD_TWEET = 'ADD_TWEET';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
 export const FAVORITE_TWEET = 'FAVORITE_TWEET';
 export const POST_TWEET = 'POST_TWEET';
+export const REMOVE_TWEET = 'REMOVE_TWEET';
 export const SELECT_TWEET = 'SELECT_TWEET';
 export const SET_IN_REPLY_TO = 'SET_IN_REPLY_TO';
 
@@ -15,6 +16,10 @@ export const clearAndSetTweets = (tweets, account, tab) => {
 
 export const postTweet = (text) => {
   return { type: POST_TWEET, text }
+}
+
+export const removeTweet = (tweet, account, tab) => {
+  return { type: REMOVE_TWEET, tweet, account, tab }
 }
 
 export const selectTweet = (tweet, tab, account) => {

@@ -103,7 +103,7 @@ export default class TwitterClient {
         return console.log(JSON.stringify(error));
       }
 
-      return callback();
+      return callback(data);
     });
   }
 

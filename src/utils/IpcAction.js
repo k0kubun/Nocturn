@@ -68,5 +68,16 @@ export default class IpcAction {
         });
       }
     });
+
+    ipcRenderer.on('invoke-delete', (event) => {
+      let state  = new RichState(store);
+      let client = new TwitterClient(state.activeAccount());
+      let active  = state.activeTweet();
+      if (!active) return null;
+
+      client.deleteStatus(active.id_str, (tweet) => {
+        store.dispatch(Actions.removeTweet(tweet, state.activeAccount(), state.activeTab()));
+      });
+    });
   }
 }
