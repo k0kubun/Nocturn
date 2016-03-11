@@ -26,20 +26,20 @@ https://github.com/k0kubun/Nocturn/releases
 
 <table>
 <thead>
-<tr><td>Command</td><td>OSX</td><td>Linux, Windows</td></tr>
+<tr><td></td><td>OSX</td><td>Linux, Windows</td></tr>
 </thead>
 <tbody>
-<tr><td> Tweet, Reply, Search     </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
-<tr><td>Select a next tweet       </td><td colspan='2'> <kbd>j</kbd>, <kbd>↓</kbd>     </td></tr>
-<tr><td>Select a previous tweet   </td><td colspan='2'> <kbd>k</kbd>, <kbd>↑</kbd>     </td></tr>
-<tr><td>Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
-<tr><td>Add a tweet to favorites  </td><td colspan='2'> <kbd>f</kbd>                   </td></tr>
-<tr><td>Retweet a tweet           </td><td> <kbd>Cmd-Shift-v</kbd>                     </td><td> <kbd>Alt-Shift-v</kbd>               </td></tr>
-<tr><td>Delete a tweet            </td><td> <kbd>Cmd-backspace</kbd>                   </td><td> <kbd>Alt-backspace</kbd>             </td></tr>
-<tr><td>Select a next tab         </td><td> <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd>       </td><td> <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> </td></tr>
-<tr><td>Select a previous tab     </td><td> <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd>       </td><td> <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> </td></tr>
-<tr><td>Select a next account     </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>             </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td></tr>
-<tr><td>Select a previous account </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>             </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td></tr>
+<tr><td> Tweet, Reply, Search      </td><td colspan='2'> <kbd>Enter</kbd>                     </td></tr>
+<tr><td> Delete a tweet            </td><td>             <kbd>Cmd-backspace</kbd>             </td><td> <kbd>Alt-backspace</kbd>             </td></tr>
+<tr><td> Add a tweet to favorites  </td><td colspan='2'> <kbd>f</kbd>                         </td></tr>
+<tr><td> Retweet a tweet           </td><td>             <kbd>Cmd-Shift-v</kbd>               </td><td> <kbd>Alt-Shift-v</kbd>               </td></tr>
+<tr><td> Select a next tweet       </td><td colspan='2'> <kbd>j</kbd>, <kbd>↓</kbd>           </td></tr>
+<tr><td> Select a previous tweet   </td><td colspan='2'> <kbd>k</kbd>, <kbd>↑</kbd>           </td></tr>
+<tr><td> Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd>       </td></tr>
+<tr><td> Select a next tab         </td><td>             <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> </td><td> <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> </td></tr>
+<tr><td> Select a previous tab     </td><td>             <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> </td><td> <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> </td></tr>
+<tr><td> Select a next account     </td><td>             <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td></tr>
+<tr><td> Select a previous account </td><td>             <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td></tr>
 </tbody>
 </table>
 
