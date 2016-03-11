@@ -47,8 +47,8 @@ https://github.com/k0kubun/Nocturn/releases
 
 | Command                   | OSX | Linux, Windows |
 |:--------------------------|:----|:---------------|
-|  Tweet, Reply, Search     |     | x              |
-| Select a next tweet       |     |                |
+|  Tweet, Reply, Search     |     | o              |
+| Select a next tweet       |     | o              |
 | Select a previous tweet   |     |                |
 | Select the first tweet    |     |                |
 | Add a tweet to favorites  |     |                |

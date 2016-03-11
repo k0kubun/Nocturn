@@ -40,13 +40,22 @@ class RichState {
     );
   }
 
-  findTweet(tweets, id_str) {
-    if (!tweets || !id_str) return null;
+  findNextTweet() {
+    let activeIndex = this.findTweetIndex(this.activeTabTweets(), this.selectedTweetId());
+    if (!activeIndex) return null;
+    return this.activeTabTweets().slice(activeIndex).slice(1)[0];
+  }
 
-    for (let tweet of tweets) {
-      if (tweet.id_str === id_str) {
-        return tweet;
-      }
+  findTweet(tweets, id_str) {
+    let index = this.findTweetIndex(tweets, id_str);
+    if (!index) return null;
+    return tweets[index];
+  }
+
+  findTweetIndex(tweets, id_str) {
+    if (!tweets || !id_str) return null;
+    for (let i in tweets) {
+      if (tweets[i].id_str === id_str) return i;
     }
     return null;
   }
@@ -69,5 +78,13 @@ export default class IpcAction {
       // FIXME: Use better way to focus
       this.document.getElementById('tweet_editor').focus();
     })
+
+    ipcRenderer.on('select-next-tweet', (event) => {
+      let state = new RichState(store);
+      let tweet = state.findNextTweet();
+      if (!tweet) return null;
+
+      store.dispatch(Actions.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    });
   }
 }
