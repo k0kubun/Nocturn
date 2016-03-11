@@ -1,5 +1,6 @@
 # v1
 ## features
+- [ ] Show RT properly
 - [ ] Tweet chars counter
 - [ ] Event notification
 - [ ] Unread tweet counter
