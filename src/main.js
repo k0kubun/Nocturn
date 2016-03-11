@@ -1,7 +1,8 @@
 'use strict';
 
-import Authentication from './utils/Authentication'
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import Authentication from './utils/Authentication';
+import MenuBuilder    from './utils/MenuBuilder';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 
 let mainWindow = null;
 
@@ -19,6 +20,7 @@ app.on('ready', () => {
       shell.openExternal(url);
     })
     mainWindow.loadURL(`file://${__dirname}/app.html`);
+    MenuBuilder.build(mainWindow);
 
     mainWindow.on('closed', () => {
       app.quit();
