@@ -31,6 +31,15 @@ export default class RichState {
     }[this.activeTab()];
   }
 
+  nextAccountIndex() {
+    let index = this.state.activeAccountIndex + 1;
+    if (index >= this.state.accounts.length) {
+      return this.state.activeAccountIndex;
+    } else {
+      return index;
+    }
+  }
+
   selectedTweetId() {
     if (this.selectedTweetIdCache) return this.selectedTweetIdCache;
     return this.selectedTweetIdCache = (

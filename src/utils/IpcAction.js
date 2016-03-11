@@ -91,5 +91,11 @@ export default class IpcAction {
       let tab   = state.prevTab();
       store.dispatch(Actions.selectTab(tab, state.activeAccount()));
     });
+
+    ipcRenderer.on('select-next-account', (event) => {
+      let state = new RichState(store);
+      let index = state.nextAccountIndex();
+      store.dispatch(Actions.activateAccount(index));
+    });
   }
 }

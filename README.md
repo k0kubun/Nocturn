@@ -30,16 +30,16 @@ https://github.com/k0kubun/Nocturn/releases
 </thead>
 <tbody>
 <tr><td> Tweet, Reply, Search      </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
-<tr><td> Delete a tweet            </td><td>             <kbd>Cmd-Backspace</kbd>       </td><td> <kbd>Alt-Backspace</kbd>             </td></tr>
+<tr><td> Delete a tweet            </td><td>             <kbd>Cmd-Backspace</kbd>       </td><td> <kbd>Alt-Backspace</kbd> </td></tr>
 <tr><td> Add a tweet to favorites  </td><td colspan='2'> <kbd>F</kbd>                   </td></tr>
-<tr><td> Retweet a tweet           </td><td>             <kbd>Cmd-Shift-V</kbd>         </td><td> <kbd>Alt-Shift-V</kbd>               </td></tr>
+<tr><td> Retweet a tweet           </td><td>             <kbd>Cmd-Shift-V</kbd>         </td><td> <kbd>Alt-Shift-V</kbd>   </td></tr>
 <tr><td> Select a next tweet       </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>     </td></tr>
 <tr><td> Select a previous tweet   </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>     </td></tr>
 <tr><td> Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
-<tr><td> Select a next tab         </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd> </td></tr>
-<tr><td> Select a previous tab     </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd> </td></tr>
-<tr><td> Select a next account     </td><td>             <kbd>n</kbd>, <kbd>Cmd-j</kbd> </td><td> <kbd>n</kbd>, <kbd>Cmd-j</kbd>       </td></tr>
-<tr><td> Select a previous account </td><td>             <kbd>p</kbd>, <kbd>Cmd-k</kbd> </td><td> <kbd>p</kbd>, <kbd>Cmd-k</kbd>       </td></tr>
+<tr><td> Select a next tab         </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd>         </td></tr>
+<tr><td> Select a previous tab     </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd>         </td></tr>
+<tr><td> Select a next account     </td><td>             <kbd>n</kbd>, <kbd>Cmd-j</kbd> </td><td> <kbd>Alt-J</kbd>         </td></tr>
+<tr><td> Select a previous account </td><td>             <kbd>p</kbd>, <kbd>Cmd-k</kbd> </td><td> <kbd>Alt-K</kbd>         </td></tr>
 </tbody>
 </table>
 
@@ -56,7 +56,7 @@ https://github.com/k0kubun/Nocturn/releases
 | Delete a tweet            |     | o              |
 | Select a next tab         |     | o              |
 | Select a previous tab     |     | o              |
-| Select a next account     |     |                |
+| Select a next account     |     | o              |
 | Select a previous account |     |                |
 
 ### Multi account
