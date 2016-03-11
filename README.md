@@ -50,7 +50,7 @@ https://github.com/k0kubun/Nocturn/releases
 |  Tweet, Reply, Search     |     | o              |
 | Select a next tweet       |     | o              |
 | Select a previous tweet   |     | o              |
-| Select the first tweet    |     |                |
+| Select the first tweet    |     | o              |
 | Add a tweet to favorites  |     |                |
 | Retweet a tweet           |     |                |
 | Delete a tweet            |     |                |

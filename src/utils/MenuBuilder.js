@@ -87,9 +87,18 @@ export default class MenuBuilder {
       }, {
         label: 'Tweet',
         submenu: [
-          { label: 'Reply', accelerator: 'Enter', click() { window.webContents.send('invoke-reply') } },
-          { label: 'Select Next', accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
-          { label: 'Select Prev', accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
+          { label: 'Reply',        accelerator: 'Enter', click() { window.webContents.send('invoke-reply') } },
+          { label: 'Select Next',  accelerator: 'Down',  click() { window.webContents.send('select-next-tweet') } },
+          { label: 'Select Prev',  accelerator: 'Up',    click() { window.webContents.send('select-prev-tweet') } },
+          { label: 'Select First', accelerator: 'Space', click() { window.webContents.send('select-first-tweet') } },
+          { type: 'separator' },
+          {
+            label: 'Vim Keybinds', submenu: [
+              { label: 'Select Next',  accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
+              { label: 'Select Prev',  accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
+              { label: 'Select First', accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
+            ]
+          },
         ]
       }, {
         label: 'Help',
