@@ -88,6 +88,7 @@ export default class MenuBuilder {
         label: 'Tweet',
         submenu: [
           { label: 'Reply',        accelerator: 'Enter', click() { window.webContents.send('invoke-reply') } },
+          { label: 'Favorite',     accelerator: 'F',     click() { window.webContents.send('invoke-favorite') } },
           { label: 'Select Next',  accelerator: 'Down',  click() { window.webContents.send('select-next-tweet') } },
           { label: 'Select Prev',  accelerator: 'Up',    click() { window.webContents.send('select-prev-tweet') } },
           { label: 'Select First', accelerator: 'Space', click() { window.webContents.send('select-first-tweet') } },

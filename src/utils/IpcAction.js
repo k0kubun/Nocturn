@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
-import RichState       from './RichState'
 import Actions         from '../actions';
+import RichState       from './RichState'
+import TwitterClient   from './TwitterClient'
 
 export default class IpcAction {
   constructor(document) {
@@ -42,6 +43,17 @@ export default class IpcAction {
       if (!tweet) return null;
 
       store.dispatch(Actions.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    });
+
+    ipcRenderer.on('invoke-favorite', (event) => {
+      let state  = new RichState(store);
+      let client = new TwitterClient(state.activeAccount());
+      let active  = state.activeTweet();
+      if (!active) return null;
+
+      client.favoriteStatus(active.id_str, (tweet) => {
+        store.dispatch(Actions.addTweet(tweet, state.activeAccount(), state.activeTab()));
+      });
     });
   }
 }
