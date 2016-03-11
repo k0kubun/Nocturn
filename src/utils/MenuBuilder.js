@@ -89,6 +89,7 @@ export default class MenuBuilder {
         submenu: [
           { label: 'Reply', accelerator: 'Enter', click() { window.webContents.send('invoke-reply') } },
           { label: 'Select Next', accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
+          { label: 'Select Prev', accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
         ]
       }, {
         label: 'Help',

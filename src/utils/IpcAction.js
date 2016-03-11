@@ -42,13 +42,19 @@ class RichState {
 
   findNextTweet() {
     let activeIndex = this.findTweetIndex(this.activeTabTweets(), this.selectedTweetId());
-    if (!activeIndex) return null;
+    if (activeIndex == null) return null;
     return this.activeTabTweets().slice(activeIndex).slice(1)[0];
+  }
+
+  findPrevTweet() {
+    let activeIndex = this.findTweetIndex(this.activeTabTweets(), this.selectedTweetId());
+    if (activeIndex == null || activeIndex == 0) return null;
+    return this.activeTabTweets()[activeIndex-1];
   }
 
   findTweet(tweets, id_str) {
     let index = this.findTweetIndex(tweets, id_str);
-    if (!index) return null;
+    if (index == null) return null;
     return tweets[index];
   }
 
@@ -82,6 +88,14 @@ export default class IpcAction {
     ipcRenderer.on('select-next-tweet', (event) => {
       let state = new RichState(store);
       let tweet = state.findNextTweet();
+      if (!tweet) return null;
+
+      store.dispatch(Actions.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    });
+
+    ipcRenderer.on('select-prev-tweet', (event) => {
+      let state = new RichState(store);
+      let tweet = state.findPrevTweet();
       if (!tweet) return null;
 
       store.dispatch(Actions.selectTweet(tweet, state.activeTab(), state.activeAccount()));
