@@ -87,11 +87,13 @@ export default class TwitterClient {
     });
   }
 
-  retweetStatus(tweetId) {
+  retweetStatus(tweetId, callback) {
     return this.client.post(`statuses/retweet/${tweetId}`, {}, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
+        return;
       }
+      callback(data);
     });
   }
 

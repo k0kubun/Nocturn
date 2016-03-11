@@ -55,5 +55,18 @@ export default class IpcAction {
         store.dispatch(Actions.addTweet(tweet, state.activeAccount(), state.activeTab()));
       });
     });
+
+    ipcRenderer.on('invoke-retweet', (event) => {
+      let state  = new RichState(store);
+      let client = new TwitterClient(state.activeAccount());
+      let active  = state.activeTweet();
+      if (!active) return null;
+
+      if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
+        client.retweetStatus(active.id_str, (tweet) => {
+          store.dispatch(Actions.addTweet(tweet, state.activeAccount(), state.activeTab()));
+        });
+      }
+    });
   }
 }
