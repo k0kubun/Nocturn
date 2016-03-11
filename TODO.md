@@ -11,7 +11,7 @@
 
 ## internal
 - [ ] Drop unnecessary return in Authentication and TwitterClient
-- [ ] Cleanup Keycode
+- [x] Cleanup Keycode
 
 # v2 or later
 ## features
@@ -40,3 +40,4 @@
 - [ ] Use [i+1] instead of slice(1)[0]
 - [ ] Refactor IpcAction, RichState
 - [ ] Stop using querySelector
+- [ ] Drop tab key binder
