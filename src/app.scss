@@ -1,0 +1,338 @@
+@charset "UTF-8";
+@import "bootstrap";
+@import "font-awesome";
+
+$header_height: 46px;
+$editor_height: 47px;
+$tabs_height: 28px;
+$timeline_height: 640px;
+$tweet_padding: 8px;
+$icon_size: 48px;
+$icon_column: $icon_size + $tweet_padding * 2;
+$tweets_header_height: 34px;
+
+// Reject over scrolling
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Helvetica, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+}
+
+.timeline_container {
+  color: #333;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(#e0e0e0, #cccbcc);
+    width: 100%;
+    height: $header_height;
+    z-index: 400;
+    overflow: hidden;
+    border-bottom: 1px solid #b4b4b4;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.14);
+    box-sizing: border-box;
+    padding: 5px 0 0 8px;
+
+    .button_wrapper {
+      float: left;
+      font-size: 11px;
+      text-align: center;
+      margin: 0 12px 0 4px;
+      color: #403638;
+    }
+
+    .button {
+      background: #fbfafb;
+      color: #606060;
+      font-size: 14px;
+      width: 38px;
+      margin: auto;
+      height: 24px;
+      padding-top: 4px;
+      border-radius: 3px;
+      border-bottom: 1px solid #b5b2b5;
+    }
+
+    .button:active {
+      background: #ccc;
+    }
+  }
+
+  #account_selector {
+    position: absolute;
+    top: 60px;
+    left: 16px;
+  }
+
+  .editor {
+    position: fixed;
+    top: $header_height;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: $editor_height;
+    z-index: 300;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.06);
+
+    .tweet_editor {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      border: 0;
+      outline: 0;
+      padding: 4px 8px 4px 41px;
+      font-size: 13px;
+    }
+
+    .account_wrapper {
+      position: relative;
+    }
+
+    .twitter_icon {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      width: 24px;
+      height: 24px;
+      border-radius: 3px;
+      box-shadow: 0 0 1px 1px rgba(0,0,0,0.14);
+
+      &:hover {
+        -webkit-filter: brightness(0.60);
+      }
+    }
+  }
+
+  .tabs {
+    position: fixed;
+    top: $header_height + $editor_height;
+    left: 0;
+    background: #bbb;
+    width: 100%;
+    height: $tabs_height;
+    z-index: 100;
+    overflow: hidden;
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #888;
+    padding: 0 0 0 8px;
+    box-shadow: 0 -1px 3px 1px rgba(0,0,0,0.06) inset;
+
+    .tab {
+      height: $tabs_height;
+      width: 60px;
+      padding-top: 6px;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      list-style: none;
+      float: left;
+      border-left: 1px solid #666;
+      border-right: 1px solid #666;
+      margin-right: -1px;
+    }
+
+    .tab:hover {
+      background: #aaa;
+    }
+
+    .tab.active {
+      background: linear-gradient(#fbfbfb, #d9d9d9);
+      z-index: 800;
+    }
+  }
+
+  .tweets {
+    position: fixed;
+    top: $header_height + $editor_height + $tabs_height;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: calc(100% - #{$header_height + $editor_height + $tabs_height});
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    display: none;
+
+    &.with_header {
+      height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
+      top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    .tweet {
+      padding: $tweet_padding;
+      list-style: none;
+      border-bottom: 1px solid #ededed;
+      font-size: 11px;
+
+      &.active {
+        background: #389cd7;
+      }
+
+      &.active .external-link {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+
+    .user_name {
+      font-weight: bold;
+      color: #555;
+      margin-right: 4px;
+    }
+
+    .tweet_body {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.3;
+      padding-right: 16px;
+      user-select: auto;
+      -webkit-user-select: auto;
+    }
+
+    .active .user_name,
+    .active .tweet_body {
+      color: #fff;
+    }
+
+    .screen_name {
+      font-weight: bold;
+      color: #999;
+
+      &:before {
+        content: '@';
+      }
+    }
+
+    .created_at {
+      float: right;
+      color: #999;
+    }
+
+    .active .screen_name,
+    .active .created_at {
+      color: #cdf;
+    }
+
+    .box_wrapper {
+      position: relative;
+      min-height: $icon_size;
+    }
+
+    .left_box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $icon_column;
+      height: $icon_column;
+    }
+
+    .right_box {
+      padding-left: $icon_size + 10px;
+    }
+
+    .right_widget {
+      position: absolute;
+      top: 14px;
+      right: 0;
+      color: #ccc;
+      font-size: 12px;
+    }
+
+    .active .right_widget {
+      color: #eee;
+    }
+
+    .favorite_widget_wrapper .favorite_button.active {
+      color: #f4c142;
+    }
+
+    .user_icon {
+      width: $icon_size;
+      height: $icon_size;
+      border-radius: 6px;
+    }
+  }
+
+  .tweets_header {
+    position: absolute;
+    top: $header_height + $editor_height + $tabs_height;
+    width: 100%;
+    height: $tweets_header_height;
+    background: linear-gradient(#efefef, #cccbcc);
+    border-bottom: 1px solid #888;
+    display: none;
+    padding: 0 20px;
+
+    &.active {
+      display: block;
+    }
+
+    .list_field {
+      margin-top: 6px;
+      width: 100%;
+      color: #888;
+      font-size: 18px;
+    }
+
+    .search_field {
+      margin-top: 6px;
+      width: 100%;
+      font-size: 12px;
+      border-radius: 3px;
+      border: 1px solid #aaa;
+      padding: 1px 8px;
+    }
+  }
+
+  .timeline {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.timeline_container.darwin {
+  $title_bar_offset: 20px;
+  $header_height: $header_height + $title_bar_offset;
+
+  .header {
+    height: $header_height;
+    padding-top: 5px + $title_bar_offset;
+  }
+
+  .editor {
+    top: $header_height;
+  }
+
+  .tabs {
+    top: $header_height + $editor_height;
+  }
+
+  .tweets {
+    height: calc(100% - #{$header_height + $editor_height + $tabs_height});
+    top: $header_height + $editor_height + $tabs_height;
+
+    &.with_header {
+      height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
+      top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+    }
+  }
+
+  .tweets_header {
+    top: $header_height + $editor_height + $tabs_height;
+  }
+}

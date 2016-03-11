@@ -24,21 +24,24 @@ https://github.com/k0kubun/Nocturn/releases
 
 ### Key bindings
 
-|Key|Command|
-|:---|:---|
-|<kbd>Enter</kbd>| Tweet, Reply, Search |
-|<kbd>j</kbd>, <kbd>↓</kbd>|Select a next tweet|
-|<kbd>k</kbd>, <kbd>↑</kbd>|Select a previous tweet|
-|<kbd>0</kbd>, <kbd>space</kbd>|Select the first tweet|
-|<kbd>f</kbd>|Add a tweet to favorites|
-|<kbd>Cmd-Shift-v</kbd>|Retweet a tweet|
-|<kbd>Cmd-backspace</kbd>|Delete a tweet|
-|<kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd>|Select a next tab|
-|<kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd>|Select a previous tab|
-|<kbd>n</kbd>, <kbd>Cmd-j</kbd>|Select a next account|
-|<kbd>p</kbd>, <kbd>Cmd-k</kbd>|Select a previous account|
-
-Regard Cmd as Windows or Meta key if you're not using OSX.
+<table>
+<thead>
+<tr><th></th><th>OSX</th><th>Linux, Windows</th></tr>
+</thead>
+<tbody>
+<tr><td> Tweet, Reply, Search      </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
+<tr><td> Delete a tweet            </td><td>             <kbd>Cmd-Backspace</kbd>       </td><td> <kbd>Alt-Backspace</kbd> </td></tr>
+<tr><td> Add a tweet to favorites  </td><td colspan='2'> <kbd>F</kbd>                   </td></tr>
+<tr><td> Retweet a tweet           </td><td>             <kbd>Cmd-Shift-V</kbd>         </td><td> <kbd>Alt-Shift-V</kbd>   </td></tr>
+<tr><td> Select a next tweet       </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>     </td></tr>
+<tr><td> Select a previous tweet   </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>     </td></tr>
+<tr><td> Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
+<tr><td> Select a next tab         </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd>         </td></tr>
+<tr><td> Select a previous tab     </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd>         </td></tr>
+<tr><td> Select a next account     </td><td>             <kbd>Cmd-J</kbd>               </td><td> <kbd>Alt-J</kbd>         </td></tr>
+<tr><td> Select a previous account </td><td>             <kbd>Cmd-K</kbd>               </td><td> <kbd>Alt-K</kbd>         </td></tr>
+</tbody>
+</table>
 
 ### Multi account
 

@@ -5,10 +5,8 @@ compile-cache/
 .sass-cache/
 tmp/
 *.log
-*.html
 *.css
-*.js
-!gulpfile.js
 accounts.json
+app
 packages
 fonts
