@@ -6,6 +6,8 @@
 - [ ] Drop self reply and set remove tweet button
 - [ ] Notification tab?
 - [ ] Localize?
+- [ ] Insert Enter by Alt+Enter
+- [ ] Ctrl+Tab binding to change tabs?
 
 ## internal
 - [ ] Drop unnecessary return in Authentication and TwitterClient
@@ -15,6 +17,8 @@
 ## features
 - [ ] Create configuration window
   - [ ] Migrate add account action
+  - [ ] Font size
+  - [ ] Allow Ctrl+Enter publish
 - [ ] DM
 - [ ] Show mention tree
 - [ ] Show tweet detail

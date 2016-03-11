@@ -13,6 +13,15 @@ export default class RichState {
     return this.activeTabCache = (this.state.selectedTabByUserId[this.activeAccount().id] || 'home');
   }
 
+  nextTab() {
+    return {
+      home:     'mentions',
+      mentions: 'lists',
+      lists:    'search',
+      search:   'search',
+    }[this.activeTab()];
+  }
+
   selectedTweetId() {
     if (this.selectedTweetIdCache) return this.selectedTweetIdCache;
     return this.selectedTweetIdCache = (

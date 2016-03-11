@@ -79,5 +79,11 @@ export default class IpcAction {
         store.dispatch(Actions.removeTweet(tweet, state.activeAccount(), state.activeTab()));
       });
     });
+
+    ipcRenderer.on('select-next-tab', (event) => {
+      let state = new RichState(store);
+      let tab   = state.nextTab();
+      store.dispatch(Actions.selectTab(tab, state.activeAccount()));
+    });
   }
 }

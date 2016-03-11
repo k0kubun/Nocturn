@@ -74,6 +74,7 @@ export default class MenuBuilder {
         label: 'Nocturn',
         submenu: [
           { label: 'Quit', accelerator: 'Ctrl+W', click() { window.close(); } },
+          { label: 'Open GitHub', click() { shell.openExternal('http://github.com/k0kubun/Nocturn'); } },
         ],
       }, {
         label: 'View',
@@ -96,17 +97,21 @@ export default class MenuBuilder {
           { label: 'Select First', accelerator: 'Space',         click() { window.webContents.send('select-first-tweet') } },
           { type: 'separator' },
           {
-            label: 'Vim Keybinds', submenu: [
+            label: 'Optional Keybinds', submenu: [
               { label: 'Select Next',  accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
               { label: 'Select Prev',  accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
               { label: 'Select First', accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
             ]
           },
-        ]
+        ],
+      }, {
+        label: 'Timeline',
+        submenu: [
+          { label: 'Next Tab', accelerator: 'Alt+P', click() { window.webContents.send('select-next-tab') } },
+        ],
       }, {
         label: 'Help',
         submenu: [
-          { label: 'Nocturn Homepage', click() { shell.openExternal('http://github.com/k0kubun/Nocturn'); } },
           { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
         ],
       },
