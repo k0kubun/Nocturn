@@ -107,9 +107,10 @@ export default class MenuBuilder {
       }, {
         label: 'Timeline',
         submenu: [
-          { label: 'Next Tab',     accelerator: 'Alt+P', click() { window.webContents.send('select-next-tab') } },
-          { label: 'Previous Tab', accelerator: 'Alt+O', click() { window.webContents.send('select-prev-tab') } },
-          { label: 'Next Account', accelerator: 'Alt+J', click() { window.webContents.send('select-next-account') } },
+          { label: 'Next Tab',         accelerator: 'Alt+P', click() { window.webContents.send('select-next-tab') } },
+          { label: 'Previous Tab',     accelerator: 'Alt+O', click() { window.webContents.send('select-prev-tab') } },
+          { label: 'Next Account',     accelerator: 'Alt+J', click() { window.webContents.send('select-next-account') } },
+          { label: 'Previous Account', accelerator: 'Alt+K', click() { window.webContents.send('select-prev-account') } },
         ],
       }, {
         label: 'Help',

@@ -57,7 +57,7 @@ https://github.com/k0kubun/Nocturn/releases
 | Select a next tab         |     | o              |
 | Select a previous tab     |     | o              |
 | Select a next account     |     | o              |
-| Select a previous account |     |                |
+| Select a previous account |     | o              |
 
 ### Multi account
 

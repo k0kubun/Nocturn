@@ -38,4 +38,4 @@
   - [ ] Optimize tweet select performance
 - [ ] Drop all document reference
 - [ ] Use [i+1] instead of slice(1)[0]
-- [ ] Refactor RichState
+- [ ] Refactor IpcAction, RichState

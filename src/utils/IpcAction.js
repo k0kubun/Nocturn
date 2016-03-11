@@ -97,5 +97,11 @@ export default class IpcAction {
       let index = state.nextAccountIndex();
       store.dispatch(Actions.activateAccount(index));
     });
+
+    ipcRenderer.on('select-prev-account', (event) => {
+      let state = new RichState(store);
+      let index = state.prevAccountIndex();
+      store.dispatch(Actions.activateAccount(index));
+    });
   }
 }
