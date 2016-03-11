@@ -7,7 +7,7 @@ export const selectedTweetIdsByUserId = (state = {}, action) => {
         ...state,
         [action.account.id]: {
           ...(state[action.account.id] || {}),
-          [action.tab]: action.tweet.id,
+          [action.tab]: action.tweet.id_str,
         },
       };
     default:

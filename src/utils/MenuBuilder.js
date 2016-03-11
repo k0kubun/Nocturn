@@ -1,19 +1,19 @@
 import { shell, Menu } from 'electron';
 
 export default class MenuBuilder {
-  static build(mainWindow) {
+  static build(window) {
     if (process.platform === 'darwin') {
-      let template = this.templateForDarwin(mainWindow);
+      let template = this.templateForDarwin(window);
       let menu = Menu.buildFromTemplate(template);
       Menu.setApplicationMenu(menu);
     } else {
-      let template = this.templateForOthers(mainWindow);
+      let template = this.templateForOthers(window);
       let menu = Menu.buildFromTemplate(template);
-      mainWindow.setMenu(menu);
+      window.setMenu(menu);
     }
   }
 
-  static templateForDarwin(mainWindow) {
+  static templateForDarwin(window) {
     return [
       {
         label: 'Electron',
@@ -42,11 +42,11 @@ export default class MenuBuilder {
       }, {
         label: 'View',
         submenu: (process.env.NODE_ENV === 'development') ? [
-          { label: 'Reload', accelerator: 'Command+R', click() { mainWindow.restart(); } },
-          { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); } },
-          { label: 'Toggle Developer Tools', accelerator: 'Alt+Command+I', click() { mainWindow.toggleDevTools(); } },
+          { label: 'Reload', accelerator: 'Command+R', click() { window.restart(); } },
+          { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
+          { label: 'Toggle Developer Tools', accelerator: 'Alt+Command+I', click() { window.toggleDevTools(); } },
         ] : [
-          { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); } },
+          { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
         ]
       }, {
         label: 'Window',
@@ -68,26 +68,26 @@ export default class MenuBuilder {
     ];
   }
 
-  static templateForOthers(mainWindow) {
+  static templateForOthers(window) {
     return [
       {
         label: 'Nocturn',
         submenu: [
-          { label: 'Quit', accelerator: 'Ctrl+W', click() { mainWindow.close(); } },
+          { label: 'Quit', accelerator: 'Ctrl+W', click() { window.close(); } },
         ],
       }, {
         label: 'View',
         submenu: (process.env.NODE_ENV === 'development') ? [
-          { label: '&Reload', accelerator: 'Ctrl+R', click() { mainWindow.reload(); } },
-          { label: 'Toggle Full Screen', accelerator: 'F11', click() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); } },
-          { label: 'Toggle Developer Tools', accelerator: 'Alt+Ctrl+I', click() { mainWindow.toggleDevTools(); } },
+          { label: '&Reload', accelerator: 'Ctrl+R', click() { window.reload(); } },
+          { label: 'Toggle Full Screen', accelerator: 'F11', click() { window.setFullScreen(!window.isFullScreen()); } },
+          { label: 'Toggle Developer Tools', accelerator: 'Alt+Ctrl+I', click() { window.toggleDevTools(); } },
         ] : [
-          { label: 'Toggle Full Screen', accelerator: 'F11', click() { mainWindow.setFullScreen(!mainWindow.isFullScreen()); } },
+          { label: 'Toggle Full Screen', accelerator: 'F11', click() { window.setFullScreen(!window.isFullScreen()); } },
         ]
       }, {
         label: 'Tweet',
         submenu: [
-          { label: 'Reply', accelerator: 'Enter', click() { console.log('stub'); } },
+          { label: 'Reply', accelerator: 'Enter', click() { window.webContents.send('invoke-reply') } },
         ]
       }, {
         label: 'Help',

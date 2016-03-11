@@ -15,11 +15,11 @@ class TweetList extends React.Component {
       <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.isActive() ? 'active' : ''}`}>
         {this.props.tweets.map((tweet) =>
           <Tweet
-            key={tweet.id}
+            key={tweet.id_str}
             tweet={tweet}
             tab={this.props.tab}
             account={this.props.account}
-            active={activeTweetId == tweet.id}
+            active={activeTweetId == tweet.id_str}
           />
         )}
       </ul>
