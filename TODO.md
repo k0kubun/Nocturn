@@ -10,10 +10,14 @@
 - [ ] Insert Enter by Alt+Enter
 - [ ] Ctrl+Tab binding to change tabs?
 - [ ] Dock badge
+- [ ] Load more tweets on bootstrap
+- [ ] Add `t` keybind
 
 ## internal
 - [ ] Drop unnecessary return in Authentication and TwitterClient
 - [x] Cleanup Keycode
+- [ ] Drop slow seek of addTweet
+- [ ] Save tweets by Hash
 
 # v2 or later
 ## features
