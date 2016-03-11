@@ -24,21 +24,35 @@ https://github.com/k0kubun/Nocturn/releases
 
 ### Key bindings
 
-|Key|Command|
-|:---|:---|
-|<kbd>Enter</kbd>| Tweet, Reply, Search |
-|<kbd>j</kbd>, <kbd>↓</kbd>|Select a next tweet|
-|<kbd>k</kbd>, <kbd>↑</kbd>|Select a previous tweet|
-|<kbd>0</kbd>, <kbd>space</kbd>|Select the first tweet|
-|<kbd>f</kbd>|Add a tweet to favorites|
-|<kbd>Cmd-Shift-v</kbd>|Retweet a tweet|
-|<kbd>Cmd-backspace</kbd>|Delete a tweet|
-|<kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd>|Select a next tab|
-|<kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd>|Select a previous tab|
-|<kbd>n</kbd>, <kbd>Cmd-j</kbd>|Select a next account|
-|<kbd>p</kbd>, <kbd>Cmd-k</kbd>|Select a previous account|
+| Command                   | OSX                                  | Linux, Windows                       |
+|:--------------------------|:-------------------------------------|:-------------------------------------|
+|  Tweet, Reply, Search     | <kbd>Enter</kbd>                     | <kbd>Enter</kbd>                     |
+| Select a next tweet       | <kbd>j</kbd>, <kbd>↓</kbd>           | <kbd>j</kbd>, <kbd>↓</kbd>           |
+| Select a previous tweet   | <kbd>k</kbd>, <kbd>↑</kbd>           | <kbd>k</kbd>, <kbd>↑</kbd>           |
+| Select the first tweet    | <kbd>0</kbd>, <kbd>space</kbd>       | <kbd>0</kbd>, <kbd>space</kbd>       |
+| Add a tweet to favorites  | <kbd>f</kbd>                         | <kbd>f</kbd>                         |
+| Retweet a tweet           | <kbd>Cmd-Shift-v</kbd>               | <kbd>Cmd-Shift-v</kbd>               |
+| Delete a tweet            | <kbd>Cmd-backspace</kbd>             | <kbd>Cmd-backspace</kbd>             |
+| Select a next tab         | <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> | <kbd>h</kbd>, <kbd>Cmd-Shift-]</kbd> |
+| Select a previous tab     | <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> | <kbd>l</kbd>, <kbd>Cmd-Shift-[</kbd> |
+| Select a next account     | <kbd>n</kbd>, <kbd>Cmd-j</kbd>       | <kbd>n</kbd>, <kbd>Cmd-j</kbd>       |
+| Select a previous account | <kbd>p</kbd>, <kbd>Cmd-k</kbd>       | <kbd>p</kbd>, <kbd>Cmd-k</kbd>       |
 
-Regard Cmd as Windows or Meta key if you're not using OSX.
+### TODO
+
+| Command                   | OSX | Linux, Windows |
+|:--------------------------|:----|:---------------|
+|  Tweet, Reply, Search     |     |                |
+| Select a next tweet       |     |                |
+| Select a previous tweet   |     |                |
+| Select the first tweet    |     |                |
+| Add a tweet to favorites  |     |                |
+| Retweet a tweet           |     |                |
+| Delete a tweet            |     |                |
+| Select a next tab         |     |                |
+| Select a previous tab     |     |                |
+| Select a next account     |     |                |
+| Select a previous account |     |                |
 
 ### Multi account
 
