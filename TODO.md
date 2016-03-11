@@ -39,3 +39,4 @@
 - [ ] Drop all document reference
 - [ ] Use [i+1] instead of slice(1)[0]
 - [ ] Refactor IpcAction, RichState
+- [ ] Stop using querySelector
