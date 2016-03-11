@@ -1,4 +1,4 @@
-import { shell, Menu } from 'electron';
+import { app, shell, Menu } from 'electron';
 
 export default class MenuBuilder {
   static build(window) {
@@ -16,15 +16,9 @@ export default class MenuBuilder {
   static templateForDarwin(window) {
     return [
       {
-        label: 'Electron',
+        label: 'Nocturn',
         submenu: [
-          { label: 'About ElectronReact', selector: 'orderFrontStandardAboutPanel:' },
-          { type: 'separator' },
-          { label: 'Services', submenu: [] },
-          { type: 'separator' },
-          { label: 'Hide ElectronReact', accelerator: 'Command+H', selector: 'hide:' },
-          { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
-          { label: 'Show All', selector: 'unhideAllApplications:' },
+          { label: 'Open GitHub', click() { shell.openExternal('http://github.com/k0kubun/Nocturn'); } },
           { type: 'separator' },
           { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
         ],
@@ -56,15 +50,8 @@ export default class MenuBuilder {
           { type: 'separator' },
           { label: 'Bring All to Front', selector: 'arrangeInFront:' },
         ]
-      }, {
-        label: 'Help',
-        submenu: [
-          { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } },
-          { label: 'Documentation', click() { shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme'); } },
-          { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
-          { label: 'Search Issues', click() { shell.openExternal('https://github.com/atom/electron/issues'); } },
-        ]
       },
+      this.helpMenu(),
     ];
   }
 
@@ -73,8 +60,9 @@ export default class MenuBuilder {
       {
         label: 'Nocturn',
         submenu: [
-          { label: 'Quit', accelerator: 'Ctrl+W', click() { window.close(); } },
           { label: 'Open GitHub', click() { shell.openExternal('http://github.com/k0kubun/Nocturn'); } },
+          { type: 'separator' },
+          { label: 'Quit', accelerator: 'Ctrl+W', click() { window.close(); } },
         ],
       }, {
         label: 'View',
@@ -112,12 +100,17 @@ export default class MenuBuilder {
           { label: 'Next Account',     accelerator: 'Alt+J', click() { window.webContents.send('select-next-account') } },
           { label: 'Previous Account', accelerator: 'Alt+K', click() { window.webContents.send('select-prev-account') } },
         ],
-      }, {
-        label: 'Help',
-        submenu: [
-          { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
-        ],
       },
+      this.helpMenu(),
     ];
+  }
+
+  static helpMenu() {
+    return {
+      label: 'Help',
+      submenu: [
+        { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
+      ],
+    };
   }
 }

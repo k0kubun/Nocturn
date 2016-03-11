@@ -8,6 +8,7 @@
 - [ ] Localize?
 - [ ] Insert Enter by Alt+Enter
 - [ ] Ctrl+Tab binding to change tabs?
+- [ ] Dock badge
 
 ## internal
 - [ ] Drop unnecessary return in Authentication and TwitterClient
