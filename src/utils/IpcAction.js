@@ -19,34 +19,6 @@ export default class IpcAction {
 
       // FIXME: Use better way to focus
       this.document.getElementById('tweet_editor').focus();
-    })
-
-    ipcRenderer.on('select-next-tweet', (event) => {
-      let state = new RichState(store);
-      let tweet = state.findNextTweet();
-      if (!tweet) return null;
-      store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
-
-      let visibleLimit = this.document.body.clientHeight;
-      let activeBottom = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().bottom;
-      if (visibleLimit < activeBottom) {
-        let element = this.document.querySelector('.timeline.active .tweets.active');
-        element.scrollTop += element.clientHeight / 2;
-      }
-    });
-
-    ipcRenderer.on('select-prev-tweet', (event) => {
-      let state = new RichState(store);
-      let tweet = state.findPrevTweet();
-      if (!tweet) return null;
-      store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
-
-      let activeTop = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().top;
-      let visibleLimit = this.document.querySelector('.timeline.active .tweets.active').getBoundingClientRect().top;
-      if (activeTop < visibleLimit) {
-        let element = this.document.querySelector('.timeline.active .tweets.active');
-        element.scrollTop -= element.clientHeight / 2;
-      }
     });
 
     ipcRenderer.on('select-first-tweet', (event) => {

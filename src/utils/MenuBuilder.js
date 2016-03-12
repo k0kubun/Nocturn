@@ -49,14 +49,10 @@ export default class MenuBuilder {
           { label: 'Favorite',        accelerator: 'F',                 click() { window.webContents.send('invoke-favorite') } },
           { label: 'Retweet',         accelerator: 'Command+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
           { label: 'Delete',          accelerator: 'Command+Backspace', click() { window.webContents.send('invoke-delete') } },
-          { label: 'Select Next',     accelerator: 'Down',              click() { window.webContents.send('select-next-tweet') } },
-          { label: 'Select Previous', accelerator: 'Up',                click() { window.webContents.send('select-prev-tweet') } },
           { label: 'Select First',    accelerator: 'Space',             click() { window.webContents.send('select-first-tweet') } },
           { type: 'separator' },
           {
             label: 'Optional Keybinds', submenu: [
-              { label: 'Select Next',     accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
-              { label: 'Select Previous', accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
               { label: 'Select First',    accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
             ]
           },
@@ -107,14 +103,10 @@ export default class MenuBuilder {
           { label: 'Favorite',        accelerator: 'F',             click() { window.webContents.send('invoke-favorite') } },
           { label: 'Retweet',         accelerator: 'Alt+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
           { label: 'Delete',          accelerator: 'Alt+Backspace', click() { window.webContents.send('invoke-delete') } },
-          { label: 'Select Next',     accelerator: 'Down',          click() { window.webContents.send('select-next-tweet') } },
-          { label: 'Select Previous', accelerator: 'Up',            click() { window.webContents.send('select-prev-tweet') } },
           { label: 'Select First',    accelerator: 'Space',         click() { window.webContents.send('select-first-tweet') } },
           { type: 'separator' },
           {
             label: 'Optional Keybinds', submenu: [
-              { label: 'Select Next',     accelerator: 'J', click() { window.webContents.send('select-next-tweet') } },
-              { label: 'Select Previous', accelerator: 'K', click() { window.webContents.send('select-prev-tweet') } },
               { label: 'Select First',    accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
             ]
           },

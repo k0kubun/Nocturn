@@ -5,11 +5,11 @@ import { createStore } from 'redux';
 import App             from './containers/App';
 import rootReducer     from './reducers';
 import IpcAction       from './utils/IpcAction';
-import TabKeyBinder    from './utils/TabKeyBinder';
+import GlobalKeyBind   from './utils/GlobalKeyBind';
 
 let store = createStore(rootReducer);
 new IpcAction(document).subscribe(store);
-new TabKeyBinder(document).bindFocus();
+new GlobalKeyBind(document).subscribe(store);
 
 if (process.env.NODE_ENV !== 'production') {
   const Perf = require('react-addons-perf');
