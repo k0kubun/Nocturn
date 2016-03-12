@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   Perf.start();
   store.subscribe(() => {
     Perf.stop();
-    //Perf.printInclusive(Perf.getLastMeasurements());
+    Perf.printInclusive(Perf.getLastMeasurements());
     Perf.start();
   })
 }

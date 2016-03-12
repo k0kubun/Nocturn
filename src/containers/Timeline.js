@@ -101,9 +101,11 @@ class Timeline extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
     activeAccount: state.accounts[state.activeAccountIndex],
+    tweetsByTab:   state.tabsByUserId[props.account.id] || {},
+    selectedTab:   state.selectedTabByUserId[props.account.id] || 'home',
   };
 }
 

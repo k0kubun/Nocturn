@@ -10,11 +10,9 @@ import Actions              from '../actions';
 
 class App extends React.Component {
   static propTypes = {
-    accounts:            PropTypes.array.isRequired,
-    tabsByUserId:        PropTypes.object.isRequired,
-    selectedTabByUserId: PropTypes.object.isRequired,
-    addAccount:          PropTypes.func.isRequired,
-    refreshUserInfo:     PropTypes.func.isRequired,
+    accounts:        PropTypes.array.isRequired,
+    addAccount:      PropTypes.func.isRequired,
+    refreshUserInfo: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -43,12 +41,7 @@ class App extends React.Component {
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
-            <Timeline
-              key={account.id}
-              account={account}
-              tweetsByTab={this.props.tabsByUserId[account.id] || {}}
-              selectedTab={this.props.selectedTabByUserId[account.id] || 'home'}
-            />
+            <Timeline key={account.id} account={account} />
           )}
         </div>
       </div>
@@ -58,9 +51,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    accounts:            state.accounts,
-    selectedTabByUserId: state.selectedTabByUserId,
-    tabsByUserId:        state.tabsByUserId,
+    accounts: state.accounts,
   }
 }
 
