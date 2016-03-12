@@ -39,13 +39,17 @@ export default class GlobalKeyBind {
     if (this.isEditing()) return;
     event.preventDefault();
 
-    let state = new RichState(store);
-    let tweet = state.findNextTweet();
-    if (!tweet) return null;
-    store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    let currentElement = this.document.querySelector('.timeline.active .tweets.active .tweet.active');
+    if (!currentElement) return;
+
+    let nextElement = currentElement.nextSibling;
+    if (!nextElement) return;
+
+    let state = new RichState(this.store);
+    this.store.dispatch(Actions.tweets.selectTweet({ id_str: nextElement.getAttribute('data-id') }, state.activeTab(), state.activeAccount()));
 
     let visibleLimit = this.document.body.clientHeight;
-    let activeBottom = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().bottom;
+    let activeBottom = nextElement.getBoundingClientRect().bottom;
     if (visibleLimit < activeBottom) {
       let element = this.document.querySelector('.timeline.active .tweets.active');
       element.scrollTop += element.clientHeight / 2;
@@ -56,12 +60,16 @@ export default class GlobalKeyBind {
     if (this.isEditing()) return;
     event.preventDefault();
 
-    let state = new RichState(store);
-    let tweet = state.findPrevTweet();
-    if (!tweet) return null;
-    store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    let currentElement = this.document.querySelector('.timeline.active .tweets.active .tweet.active');
+    if (!currentElement) return;
 
-    let activeTop = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().top;
+    let prevElement = currentElement.previousSibling;
+    if (!prevElement) return;
+
+    let state = new RichState(this.store);
+    this.store.dispatch(Actions.tweets.selectTweet({ id_str: prevElement.getAttribute('data-id') }, state.activeTab(), state.activeAccount()));
+
+    let activeTop = prevElement.getBoundingClientRect().top;
     let visibleLimit = this.document.querySelector('.timeline.active .tweets.active').getBoundingClientRect().top;
     if (activeTop < visibleLimit) {
       let element = this.document.querySelector('.timeline.active .tweets.active');
