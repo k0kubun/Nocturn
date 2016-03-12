@@ -5,19 +5,11 @@ import TwitterClient        from '../utils/TwitterClient'
 
 class ListSelector extends React.Component {
   static propTypes = {
-    account:             PropTypes.object.isRequired,
-    listsByUserId:       PropTypes.object.isRequired,
-    selectedTabByUserId: PropTypes.object.isRequired,
-    clearAndSetTweets:   PropTypes.func.isRequired,
-    setActiveListId:     PropTypes.func.isRequired,
-  }
-
-  lists() {
-    return this.props.listsByUserId[this.props.account.id] || [];
-  }
-
-  isActive() {
-    return this.props.selectedTabByUserId[this.props.account.id] === 'lists';
+    account:           PropTypes.object.isRequired,
+    active:            PropTypes.bool.isRequired,
+    lists:             PropTypes.array.isRequired,
+    clearAndSetTweets: PropTypes.func.isRequired,
+    setActiveListId:   PropTypes.func.isRequired,
   }
 
   onListChanged(event) {
@@ -34,10 +26,10 @@ class ListSelector extends React.Component {
 
   render() {
     return(
-      <div className={`tweets_header list_selector ${this.isActive() ? 'active' : ''}`}>
+      <div className={`tweets_header list_selector ${this.props.active ? 'active' : ''}`}>
         <select className='list_field' onChange={this.onListChanged.bind(this)}>
           <option value='0'>Select List...</option>
-          {this.lists().map((list) =>
+          {this.props.lists.map((list) =>
             <option key={list.id} value={list.id}>{list.full_name}</option>
           )}
         </select>
@@ -46,10 +38,10 @@ class ListSelector extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
-    listsByUserId: state.listsByUserId,
-    selectedTabByUserId: state.selectedTabByUserId,
+    lists:  state.listsByUserId[props.account.id] || [],
+    active: state.selectedTabByUserId[props.account.id] === 'lists',
   };
 }
 
