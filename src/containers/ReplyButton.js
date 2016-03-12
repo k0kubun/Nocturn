@@ -1,8 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Actions     from '../actions';
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
+import Actions              from '../actions';
 
 class ReplyButton extends React.Component {
+  static propTypes = {
+    setInReplyTo: PropTypes.func.isRequired,
+    setText:      PropTypes.func.isRequired,
+  }
+
   onReplyClicked(event) {
     this.props.setText(`@${this.props.tweet.user.screen_name} `);
     this.props.setInReplyTo(this.props.tweet);
@@ -24,4 +29,7 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, Actions)(ReplyButton);
+export default connect(mapStateToProps, {
+  ...Actions.texts,
+  ...Actions.tweets,
+})(ReplyButton);
