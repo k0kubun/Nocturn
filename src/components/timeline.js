@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
-import ListContainer        from './list-container'
-import SearchContainer      from './search-container'
-import TweetList            from './tweet-list'
-import TweetTab             from './tweet-tab'
-import Actions              from '../actions';
-import TwitterClient        from '../utils/twitter-client'
-import TimelineProxy        from '../utils/timeline-proxy'
-import { connect }          from 'react-redux';
+import ListContainer        from '../containers/list-container';
+import SearchContainer      from '../containers/search-container';
+import TimelineProxy        from '../utils/timeline-proxy';
+import TweetList            from '../containers/tweet-list';
+import TweetTab             from '../containers/tweet-tab';
+import TwitterClient        from '../utils/twitter-client';
 
-class Timeline extends React.Component {
+export default class Timeline extends React.Component {
   static propTypes = {
     account:  PropTypes.object.isRequired,
     active:   PropTypes.bool.isRequired,
@@ -81,15 +79,3 @@ class Timeline extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state, props) => {
-  let activeAccount = state.accounts[state.activeAccountIndex] || {};
-  return {
-    active: activeAccount.id == props.account.id,
-  };
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-  ...Actions.lists,
-})(Timeline);

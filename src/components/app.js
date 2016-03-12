@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import AccountContainer     from '../containers/account-container';
-import Authentication       from '../utils/authentication'
+import Authentication       from '../utils/authentication';
 import EditorContainer      from '../containers/editor-container';
 import HeaderContainer      from '../containers/header-container';
-import Timeline             from '../containers/timeline';
-import TwitterClient        from '../utils/twitter-client'
+import TimelineContainer    from '../containers/timeline-container';
+import TwitterClient        from '../utils/twitter-client';
 
 export default class App extends React.Component {
   static propTypes = {
@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
-            <Timeline key={account.id} account={account} />
+            <TimelineContainer key={account.id} account={account} />
           )}
         </div>
       </div>
