@@ -1,14 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AccountSelector from './AccountSelector';
-import Authentication  from '../utils/Authentication'
-import Editor          from './Editor';
-import Header          from './Header';
-import Timeline        from './Timeline';
-import TwitterClient   from '../utils/TwitterClient'
-import Actions         from '../actions';
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
+import AccountSelector      from './AccountSelector';
+import Authentication       from '../utils/Authentication'
+import Editor               from './Editor';
+import Header               from './Header';
+import Timeline             from './Timeline';
+import TwitterClient        from '../utils/TwitterClient'
+import Actions              from '../actions';
 
 class App extends React.Component {
+  static propTypes = {
+    accounts:            PropTypes.array.isRequired,
+    tabsByUserId:        PropTypes.object.isRequired,
+    selectedTabByUserId: PropTypes.object.isRequired,
+    addAccount:          PropTypes.func.isRequired,
+    refreshUserInfo:     PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     this.initializeAccounts();
   }
@@ -56,4 +64,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions)(App);
+export default connect(mapStateToProps, {
+  ...Actions.accounts,
+})(App);
