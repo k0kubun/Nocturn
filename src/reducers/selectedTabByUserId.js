@@ -2,7 +2,7 @@ import Actions from '../actions';
 
 export const selectedTabByUserId = (state = {}, action) => {
   switch (action.type) {
-    case Actions.SELECT_TAB:
+    case Actions.tabs.SELECT_TAB:
       return {
         ...state,
         [action.account.id]: action.tab,

@@ -29,7 +29,7 @@ const removeFromSet = (set, tweet) => {
 
 export const tabsByUserId = (state = {}, action) => {
   switch (action.type) {
-    case Actions.ADD_TWEET:
+    case Actions.tweets.ADD_TWEET:
       return {
         ...state,
         [action.account.id]: {
@@ -40,7 +40,7 @@ export const tabsByUserId = (state = {}, action) => {
           ).slice(0, MAX_TWEETS_FOR_EACH_TAB),
         },
       };
-    case Actions.REMOVE_TWEET:
+    case Actions.tweets.REMOVE_TWEET:
       return {
         ...state,
         [action.account.id]: {
@@ -51,7 +51,7 @@ export const tabsByUserId = (state = {}, action) => {
           ),
         },
       };
-    case Actions.CLEAR_AND_SET_TWEETS:
+    case Actions.tweets.CLEAR_AND_SET_TWEETS:
       return {
         ...state,
         [action.account.id]: {

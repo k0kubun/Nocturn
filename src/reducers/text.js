@@ -2,9 +2,9 @@ import Actions from '../actions';
 
 export const text = (state = '', action) => {
   switch (action.type) {
-    case Actions.SET_TEXT:
+    case Actions.texts.SET_TEXT:
       return action.text;
-    case Actions.CLEAR_TEXT:
+    case Actions.texts.CLEAR_TEXT:
       return '';
     default:
       return state;

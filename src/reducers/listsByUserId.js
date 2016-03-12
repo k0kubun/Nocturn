@@ -2,7 +2,7 @@ import Actions from '../actions';
 
 export const listsByUserId = (state = {}, action) => {
   switch (action.type) {
-    case Actions.SET_LISTS:
+    case Actions.lists.SET_LISTS:
       return {
         ...state,
         [action.account.id]: action.lists,
