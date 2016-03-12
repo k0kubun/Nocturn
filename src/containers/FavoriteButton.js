@@ -1,9 +1,16 @@
-import React from 'react';
-import Actions     from '../actions';
-import { connect } from 'react-redux';
-import TwitterClient from '../utils/TwitterClient'
+import React, { PropTypes } from 'react';
+import Actions              from '../actions';
+import { connect }          from 'react-redux';
+import TwitterClient        from '../utils/TwitterClient'
 
 class FavoriteButton extends React.Component {
+  static propTypes = {
+    account:  PropTypes.object.isRequired,
+    tweet:    PropTypes.object.isRequired,
+    tab:      PropTypes.string.isRequired,
+    addTweet: PropTypes.func.isRequired,
+  }
+
   onFavoriteClicked(event) {
     let client = new TwitterClient(this.props.account);
     client.favoriteStatus(this.props.tweet.id_str, (tweet) => {
@@ -24,4 +31,6 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, Actions)(FavoriteButton);
+export default connect(mapStateToProps, {
+  ...Actions.tweets,
+})(FavoriteButton);
