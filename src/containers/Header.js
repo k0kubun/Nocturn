@@ -1,11 +1,18 @@
-import React from 'react';
-import { connect }   from 'react-redux';
-import { shell } from 'electron';
-import TwitterClient from '../utils/TwitterClient'
-import TimelineProxy from '../utils/TimelineProxy'
-import Actions       from '../actions';
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
+import { shell }            from 'electron';
+import TwitterClient        from '../utils/TwitterClient'
+import TimelineProxy        from '../utils/TimelineProxy'
+import Actions              from '../actions';
 
 class Header extends React.Component {
+  static propTypes = {
+    activeAccount:     PropTypes.object,
+    activeListId:      PropTypes.string,
+    activeSearchQuery: PropTypes.string,
+    addTweet:          PropTypes.func.isRequired,
+  }
+
   onHomeClicked() {
     let url = `https://twitter.com/${this.props.activeAccount.screenName}`;
     shell.openExternal(url);
@@ -73,4 +80,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions)(Header);
+export default connect(mapStateToProps, {
+  ...Actions.tweets,
+})(Header);
