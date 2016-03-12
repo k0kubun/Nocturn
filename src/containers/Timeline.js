@@ -91,8 +91,8 @@ class Timeline extends React.Component {
 
         <TweetList {...this.listPropsFor('home')} />
         <TweetList {...this.listPropsFor('mentions')} />
-        <TweetList {...this.listPropsFor('lists')}  withHeader='true'/>
-        <TweetList {...this.listPropsFor('search')} withHeader='true'/>
+        <TweetList {...this.listPropsFor('lists')}  withHeader={true}/>
+        <TweetList {...this.listPropsFor('search')} withHeader={true}/>
 
         <ListSelector account={this.props.account} />
         <SearchBox account={this.props.account} />
