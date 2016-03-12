@@ -10,11 +10,10 @@ import { connect }          from 'react-redux';
 
 class Timeline extends React.Component {
   static propTypes = {
-    account:     PropTypes.object.isRequired,
-    active:      PropTypes.bool.isRequired,
-    tweetsByTab: PropTypes.object.isRequired,
-    addTweet:    PropTypes.func.isRequired,
-    setLists:    PropTypes.func.isRequired,
+    account:  PropTypes.object.isRequired,
+    active:   PropTypes.bool.isRequired,
+    addTweet: PropTypes.func.isRequired,
+    setLists: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -57,21 +56,6 @@ class Timeline extends React.Component {
     });
   }
 
-  tabPropsFor(tab) {
-    return {
-      account: this.props.account,
-      tab:     tab,
-    };
-  }
-
-  listPropsFor(tab) {
-    return {
-      tab:     tab,
-      tweets:  this.props.tweetsByTab[tab] || [],
-      account: this.props.account,
-    };
-  }
-
   client() {
     return new TwitterClient(this.props.account);
   }
@@ -86,10 +70,10 @@ class Timeline extends React.Component {
           <TweetTab account={this.props.account} tab='search'>Search</TweetTab>
         </ul>
 
-        <TweetList {...this.listPropsFor('home')} />
-        <TweetList {...this.listPropsFor('mentions')} />
-        <TweetList {...this.listPropsFor('lists')}  withHeader={true}/>
-        <TweetList {...this.listPropsFor('search')} withHeader={true}/>
+        <TweetList account={this.props.account} tab='home' />
+        <TweetList account={this.props.account} tab='mentions' />
+        <TweetList account={this.props.account} tab='lists'  withHeader={true} />
+        <TweetList account={this.props.account} tab='search' withHeader={true} />
 
         <ListSelector account={this.props.account} />
         <SearchBox account={this.props.account} />
@@ -101,8 +85,7 @@ class Timeline extends React.Component {
 const mapStateToProps = (state, props) => {
   let activeAccount = state.accounts[state.activeAccountIndex] || {};
   return {
-    active:      activeAccount.id == props.account.id,
-    tweetsByTab: state.tabsByUserId[props.account.id] || {},
+    active: activeAccount.id == props.account.id,
   };
 }
 
