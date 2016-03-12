@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import Tweet                from './tweet';
-import { connect }          from 'react-redux';
+import Tweet                from '../containers/tweet';
 
-class TweetList extends React.Component {
+export default class TweetList extends React.Component {
   static propTypes = {
     account:    PropTypes.object.isRequired,
     active:     PropTypes.bool.isRequired,
@@ -26,14 +25,3 @@ class TweetList extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state, props) => {
-  let selectedTab = state.selectedTabByUserId[props.account.id] || 'home';
-  let tweetsByTab = state.tabsByUserId[props.account.id] || {};
-  return {
-    active: selectedTab === props.tab,
-    tweets: tweetsByTab[props.tab] || [],
-  }
-}
-
-export default connect(mapStateToProps, {})(TweetList);

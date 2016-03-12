@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ListContainer        from '../containers/list-container';
 import SearchContainer      from '../containers/search-container';
 import TimelineProxy        from '../utils/timeline-proxy';
-import TweetList            from '../containers/tweet-list';
+import TweetListContainer   from '../containers/tweet-list-container';
 import TweetTab             from '../containers/tweet-tab';
 import TwitterClient        from '../utils/twitter-client';
 
@@ -68,10 +68,10 @@ export default class Timeline extends React.Component {
           <TweetTab account={this.props.account} tab='search'>Search</TweetTab>
         </ul>
 
-        <TweetList account={this.props.account} tab='home' />
-        <TweetList account={this.props.account} tab='mentions' />
-        <TweetList account={this.props.account} tab='lists'  withHeader={true} />
-        <TweetList account={this.props.account} tab='search' withHeader={true} />
+        <TweetListContainer account={this.props.account} tab='home' />
+        <TweetListContainer account={this.props.account} tab='mentions' />
+        <TweetListContainer account={this.props.account} tab='lists'  withHeader={true} />
+        <TweetListContainer account={this.props.account} tab='search' withHeader={true} />
 
         <ListContainer account={this.props.account} />
         <SearchContainer account={this.props.account} />
