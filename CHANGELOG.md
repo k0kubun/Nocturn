@@ -1,4 +1,7 @@
 # Change Log
+## v0.2.1
+- Improve rendering performance
+
 ## v0.2.0
 Full scratch of implementation.
 
