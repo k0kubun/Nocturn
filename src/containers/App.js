@@ -7,6 +7,7 @@ import Header          from './Header';
 import Timeline        from './Timeline';
 import TwitterClient   from '../utils/TwitterClient'
 import Actions         from '../actions';
+import DevTools        from './DevTools';
 
 class App extends React.Component {
   componentDidMount() {
@@ -43,6 +44,7 @@ class App extends React.Component {
             />
           )}
         </div>
+        {process.env.NODE_ENV === 'development' ? <DevTools /> : ''}
       </div>
     );
   }

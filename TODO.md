@@ -18,6 +18,7 @@
 - [x] Cleanup Keycode
 - [ ] Drop slow seek of addTweet
 - [ ] Save tweets by Hash
+- [ ] Avoid devtools import on production
 
 # v2 or later
 ## features
@@ -47,3 +48,6 @@
 - [ ] Refactor IpcAction, RichState
 - [ ] Stop using querySelector
 - [ ] Drop tab key binder
+- [ ] Reduce binary size
+- [ ] Disable keybinds on Authentication
+- [ ] Write prop types explicitly
