@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import AccountContainer     from '../containers/account-container';
 import Authentication       from '../utils/authentication'
 import EditorContainer      from '../containers/editor-container';
-import Header               from '../containers/header';
+import HeaderContainer      from '../containers/header-container';
 import Timeline             from '../containers/timeline';
 import TwitterClient        from '../utils/twitter-client'
 
@@ -32,7 +32,7 @@ export default class App extends React.Component {
   render() {
     return(
       <div className={`timeline_container ${process.platform}`}>
-        <Header />
+        <HeaderContainer />
 
         <AccountContainer />
         <EditorContainer />

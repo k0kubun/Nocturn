@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
-import { shell }            from 'electron';
-import TwitterClient        from '../utils/twitter-client'
 import TimelineProxy        from '../utils/timeline-proxy'
-import Actions              from '../actions';
+import TwitterClient        from '../utils/twitter-client'
+import { shell }            from 'electron';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
   static propTypes = {
     activeAccount:     PropTypes.object,
     activeListId:      PropTypes.string,
@@ -70,16 +68,3 @@ class Header extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  let activeAccount = state.accounts[state.activeAccountIndex];
-  return {
-    activeAccount: activeAccount,
-    activeListId: activeAccount && state.activeListIdByUserId[activeAccount.id],
-    activeSearchQuery: activeAccount && state.searchQueryByUserId[activeAccount.id],
-  }
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-})(Header);
