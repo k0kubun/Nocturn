@@ -36,7 +36,7 @@ export default class GlobalKeyBind {
   }
 
   handleJ(event) {
-    if (this.isEditing()) return;
+    if (this.isEditing() || event.altKey) return;
     event.preventDefault();
 
     let currentElement = this.document.querySelector('.timeline.active .tweets.active .tweet.active');
@@ -57,7 +57,7 @@ export default class GlobalKeyBind {
   }
 
   handleK(event) {
-    if (this.isEditing()) return;
+    if (this.isEditing() || event.altKey) return;
     event.preventDefault();
 
     let currentElement = this.document.querySelector('.timeline.active .tweets.active .tweet.active');
