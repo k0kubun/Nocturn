@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
 import { ipcRenderer }      from 'electron';
-import Actions              from '../actions';
 import TwitterClient        from '../utils/twitter-client';
 
-class AccountSelector extends React.Component {
+export default class Account extends React.Component {
   static propTypes = {
     activeAccount:   PropTypes.object,
     accounts:        PropTypes.array.isRequired,
@@ -43,14 +41,3 @@ class AccountSelector extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    accounts:           state.accounts,
-    activeAccountIndex: state.activeAccountIndex,
-  }
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.accounts,
-})(AccountSelector);

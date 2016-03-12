@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect }          from 'react-redux';
-import AccountSelector      from './account-selector';
+import AccountContainer     from './account-container';
 import Authentication       from '../utils/authentication'
 import Editor               from './editor';
 import Header               from './header';
@@ -36,7 +36,7 @@ class App extends React.Component {
       <div className={`timeline_container ${process.platform}`}>
         <Header />
 
-        <AccountSelector />
+        <AccountContainer />
         <Editor />
 
         <div className='timelines'>
