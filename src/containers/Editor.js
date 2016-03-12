@@ -1,11 +1,18 @@
-import React from 'react';
-import TwitterClient from '../utils/TwitterClient'
-import TimelineProxy from '../utils/TimelineProxy'
-import * as Keycode  from '../utils/Keycode';
-import Actions       from '../actions';
-import { connect }   from 'react-redux';
+import React, { PropTypes } from 'react';
+import TwitterClient        from '../utils/TwitterClient'
+import TimelineProxy        from '../utils/TimelineProxy'
+import * as Keycode         from '../utils/Keycode';
+import Actions              from '../actions';
+import { connect }          from 'react-redux';
 
 class Editor extends React.Component {
+  static propTypes = {
+    activeAccount: PropTypes.object,
+    activeUser:    PropTypes.object,
+    text:          PropTypes.string.isRequired,
+    inReplyTo:     PropTypes.string,
+  }
+
   onTextareaChanged(event) {
     this.props.setText(event.target.value);
   }
@@ -65,9 +72,9 @@ const mapStateToProps = (state) => {
   let activeAccount = state.accounts[state.activeAccountIndex];
   return {
     activeAccount: activeAccount,
-    activeUser: activeAccount && state.userByUserId[activeAccount.id],
-    text: state.text,
-    inReplyTo: state.inReplyTo,
+    activeUser:    activeAccount && state.userByUserId[activeAccount.id],
+    text:          state.text,
+    inReplyTo:     state.inReplyTo,
   }
 }
 

@@ -1,11 +1,11 @@
 import Actions from '../actions';
 
-export const inReplyTo = (state = 0, action) => {
+export const inReplyTo = (state = null, action) => {
   switch (action.type) {
     case Actions.SET_IN_REPLY_TO:
       return action.tweet.id_str;
     case Actions.CLEAR_TEXT:
-      return 0;
+      return null;
     default:
       return state;
   }

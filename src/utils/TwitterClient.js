@@ -61,7 +61,7 @@ export default class TwitterClient {
     if (tweet === '') return;
 
     var params = { status: tweet };
-    if (inReplyTo !== 0) params['in_reply_to_status_id'] = inReplyTo;
+    if (inReplyTo !== null) params['in_reply_to_status_id'] = inReplyTo;
 
     this.client.post('statuses/update', params, (error, data, response) => {
       if (error) {
