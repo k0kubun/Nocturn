@@ -1,12 +1,13 @@
 import React           from 'react';
 import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
-import configureStore  from './store/configureStore'
+import { createStore } from 'redux';
 import App             from './containers/App';
-import IpcAction       from './utils/IpcAction';
-import TabKeyBinder    from './utils/TabKeyBinder';
+import rootReducer     from './reducers';
+import IpcAction       from './utils/IpcAction'
+import TabKeyBinder    from './utils/TabKeyBinder'
 
-let store = configureStore();
+let store = createStore(rootReducer);
 new IpcAction(document).subscribe(store);
 new TabKeyBinder(document).bindFocus();
 
