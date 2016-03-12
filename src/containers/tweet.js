@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
 import Autolinker           from 'autolinker';
-import FavoriteButton       from './FavoriteButton';
-import ReplyButton          from './ReplyButton';
-import Time                 from '../components/Time';
+import FavoriteButton       from './favorite-button';
+import ReplyButton          from './reply-button';
+import Time                 from '../components/time';
 import { connect }          from 'react-redux';
 
 class Tweet extends React.Component {

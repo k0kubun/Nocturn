@@ -1,7 +1,7 @@
 import { BrowserWindow } from 'electron'
-import JsonLoader        from './JsonLoader'
+import JsonLoader        from './json-loader'
 import NodeTwitterApi    from 'node-twitter-api'
-import TwitterClient     from './TwitterClient'
+import TwitterClient     from './twitter-client'
 
 let authWindow = null;
 

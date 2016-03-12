@@ -1,5 +1,5 @@
-import * as Keycode from './Keycode';
-import RichState    from './RichState'
+import * as Keycode from './keycode';
+import RichState    from './rich-state'
 import Actions      from '../actions';
 
 export default class GlobalKeyBind {

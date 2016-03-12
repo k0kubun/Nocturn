@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect }          from 'react-redux';
 import { shell }            from 'electron';
-import TwitterClient        from '../utils/TwitterClient'
-import TimelineProxy        from '../utils/TimelineProxy'
+import TwitterClient        from '../utils/twitter-client'
+import TimelineProxy        from '../utils/timeline-proxy'
 import Actions              from '../actions';
 
 class Header extends React.Component {

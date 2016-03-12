@@ -1,7 +1,7 @@
 import Twitter        from 'twitter';
 import fs             from 'fs';
 import path           from 'path';
-import Authentication from './Authentication';
+import Authentication from './authentication';
 
 export default class TwitterClient {
   constructor(accessToken) {

@@ -2,10 +2,10 @@ import React           from 'react';
 import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
-import App             from './containers/App';
+import App             from './containers/app';
 import rootReducer     from './reducers';
-import IpcAction       from './utils/IpcAction';
-import GlobalKeyBind   from './utils/GlobalKeyBind';
+import IpcAction       from './utils/ipc-action';
+import GlobalKeyBind   from './utils/global-key-bind';
 
 let store = createStore(rootReducer);
 new IpcAction(document).subscribe(store);

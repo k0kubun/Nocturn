@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect }          from 'react-redux';
-import AccountSelector      from './AccountSelector';
-import Authentication       from '../utils/Authentication'
-import Editor               from './Editor';
-import Header               from './Header';
-import Timeline             from './Timeline';
-import TwitterClient        from '../utils/TwitterClient'
+import AccountSelector      from './account-selector';
+import Authentication       from '../utils/authentication'
+import Editor               from './editor';
+import Header               from './header';
+import Timeline             from './timeline';
+import TwitterClient        from '../utils/twitter-client'
 import Actions              from '../actions';
 
 class App extends React.Component {

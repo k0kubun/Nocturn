@@ -1,7 +1,7 @@
 'use strict';
 
-import Authentication from './utils/Authentication';
-import MenuBuilder    from './utils/MenuBuilder';
+import Authentication from './utils/authentication';
+import MenuBuilder    from './utils/menu-builder';
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
 
 let mainWindow = null;

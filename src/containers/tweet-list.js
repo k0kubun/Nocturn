@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Tweet                from './Tweet';
+import Tweet                from './tweet';
 import { connect }          from 'react-redux';
 
 class TweetList extends React.Component {

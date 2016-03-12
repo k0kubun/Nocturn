@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import ListSelector         from './ListSelector'
-import SearchBox            from './SearchBox'
-import TweetList            from './TweetList'
-import TweetTab             from './TweetTab'
+import ListSelector         from './list-selector'
+import SearchBox            from './search-box'
+import TweetList            from './tweet-list'
+import TweetTab             from './tweet-tab'
 import Actions              from '../actions';
-import TwitterClient        from '../utils/TwitterClient'
-import TimelineProxy        from '../utils/TimelineProxy'
+import TwitterClient        from '../utils/twitter-client'
+import TimelineProxy        from '../utils/timeline-proxy'
 import { connect }          from 'react-redux';
 
 class Timeline extends React.Component {

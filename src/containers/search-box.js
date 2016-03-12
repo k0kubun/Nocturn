@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import * as Keycode         from '../utils/Keycode';
+import * as Keycode         from '../utils/keycode';
 import Actions              from '../actions';
-import TwitterClient        from '../utils/TwitterClient'
+import TwitterClient        from '../utils/twitter-client'
 import { connect }          from 'react-redux';
 
 class SearchBox extends React.Component {

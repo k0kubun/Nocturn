@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
 import { connect }          from 'react-redux';
-import TwitterClient        from '../utils/TwitterClient'
+import TwitterClient        from '../utils/twitter-client'
 
 class FavoriteButton extends React.Component {
   static propTypes = {

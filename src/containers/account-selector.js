@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect }          from 'react-redux';
 import { ipcRenderer }      from 'electron';
 import Actions              from '../actions';
-import TwitterClient        from '../utils/TwitterClient';
+import TwitterClient        from '../utils/twitter-client';
 
 class AccountSelector extends React.Component {
   static propTypes = {
