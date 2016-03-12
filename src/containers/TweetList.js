@@ -1,8 +1,17 @@
-import React from 'react';
-import Tweet from './Tweet'
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
+import Tweet                from './Tweet';
+import { connect }          from 'react-redux';
 
 class TweetList extends React.Component {
+  static propTypes = {
+    account:                  PropTypes.object.isRequired,
+    selectedTab:              PropTypes.string.isRequired,
+    selectedTweetIdsByUserId: PropTypes.object.isRequired,
+    tab:                      PropTypes.string.isRequired,
+    tweets:                   PropTypes.array.isRequired,
+    withHeader:               PropTypes.bool,
+  }
+
   isActive() {
     return this.props.selectedTab === this.props.tab;
   }
