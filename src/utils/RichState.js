@@ -62,7 +62,7 @@ export default class RichState {
     return this.activeTabTweetsCache = (
       this.state.tabsByUserId[this.activeAccount().id] &&
       this.state.tabsByUserId[this.activeAccount().id][this.activeTab()]
-    );
+    ) || [];
   }
 
   activeTweet() {

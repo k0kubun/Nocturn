@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import Autolinker           from 'autolinker'
-import ReplyButton          from './ReplyButton'
-import Time                 from '../components/Time'
 import Actions              from '../actions';
+import Autolinker           from 'autolinker';
+import FavoriteButton       from './FavoriteButton';
+import ReplyButton          from './ReplyButton';
+import Time                 from '../components/Time';
 import { connect }          from 'react-redux';
-import FavoriteButton       from './FavoriteButton'
 
 class Tweet extends React.Component {
   static propTypes = {
@@ -58,8 +58,12 @@ class Tweet extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {}
+const mapStateToProps = (state, props) => {
+  let activeTweetId = state.selectedTweetIdsByUserId[props.account.id] &&
+    state.selectedTweetIdsByUserId[props.account.id][props.tab];
+  return {
+    active: activeTweetId === props.tweet.id_str,
+  }
 }
 
 export default connect(mapStateToProps, {
