@@ -1,9 +1,17 @@
-import React from 'react';
-import Actions from '../actions';
-import { connect } from 'react-redux';
-import TwitterClient from '../utils/TwitterClient'
+import React, { PropTypes } from 'react';
+import Actions              from '../actions';
+import { connect }          from 'react-redux';
+import TwitterClient        from '../utils/TwitterClient'
 
 class ListSelector extends React.Component {
+  static propTypes = {
+    account:             PropTypes.object.isRequired,
+    listsByUserId:       PropTypes.object.isRequired,
+    selectedTabByUserId: PropTypes.object.isRequired,
+    clearAndSetTweets:   PropTypes.func.isRequired,
+    setActiveListId:     PropTypes.func.isRequired,
+  }
+
   lists() {
     return this.props.listsByUserId[this.props.account.id] || [];
   }
@@ -45,4 +53,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, Actions)(ListSelector);
+export default connect(mapStateToProps, {
+  ...Actions.lists,
+  ...Actions.tweets,
+})(ListSelector);
