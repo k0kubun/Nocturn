@@ -10,12 +10,11 @@ import { connect }          from 'react-redux';
 
 class Timeline extends React.Component {
   static propTypes = {
-    account:       PropTypes.object.isRequired,
-    activeAccount: PropTypes.object,
-    selectedTab:   PropTypes.string.isRequired,
-    tweetsByTab:   PropTypes.object.isRequired,
-    addTweet:      PropTypes.func.isRequired,
-    setLists:      PropTypes.func.isRequired,
+    account:     PropTypes.object.isRequired,
+    active:      PropTypes.bool.isRequired,
+    tweetsByTab: PropTypes.object.isRequired,
+    addTweet:    PropTypes.func.isRequired,
+    setLists:    PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -79,7 +78,7 @@ class Timeline extends React.Component {
 
   render() {
     return(
-      <div className={this.props.account.id == this.props.activeAccount.id ? 'timeline active' : 'timeline'}>
+      <div className={`timeline ${this.props.active ? 'active' : ''}`}>
         <ul className='tabs clearfix'>
           <TweetTab account={this.props.account} tab='home'>Timeline</TweetTab>
           <TweetTab account={this.props.account} tab='mentions'>Mentions</TweetTab>
@@ -100,10 +99,10 @@ class Timeline extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+  let activeAccount = state.accounts[state.activeAccountIndex] || {};
   return {
-    activeAccount: state.accounts[state.activeAccountIndex],
-    tweetsByTab:   state.tabsByUserId[props.account.id] || {},
-    selectedTab:   state.selectedTabByUserId[props.account.id] || 'home',
+    active:      activeAccount.id == props.account.id,
+    tweetsByTab: state.tabsByUserId[props.account.id] || {},
   };
 }
 
