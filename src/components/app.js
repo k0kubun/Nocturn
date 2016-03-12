@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import AccountContainer     from '../containers/account-container';
 import Authentication       from '../utils/authentication'
-import Editor               from '../containers/editor';
+import EditorContainer      from '../containers/editor-container';
 import Header               from '../containers/header';
 import Timeline             from '../containers/timeline';
 import TwitterClient        from '../utils/twitter-client'
@@ -35,7 +35,7 @@ export default class App extends React.Component {
         <Header />
 
         <AccountContainer />
-        <Editor />
+        <EditorContainer />
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>

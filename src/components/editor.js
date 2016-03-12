@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
 import * as Keycode         from '../utils/keycode';
-import Actions              from '../actions';
-import ProfileImage         from './profile-image';
+import ProfileImage         from '../containers/profile-image';
 import TimelineProxy        from '../utils/timeline-proxy';
 import TwitterClient        from '../utils/twitter-client';
-import { connect }          from 'react-redux';
 
-class Editor extends React.Component {
+export default class Editor extends React.Component {
   static propTypes = {
     activeAccount: PropTypes.object,
     text:          PropTypes.string.isRequired,
@@ -52,16 +50,3 @@ class Editor extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    activeAccount: state.accounts[state.activeAccountIndex],
-    text:          state.text,
-    inReplyTo:     state.inReplyTo,
-  }
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-  ...Actions.texts,
-})(Editor);
