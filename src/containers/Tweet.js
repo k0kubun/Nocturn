@@ -1,12 +1,20 @@
-import React       from 'react';
-import Autolinker  from 'autolinker'
-import ReplyButton from './ReplyButton'
-import Time        from '../components/Time'
-import Actions     from '../actions';
-import { connect } from 'react-redux';
-import FavoriteButton from './FavoriteButton'
+import React, { PropTypes } from 'react';
+import Autolinker           from 'autolinker'
+import ReplyButton          from './ReplyButton'
+import Time                 from '../components/Time'
+import Actions              from '../actions';
+import { connect }          from 'react-redux';
+import FavoriteButton       from './FavoriteButton'
 
 class Tweet extends React.Component {
+  static propTypes = {
+    account:     PropTypes.object.isRequired,
+    active:      PropTypes.bool.isRequired,
+    tab:         PropTypes.string.isRequired,
+    tweet:       PropTypes.object.isRequired,
+    selectTweet: PropTypes.func.isRequired,
+  }
+
   onTweetClicked(event) {
     this.props.selectTweet(this.props.tweet, this.props.tab, this.props.account);
   }
@@ -54,4 +62,6 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, Actions)(Tweet);
+export default connect(mapStateToProps, {
+  ...Actions.tweets,
+})(Tweet);
