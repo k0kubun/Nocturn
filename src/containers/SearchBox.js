@@ -1,19 +1,15 @@
 import React, { PropTypes } from 'react';
+import * as Keycode         from '../utils/Keycode';
+import Actions              from '../actions';
 import TwitterClient        from '../utils/TwitterClient'
 import { connect }          from 'react-redux';
-import Actions              from '../actions';
-import * as Keycode         from '../utils/Keycode';
 
 class SearchBox extends React.Component {
   static propTypes = {
-    account:             PropTypes.object.isRequired,
-    selectedTabByUserId: PropTypes.object.isRequired,
-    clearAndSetTweets:   PropTypes.func.isRequired,
-    setSearchQuery:      PropTypes.func.isRequired,
-  }
-
-  isActive() {
-    return this.props.selectedTabByUserId[this.props.account.id] === 'search';
+    account:           PropTypes.object.isRequired,
+    active:            PropTypes.bool.isRequired,
+    clearAndSetTweets: PropTypes.func.isRequired,
+    setSearchQuery:    PropTypes.func.isRequired,
   }
 
   onSearchFieldKeyDown(event) {
@@ -31,7 +27,7 @@ class SearchBox extends React.Component {
 
   render() {
     return(
-      <div className={`tweets_header search_box ${this.isActive() ? 'active' : ''}`}>
+      <div className={`tweets_header search_box ${this.props.active ? 'active' : ''}`}>
         <input
           className='search_field'
           type='text'
@@ -43,9 +39,9 @@ class SearchBox extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
-    selectedTabByUserId: state.selectedTabByUserId,
+    active: state.selectedTabByUserId[props.account.id] === 'search',
   };
 }
 
