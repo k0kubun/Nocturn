@@ -1,4 +1,11 @@
 # Change Log
+## v0.2.2
+- Reduce package size
+- Improve performance to move tweet focus
+- Drop J, K, Up, Down from menu
+- Don't show relative time due to performance reason
+  - It'll be fixed in the future
+
 ## v0.2.1
 - Improve rendering performance
 

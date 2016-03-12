@@ -23,13 +23,13 @@ moment.locale(
 );
 
 export default class Time extends React.Component {
-  componentDidMount() {
-    this.intervalId = setInterval(this.update.bind(this), 1000 * 60);
-  }
+  // componentDidMount() {
+  //   this.intervalId = setInterval(this.update.bind(this), 1000 * 60);
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.intervalId);
+  // }
 
   getRelativeTime() {
     return this.getMomentTime().locale('en-short').fromNow();
@@ -58,7 +58,7 @@ export default class Time extends React.Component {
   render() {
     return(
       <time {...this.props} dateTime={this.getDateTime()} title={this.getAbsoluteTime()}>
-        {this.getDisplayedTime()}
+        {this.getAbsoluteTime()}
       </time>
     );
   }
