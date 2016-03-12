@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
-import AccountContainer     from './account-container';
+import AccountContainer     from '../containers/account-container';
 import Authentication       from '../utils/authentication'
-import Editor               from './editor';
-import Header               from './header';
-import Timeline             from './timeline';
+import Editor               from '../containers/editor';
+import Header               from '../containers/header';
+import Timeline             from '../containers/timeline';
 import TwitterClient        from '../utils/twitter-client'
-import Actions              from '../actions';
 
-class App extends React.Component {
+export default class App extends React.Component {
   static propTypes = {
     accounts:        PropTypes.array.isRequired,
     addAccount:      PropTypes.func.isRequired,
@@ -48,13 +46,3 @@ class App extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    accounts: state.accounts,
-  }
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.accounts,
-})(App);

@@ -2,7 +2,7 @@ import React           from 'react';
 import { render }      from 'react-dom';
 import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
-import App             from './containers/app';
+import AppContainer    from './containers/app-container';
 import rootReducer     from './reducers';
 import IpcAction       from './utils/ipc-action';
 import GlobalKeyBind   from './utils/global-key-bind';
@@ -13,7 +13,7 @@ new GlobalKeyBind(document).subscribe(store);
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('root'),
 );
