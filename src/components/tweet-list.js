@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Tweet                from '../containers/tweet';
+import TweetContainer       from '../containers/tweet-container';
 
 export default class TweetList extends React.Component {
   static propTypes = {
@@ -14,7 +14,7 @@ export default class TweetList extends React.Component {
     return(
       <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.props.active ? 'active' : ''}`}>
         {this.props.tweets.map((tweet) =>
-          <Tweet
+          <TweetContainer
             key={tweet.id_str}
             tweet={tweet}
             tab={this.props.tab}
