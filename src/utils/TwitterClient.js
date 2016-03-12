@@ -1,12 +1,11 @@
-import JsonLoader from './JsonLoader';
-import Twitter    from 'twitter';
-import fs         from 'fs';
-import path       from 'path';
+import Twitter        from 'twitter';
+import fs             from 'fs';
+import path           from 'path';
 import Authentication from './Authentication';
 
 export default class TwitterClient {
   constructor(accessToken) {
-    var credentials = JsonLoader.read(Authentication.CREDENTIALS_JSON);
+    var credentials = Authentication.credentials();
 
     this.client = Twitter({
       consumer_key:        credentials['consumerKey'],
@@ -17,22 +16,22 @@ export default class TwitterClient {
   }
 
   homeTimeline(callback) {
-    return this.client.get('statuses/home_timeline', {}, (error, tweets, response) => {
+    this.client.get('statuses/home_timeline', {}, (error, tweets, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
-      return callback(tweets);
+      callback(tweets);
     });
   }
 
   mentionsTimeline(callback) {
-    return this.client.get('statuses/mentions_timeline', {}, (error, tweets, response) => {
+    this.client.get('statuses/mentions_timeline', {}, (error, tweets, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
-      return callback(tweets);
+      callback(tweets);
     });
   }
 
@@ -47,7 +46,7 @@ export default class TwitterClient {
           // noop
         } else if (data['created_at']) {
           // This is a normal tweet
-          return callback(data);
+          callback(data);
         }
       });
 
@@ -59,14 +58,11 @@ export default class TwitterClient {
   }
 
   updateStatus(tweet, inReplyTo, callback) {
-    if (tweet === '') {
-      return;
-    }
+    if (tweet === '') return;
 
     var params = { status: tweet };
-    if (inReplyTo !== 0) {
-      params['in_reply_to_status_id'] = inReplyTo;
-    }
+    if (inReplyTo !== 0) params['in_reply_to_status_id'] = inReplyTo;
+
     this.client.post('statuses/update', params, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
@@ -77,18 +73,17 @@ export default class TwitterClient {
   }
 
   favoriteStatus(tweetId, callback) {
-    return this.client.post('favorites/create', { id: tweetId }, (error, data, response) => {
+    this.client.post('favorites/create', { id: tweetId }, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
       }
-
-      return callback(data);
+      callback(data);
     });
   }
 
   retweetStatus(tweetId, callback) {
-    return this.client.post(`statuses/retweet/${tweetId}`, {}, (error, data, response) => {
+    this.client.post(`statuses/retweet/${tweetId}`, {}, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
@@ -98,51 +93,53 @@ export default class TwitterClient {
   }
 
   deleteStatus(tweetId, callback) {
-    return this.client.post(`statuses/destroy/${tweetId}`, {}, (error, data, response) => {
+    this.client.post(`statuses/destroy/${tweetId}`, {}, (error, data, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
-      return callback(data);
+      callback(data);
     });
   }
 
   verifyCredentials(callback) {
-    return this.client.get('account/verify_credentials', {}, (error, data, response) => {
+    this.client.get('account/verify_credentials', {}, (error, data, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
-      return callback(data);
+      callback(data);
     });
   }
 
   listsList(callback) {
-    return this.client.get('lists/list', {}, (error, data, response) => {
+    this.client.get('lists/list', {}, (error, data, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
-      return callback(data);
+      callback(data);
     });
   }
 
   listsStatuses(id, callback) {
-    return this.client.get('lists/statuses', { list_id: id }, (error, tweets, response) => {
+    this.client.get('lists/statuses', { list_id: id }, (error, tweets, response) => {
       if (error) {
-        return console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
+        return;
       }
-
       callback(tweets);
     });
   }
 
   searchTweets(query, callback) {
-    return this.client.get('search/tweets', { q: query }, (error, data, response) => {
-      if (error) {
-        return console.log(JSON.stringify(error));
-      }
+    if (query === '') return;
 
+    this.client.get('search/tweets', { q: query }, (error, data, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
       callback(data['statuses']);
     });
   }

@@ -17,9 +17,9 @@ export default class Authentication {
       return;
     }
 
-    return new Authentication((token) => {
-      return Authentication.addToken(token, () => {
-        return callback();
+    new Authentication((token) => {
+      Authentication.addToken(token, () => {
+        callback();
       });
     });
   }
@@ -31,7 +31,7 @@ export default class Authentication {
     }
     tokens.push(token);
     JsonLoader.write(this.ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
-    return callback();
+    callback();
   }
 
   static uniqTokens(tokens) {
@@ -69,8 +69,12 @@ export default class Authentication {
     return JsonLoader.read(this.ACCOUNTS_JSON) || [];
   }
 
+  static credentials() {
+    return JsonLoader.read(this.CREDENTIALS_JSON);
+  }
+
   constructor(callback) {
-    var credentials = JsonLoader.read(Authentication.CREDENTIALS_JSON);
+    var credentials = Authentication.credentials();
 
     var nodeTwitterApi = new NodeTwitterApi({
       callback:       'http://example.com',
@@ -98,9 +102,9 @@ export default class Authentication {
         if (matched) {
           event.preventDefault();
 
-          return nodeTwitterApi.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
+          nodeTwitterApi.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
             if (error) {
-              return new Authentication(callback);
+              new Authentication(callback);
             } else {
               var token = { accessToken: accessToken, accessTokenSecret: accessTokenSecret };
               var client = new TwitterClient(token);
@@ -123,18 +127,18 @@ export default class Authentication {
           event.preventDefault();
 
           // regard current session as invalid submission and retry
-          return new Authentication(callback);
+          new Authentication(callback);
         }
       });
 
       authWindow.on('closed', function() {
-        return authWindow = null;
+        authWindow = null;
       });
 
       if (oldWindow) {
         oldWindow.close();
       }
-      return authWindow.loadURL(`${url}&force_login=true`);
+      authWindow.loadURL(`${url}&force_login=true`);
     });
   }
 }
