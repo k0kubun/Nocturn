@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
-import TwitterClient        from '../utils/TwitterClient'
-import TimelineProxy        from '../utils/TimelineProxy'
 import * as Keycode         from '../utils/Keycode';
 import Actions              from '../actions';
+import ProfileImage         from './ProfileImage';
+import TimelineProxy        from '../utils/TimelineProxy';
+import TwitterClient        from '../utils/TwitterClient';
 import { connect }          from 'react-redux';
 
 class Editor extends React.Component {
   static propTypes = {
     activeAccount: PropTypes.object,
-    activeUser:    PropTypes.object,
     text:          PropTypes.string.isRequired,
     inReplyTo:     PropTypes.string,
     addTweet:      PropTypes.func.isRequired,
@@ -32,28 +32,10 @@ class Editor extends React.Component {
     }
   }
 
-  onTwitterIconClicked(event) {
-    event.preventDefault();
-    let document = event.target.ownerDocument;
-
-    // Dirty hack to toggle select element
-    let dropdown = document.getElementById('account_selector');
-    let mouseEvent = document.createEvent('MouseEvents');
-    mouseEvent.initMouseEvent('mousedown', true, true, window);
-    dropdown.dispatchEvent(mouseEvent);
-  }
-
   render() {
-    console.log(this.props);
     return(
       <div className='editor'>
-        <div className='account_wrapper'>
-          <img
-            className='twitter_icon'
-            src={this.props.activeUser ? this.props.activeUser.profile_image_url : ''}
-            onClick={this.onTwitterIconClicked.bind(this)}
-          />
-        </div>
+        <ProfileImage />
         <form action='#' method='post'>
           <textarea
             id='tweet_editor'
@@ -72,10 +54,8 @@ class Editor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  let activeAccount = state.accounts[state.activeAccountIndex];
   return {
-    activeAccount: activeAccount,
-    activeUser:    activeAccount && state.userByUserId[activeAccount.id],
+    activeAccount: state.accounts[state.activeAccountIndex],
     text:          state.text,
     inReplyTo:     state.inReplyTo,
   }
