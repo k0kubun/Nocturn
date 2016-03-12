@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
 
-class ProfileImage extends React.Component {
+export default class Icon extends React.Component {
   static propTypes = {
     activeUser: PropTypes.object,
   }
@@ -29,12 +28,3 @@ class ProfileImage extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  let activeAccount = state.accounts[state.activeAccountIndex];
-  return {
-    activeUser: activeAccount && state.userByUserId[activeAccount.id],
-  }
-}
-
-export default connect(mapStateToProps, {})(ProfileImage);

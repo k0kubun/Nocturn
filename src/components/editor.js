@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import * as Keycode         from '../utils/keycode';
-import ProfileImage         from '../containers/profile-image';
+import IconContainer        from '../containers/icon-container';
 import TimelineProxy        from '../utils/timeline-proxy';
 import TwitterClient        from '../utils/twitter-client';
 
@@ -33,7 +33,7 @@ export default class Editor extends React.Component {
   render() {
     return(
       <div className='editor'>
-        <ProfileImage />
+        <IconContainer />
         <form action='#' method='post'>
           <textarea
             id='tweet_editor'
