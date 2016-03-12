@@ -3,12 +3,12 @@ import JsonLoader        from './JsonLoader'
 import NodeTwitterApi    from 'node-twitter-api'
 import TwitterClient     from './TwitterClient'
 
-export const ACCOUNTS_JSON    = 'accounts.json';
-export const CREDENTIALS_JSON = 'credentials.json';
-
 let authWindow = null;
 
 export default class Authentication {
+  static ACCOUNTS_JSON    = 'accounts.json';
+  static CREDENTIALS_JSON = 'credentials.json';
+
   static authorized(callback) {
     var token = Authentication.defaultAccount();
 
@@ -25,12 +25,12 @@ export default class Authentication {
   }
 
   static addToken(token, callback) {
-    var tokens = JsonLoader.read(ACCOUNTS_JSON);
+    var tokens = JsonLoader.read(this.ACCOUNTS_JSON);
     if (tokens == null) {
       tokens = [];
     }
     tokens.push(token);
-    JsonLoader.write(ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
+    JsonLoader.write(this.ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
     return callback();
   }
 
@@ -66,11 +66,11 @@ export default class Authentication {
   }
 
   static allAccounts() {
-    return JsonLoader.read(ACCOUNTS_JSON) || [];
+    return JsonLoader.read(this.ACCOUNTS_JSON) || [];
   }
 
   constructor(callback) {
-    var credentials = JsonLoader.read(CREDENTIALS_JSON);
+    var credentials = JsonLoader.read(Authentication.CREDENTIALS_JSON);
 
     var nodeTwitterApi = new NodeTwitterApi({
       callback:       'http://example.com',

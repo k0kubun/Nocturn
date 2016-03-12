@@ -30,6 +30,7 @@ gulp.task('compile-es6', () => {
         presets: ['es2015', 'react'],
         plugins: [
           'syntax-trailing-function-commas',
+          'transform-class-properties',
           'transform-inline-environment-variables',
           'transform-object-rest-spread',
         ],

@@ -2,11 +2,11 @@ import JsonLoader from './JsonLoader';
 import Twitter    from 'twitter';
 import fs         from 'fs';
 import path       from 'path';
-import { CREDENTIALS_JSON } from './Authentication';
+import Authentication from './Authentication';
 
 export default class TwitterClient {
   constructor(accessToken) {
-    var credentials = JsonLoader.read(CREDENTIALS_JSON);
+    var credentials = JsonLoader.read(Authentication.CREDENTIALS_JSON);
 
     this.client = Twitter({
       consumer_key:        credentials['consumerKey'],
