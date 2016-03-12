@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Actions              from '../actions';
 import Autolinker           from 'autolinker';
 import FavoriteContainer    from './favorite-container';
-import ReplyButton          from './reply-button';
+import ReplyContainer       from './reply-container';
 import Time                 from '../components/time';
 import { connect }          from 'react-redux';
 
@@ -49,7 +49,7 @@ class Tweet extends React.Component {
             <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
           </div>
           <div className='right_widget'>
-            <ReplyButton tweet={this.props.tweet} account={this.props.account} />
+            <ReplyContainer tweet={this.props.tweet} account={this.props.account} />
             <FavoriteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>

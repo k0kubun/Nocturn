@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
-import Actions              from '../actions';
 
-class ReplyButton extends React.Component {
+export default class Reply extends React.Component {
   static propTypes = {
     setInReplyTo: PropTypes.func.isRequired,
     setText:      PropTypes.func.isRequired,
@@ -24,12 +22,3 @@ class ReplyButton extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {}
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.texts,
-  ...Actions.tweets,
-})(ReplyButton);
