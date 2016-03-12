@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
-import Actions              from '../actions';
-import { connect }          from 'react-redux';
 import TwitterClient        from '../utils/twitter-client'
 
-class ListSelector extends React.Component {
+export default class List extends React.Component {
   static propTypes = {
     account:           PropTypes.object.isRequired,
     active:            PropTypes.bool.isRequired,
@@ -37,15 +35,3 @@ class ListSelector extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state, props) => {
-  return {
-    lists:  state.listsByUserId[props.account.id] || [],
-    active: state.selectedTabByUserId[props.account.id] === 'lists',
-  };
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.lists,
-  ...Actions.tweets,
-})(ListSelector);
