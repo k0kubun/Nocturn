@@ -1,10 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
-import Actions from '../actions'
-import TwitterClient from '../utils/TwitterClient'
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
+import { ipcRenderer }      from 'electron';
+import Actions              from '../actions';
+import TwitterClient        from '../utils/TwitterClient';
 
 class AccountSelector extends React.Component {
+  static propTypes = {
+    activeAccount:   PropTypes.object,
+    accounts:        PropTypes.array.isRequired,
+    addAccount:      PropTypes.func.isRequired,
+    refreshUserInfo: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     ipcRenderer.on('finish-authentication', (event, token) => {
       this.props.addAccount(token);
@@ -39,9 +46,11 @@ class AccountSelector extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    accounts: state.accounts,
+    accounts:           state.accounts,
     activeAccountIndex: state.activeAccountIndex,
   }
 }
 
-export default connect(mapStateToProps, Actions)(AccountSelector);
+export default connect(mapStateToProps, {
+  ...Actions.accounts,
+})(AccountSelector);
