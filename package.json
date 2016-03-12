@@ -46,6 +46,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-bower": "^0.0.10",
     "gulp-sass": "^2.2.0",
+    "react-addons-perf": "^0.14.7",
     "shelljs": "^0.6.0"
   }
 }

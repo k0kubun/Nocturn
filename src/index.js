@@ -4,16 +4,20 @@ import { Provider }    from 'react-redux';
 import { createStore } from 'redux';
 import App             from './containers/App';
 import rootReducer     from './reducers';
-import IpcAction       from './utils/IpcAction'
-import TabKeyBinder    from './utils/TabKeyBinder'
+import IpcAction       from './utils/IpcAction';
+import TabKeyBinder    from './utils/TabKeyBinder';
 
 let store = createStore(rootReducer);
 new IpcAction(document).subscribe(store);
 new TabKeyBinder(document).bindFocus();
 
 if (process.env.NODE_ENV !== 'production') {
+  const Perf = require('react-addons-perf');
+  Perf.start();
   store.subscribe(() => {
-    console.log(store.getState());
+    Perf.stop();
+    Perf.printInclusive(Perf.getLastMeasurements());
+    Perf.start();
   })
 }
 
