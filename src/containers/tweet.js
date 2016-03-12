@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
 import Autolinker           from 'autolinker';
-import FavoriteButton       from './favorite-button';
+import FavoriteContainer    from './favorite-container';
 import ReplyButton          from './reply-button';
 import Time                 from '../components/time';
 import { connect }          from 'react-redux';
@@ -50,7 +50,7 @@ class Tweet extends React.Component {
           </div>
           <div className='right_widget'>
             <ReplyButton tweet={this.props.tweet} account={this.props.account} />
-            <FavoriteButton tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
+            <FavoriteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>
       </li>
