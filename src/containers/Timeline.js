@@ -1,14 +1,23 @@
-import React         from 'react';
-import ListSelector  from './ListSelector'
-import SearchBox     from './SearchBox'
-import TweetList     from './TweetList'
-import TweetTab      from './TweetTab'
-import Actions       from '../actions';
-import TwitterClient from '../utils/TwitterClient'
-import TimelineProxy from '../utils/TimelineProxy'
-import { connect }   from 'react-redux';
+import React, { PropTypes } from 'react';
+import ListSelector         from './ListSelector'
+import SearchBox            from './SearchBox'
+import TweetList            from './TweetList'
+import TweetTab             from './TweetTab'
+import Actions              from '../actions';
+import TwitterClient        from '../utils/TwitterClient'
+import TimelineProxy        from '../utils/TimelineProxy'
+import { connect }          from 'react-redux';
 
 class Timeline extends React.Component {
+  static propTypes = {
+    account:       PropTypes.object.isRequired,
+    activeAccount: PropTypes.object,
+    selectedTab:   PropTypes.string.isRequired,
+    tweetsByTab:   PropTypes.object.isRequired,
+    addTweet:      PropTypes.func.isRequired,
+    setLists:      PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     this.loadHome();
     this.loadMentions();
@@ -98,4 +107,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, Actions)(Timeline);
+export default connect(mapStateToProps, {
+  ...Actions.tweets,
+  ...Actions.lists,
+})(Timeline);
