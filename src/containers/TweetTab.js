@@ -1,8 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Actions from '../actions';
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
 
 class TweetTab extends React.Component {
+  static propTypes = {
+    account:     PropTypes.object.isRequired,
+    activate:    PropTypes.bool,
+    children:    PropTypes.string,
+    selectedTab: PropTypes.string.isRequired,
+    tab:         PropTypes.string.isRequired,
+  }
+
   isActive() {
     return this.props.selectedTab === this.props.tab;
   }
@@ -28,4 +35,4 @@ const mapStateToProps = (state) => {
   return {};
 }
 
-export default connect(mapStateToProps, Actions)(TweetTab);
+export default connect(mapStateToProps, {})(TweetTab);
