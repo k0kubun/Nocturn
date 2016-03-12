@@ -60,9 +60,8 @@ class Timeline extends React.Component {
 
   tabPropsFor(tab) {
     return {
-      account:     this.props.account,
-      selectedTab: this.props.selectedTab,
-      tab:         tab,
+      account: this.props.account,
+      tab:     tab,
     };
   }
 
@@ -82,10 +81,10 @@ class Timeline extends React.Component {
     return(
       <div className={this.props.account.id == this.props.activeAccount.id ? 'timeline active' : 'timeline'}>
         <ul className='tabs clearfix'>
-          <TweetTab {...this.tabPropsFor('home')}>Timeline</TweetTab>
-          <TweetTab {...this.tabPropsFor('mentions')}>Mentions</TweetTab>
-          <TweetTab {...this.tabPropsFor('lists')}>Lists</TweetTab>
-          <TweetTab {...this.tabPropsFor('search')}>Search</TweetTab>
+          <TweetTab account={this.props.account} tab='home'>Timeline</TweetTab>
+          <TweetTab account={this.props.account} tab='mentions'>Mentions</TweetTab>
+          <TweetTab account={this.props.account} tab='lists'>Lists</TweetTab>
+          <TweetTab account={this.props.account} tab='search'>Search</TweetTab>
         </ul>
 
         <TweetList {...this.listPropsFor('home')} />

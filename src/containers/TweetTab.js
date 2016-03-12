@@ -1,19 +1,14 @@
 import React, { PropTypes } from 'react';
-import { connect }          from 'react-redux';
 import Actions              from '../actions';
+import { connect }          from 'react-redux';
 
 class TweetTab extends React.Component {
   static propTypes = {
     account:     PropTypes.object.isRequired,
-    activate:    PropTypes.bool,
-    children:    PropTypes.string,
-    selectedTab: PropTypes.string.isRequired,
+    active:      PropTypes.bool,
+    children:    PropTypes.string.isRequired,
     tab:         PropTypes.string.isRequired,
     selectTab:   PropTypes.func.isRequired,
-  }
-
-  isActive() {
-    return this.props.selectedTab === this.props.tab;
   }
 
   onTabClicked() {
@@ -23,8 +18,7 @@ class TweetTab extends React.Component {
   render() {
     return(
       <li
-        className={this.isActive() ? 'tab active' : 'tab'}
-        data-activate={this.props.activate || ''}
+        className={`tab ${this.props.active ? 'active' : ''}`}
         onClick={this.onTabClicked.bind(this)}
       >
         {this.props.children}
@@ -33,8 +27,11 @@ class TweetTab extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
+const mapStateToProps = (state, props) => {
+  let selectedTab = state.selectedTabByUserId[props.account.id] || 'home';
+  return {
+    active: selectedTab === props.tab,
+  };
 }
 
 export default connect(mapStateToProps, {
