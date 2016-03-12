@@ -11,6 +11,8 @@ class Editor extends React.Component {
     activeUser:    PropTypes.object,
     text:          PropTypes.string.isRequired,
     inReplyTo:     PropTypes.string,
+    addTweet:      PropTypes.func.isRequired,
+    clearText:     PropTypes.func.isRequired,
   }
 
   onTextareaChanged(event) {
@@ -42,6 +44,7 @@ class Editor extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return(
       <div className='editor'>
         <div className='account_wrapper'>
@@ -78,4 +81,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, Actions)(Editor);
+export default connect(mapStateToProps, {
+  ...Actions.tweets,
+  ...Actions.texts,
+})(Editor);
