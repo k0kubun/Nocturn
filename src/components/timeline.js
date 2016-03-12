@@ -3,7 +3,7 @@ import ListContainer        from '../containers/list-container';
 import SearchContainer      from '../containers/search-container';
 import TimelineProxy        from '../utils/timeline-proxy';
 import TweetListContainer   from '../containers/tweet-list-container';
-import TweetTab             from '../containers/tweet-tab';
+import TweetTabContainer    from '../containers/tweet-tab-container';
 import TwitterClient        from '../utils/twitter-client';
 
 export default class Timeline extends React.Component {
@@ -62,10 +62,10 @@ export default class Timeline extends React.Component {
     return(
       <div className={`timeline ${this.props.active ? 'active' : ''}`}>
         <ul className='tabs clearfix'>
-          <TweetTab account={this.props.account} tab='home'>Timeline</TweetTab>
-          <TweetTab account={this.props.account} tab='mentions'>Mentions</TweetTab>
-          <TweetTab account={this.props.account} tab='lists'>Lists</TweetTab>
-          <TweetTab account={this.props.account} tab='search'>Search</TweetTab>
+          <TweetTabContainer account={this.props.account} tab='home'>Timeline</TweetTabContainer>
+          <TweetTabContainer account={this.props.account} tab='mentions'>Mentions</TweetTabContainer>
+          <TweetTabContainer account={this.props.account} tab='lists'>Lists</TweetTabContainer>
+          <TweetTabContainer account={this.props.account} tab='search'>Search</TweetTabContainer>
         </ul>
 
         <TweetListContainer account={this.props.account} tab='home' />
