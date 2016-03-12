@@ -40,7 +40,7 @@ class Editor extends React.Component {
         <div className='account_wrapper'>
           <img
             className='twitter_icon'
-            src={this.props.user ? this.props.user.profile_image_url : ''}
+            src={this.props.activeUser ? this.props.activeUser.profile_image_url : ''}
             onClick={this.onTwitterIconClicked.bind(this)}
           />
         </div>
@@ -62,8 +62,10 @@ class Editor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  let activeAccount = state.accounts[state.activeAccountIndex];
   return {
-    activeAccount: state.accounts[state.activeAccountIndex],
+    activeAccount: activeAccount,
+    activeUser: activeAccount && state.userByUserId[activeAccount.id],
     text: state.text,
     inReplyTo: state.inReplyTo,
   }

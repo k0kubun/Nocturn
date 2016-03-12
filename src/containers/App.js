@@ -31,7 +31,7 @@ class App extends React.Component {
         <Header />
 
         <AccountSelector />
-        <Editor user={this.props.activeUser} />
+        <Editor />
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
@@ -49,10 +49,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  let activeAccount = state.accounts[state.activeAccountIndex];
   return {
     accounts:            state.accounts,
-    activeUser:          activeAccount && state.userByUserId[activeAccount.id],
     selectedTabByUserId: state.selectedTabByUserId,
     tabsByUserId:        state.tabsByUserId,
   }
