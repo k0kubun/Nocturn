@@ -11,16 +11,6 @@ let store = createStore(rootReducer);
 new IpcAction(document).subscribe(store);
 new GlobalKeyBind(document).subscribe(store);
 
-if (process.env.NODE_ENV !== 'production') {
-  const Perf = require('react-addons-perf');
-  Perf.start();
-  store.subscribe(() => {
-    Perf.stop();
-    Perf.printInclusive(Perf.getLastMeasurements());
-    Perf.start();
-  })
-}
-
 render(
   <Provider store={store}>
     <App />
