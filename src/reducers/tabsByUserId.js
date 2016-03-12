@@ -1,6 +1,6 @@
 import Actions from '../actions';
 
-const MAX_TWEETS_FOR_EACH_TAB = 1000;
+const MAX_TWEETS_FOR_EACH_TAB = 100;
 
 // Return set order by id DESC.
 const sortedAdd = (set, tweet) => {

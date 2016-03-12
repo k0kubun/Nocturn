@@ -1,4 +1,8 @@
 # Change Log
+## v0.2.3
+- Limits tweets for each tab upto 100
+- Increase number of initial loaded tweets from 20 to 50
+
 ## v0.2.2
 - Reduce package size
 - Improve performance to move tweet focus
