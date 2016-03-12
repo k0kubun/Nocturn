@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 import * as Keycode         from '../utils/keycode';
-import Actions              from '../actions';
 import TwitterClient        from '../utils/twitter-client'
-import { connect }          from 'react-redux';
 
-class SearchBox extends React.Component {
+export default class Search extends React.Component {
   static propTypes = {
     account:           PropTypes.object.isRequired,
     active:            PropTypes.bool.isRequired,
@@ -38,14 +36,3 @@ class SearchBox extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state, props) => {
-  return {
-    active: state.selectedTabByUserId[props.account.id] === 'search',
-  };
-}
-
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-  ...Actions.texts,
-})(SearchBox);

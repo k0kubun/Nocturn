@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListContainer        from './list-container'
-import SearchBox            from './search-box'
+import SearchContainer      from './search-container'
 import TweetList            from './tweet-list'
 import TweetTab             from './tweet-tab'
 import Actions              from '../actions';
@@ -76,7 +76,7 @@ class Timeline extends React.Component {
         <TweetList account={this.props.account} tab='search' withHeader={true} />
 
         <ListContainer account={this.props.account} />
-        <SearchBox account={this.props.account} />
+        <SearchContainer account={this.props.account} />
       </div>
     );
   }
