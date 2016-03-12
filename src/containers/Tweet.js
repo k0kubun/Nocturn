@@ -35,7 +35,7 @@ class Tweet extends React.Component {
 
   render() {
     return(
-      <li data-id={this.props.tweet.id_str} className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
+      <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
         <div className='box_wrapper'>
           <div className='left_box'>
             <img className='user_icon' src={this.resizedProfileImage()} />
