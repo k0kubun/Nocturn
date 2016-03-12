@@ -68,10 +68,9 @@ class Timeline extends React.Component {
 
   listPropsFor(tab) {
     return {
-      selectedTab: this.props.selectedTab,
-      tab:         tab,
-      tweets:      this.props.tweetsByTab[tab] || [],
-      account:     this.props.account,
+      tab:     tab,
+      tweets:  this.props.tweetsByTab[tab] || [],
+      account: this.props.account,
     };
   }
 

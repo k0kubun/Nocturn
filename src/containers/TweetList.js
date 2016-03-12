@@ -5,15 +5,11 @@ import { connect }          from 'react-redux';
 class TweetList extends React.Component {
   static propTypes = {
     account:                  PropTypes.object.isRequired,
-    selectedTab:              PropTypes.string.isRequired,
+    active:                   PropTypes.bool.isRequired,
     selectedTweetIdsByUserId: PropTypes.object.isRequired,
     tab:                      PropTypes.string.isRequired,
     tweets:                   PropTypes.array.isRequired,
     withHeader:               PropTypes.bool,
-  }
-
-  isActive() {
-    return this.props.selectedTab === this.props.tab;
   }
 
   render() {
@@ -21,7 +17,7 @@ class TweetList extends React.Component {
       this.props.selectedTweetIdsByUserId[this.props.account.id][this.props.tab];
 
     return(
-      <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.isActive() ? 'active' : ''}`}>
+      <ul id={this.props.id} className={`tweets ${this.props.withHeader ? 'with_header' : ''} ${this.props.active ? 'active' : ''}`}>
         {this.props.tweets.map((tweet) =>
           <Tweet
             key={tweet.id_str}
@@ -36,8 +32,10 @@ class TweetList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  let selectedTab = state.selectedTabByUserId[props.account.id] || 'home';
   return {
+    active: selectedTab === props.tab,
     selectedTweetIdsByUserId: state.selectedTweetIdsByUserId,
   }
 }
