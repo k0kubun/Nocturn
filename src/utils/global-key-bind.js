@@ -36,7 +36,7 @@ export default class GlobalKeyBind {
   }
 
   handleJ(event) {
-    if (this.isEditing() || event.altKey) return;
+    if (this.isEditing() || event.altKey || event.metaKey) return;
     event.preventDefault();
 
     let state = new RichState(store);
@@ -53,7 +53,7 @@ export default class GlobalKeyBind {
   }
 
   handleK(event) {
-    if (this.isEditing() || event.altKey) return;
+    if (this.isEditing() || event.altKey || event.metaKey) return;
     event.preventDefault();
 
     let state = new RichState(store);
