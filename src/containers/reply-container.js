@@ -1,21 +1,28 @@
-import { connect } from 'react-redux';
-import Actions     from '../actions';
-import Reply       from '../components/reply';
+import React, { PropTypes } from 'react';
+import Actions              from '../actions';
+import Reply                from '../components/reply';
 
-const mapStateToProps = (state) => {
-  return {}
-}
+export default class ReplyContainer extends React.Component {
+  static contextTypes = {
+    store: PropTypes.shape({
+      dispatch: PropTypes.func.isRequired,
+    }),
+  }
 
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    onClick: (event) => {
-      dispatch(Actions.texts.setText(`@${props.tweet.user.screen_name} `));
-      dispatch(Actions.tweets.setInReplyTo(props.tweet));
+  constructor(props, context) {
+    super(props, context);
+    this.store = context.store;
+  }
 
-      // FIXME: Use better way to focus
-      event.target.ownerDocument.getElementById('tweet_editor').focus();
-    }
+  onClick(event) {
+    this.store.dispatch(Actions.texts.setText(`@${this.props.tweet.user.screen_name} `));
+    this.store.dispatch(Actions.tweets.setInReplyTo(this.props.tweet));
+
+    // FIXME: Use better way to focus
+    event.target.ownerDocument.getElementById('tweet_editor').focus();
+  }
+
+  render() {
+    return <Reply {...this.props} onClick={this.onClick.bind(this)} />;
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Reply);
