@@ -3,11 +3,12 @@ import TweetContainer       from '../containers/tweet-container';
 
 export default class TweetList extends React.Component {
   static propTypes = {
-    account:    PropTypes.object.isRequired,
-    active:     PropTypes.bool.isRequired,
-    tab:        PropTypes.string.isRequired,
-    tweets:     PropTypes.array.isRequired,
-    withHeader: PropTypes.bool,
+    account:       PropTypes.object.isRequired,
+    active:        PropTypes.bool.isRequired,
+    activeTweetId: PropTypes.string,
+    tab:           PropTypes.string.isRequired,
+    tweets:        PropTypes.array.isRequired,
+    withHeader:    PropTypes.bool,
   }
 
   render() {
@@ -19,6 +20,7 @@ export default class TweetList extends React.Component {
             tweet={tweet}
             tab={this.props.tab}
             account={this.props.account}
+            activeTweetId={this.props.activeTweetId}
           />
         )}
       </ul>
