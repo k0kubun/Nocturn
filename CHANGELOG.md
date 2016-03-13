@@ -1,4 +1,7 @@
 # Change Log
+## v0.2.4
+- Improve rendering performance
+
 ## v0.2.3
 - Limits tweets for each tab upto 100
 - Increase number of initial loaded tweets from 20 to 50
