@@ -10,6 +10,12 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-})(Tweet);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onClick: (event) => {
+      dispatch(Actions.tweets.selectTweet(props.tweet, props.tab, props.account));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tweet);

@@ -6,15 +6,11 @@ import Time                 from '../components/time';
 
 export default class Tweet extends React.Component {
   static propTypes = {
-    account:     PropTypes.object.isRequired,
-    active:      PropTypes.bool.isRequired,
-    tab:         PropTypes.string.isRequired,
-    tweet:       PropTypes.object.isRequired,
-    selectTweet: PropTypes.func.isRequired,
-  }
-
-  onTweetClicked(event) {
-    this.props.selectTweet(this.props.tweet, this.props.tab, this.props.account);
+    account: PropTypes.object.isRequired,
+    active:  PropTypes.bool.isRequired,
+    tab:     PropTypes.string.isRequired,
+    tweet:   PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
   }
 
   resizedProfileImage() {
@@ -33,7 +29,7 @@ export default class Tweet extends React.Component {
 
   render() {
     return(
-      <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.onTweetClicked.bind(this)}>
+      <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
         <div className='box_wrapper'>
           <div className='left_box'>
             <img className='user_icon' src={this.resizedProfileImage()} />
