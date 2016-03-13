@@ -1,4 +1,8 @@
 # Change Log
+## v0.2.5
+- Make Cmd-j, Cmd-k working when not editing text
+- Improve rendering performance
+
 ## v0.2.4
 - Improve rendering performance
 
