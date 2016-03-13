@@ -9,6 +9,11 @@ export default class TweetContainer extends React.Component {
     }),
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (this.props.tweet.favorited != nextProps.tweet.favorited) ||
+      ((this.props.activeTweetId === this.props.tweet.id_str) != (nextProps.activeTweetId === nextProps.tweet.id_str));
+  }
+
   constructor(props, context) {
     super(props, context);
     this.store = context.store;

@@ -31,6 +31,10 @@ export default class Time extends React.Component {
   //   clearInterval(this.intervalId);
   // }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   getRelativeTime() {
     return this.getMomentTime().locale('en-short').fromNow();
   }

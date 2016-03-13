@@ -9,6 +9,10 @@ export default class ReplyContainer extends React.Component {
     }),
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   constructor(props, context) {
     super(props, context);
     this.store = context.store;

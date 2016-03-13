@@ -10,6 +10,10 @@ export default class FavoriteContainer extends React.Component {
     }),
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.tweet.favorited != nextProps.tweet.favorited;
+  }
+
   constructor(props, context) {
     super(props, context);
     this.store = context.store;
