@@ -27,8 +27,12 @@ app.on('ready', () => {
     });
 
     if (process.env.NODE_ENV === 'development') {
+      mainWindow.webContents.on('devtools-opened', () => {
+        setImmediate(() => {
+          mainWindow.focus();
+        });
+      });
       mainWindow.openDevTools();
-      mainWindow.webContents.focus();
     }
   });
 });
