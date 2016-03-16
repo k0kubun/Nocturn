@@ -1,4 +1,8 @@
 # Change Log
+## v0.3.0
+- Use string id to prevent overflow
+- Don't enable key binding for F, 0, Space when editing text
+
 ## v0.2.5
 - Make Cmd-j, Cmd-k working when not editing text
 - Improve rendering performance
