@@ -28,7 +28,7 @@ export default class List extends React.Component {
         <select className='list_field' onChange={this.onListChanged.bind(this)}>
           <option value='0'>Select List...</option>
           {this.props.lists.map((list) =>
-            <option key={list.id} value={list.id}>{list.full_name}</option>
+            <option key={list.id_str} value={list.id_str}>{list.full_name}</option>
           )}
         </select>
       </div>
