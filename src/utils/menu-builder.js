@@ -45,17 +45,10 @@ export default class MenuBuilder {
       }, {
         label: 'Tweet',
         submenu: [
-          { label: 'Reply',           accelerator: 'Enter',             click() { window.webContents.send('invoke-reply') } },
-          { label: 'Favorite',        accelerator: 'F',                 click() { window.webContents.send('invoke-favorite') } },
-          { label: 'Retweet',         accelerator: 'Command+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
-          { label: 'Delete',          accelerator: 'Command+Backspace', click() { window.webContents.send('invoke-delete') } },
-          { label: 'Select First',    accelerator: 'Space',             click() { window.webContents.send('select-first-tweet') } },
-          { type: 'separator' },
-          {
-            label: 'Optional Keybinds', submenu: [
-              { label: 'Select First',    accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
-            ]
-          },
+          { label: 'Reply',    accelerator: 'Enter',             click() { window.webContents.send('invoke-reply') } },
+          { label: 'Favorite', accelerator: 'F',                 click() { window.webContents.send('invoke-favorite') } },
+          { label: 'Retweet',  accelerator: 'Command+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
+          { label: 'Delete',   accelerator: 'Command+Backspace', click() { window.webContents.send('invoke-delete') } },
         ],
       }, {
         label: 'Timeline',
@@ -99,17 +92,10 @@ export default class MenuBuilder {
       }, {
         label: 'Tweet',
         submenu: [
-          { label: 'Reply',           accelerator: 'Enter',         click() { window.webContents.send('invoke-reply') } },
-          { label: 'Favorite',        accelerator: 'F',             click() { window.webContents.send('invoke-favorite') } },
-          { label: 'Retweet',         accelerator: 'Alt+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
-          { label: 'Delete',          accelerator: 'Alt+Backspace', click() { window.webContents.send('invoke-delete') } },
-          { label: 'Select First',    accelerator: 'Space',         click() { window.webContents.send('select-first-tweet') } },
-          { type: 'separator' },
-          {
-            label: 'Optional Keybinds', submenu: [
-              { label: 'Select First',    accelerator: '0', click() { window.webContents.send('select-first-tweet') } },
-            ]
-          },
+          { label: 'Reply',    accelerator: 'Enter',         click() { window.webContents.send('invoke-reply') } },
+          { label: 'Favorite', accelerator: 'F',             click() { window.webContents.send('invoke-favorite') } },
+          { label: 'Retweet',  accelerator: 'Alt+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
+          { label: 'Delete',   accelerator: 'Alt+Backspace', click() { window.webContents.send('invoke-delete') } },
         ],
       }, {
         label: 'Timeline',

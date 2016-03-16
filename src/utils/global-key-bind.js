@@ -22,6 +22,10 @@ export default class GlobalKeyBind {
         case Keycode.K:
           this.handleK(event);
           break;
+        case Keycode.SPACE:
+        case Keycode.ZERO:
+          this.handleZero(event);
+          break;
       }
     });
   }
@@ -67,6 +71,19 @@ export default class GlobalKeyBind {
       let element = this.document.querySelector('.timeline.active .tweets.active');
       element.scrollTop -= element.clientHeight / 2;
     }
+  }
+
+  handleZero(event) {
+    if (this.isEditing()) return;
+    event.preventDefault();
+
+    let state = new RichState(store);
+    let tweet = state.findFirstTweet();
+    if (!tweet) return null;
+
+    store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
+    let element = this.document.querySelector('.timeline.active .tweets.active');
+    element.scrollTop = 0;
   }
 
   isEditing() {

@@ -21,16 +21,6 @@ export default class IpcAction {
       this.document.getElementById('tweet_editor').focus();
     });
 
-    ipcRenderer.on('select-first-tweet', (event) => {
-      let state = new RichState(store);
-      let tweet = state.findFirstTweet();
-      if (!tweet) return null;
-
-      store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
-      let element = this.document.querySelector('.timeline.active .tweets.active');
-      element.scrollTop = 0;
-    });
-
     ipcRenderer.on('invoke-favorite', (event) => {
       let state  = new RichState(store);
       let client = new TwitterClient(state.activeAccount());
