@@ -21,17 +21,6 @@ export default class IpcAction {
       this.document.getElementById('tweet_editor').focus();
     });
 
-    ipcRenderer.on('invoke-favorite', (event) => {
-      let state  = new RichState(store);
-      let client = new TwitterClient(state.activeAccount());
-      let active  = state.activeTweet();
-      if (!active) return null;
-
-      client.favoriteStatus(active.id_str, (tweet) => {
-        store.dispatch(Actions.tweets.addTweet(tweet, state.activeAccount(), state.activeTab()));
-      });
-    });
-
     ipcRenderer.on('invoke-retweet', (event) => {
       let state  = new RichState(store);
       let client = new TwitterClient(state.activeAccount());

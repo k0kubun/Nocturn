@@ -46,7 +46,6 @@ export default class MenuBuilder {
         label: 'Tweet',
         submenu: [
           { label: 'Reply',    accelerator: 'Enter',             click() { window.webContents.send('invoke-reply') } },
-          { label: 'Favorite', accelerator: 'F',                 click() { window.webContents.send('invoke-favorite') } },
           { label: 'Retweet',  accelerator: 'Command+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
           { label: 'Delete',   accelerator: 'Command+Backspace', click() { window.webContents.send('invoke-delete') } },
         ],
@@ -93,7 +92,6 @@ export default class MenuBuilder {
         label: 'Tweet',
         submenu: [
           { label: 'Reply',    accelerator: 'Enter',         click() { window.webContents.send('invoke-reply') } },
-          { label: 'Favorite', accelerator: 'F',             click() { window.webContents.send('invoke-favorite') } },
           { label: 'Retweet',  accelerator: 'Alt+Shift+V',   click() { window.webContents.send('invoke-retweet') } },
           { label: 'Delete',   accelerator: 'Alt+Backspace', click() { window.webContents.send('invoke-delete') } },
         ],

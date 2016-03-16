@@ -1,6 +1,7 @@
-import * as Keycode from './keycode';
-import RichState    from './rich-state'
-import Actions      from '../actions';
+import * as Keycode  from './keycode';
+import RichState     from './rich-state';
+import Actions       from '../actions';
+import TwitterClient from './twitter-client';
 
 export default class GlobalKeyBind {
   constructor(document) {
@@ -21,6 +22,9 @@ export default class GlobalKeyBind {
         case Keycode.UP:
         case Keycode.K:
           this.handleK(event);
+          break;
+        case Keycode.F:
+          this.handleF(event);
           break;
         case Keycode.SPACE:
         case Keycode.ZERO:
@@ -71,6 +75,20 @@ export default class GlobalKeyBind {
       let element = this.document.querySelector('.timeline.active .tweets.active');
       element.scrollTop -= element.clientHeight / 2;
     }
+  }
+
+  handleF(event) {
+    if (this.isEditing()) return;
+    event.preventDefault();
+
+    let state  = new RichState(store);
+    let client = new TwitterClient(state.activeAccount());
+    let active  = state.activeTweet();
+    if (!active) return null;
+
+    client.favoriteStatus(active.id_str, (tweet) => {
+      store.dispatch(Actions.tweets.addTweet(tweet, state.activeAccount(), state.activeTab()));
+    });
   }
 
   handleZero(event) {
