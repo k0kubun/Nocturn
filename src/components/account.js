@@ -34,7 +34,7 @@ export default class Account extends React.Component {
     return(
       <select id='account_selector' name='account_list' onChange={this.onAccountChange.bind(this)} value={this.props.activeAccountIndex}>
         {this.props.accounts.map((account, index) =>
-          <option value={index} key={account.id}>{account.screenName}</option>
+          <option value={index} key={account.id_str}>{account.screenName}</option>
         )}
         <option value='add-account'>Add...</option>
       </select>

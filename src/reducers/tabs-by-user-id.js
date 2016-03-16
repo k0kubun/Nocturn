@@ -32,10 +32,10 @@ export const tabsByUserId = (state = {}, action) => {
     case Actions.tweets.ADD_TWEET:
       return {
         ...state,
-        [action.account.id]: {
-          ...(state[action.account.id] || {}),
+        [action.account.id_str]: {
+          ...(state[action.account.id_str] || {}),
           [action.tab]: sortedAdd(
-            (state[action.account.id] && state[action.account.id][action.tab]) || [],
+            (state[action.account.id_str] && state[action.account.id_str][action.tab]) || [],
             action.tweet,
           ).slice(0, MAX_TWEETS_FOR_EACH_TAB),
         },
@@ -43,10 +43,10 @@ export const tabsByUserId = (state = {}, action) => {
     case Actions.tweets.REMOVE_TWEET:
       return {
         ...state,
-        [action.account.id]: {
-          ...(state[action.account.id] || {}),
+        [action.account.id_str]: {
+          ...(state[action.account.id_str] || {}),
           [action.tab]: removeFromSet(
-            (state[action.account.id] && state[action.account.id][action.tab]) || [],
+            (state[action.account.id_str] && state[action.account.id_str][action.tab]) || [],
             action.tweet,
           ),
         },
@@ -54,8 +54,8 @@ export const tabsByUserId = (state = {}, action) => {
     case Actions.tweets.CLEAR_AND_SET_TWEETS:
       return {
         ...state,
-        [action.account.id]: {
-          ...(state[action.account.id] || {}),
+        [action.account.id_str]: {
+          ...(state[action.account.id_str] || {}),
           [action.tab]: action.tweets,
         },
       };

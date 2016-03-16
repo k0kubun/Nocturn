@@ -4,8 +4,8 @@ import List        from '../components/list'
 
 const mapStateToProps = (state, props) => {
   return {
-    lists:  state.listsByUserId[props.account.id] || [],
-    active: state.selectedTabByUserId[props.account.id] === 'lists',
+    lists:  state.listsByUserId[props.account.id_str] || [],
+    active: state.selectedTabByUserId[props.account.id_str] === 'lists',
   };
 }
 

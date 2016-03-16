@@ -5,7 +5,7 @@ export const selectedTabByUserId = (state = {}, action) => {
     case Actions.tabs.SELECT_TAB:
       return {
         ...state,
-        [action.account.id]: action.tab,
+        [action.account.id_str]: action.tab,
       };
     default:
       return state;

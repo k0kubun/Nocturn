@@ -5,7 +5,7 @@ import Timeline    from '../components/timeline'
 const mapStateToProps = (state, props) => {
   let activeAccount = state.accounts[state.activeAccountIndex] || {};
   return {
-    active: activeAccount.id == props.account.id,
+    active: activeAccount.id_str == props.account.id_str,
   };
 }
 

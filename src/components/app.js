@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
         <div className='timelines'>
           {this.props.accounts.map((account) =>
-            <TimelineContainer key={account.id} account={account} />
+            <TimelineContainer key={account.id_str} account={account} />
           )}
         </div>
       </div>

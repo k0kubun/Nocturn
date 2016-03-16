@@ -6,8 +6,8 @@ const mapStateToProps = (state) => {
   let activeAccount = state.accounts[state.activeAccountIndex];
   return {
     activeAccount: activeAccount,
-    activeListId: activeAccount && state.activeListIdByUserId[activeAccount.id],
-    activeSearchQuery: activeAccount && state.searchQueryByUserId[activeAccount.id],
+    activeListId: activeAccount && state.activeListIdByUserId[activeAccount.id_str],
+    activeSearchQuery: activeAccount && state.searchQueryByUserId[activeAccount.id_str],
   }
 }
 

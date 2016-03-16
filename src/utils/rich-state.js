@@ -10,7 +10,7 @@ export default class RichState {
 
   activeTab() {
     if (this.activeTabCache) return this.activeTabCache;
-    return this.activeTabCache = (this.state.selectedTabByUserId[this.activeAccount().id] || 'home');
+    return this.activeTabCache = (this.state.selectedTabByUserId[this.activeAccount().id_str] || 'home');
   }
 
   nextTab() {
@@ -52,16 +52,16 @@ export default class RichState {
   selectedTweetId() {
     if (this.selectedTweetIdCache) return this.selectedTweetIdCache;
     return this.selectedTweetIdCache = (
-      this.state.selectedTweetIdsByUserId[this.activeAccount().id] &&
-      this.state.selectedTweetIdsByUserId[this.activeAccount().id][this.activeTab()]
+      this.state.selectedTweetIdsByUserId[this.activeAccount().id_str] &&
+      this.state.selectedTweetIdsByUserId[this.activeAccount().id_str][this.activeTab()]
     );
   }
 
   activeTabTweets() {
     if (this.activeTabTweetsCache) return this.activeTabTweetsCache;
     return this.activeTabTweetsCache = (
-      this.state.tabsByUserId[this.activeAccount().id] &&
-      this.state.tabsByUserId[this.activeAccount().id][this.activeTab()]
+      this.state.tabsByUserId[this.activeAccount().id_str] &&
+      this.state.tabsByUserId[this.activeAccount().id_str][this.activeTab()]
     ) || [];
   }
 

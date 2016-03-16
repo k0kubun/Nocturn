@@ -10,7 +10,7 @@ export default class TimelineProxy {
 
     if (tweet.entities && tweet.entities.user_mentions) {
       for (let mention of tweet.entities.user_mentions) {
-        if (mention.id == this.account.id) {
+        if (mention.id_str == this.account.id_str) {
           this.addTweetFunc(tweet, this.account, 'mentions');
         }
       }

@@ -5,7 +5,7 @@ export const searchQueryByUserId = (state = {}, action) => {
     case Actions.texts.SET_SEARCH_QUERY:
       return {
         ...state,
-        [action.account.id]: action.query,
+        [action.account.id_str]: action.query,
       };
     default:
       return state;

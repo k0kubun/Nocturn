@@ -5,7 +5,7 @@ export const userByUserId = (state = {}, action) => {
     case Actions.accounts.REFRESH_USER_INFO:
       return {
         ...state,
-        [action.user.id]: action.user,
+        [action.user.id_str]: action.user,
       };
     default:
       return state;

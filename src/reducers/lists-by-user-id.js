@@ -5,7 +5,7 @@ export const listsByUserId = (state = {}, action) => {
     case Actions.lists.SET_LISTS:
       return {
         ...state,
-        [action.account.id]: action.lists,
+        [action.account.id_str]: action.lists,
       };
     default:
       return state;

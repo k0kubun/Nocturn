@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => {
   return {
-    active: state.selectedTabByUserId[props.account.id] === 'search',
+    active: state.selectedTabByUserId[props.account.id_str] === 'search',
   };
 }
 
