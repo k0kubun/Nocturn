@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
-import Time                 from '../components/time';
 import Tweet                from '../components/tweet';
+import TweetHeader          from '../components/tweet-header';
 
 export default class Retweet extends Tweet {
   static propTypes = {
@@ -23,11 +23,7 @@ export default class Retweet extends Tweet {
             <i className='retweet_icon fa fa-retweet' />
           </div>
           <div className='right_box'>
-            <div className='tweet_header clearfix'>
-              <span className='user_name'>{this.props.tweet.retweeted_status.user.name}</span>
-              <span className='screen_name'>{this.props.tweet.retweeted_status.user.screen_name}</span>
-              <Time className='created_at' time={this.props.tweet.retweeted_status.created_at} />
-            </div>
+            <TweetHeader tweet={this.props.tweet.retweeted_status} />
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet.retweeted_status)} />
             <div className='retweeted_by_wrapper'>
               <span className='retweeted_by'>Retweeted by</span>

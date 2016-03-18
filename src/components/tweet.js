@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Autolinker           from 'autolinker';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
-import Time                 from '../components/time';
+import TweetHeader          from '../components/tweet-header';
 
 export default class Tweet extends React.Component {
   static propTypes = {
@@ -41,11 +41,7 @@ export default class Tweet extends React.Component {
             <img className='user_icon' src={this.largeProfileImage(this.props.tweet.user)} />
           </div>
           <div className='right_box'>
-            <div className='tweet_header clearfix'>
-              <span className='user_name'>{this.props.tweet.user.name}</span>
-              <span className='screen_name'>{this.props.tweet.user.screen_name}</span>
-              <Time className='created_at' time={this.props.tweet.created_at} />
-            </div>
+            <TweetHeader tweet={this.props.tweet} />
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
           </div>
           <div className='right_widget'>
