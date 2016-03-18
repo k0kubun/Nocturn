@@ -19,7 +19,7 @@ app.on('ready', () => {
       event.preventDefault();
       shell.openExternal(url);
     })
-    mainWindow.loadURL(`file://${__dirname}/app.html`);
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
     MenuBuilder.build(mainWindow);
 
     mainWindow.on('closed', () => {
