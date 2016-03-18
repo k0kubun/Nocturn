@@ -13,15 +13,15 @@ export default class Tweet extends React.Component {
     onClick: PropTypes.func.isRequired,
   }
 
-  resizedProfileImage() {
-    let baseUrl = this.props.tweet.user.profile_image_url;
+  largeProfileImage(user) {
+    let baseUrl = user.profile_image_url;
     return baseUrl.replace(/_normal\./, '_400x400.');
   }
 
-  rawTweetBody() {
+  autolinkedText(tweet) {
     return {
       __html: Autolinker.link(
-        this.props.tweet.text.replace(/\n/g, '<br>'),
+        tweet.text.replace(/\n/g, '<br>'),
         { className: 'external-link' },
       ),
     };
@@ -32,7 +32,7 @@ export default class Tweet extends React.Component {
       <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
         <div className='box_wrapper'>
           <div className='left_box'>
-            <img className='user_icon' src={this.resizedProfileImage()} />
+            <img className='user_icon' src={this.largeProfileImage(this.props.tweet.user)} />
           </div>
           <div className='right_box'>
             <div className='tweet_header clearfix'>
@@ -40,7 +40,7 @@ export default class Tweet extends React.Component {
               <span className='screen_name'>{this.props.tweet.user.screen_name}</span>
               <Time className='created_at' time={this.props.tweet.created_at} />
             </div>
-            <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
+            <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
           </div>
           <div className='right_widget'>
             <ReplyContainer tweet={this.props.tweet} account={this.props.account} />

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import Autolinker           from 'autolinker';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import Time                 from '../components/time';
+import Tweet                from '../components/tweet';
 
-export default class Retweet extends React.Component {
+export default class Retweet extends Tweet {
   static propTypes = {
     account: PropTypes.object.isRequired,
     active:  PropTypes.bool.isRequired,
@@ -13,26 +13,12 @@ export default class Retweet extends React.Component {
     onClick: PropTypes.func.isRequired,
   }
 
-  resizedProfileImage() {
-    let baseUrl = this.props.tweet.retweeted_status.user.profile_image_url;
-    return baseUrl.replace(/_normal\./, '_400x400.');
-  }
-
-  rawTweetBody() {
-    return {
-      __html: Autolinker.link(
-        this.props.tweet.retweeted_status.text.replace(/\n/g, '<br>'),
-        { className: 'external-link' },
-      ),
-    };
-  }
-
   render() {
     return(
       <li className={`tweet retweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
         <div className='box_wrapper'>
           <div className='left_box'>
-            <img className='retweeted_user_icon' src={this.resizedProfileImage()} />
+            <img className='retweeted_user_icon' src={this.largeProfileImage(this.props.tweet.retweeted_status.user)} />
             <img className='retweet_user_icon' src={this.props.tweet.user.profile_image_url} />
             <i className='retweet_icon fa fa-retweet' />
           </div>
@@ -42,7 +28,7 @@ export default class Retweet extends React.Component {
               <span className='screen_name'>{this.props.tweet.retweeted_status.user.screen_name}</span>
               <Time className='created_at' time={this.props.tweet.retweeted_status.created_at} />
             </div>
-            <div className='tweet_body' dangerouslySetInnerHTML={this.rawTweetBody()} />
+            <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet.retweeted_status)} />
             <div className='retweeted_by_wrapper'>
               <span className='retweeted_by'>Retweeted by</span>
               <span className='retweeted_user'>{this.props.tweet.user.name}</span>
