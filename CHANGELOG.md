@@ -1,4 +1,11 @@
 # Change Log
+## v0.4.0
+- Renew retweet view
+  - Show not-truncated text, retweeted user's name and icon
+- Expand short url like with t.co
+- Fold long word or url in tweet body
+- Truncate long user name
+
 ## v0.3.0
 - Use string id to prevent overflow
 - Don't enable key binding for F, 0, Space when editing text
