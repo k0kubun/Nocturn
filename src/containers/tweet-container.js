@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
 import Tweet                from '../components/tweet';
+import Retweet              from '../components/retweet';
 
 export default class TweetContainer extends React.Component {
   static contextTypes = {
@@ -24,14 +25,26 @@ export default class TweetContainer extends React.Component {
   }
 
   render() {
-    return(
-      <Tweet
-        account={this.props.account}
-        active={this.props.activeTweetId === this.props.tweet.id_str}
-        tab={this.props.tab}
-        tweet={this.props.tweet}
-        onClick={this.onClick.bind(this)}
-      />
-    );
+    if (this.props.tweet.retweeted_status) {
+      return(
+        <Retweet
+          account={this.props.account}
+          active={this.props.activeTweetId === this.props.tweet.id_str}
+          tab={this.props.tab}
+          tweet={this.props.tweet}
+          onClick={this.onClick.bind(this)}
+        />
+      );
+    } else {
+      return(
+        <Tweet
+          account={this.props.account}
+          active={this.props.activeTweetId === this.props.tweet.id_str}
+          tab={this.props.tab}
+          tweet={this.props.tweet}
+          onClick={this.onClick.bind(this)}
+        />
+      );
+    }
   }
 }

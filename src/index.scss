@@ -8,8 +8,12 @@ $tabs_height: 28px;
 $timeline_height: 640px;
 $tweet_padding: 8px;
 $icon_size: 48px;
+$retweeted_icon_size: 34px;
+$icon_overlay_size: 8px;
 $icon_column: $icon_size + $tweet_padding * 2;
 $tweets_header_height: 34px;
+$grey: #999;
+$white: #fff;
 
 // Reject over scrolling
 html,
@@ -75,7 +79,7 @@ body {
     position: fixed;
     top: $header_height;
     left: 0;
-    background: #fff;
+    background: $white;
     width: 100%;
     height: $editor_height;
     z-index: 300;
@@ -153,7 +157,7 @@ body {
     position: fixed;
     top: $header_height + $editor_height + $tabs_height;
     left: 0;
-    background: #fff;
+    background: $white;
     width: 100%;
     height: calc(100% - #{$header_height + $editor_height + $tabs_height});
     overflow: scroll;
@@ -203,12 +207,27 @@ body {
 
     .active .user_name,
     .active .tweet_body {
-      color: #fff;
+      color: $white;
+    }
+
+    .retweeted_by_wrapper {
+      margin-top: 6px;
+      color: $grey;
+      font-weight: bold;
+      z-index: 10;
+
+      .retweeted_by {
+        margin-right: 4px;
+      }
+    }
+
+    .active .retweeted_by_wrapper {
+      color: $white;
     }
 
     .screen_name {
       font-weight: bold;
-      color: #999;
+      color: $grey;
 
       &:before {
         content: '@';
@@ -217,7 +236,7 @@ body {
 
     .created_at {
       float: right;
-      color: #999;
+      color: $grey;
     }
 
     .active .screen_name,
@@ -262,6 +281,32 @@ body {
       width: $icon_size;
       height: $icon_size;
       border-radius: 6px;
+    }
+
+    .retweeted_user_icon {
+      width: $retweeted_icon_size;
+      height: $retweeted_icon_size;
+      border-radius: 6px;
+    }
+
+    .retweet_user_icon {
+      position: absolute;
+      top: $retweeted_icon_size - $icon_overlay_size;
+      left: $retweeted_icon_size - $icon_overlay_size;
+      width: $icon_size - $retweeted_icon_size + $icon_overlay_size;
+      height: $icon_size - $retweeted_icon_size + $icon_overlay_size;
+      border-radius: 3px;
+    }
+
+    .retweet_icon {
+      position: absolute;
+      top: $icon_size - 12px;
+      left: 4px;
+      font-size: 14px;
+    }
+
+    .active .retweet_icon {
+      color: $white;
     }
   }
 
