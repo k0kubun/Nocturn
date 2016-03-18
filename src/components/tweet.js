@@ -19,9 +19,15 @@ export default class Tweet extends React.Component {
   }
 
   autolinkedText(tweet) {
+    let text = tweet.text;
+
+    for (let entity of [...tweet.entities.urls, ...(tweet.entities.media || [])]) {
+      text = text.replace(entity.url, entity.expanded_url);
+    }
+
     return {
       __html: Autolinker.link(
-        tweet.text.replace(/\n/g, '<br>'),
+        text.replace(/\n/g, '<br>'),
         { className: 'external-link' },
       ),
     };
