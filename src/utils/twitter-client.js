@@ -15,8 +15,8 @@ export default class TwitterClient {
     });
   }
 
-  homeTimeline(callback) {
-    this.client.get('statuses/home_timeline', { count: 50 }, (error, tweets, response) => {
+  homeTimeline(callback, params = {}) {
+    this.client.get('statuses/home_timeline', params, (error, tweets, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;

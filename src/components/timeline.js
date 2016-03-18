@@ -27,7 +27,7 @@ export default class Timeline extends React.Component {
       for (let tweet of tweets) {
         proxy.addTweet(tweet, this.props.account, 'home');
       }
-    })
+    }, { count: 50 })
   }
 
   loadMentions() {
