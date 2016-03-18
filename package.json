@@ -41,7 +41,7 @@
     "cross-env": "^1.0.7",
     "decafjs": "^0.3.1",
     "electron-packager": "^5.2.0",
-    "electron-prebuilt": "0.36.9",
+    "electron-prebuilt": "0.37.2",
     "glob": "^7.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
