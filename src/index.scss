@@ -12,6 +12,7 @@ $retweeted_icon_size: 34px;
 $icon_overlay_size: 8px;
 $icon_column: $icon_size + $tweet_padding * 2;
 $tweets_header_height: 34px;
+$red: #d40d12;
 $grey: #999;
 $dark_grey: #555;
 $white: #fff;
@@ -88,13 +89,30 @@ body {
     box-shadow: 0 1px 3px 1px rgba(0,0,0,0.06);
 
     .tweet_editor {
-      width: 100%;
-      height: 100%;
+      width: calc(100% - 28px);
+      height: $editor_height;
       resize: none;
       border: 0;
       outline: 0;
-      padding: 4px 8px 4px 41px;
+      padding: 4px 0 4px 41px;
       font-size: 13px;
+    }
+
+    .tweet_counter {
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      color: $grey;
+      font-weight: bold;
+      display: none;
+
+      &.active {
+        display: inline-block;
+      }
+
+      &.minus {
+        color: $red;
+      }
     }
 
     .account_wrapper {

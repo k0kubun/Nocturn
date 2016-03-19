@@ -7,6 +7,7 @@ import { connect }   from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
+    active:        state.editorFocused,
     activeAccount: state.accounts[state.activeAccountIndex],
     text:          state.text,
     inReplyTo:     state.inReplyTo,
@@ -24,16 +25,20 @@ const mapDispatchToProps = (dispatch, props) => {
     onTextareaChanged: (event) => {
       dispatch(Actions.setText(event.target.value));
     },
+    onFocus: () => {
+      dispatch(Actions.focusEditor());
+    },
+    onBlur: () => {
+      dispatch(Actions.blurEditor());
+    }
   }
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { onTextareaChanged } = dispatchProps;
-
   return {
     ...ownProps,
     ...stateProps,
-    onTextareaChanged,
+    ...dispatchProps,
     onTextareaKeyDown: (event) => {
       if (event.keyCode === Keycode.ENTER && !event.altKey && !event.shiftKey) {
         event.preventDefault();
