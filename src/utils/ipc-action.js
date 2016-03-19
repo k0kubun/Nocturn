@@ -4,8 +4,8 @@ import RichState       from './rich-state';
 import TwitterClient   from './twitter-client';
 
 export default class IpcAction {
-  constructor(document) {
-    this.document = document;
+  static subscribe(store) {
+    new IpcAction().subscribe(store);
   }
 
   subscribe(store) {
@@ -18,7 +18,7 @@ export default class IpcAction {
       store.dispatch(Actions.tweets.setInReplyTo(tweet));
 
       // FIXME: Use better way to focus
-      this.document.getElementById('tweet_editor').focus();
+      document.getElementById('tweet_editor').focus();
     });
 
     ipcRenderer.on('invoke-retweet', (event) => {

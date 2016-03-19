@@ -8,7 +8,7 @@ import IpcAction       from './utils/ipc-action';
 import GlobalKeyBind   from './utils/global-key-bind';
 
 let store = createStore(rootReducer);
-new IpcAction(document).subscribe(store);
+new IpcAction.subscribe(store);
 new GlobalKeyBind.subscribe(store);
 
 if (process.env.NODE_ENV !== 'production') {
