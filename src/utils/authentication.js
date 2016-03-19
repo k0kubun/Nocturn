@@ -6,7 +6,7 @@ import TwitterClient     from './twitter-client'
 let authWindow = null;
 
 export default class Authentication {
-  static ACCOUNTS_JSON    = 'accounts.json';
+  static ACCOUNTS_JSON    = '.nocturn';
   static CREDENTIALS_JSON = 'credentials.json';
 
   static authorized(callback) {
@@ -25,12 +25,12 @@ export default class Authentication {
   }
 
   static addToken(token, callback) {
-    var tokens = JsonLoader.read(this.ACCOUNTS_JSON);
+    var tokens = JsonLoader.readHome(this.ACCOUNTS_JSON);
     if (tokens == null) {
       tokens = [];
     }
     tokens.push(token);
-    JsonLoader.write(this.ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
+    JsonLoader.writeHome(this.ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
     callback();
   }
 
@@ -66,7 +66,7 @@ export default class Authentication {
   }
 
   static allAccounts() {
-    return JsonLoader.read(this.ACCOUNTS_JSON) || [];
+    return JsonLoader.readHome(this.ACCOUNTS_JSON) || [];
   }
 
   static credentials() {
