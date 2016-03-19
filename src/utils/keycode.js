@@ -7,3 +7,4 @@ export const ZERO  = 48;
 export const F     = 70;
 export const J     = 74;
 export const K     = 75;
+export const T     = 84;

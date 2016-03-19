@@ -1,7 +1,8 @@
 import * as Keycode  from './keycode';
-import RichState     from './rich-state';
 import Actions       from '../actions';
+import RichState     from './rich-state';
 import TwitterClient from './twitter-client';
+import { shell }     from 'electron';
 
 export default class GlobalKeyBind {
   static subscribe(store) {
@@ -35,6 +36,9 @@ export default class GlobalKeyBind {
             break;
           case Keycode.F:
             this.handleF(event);
+            break;
+          case Keycode.T:
+            this.handleT(event);
             break;
           case Keycode.SPACE:
           case Keycode.ZERO:
@@ -90,12 +94,23 @@ export default class GlobalKeyBind {
     event.preventDefault();
 
     let client = new TwitterClient(this.state.activeAccount());
-    let active  = this.state.activeTweet();
+    let active = this.state.activeTweet();
     if (!active) return null;
 
     client.favoriteStatus(active.id_str, (tweet) => {
       this.dispatch(Actions.tweets.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
     });
+  }
+
+  handleT(event) {
+    event.preventDefault();
+
+    let tweet = this.state.activeTweet();
+    if (!tweet) return null;
+
+    for (let entity of [...tweet.entities.urls, ...(tweet.entities.media || [])]) {
+      shell.openExternal(entity.expanded_url);
+    }
   }
 
   handleZero(event) {
