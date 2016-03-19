@@ -9,6 +9,12 @@ const mapStateToProps = (state, props) => {
   };
 }
 
-export default connect(mapStateToProps, {
-  ...Actions.tabs,
-})(TweetTab);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onTabClicked: () => {
+      dispatch(Actions.tabs.selectTab(props.tab, props.account));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TweetTab);
