@@ -320,6 +320,10 @@ body {
     .active .retweet_icon {
       color: $white;
     }
+
+    .delete_button {
+      padding-left: 1px;
+    }
   }
 
   .tweets_header {

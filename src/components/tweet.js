@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Autolinker           from 'autolinker';
+import DeleteContainer      from '../containers/delete-container';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
@@ -33,6 +34,14 @@ export default class Tweet extends React.Component {
     };
   }
 
+  reactionButtonFor(tweet) {
+    if (tweet.user.id_str === this.props.account.id_str) {
+      return <DeleteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />;
+    } else {
+      return <ReplyContainer tweet={this.props.tweet} account={this.props.account} />;
+    }
+  }
+
   render() {
     return(
       <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
@@ -45,7 +54,7 @@ export default class Tweet extends React.Component {
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
           </div>
           <div className='right_widget'>
-            <ReplyContainer tweet={this.props.tweet} account={this.props.account} />
+            {this.reactionButtonFor(this.props.tweet)}
             <FavoriteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>

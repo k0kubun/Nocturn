@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import Actions         from '../actions';
-import RichState       from './rich-state'
-import TwitterClient   from './twitter-client'
+import RichState       from './rich-state';
+import TwitterClient   from './twitter-client';
 
 export default class IpcAction {
   constructor(document) {
