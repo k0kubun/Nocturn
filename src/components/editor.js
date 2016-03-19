@@ -1,33 +1,13 @@
 import React, { PropTypes } from 'react';
-import * as Keycode         from '../utils/keycode';
 import IconContainer        from '../containers/icon-container';
-import TimelineProxy        from '../utils/timeline-proxy';
-import TwitterClient        from '../utils/twitter-client';
 
 export default class Editor extends React.Component {
   static propTypes = {
-    activeAccount: PropTypes.object,
-    text:          PropTypes.string.isRequired,
-    inReplyTo:     PropTypes.string,
-    addTweet:      PropTypes.func.isRequired,
-    clearText:     PropTypes.func.isRequired,
-  }
-
-  onTextareaChanged(event) {
-    this.props.setText(event.target.value);
-  }
-
-  onTextareaKeyDown(event) {
-    if (event.keyCode === Keycode.ENTER && !event.altKey && !event.shiftKey) {
-      event.preventDefault();
-
-      let client = new TwitterClient(this.props.activeAccount);
-      let proxy  = new TimelineProxy(this.props.addTweet, this.props.activeAccount);
-      client.updateStatus(this.props.text, this.props.inReplyTo, (tweet) => {
-        proxy.addTweet(tweet);
-      });
-      this.props.clearText();
-    }
+    activeAccount:     PropTypes.object,
+    text:              PropTypes.string.isRequired,
+    inReplyTo:         PropTypes.string,
+    onTextareaChanged: PropTypes.func.isRequired,
+    onTextareaKeyDown: PropTypes.func.isRequired,
   }
 
   render() {
@@ -40,8 +20,8 @@ export default class Editor extends React.Component {
             className='tweet_editor'
             name='tweet'
             tabIndex='1'
-            onChange={this.onTextareaChanged.bind(this)}
-            onKeyDown={this.onTextareaKeyDown.bind(this)}
+            onChange={this.props.onTextareaChanged}
+            onKeyDown={this.props.onTextareaKeyDown}
             value={this.props.text}
           />
           <div className='in_reply_to' id='0' />
