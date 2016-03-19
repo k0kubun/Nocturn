@@ -241,6 +241,7 @@ body {
       width: calc(100% - #{$icon_size + 40px});
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $grey;
     }
 
     .created_at {
