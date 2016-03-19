@@ -1,21 +1,11 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
+import BaseContainer        from '../containers/base-container';
 import Reply                from '../components/reply';
 
-export default class ReplyContainer extends React.Component {
-  static contextTypes = {
-    store: PropTypes.shape({
-      dispatch: PropTypes.func.isRequired,
-    }),
-  }
-
+export default class ReplyContainer extends BaseContainer {
   shouldComponentUpdate() {
     return false;
-  }
-
-  constructor(props, context) {
-    super(props, context);
-    this.store = context.store;
   }
 
   onClick(event) {

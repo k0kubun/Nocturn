@@ -1,22 +1,12 @@
 import React, { PropTypes } from 'react';
 import Actions              from '../actions';
+import BaseContainer        from '../containers/base-container';
 import Favorite             from '../components/favorite';
 import TwitterClient        from '../utils/twitter-client';
 
-export default class FavoriteContainer extends React.Component {
-  static contextTypes = {
-    store: PropTypes.shape({
-      dispatch: PropTypes.func.isRequired,
-    }),
-  }
-
+export default class FavoriteContainer extends BaseContainer {
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.tweet.favorited != nextProps.tweet.favorited;
-  }
-
-  constructor(props, context) {
-    super(props, context);
-    this.store = context.store;
   }
 
   onClick(event) {
