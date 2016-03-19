@@ -1,6 +1,8 @@
-import { connect } from 'react-redux';
-import Actions     from '../actions';
-import Account     from '../components/account'
+import Account         from '../components/account';
+import Actions         from '../actions';
+import TwitterClient   from '../utils/twitter-client';
+import { connect }     from 'react-redux';
+import { ipcRenderer } from 'electron';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,6 +11,27 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  ...Actions.accounts,
-})(Account);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAccountChange: (event) => {
+      if (event.target.value === 'add-account') {
+        event.preventDefault();
+        ipcRenderer.send('start-authentication');
+      } else {
+        dispatch(Actions.accounts.activateAccount(event.target.value));
+      }
+    },
+    subscribeIpc: () => {
+      ipcRenderer.on('finish-authentication', (event, token) => {
+        dispatch(Actions.accounts.addAccount(token));
+
+        let client = new TwitterClient(token);
+        client.verifyCredentials((user) => {
+          dispatch(Actions.accounts.refreshUserInfo(user));
+        });
+      });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account);
