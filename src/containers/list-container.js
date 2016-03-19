@@ -1,6 +1,7 @@
-import Actions     from '../actions';
-import { connect } from 'react-redux';
-import List        from '../components/list'
+import Actions       from '../actions';
+import List          from '../components/list';
+import TwitterClient from '../utils/twitter-client';
+import { connect }   from 'react-redux';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -9,7 +10,20 @@ const mapStateToProps = (state, props) => {
   };
 }
 
-export default connect(mapStateToProps, {
-  ...Actions.lists,
-  ...Actions.tweets,
-})(List);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onListChanged: (event) => {
+      let listId = event.target.value;
+      if (listId > 0) {
+        dispatch(Actions.lists.setActiveListId(listId, props.account));
+
+        let client = new TwitterClient(props.account);
+        client.listsStatuses(listId, (tweets) => {
+          dispatch(Actions.tweets.clearAndSetTweets(tweets, props.account, 'lists'));
+        });
+      }
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
