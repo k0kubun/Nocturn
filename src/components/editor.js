@@ -18,7 +18,7 @@ export default class Editor extends React.Component {
   }
 
   onTextareaKeyDown(event) {
-    if (event.keyCode === Keycode.ENTER && !event.altKey) {
+    if (event.keyCode === Keycode.ENTER && !event.altKey && !event.shiftKey) {
       event.preventDefault();
 
       let client = new TwitterClient(this.props.activeAccount);

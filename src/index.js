@@ -12,7 +12,7 @@ new IpcAction(document).subscribe(store);
 new GlobalKeyBind(document).subscribe(store);
 
 if (process.env.NODE_ENV !== 'production') {
-  store.subscribe(() => console.log(store.getState()));
+  //store.subscribe(() => console.log(store.getState()));
 }
 
 render(
