@@ -1,6 +1,8 @@
-import Actions     from '../actions';
-import Search      from '../components/search';
-import { connect } from 'react-redux';
+import * as Keycode  from '../utils/keycode';
+import Actions       from '../actions';
+import Search        from '../components/search';
+import TwitterClient from '../utils/twitter-client';
+import { connect }   from 'react-redux';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -8,7 +10,21 @@ const mapStateToProps = (state, props) => {
   };
 }
 
-export default connect(mapStateToProps, {
-  ...Actions.tweets,
-  ...Actions.texts,
-})(Search);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onSearchFieldKeyDown: (event) => {
+      if (event.keyCode === Keycode.ENTER) {
+        event.preventDefault();
+
+        let query = event.target.value;
+        let client = new TwitterClient(props.account);
+        client.searchTweets(query, (tweets) => {
+          dispatch(Actions.texts.setSearchQuery(query, props.account));
+          dispatch(Actions.tweets.clearAndSetTweets(tweets, props.account, 'search'));
+        });
+      }
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

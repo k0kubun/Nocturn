@@ -1,26 +1,10 @@
 import React, { PropTypes } from 'react';
-import * as Keycode         from '../utils/keycode';
-import TwitterClient        from '../utils/twitter-client'
 
 export default class Search extends React.Component {
   static propTypes = {
-    account:           PropTypes.object.isRequired,
-    active:            PropTypes.bool.isRequired,
-    clearAndSetTweets: PropTypes.func.isRequired,
-    setSearchQuery:    PropTypes.func.isRequired,
-  }
-
-  onSearchFieldKeyDown(event) {
-    if (event.keyCode === Keycode.ENTER) {
-      event.preventDefault();
-
-      let query = event.target.value;
-      let client = new TwitterClient(this.props.account);
-      client.searchTweets(query, (tweets) => {
-        this.props.setSearchQuery(query, this.props.account);
-        this.props.clearAndSetTweets(tweets, this.props.account, 'search');
-      });
-    }
+    account:              PropTypes.object.isRequired,
+    active:               PropTypes.bool.isRequired,
+    onSearchFieldKeyDown: PropTypes.func.isRequired,
   }
 
   render() {
@@ -30,7 +14,7 @@ export default class Search extends React.Component {
           className='search_field'
           type='text'
           placeholder='Twitter Search'
-          onKeyDown={this.onSearchFieldKeyDown.bind(this)}
+          onKeyDown={this.props.onSearchFieldKeyDown}
         />
       </div>
     );
