@@ -1,4 +1,9 @@
 # Change Log
+## v0.4.2
+- Use home directory to save credentials
+  - Credentials are not discarded in reinstallation from this version
+- Show a counter of remaining characters for tweet
+
 ## v0.4.1
 - Add <kbd>T</kbd> keybind to open url in tweet with external browser
 - Add <kbd>Shift-Enter</kbd> keybind to insert a newline in Linux and Windows
