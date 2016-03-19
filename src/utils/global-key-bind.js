@@ -4,47 +4,51 @@ import Actions       from '../actions';
 import TwitterClient from './twitter-client';
 
 export default class GlobalKeyBind {
-  constructor(document) {
-    this.document = document;
+  static subscribe(store) {
+    new GlobalKeyBind().subscribe(store);
   }
 
   subscribe(store) {
     this.store = store;
-    this.document.addEventListener('keydown', (event) => {
-      switch (event.keyCode) {
-        case Keycode.TAB:
-          this.handleTab(event);
-          break;
-        case Keycode.DOWN:
-        case Keycode.J:
-          this.handleJ(event);
-          break;
-        case Keycode.UP:
-        case Keycode.K:
-          this.handleK(event);
-          break;
-        case Keycode.F:
-          this.handleF(event);
-          break;
-        case Keycode.SPACE:
-        case Keycode.ZERO:
-          this.handleZero(event);
-          break;
+    document.addEventListener('keydown', (event) => {
+      if (event.keyCode === Keycode.TAB) {
+        this.handleTab(event);
+        return;
+      }
+
+      if (!this.isEditing()) {
+        switch (event.keyCode) {
+          case Keycode.DOWN:
+          case Keycode.J:
+            this.handleJ(event);
+            break;
+          case Keycode.UP:
+          case Keycode.K:
+            this.handleK(event);
+            break;
+          case Keycode.F:
+            this.handleF(event);
+            break;
+          case Keycode.SPACE:
+          case Keycode.ZERO:
+            this.handleZero(event);
+            break;
+        }
       }
     });
   }
 
   handleTab(event) {
-    let editor = this.document.getElementById('tweet_editor');
+    let editor = document.getElementById('tweet_editor');
 
-    if (this.document.activeElement != editor) {
+    if (document.activeElement != editor) {
       event.preventDefault();
       editor.focus();
     }
   }
 
   handleJ(event) {
-    if (this.isEditing() || event.altKey || event.metaKey) return;
+    if (event.altKey || event.metaKey) return;
     event.preventDefault();
 
     let state = new RichState(store);
@@ -52,16 +56,16 @@ export default class GlobalKeyBind {
     if (!tweet) return null;
     store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
 
-    let visibleLimit = this.document.body.clientHeight;
-    let activeBottom = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().bottom;
+    let visibleLimit = document.body.clientHeight;
+    let activeBottom = document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().bottom;
     if (visibleLimit < activeBottom) {
-      let element = this.document.querySelector('.timeline.active .tweets.active');
+      let element = document.querySelector('.timeline.active .tweets.active');
       element.scrollTop += element.clientHeight / 2;
     }
   }
 
   handleK(event) {
-    if (this.isEditing() || event.altKey || event.metaKey) return;
+    if (event.altKey || event.metaKey) return;
     event.preventDefault();
 
     let state = new RichState(store);
@@ -69,16 +73,15 @@ export default class GlobalKeyBind {
     if (!tweet) return null;
     store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
 
-    let activeTop = this.document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().top;
-    let visibleLimit = this.document.querySelector('.timeline.active .tweets.active').getBoundingClientRect().top;
+    let activeTop = document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().top;
+    let visibleLimit = document.querySelector('.timeline.active .tweets.active').getBoundingClientRect().top;
     if (activeTop < visibleLimit) {
-      let element = this.document.querySelector('.timeline.active .tweets.active');
+      let element = document.querySelector('.timeline.active .tweets.active');
       element.scrollTop -= element.clientHeight / 2;
     }
   }
 
   handleF(event) {
-    if (this.isEditing()) return;
     event.preventDefault();
 
     let state  = new RichState(store);
@@ -92,7 +95,6 @@ export default class GlobalKeyBind {
   }
 
   handleZero(event) {
-    if (this.isEditing()) return;
     event.preventDefault();
 
     let state = new RichState(store);
@@ -100,12 +102,12 @@ export default class GlobalKeyBind {
     if (!tweet) return null;
 
     store.dispatch(Actions.tweets.selectTweet(tweet, state.activeTab(), state.activeAccount()));
-    let element = this.document.querySelector('.timeline.active .tweets.active');
+    let element = document.querySelector('.timeline.active .tweets.active');
     element.scrollTop = 0;
   }
 
   isEditing() {
-    return this.document.activeElement.id === 'tweet_editor' ||
-      this.document.activeElement.className === 'search_field';
+    return document.activeElement.id === 'tweet_editor' ||
+      document.activeElement.className === 'search_field';
   }
 }
