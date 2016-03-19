@@ -13,6 +13,7 @@ $icon_overlay_size: 8px;
 $icon_column: $icon_size + $tweet_padding * 2;
 $tweets_header_height: 34px;
 $grey: #999;
+$dark_grey: #555;
 $white: #fff;
 
 // Reject over scrolling
@@ -192,13 +193,13 @@ body {
 
     .user_name {
       font-weight: bold;
-      color: #555;
+      color: $dark_grey;
       margin-right: 4px;
     }
 
     .tweet_body {
       font-size: 13px;
-      color: #555;
+      color: $dark_grey;
       line-height: 1.3;
       padding-right: 16px;
       user-select: auto;
@@ -313,6 +314,7 @@ body {
       top: $icon_size - 12px;
       left: 4px;
       font-size: 14px;
+      color: $dark_grey;
     }
 
     .active .retweet_icon {
