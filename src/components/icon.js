@@ -2,18 +2,8 @@ import React, { PropTypes } from 'react';
 
 export default class Icon extends React.Component {
   static propTypes = {
-    activeUser: PropTypes.object,
-  }
-
-  onTwitterIconClicked(event) {
-    event.preventDefault();
-    let document = event.target.ownerDocument;
-
-    // Dirty hack to toggle select element
-    let dropdown = document.getElementById('account_selector');
-    let mouseEvent = document.createEvent('MouseEvents');
-    mouseEvent.initMouseEvent('mousedown', true, true, window);
-    dropdown.dispatchEvent(mouseEvent);
+    activeUser:           PropTypes.object,
+    onTwitterIconClicked: PropTypes.func.isRequired,
   }
 
   render() {
@@ -22,7 +12,7 @@ export default class Icon extends React.Component {
         <img
           className='twitter_icon'
           src={this.props.activeUser ? this.props.activeUser.profile_image_url : ''}
-          onClick={this.onTwitterIconClicked.bind(this)}
+          onClick={this.props.onTwitterIconClicked}
         />
       </div>
     );
