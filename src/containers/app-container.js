@@ -15,11 +15,11 @@ const mapDispatchToProps = (dispatch) => {
     initializeAccounts: () => {
       let accounts = Authentication.allAccounts();
       for (let account of accounts) {
-        dispatch(Actions.accounts.addAccount(account));
+        dispatch(Actions.addAccount(account));
 
         let client = new TwitterClient(account);
         client.verifyCredentials((user) => {
-          dispatch(Actions.accounts.refreshUserInfo(user));
+          dispatch(Actions.refreshUserInfo(user));
         });
       }
     },

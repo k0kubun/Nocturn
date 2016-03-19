@@ -12,7 +12,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onTabClicked: () => {
-      dispatch(Actions.tabs.selectTab(props.tab, props.account));
+      dispatch(Actions.selectTab(props.tab, props.account));
     }
   }
 }

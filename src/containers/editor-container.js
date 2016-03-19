@@ -16,13 +16,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     addTweet: (tweet, account, tab) => {
-      dispatch(Actions.tweets.addTweet(tweet, account, tab));
+      dispatch(Actions.addTweet(tweet, account, tab));
     },
     clearText: () => {
-      dispatch(Actions.texts.clearText());
+      dispatch(Actions.clearText());
     },
     onTextareaChanged: (event) => {
-      dispatch(Actions.texts.setText(event.target.value));
+      dispatch(Actions.setText(event.target.value));
     },
   }
 }

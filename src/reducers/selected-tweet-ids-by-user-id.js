@@ -2,7 +2,7 @@ import Actions from '../actions';
 
 export const selectedTweetIdsByUserId = (state = {}, action) => {
   switch (action.type) {
-    case Actions.tweets.SELECT_TWEET:
+    case Actions.SELECT_TWEET:
       return {
         ...state,
         [action.account.id_str]: {

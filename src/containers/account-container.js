@@ -18,16 +18,16 @@ const mapDispatchToProps = (dispatch) => {
         event.preventDefault();
         ipcRenderer.send('start-authentication');
       } else {
-        dispatch(Actions.accounts.activateAccount(event.target.value));
+        dispatch(Actions.activateAccount(event.target.value));
       }
     },
     subscribeIpc: () => {
       ipcRenderer.on('finish-authentication', (event, token) => {
-        dispatch(Actions.accounts.addAccount(token));
+        dispatch(Actions.addAccount(token));
 
         let client = new TwitterClient(token);
         client.verifyCredentials((user) => {
-          dispatch(Actions.accounts.refreshUserInfo(user));
+          dispatch(Actions.refreshUserInfo(user));
         });
       });
     },

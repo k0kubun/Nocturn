@@ -11,7 +11,7 @@ export default class TweetContainer extends BaseContainer {
   }
 
   onClick(event) {
-    this.store.dispatch(Actions.tweets.selectTweet(this.props.tweet, this.props.tab, this.props.account));
+    this.store.dispatch(Actions.selectTweet(this.props.tweet, this.props.tab, this.props.account));
   }
 
   render() {

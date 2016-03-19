@@ -4,10 +4,10 @@ import * as tabs     from './tabs';
 import * as texts    from './texts';
 import * as tweets   from './tweets';
 
-export default {
+export default Object.assign(
   accounts,
   lists,
   tabs,
   texts,
   tweets,
-}
+)

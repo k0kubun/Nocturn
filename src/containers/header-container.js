@@ -18,7 +18,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
 
   const addTweet = (tweet, account, tab) => {
-    dispatch(Actions.tweets.addTweet(tweet, account, tab));
+    dispatch(Actions.addTweet(tweet, account, tab));
   }
 
   const refreshListsTab = (client) => {

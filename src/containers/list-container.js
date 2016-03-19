@@ -15,11 +15,11 @@ const mapDispatchToProps = (dispatch, props) => {
     onListChanged: (event) => {
       let listId = event.target.value;
       if (listId > 0) {
-        dispatch(Actions.lists.setActiveListId(listId, props.account));
+        dispatch(Actions.setActiveListId(listId, props.account));
 
         let client = new TwitterClient(props.account);
         client.listsStatuses(listId, (tweets) => {
-          dispatch(Actions.tweets.clearAndSetTweets(tweets, props.account, 'lists'));
+          dispatch(Actions.clearAndSetTweets(tweets, props.account, 'lists'));
         });
       }
     },

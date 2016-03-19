@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   const addTweet = (tweet, account, tab) => {
-    dispatch(Actions.tweets.addTweet(tweet, account, tab));
+    dispatch(Actions.addTweet(tweet, account, tab));
   }
 
   const proxy  = new TimelineProxy(addTweet, props.account);
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch, props) => {
     loadLists: () => {
       client.listsList((lists) => {
         for (let list of lists) {
-          dispatch(Actions.lists.setLists(lists, props.account));
+          dispatch(Actions.setLists(lists, props.account));
         }
       });
     },

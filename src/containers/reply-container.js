@@ -9,8 +9,8 @@ export default class ReplyContainer extends BaseContainer {
   }
 
   onClick(event) {
-    this.store.dispatch(Actions.texts.setText(`@${this.props.tweet.user.screen_name} `));
-    this.store.dispatch(Actions.tweets.setInReplyTo(this.props.tweet));
+    this.store.dispatch(Actions.setText(`@${this.props.tweet.user.screen_name} `));
+    this.store.dispatch(Actions.setInReplyTo(this.props.tweet));
 
     // FIXME: Use better way to focus
     event.target.ownerDocument.getElementById('tweet_editor').focus();

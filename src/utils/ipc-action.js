@@ -21,8 +21,8 @@ export default class IpcAction {
       let tweet = this.state.activeTweet();
       if (!tweet) return null;
 
-      this.dispatch(Actions.texts.setText(`@${tweet.user.screen_name} `));
-      this.dispatch(Actions.tweets.setInReplyTo(tweet));
+      this.dispatch(Actions.setText(`@${tweet.user.screen_name} `));
+      this.dispatch(Actions.setInReplyTo(tweet));
 
       // FIXME: Use better way to focus
       document.getElementById('tweet_editor').focus();
@@ -35,7 +35,7 @@ export default class IpcAction {
 
       if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
         client.retweetStatus(active.id_str, (tweet) => {
-          this.dispatch(Actions.tweets.addTweet(tweet, this.state.activeAccount(), state.activeTab()));
+          this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), state.activeTab()));
         });
       }
     });
@@ -46,28 +46,28 @@ export default class IpcAction {
       if (!active) return null;
 
       client.deleteStatus(active.id_str, (tweet) => {
-        this.dispatch(Actions.tweets.removeTweet(tweet, this.state.activeAccount(), state.activeTab()));
+        this.dispatch(Actions.removeTweet(tweet, this.state.activeAccount(), state.activeTab()));
       });
     });
 
     ipcRenderer.on('select-next-tab', (event) => {
       let tab = this.state.nextTab();
-      this.dispatch(Actions.tabs.selectTab(tab, this.state.activeAccount()));
+      this.dispatch(Actions.selectTab(tab, this.state.activeAccount()));
     });
 
     ipcRenderer.on('select-prev-tab', (event) => {
       let tab = this.state.prevTab();
-      this.dispatch(Actions.tabs.selectTab(tab, this.state.activeAccount()));
+      this.dispatch(Actions.selectTab(tab, this.state.activeAccount()));
     });
 
     ipcRenderer.on('select-next-account', (event) => {
       let index = this.state.nextAccountIndex();
-      this.dispatch(Actions.accounts.activateAccount(index));
+      this.dispatch(Actions.activateAccount(index));
     });
 
     ipcRenderer.on('select-prev-account', (event) => {
       let index = this.state.prevAccountIndex();
-      this.dispatch(Actions.accounts.activateAccount(index));
+      this.dispatch(Actions.activateAccount(index));
     });
   }
 }

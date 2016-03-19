@@ -13,7 +13,7 @@ export default class DeleteContainer extends BaseContainer {
     let client = new TwitterClient(this.props.account);
     client.deleteStatus(this.props.tweet.id_str, (tweet) => {
       this.store.dispatch(
-        Actions.tweets.removeTweet(this.props.tweet, this.props.account, this.props.tab),
+        Actions.removeTweet(this.props.tweet, this.props.account, this.props.tab),
       );
     });
   }

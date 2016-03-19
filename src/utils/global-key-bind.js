@@ -64,7 +64,7 @@ export default class GlobalKeyBind {
 
     let tweet = this.state.findNextTweet();
     if (!tweet) return null;
-    this.dispatch(Actions.tweets.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
+    this.dispatch(Actions.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
 
     let visibleLimit = document.body.clientHeight;
     let activeBottom = document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().bottom;
@@ -80,7 +80,7 @@ export default class GlobalKeyBind {
 
     let tweet = this.state.findPrevTweet();
     if (!tweet) return null;
-    this.dispatch(Actions.tweets.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
+    this.dispatch(Actions.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
 
     let activeTop = document.querySelector('.timeline.active .tweets.active .tweet.active').getBoundingClientRect().top;
     let visibleLimit = document.querySelector('.timeline.active .tweets.active').getBoundingClientRect().top;
@@ -98,7 +98,7 @@ export default class GlobalKeyBind {
     if (!active) return null;
 
     client.favoriteStatus(active.id_str, (tweet) => {
-      this.dispatch(Actions.tweets.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
+      this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
     });
   }
 
@@ -119,7 +119,7 @@ export default class GlobalKeyBind {
     let tweet = this.state.findFirstTweet();
     if (!tweet) return null;
 
-    this.dispatch(Actions.tweets.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
+    this.dispatch(Actions.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
     let element = document.querySelector('.timeline.active .tweets.active');
     element.scrollTop = 0;
   }
