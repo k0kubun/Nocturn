@@ -1,4 +1,10 @@
 # Change Log
+## v0.4.1
+- Add <kbd>T</kbd> keybind to open url in tweet with external browser
+- Add <kbd>Shift-Enter</kbd> keybind to insert a newline in Linux and Windows
+- Show delete button instead of reply button for login user's tweet
+- Change the color of retweet mark and ellipsis of user name
+
 ## v0.4.0
 - Renew retweet view
   - Show not-truncated text, retweeted user's name and icon

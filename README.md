@@ -36,10 +36,12 @@ https://github.com/k0kubun/Nocturn/releases
 <tr><td> Select a next tweet       </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>     </td></tr>
 <tr><td> Select a previous tweet   </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>     </td></tr>
 <tr><td> Select the first tweet    </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
+<tr><td> Open url in a tweet       </td><td colspan='2'> <kbd>T</kbd>                   </td></tr>
 <tr><td> Select a next tab         </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd>         </td></tr>
 <tr><td> Select a previous tab     </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd>         </td></tr>
 <tr><td> Select a next account     </td><td>             <kbd>Cmd-J</kbd>               </td><td> <kbd>Alt-J</kbd>         </td></tr>
 <tr><td> Select a previous account </td><td>             <kbd>Cmd-K</kbd>               </td><td> <kbd>Alt-K</kbd>         </td></tr>
+<tr><td> Insert a newline          </td><td>             <kbd>Alt-Enter</kbd>           </td><td> <kbd>Shift-Enter</kbd>   </td></tr>
 </tbody>
 </table>
 
