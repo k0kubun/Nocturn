@@ -3,7 +3,7 @@
 - Show a counter of unread mentions
 - Desktop notification of mention and favorite
 - Limit minimum width of window
-- List selector becamse smaller a bit
+- List selector became smaller a bit
 
 ## v0.4.3
 - Show relative time for tweet timestamp
