@@ -37,18 +37,7 @@ export default class TwitterClient {
 
   userStream(callback) {
     this.client.stream('user', {}, (stream) => {
-      stream.on('data', function(data) {
-        if (data['friends']) {
-          // noop
-        } else if (data['event']) {
-          // noop
-        } else if (data['delete']) {
-          // noop
-        } else if (data['created_at']) {
-          // This is a normal tweet
-          callback(data);
-        }
-      });
+      callback(stream);
 
       stream.on('error', (error) => {
         // ignoring because of too many errors

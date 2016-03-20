@@ -44,8 +44,26 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     startStreaming: () => {
       const proxy = new TimelineProxy(addTweet, props.account, true);
-      client.userStream((tweet) => {
-        proxy.addTweet(tweet);
+      client.userStream((stream) => {
+        stream.on('data', function(data) {
+          if (data['friends']) {
+            // noop
+          } else if (data['event']) {
+            // noop
+          } else if (data['delete']) {
+            // noop
+          } else if (data['created_at']) {
+            // This is a normal tweet
+            proxy.addTweet(data);
+          }
+        });
+
+        stream.on('favorite', (event) => {
+          new Notification(
+            `${event.source.screen_name} favorited:`,
+            { body: `${event.target.screen_name} "${event.target_object.text}"` },
+          );
+        });
       });
     },
   };
