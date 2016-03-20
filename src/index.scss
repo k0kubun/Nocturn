@@ -20,6 +20,7 @@ $grey: #999;
 $dark_grey: #555;
 $white: #fff;
 $dark_blue: #0084b4;
+$account_selector_top: $profile_image_size + $editor_vertical_padding;
 
 // Reject over scrolling
 html,
@@ -38,7 +39,7 @@ body {
 
   #account_selector {
     position: absolute;
-    top: 14px;
+    top: $account_selector_top;
     left: 16px;
   }
 
@@ -79,6 +80,8 @@ body {
       width: 22px;
       text-align: right;
       display: none;
+      font-size: 12px;
+      padding-top: 2px;
 
       &.active {
         display: inline-block;
@@ -372,13 +375,24 @@ body {
   $title_bar_offset: 20px;
   $header_height: $title_bar_offset;
 
-  .header {
-    height: $header_height;
-    padding-top: 5px + $title_bar_offset;
+  .editor {
+    height: $editor_height + $title_bar_offset;
   }
 
-  .editor {
-    top: $header_height;
+  .tweet_editor {
+    top: $editor_vertical_padding + $title_bar_offset;
+  }
+
+  .tweet_counter {
+    top: $profile_image_size + $profile_image_offset + $title_bar_offset;
+  }
+
+  .twitter_icon {
+    top: $profile_image_offset + $title_bar_offset;
+  }
+
+  #account_selector {
+    top: $account_selector_top + $title_bar_offset + 8px;
   }
 
   .tabs {
