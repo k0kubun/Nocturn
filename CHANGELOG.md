@@ -1,4 +1,10 @@
 # Change Log
+## v0.5.1
+- Drop application header
+  - Home and Refresh buttons are dropped too
+- Add <kbd>Cmd-R</kbd> / <kbd>Ctrl-R</kbd> keybind for refresh
+- Show short URL for images uploaded to twitter
+
 ## v0.5.0
 - Show a counter of unread mentions
 - Desktop notification of mention and favorite
