@@ -1,4 +1,9 @@
 # Change Log
+## v0.4.3
+- Show relative time for tweet timestamp
+- Downgrade Electron to v0.36
+  - Chrome 39 in Electron v0.37 has an inevitable bug
+
 ## v0.4.2
 - Use home directory to save credentials
   - Credentials are not discarded in reinstallation from this version
