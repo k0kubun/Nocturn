@@ -9,6 +9,7 @@ export default class TweetList extends React.Component {
     tab:           PropTypes.string.isRequired,
     tweets:        PropTypes.array.isRequired,
     withHeader:    PropTypes.bool,
+    now:           PropTypes.number,
   }
 
   render() {
@@ -21,6 +22,7 @@ export default class TweetList extends React.Component {
             tab={this.props.tab}
             account={this.props.account}
             activeTweetId={this.props.activeTweetId}
+            now={this.props.now}
           />
         )}
       </ul>

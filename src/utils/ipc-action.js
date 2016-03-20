@@ -63,11 +63,19 @@ export default class IpcAction {
     ipcRenderer.on('select-next-account', (event) => {
       let index = this.state.nextAccountIndex();
       this.dispatch(Actions.activateAccount(index));
+      this.refreshTime(index);
     });
 
     ipcRenderer.on('select-prev-account', (event) => {
       let index = this.state.prevAccountIndex();
       this.dispatch(Actions.activateAccount(index));
+      this.refreshTime(index);
     });
+  }
+
+  refreshTime(index) {
+    let account = this.state.state.accounts[index];
+    let tab = this.state.state.selectedTabByUserId[account.id_str] || 'home';
+    this.dispatch(Actions.refreshTabTime(tab, account));
   }
 }

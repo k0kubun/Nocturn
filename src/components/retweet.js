@@ -8,6 +8,7 @@ export default class Retweet extends Tweet {
   static propTypes = {
     account: PropTypes.object.isRequired,
     active:  PropTypes.bool.isRequired,
+    now:     PropTypes.number,
     tab:     PropTypes.string.isRequired,
     tweet:   PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
@@ -23,7 +24,7 @@ export default class Retweet extends Tweet {
             <i className='retweet_icon fa fa-retweet' />
           </div>
           <div className='right_box'>
-            <TweetHeader tweet={this.props.tweet.retweeted_status} />
+            <TweetHeader tweet={this.props.tweet.retweeted_status} now={this.props.now} />
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet.retweeted_status)} />
             <div className='retweeted_by_wrapper'>
               <span className='retweeted_by'>Retweeted by</span>

@@ -9,6 +9,7 @@ export default class Tweet extends React.Component {
   static propTypes = {
     account: PropTypes.object.isRequired,
     active:  PropTypes.bool.isRequired,
+    now:     PropTypes.number,
     tab:     PropTypes.string.isRequired,
     tweet:   PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
@@ -50,7 +51,7 @@ export default class Tweet extends React.Component {
             <img className='user_icon' src={this.largeProfileImage(this.props.tweet.user)} />
           </div>
           <div className='right_box'>
-            <TweetHeader tweet={this.props.tweet} />
+            <TweetHeader tweet={this.props.tweet} now={this.props.now} />
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
           </div>
           <div className='right_widget'>

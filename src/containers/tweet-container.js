@@ -7,7 +7,8 @@ import Retweet              from '../components/retweet';
 export default class TweetContainer extends BaseContainer {
   shouldComponentUpdate(nextProps, nextState) {
     return (this.props.tweet.favorited != nextProps.tweet.favorited) ||
-      ((this.props.activeTweetId === this.props.tweet.id_str) != (nextProps.activeTweetId === nextProps.tweet.id_str));
+      ((this.props.activeTweetId === this.props.tweet.id_str) != (nextProps.activeTweetId === nextProps.tweet.id_str)) ||
+      this.props.now != nextProps.now;
   }
 
   onClick(event) {
@@ -23,6 +24,7 @@ export default class TweetContainer extends BaseContainer {
           tab={this.props.tab}
           tweet={this.props.tweet}
           onClick={this.onClick.bind(this)}
+          now={this.props.now}
         />
       );
     } else {
@@ -33,6 +35,7 @@ export default class TweetContainer extends BaseContainer {
           tab={this.props.tab}
           tweet={this.props.tweet}
           onClick={this.onClick.bind(this)}
+          now={this.props.now}
         />
       );
     }

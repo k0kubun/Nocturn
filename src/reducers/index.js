@@ -5,6 +5,7 @@ import { activeListIdByUserId } from './active-list-id-by-user-id';
 import { editorFocused } from './editor-focused';
 import { inReplyTo } from './in-reply-to';
 import { listsByUserId } from './lists-by-user-id';
+import { nowsByUserId } from './nows-by-user-id';
 import { searchQueryByUserId } from './search-query-by-user-id';
 import { selectedTabByUserId } from './selected-tab-by-user-id';
 import { selectedTweetIdsByUserId } from './selected-tweet-ids-by-user-id';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   editorFocused,
   inReplyTo,
   listsByUserId,
+  nowsByUserId,
   searchQueryByUserId,
   selectedTabByUserId,
   selectedTweetIdsByUserId,
