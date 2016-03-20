@@ -1,8 +1,9 @@
 // While adding a tweet to timeline, add a tweet to mentions if it's a mention.
 export default class TimelineProxy {
-  constructor(addTweetFunc, account) {
+  constructor(addTweetFunc, account, notify = false) {
     this.addTweetFunc = addTweetFunc;
     this.account      = account;
+    this.notify       = notify;
   }
 
   addTweet(tweet) {
@@ -12,8 +13,16 @@ export default class TimelineProxy {
       for (let mention of tweet.entities.user_mentions) {
         if (mention.id_str == this.account.id_str) {
           this.addTweetFunc(tweet, this.account, 'mentions');
+          if (this.notify) this.notifyMention(tweet);
         }
       }
     }
+  }
+
+  notifyMention(tweet) {
+    new Notification(
+      `@${tweet.user.screen_name} - Reply from ${tweet.user.name}`,
+      { body: tweet.text },
+    );
   }
 }

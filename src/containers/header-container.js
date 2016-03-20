@@ -50,7 +50,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     onRefreshClicked: () => {
       let client = new TwitterClient(stateProps.activeAccount);
-      let proxy  = new TimelineProxy(addTweet, stateProps.activeAccount);
+      let proxy  = new TimelineProxy(addTweet, stateProps.activeAccount, true);
 
       client.homeTimeline((tweets) => {
         for (let tweet of tweets) {

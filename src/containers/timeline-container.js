@@ -23,14 +23,14 @@ const mapDispatchToProps = (dispatch, props) => {
     loadHome: () => {
       client.homeTimeline((tweets) => {
         for (let tweet of tweets) {
-          proxy.addTweet(tweet, props.account, 'home');
+          proxy.addTweet(tweet);
         }
       }, { count: 50 });
     },
     loadMentions: () => {
       client.mentionsTimeline((tweets) => {
         for (let tweet of tweets) {
-          proxy.addTweet(tweet, props.account, 'mentions');
+          proxy.addTweet(tweet);
         }
         dispatch(Actions.markAsRead(tweets[0], props.account));
       })
@@ -43,8 +43,9 @@ const mapDispatchToProps = (dispatch, props) => {
       });
     },
     startStreaming: () => {
+      const proxy = new TimelineProxy(addTweet, props.account, true);
       client.userStream((tweet) => {
-        proxy.addTweet(tweet, props.account, 'home');
+        proxy.addTweet(tweet);
       });
     },
   };
