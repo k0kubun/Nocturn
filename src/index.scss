@@ -114,16 +114,24 @@ body {
     }
   }
 
+  .tabs_border {
+    position: fixed;
+    top: $editor_height;
+    left: 0;
+    width: 100%;
+    height: $tabs_height;
+    border-bottom: 1px solid #d5d5d5;
+    z-index: 0;
+  }
+
   .tabs {
     position: fixed;
     top: $editor_height;
     left: 0;
-    background: #fff;
     width: 100%;
     height: $tabs_height;
     z-index: 100;
     overflow: hidden;
-    border-bottom: 1px solid #eee;
     padding: 0 0 0 8px;
   }
 
@@ -134,7 +142,9 @@ body {
     text-align: center;
     list-style: none;
     float: left;
-    margin-right: -1px;
+    position: relative;
+    margin-bottom: -1px;
+    z-index: 300;
 
     &.lists_tab,
     &.search_tab {
@@ -155,10 +165,12 @@ body {
 
     &:hover {
       color: $dark_blue;
+      border-bottom: 4px solid $dark_blue;
+      -webkit-transition: 0.15s ease-in-out;
     }
 
     &.active {
-      z-index: 800;
+      z-index: 2000;
       border-bottom: 4px solid $dark_blue;
     }
   }
@@ -403,7 +415,8 @@ body {
     top: $account_selector_top + $title_bar_offset + 8px;
   }
 
-  .tabs {
+  .tabs,
+  .tabs_border {
     top: $header_height + $editor_height;
   }
 

@@ -19,6 +19,8 @@ export default class App extends React.Component {
         <AccountContainer />
         <EditorContainer />
 
+        <div className='tabs_border' />
+
         <div className='timelines'>
           {this.props.accounts.map((account) =>
             <TimelineContainer key={account.id_str} account={account} />
