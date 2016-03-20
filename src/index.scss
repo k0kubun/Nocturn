@@ -257,7 +257,7 @@ body {
     .name_wrapper {
       float: left;
       white-space: nowrap;
-      width: calc(100% - #{$icon_size + 40px});
+      width: calc(100% - #{$icon_size + 10px});
       overflow: hidden;
       text-overflow: ellipsis;
       color: $grey;

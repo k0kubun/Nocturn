@@ -32,11 +32,11 @@ export default class Time extends React.Component {
   }
 
   getAbsoluteTime() {
-    return this.getMomentTime().format('YYYY-MM-DD HH:mm');
+    return this.getMomentTime().format('YYYY/MM/DD');
   }
 
   getDisplayedTime() {
-    if (this.getMomentTime().isBefore(moment.duration(24, 'hours'))) {
+    if (this.getMomentTime().isBefore(moment().subtract(1, 'day'))) {
       return this.getAbsoluteTime();
     } else {
       return this.getRelativeTime();
