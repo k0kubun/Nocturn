@@ -36,7 +36,6 @@ export default class MenuBuilder {
       }, {
         label: 'View',
         submenu: (process.env.NODE_ENV === 'development') ? [
-          { label: 'Reload', accelerator: 'Command+R', click() { window.restart(); } },
           { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
           { label: 'Toggle Developer Tools', accelerator: 'Alt+Command+I', click() { window.toggleDevTools(); } },
         ] : [
@@ -52,10 +51,11 @@ export default class MenuBuilder {
       }, {
         label: 'Timeline',
         submenu: [
+          { label: 'Reload',           accelerator: 'Command+R',       click() { window.webContents.send('reload-timeline') } },
           { label: 'Next Tab',         accelerator: 'Command+Shift+]', click() { window.webContents.send('select-next-tab') } },
           { label: 'Previous Tab',     accelerator: 'Command+Shift+[', click() { window.webContents.send('select-prev-tab') } },
-          { label: 'Next Account',     accelerator: 'Command+J', click() { window.webContents.send('select-next-account') } },
-          { label: 'Previous Account', accelerator: 'Command+K', click() { window.webContents.send('select-prev-account') } },
+          { label: 'Next Account',     accelerator: 'Command+J',       click() { window.webContents.send('select-next-account') } },
+          { label: 'Previous Account', accelerator: 'Command+K',       click() { window.webContents.send('select-prev-account') } },
         ],
       }, {
         label: 'Window',
@@ -98,10 +98,11 @@ export default class MenuBuilder {
       }, {
         label: 'Timeline',
         submenu: [
-          { label: 'Next Tab',         accelerator: 'Alt+P', click() { window.webContents.send('select-next-tab') } },
-          { label: 'Previous Tab',     accelerator: 'Alt+O', click() { window.webContents.send('select-prev-tab') } },
-          { label: 'Next Account',     accelerator: 'Alt+J', click() { window.webContents.send('select-next-account') } },
-          { label: 'Previous Account', accelerator: 'Alt+K', click() { window.webContents.send('select-prev-account') } },
+          { label: 'Reload',           accelerator: 'Ctrl+R', click() { window.webContents.send('reload-timeline') } },
+          { label: 'Next Tab',         accelerator: 'Alt+P',  click() { window.webContents.send('select-next-tab') } },
+          { label: 'Previous Tab',     accelerator: 'Alt+O',  click() { window.webContents.send('select-prev-tab') } },
+          { label: 'Next Account',     accelerator: 'Alt+J',  click() { window.webContents.send('select-next-account') } },
+          { label: 'Previous Account', accelerator: 'Alt+K',  click() { window.webContents.send('select-prev-account') } },
         ],
       },
       this.helpMenu(),

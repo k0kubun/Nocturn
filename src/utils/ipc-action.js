@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
 import Actions         from '../actions';
 import RichState       from './rich-state';
+import TimelineProxy   from './timeline-proxy';
 import TwitterClient   from './twitter-client';
 
 export default class IpcAction {
@@ -29,23 +30,21 @@ export default class IpcAction {
     });
 
     ipcRenderer.on('invoke-retweet', (event) => {
-      let client = new TwitterClient(this.state.activeAccount());
       let active = this.state.activeTweet();
       if (!active) return null;
 
       if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
-        client.retweetStatus(active.id_str, (tweet) => {
+        this.client().retweetStatus(active.id_str, (tweet) => {
           this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), state.activeTab()));
         });
       }
     });
 
     ipcRenderer.on('invoke-delete', (event) => {
-      let client = new TwitterClient(this.state.activeAccount());
       let active = this.state.activeTweet();
       if (!active) return null;
 
-      client.deleteStatus(active.id_str, (tweet) => {
+      this.client().deleteStatus(active.id_str, (tweet) => {
         this.dispatch(Actions.removeTweet(tweet, this.state.activeAccount(), state.activeTab()));
       });
     });
@@ -73,6 +72,41 @@ export default class IpcAction {
       this.dispatch(Actions.activateAccount(index));
       this.refreshTime(index);
     });
+
+    ipcRenderer.on('reload-timeline', (event) => {
+      let proxy = new TimelineProxy(this.addTweet.bind(this), this.state.activeAccount());
+      this.client().homeTimeline((tweets) => {
+        for (let tweet of tweets) {
+          proxy.addTweet(tweet);
+        }
+      });
+
+      let listId = this.state.activeListId();
+      if (listId) {
+        this.client().listsStatuses(listId, (tweets) => {
+          for (let tweet of tweets) {
+            this.addTweet(tweet, this.state.activeAccount(), 'lists');
+          }
+        });
+      }
+
+      let query = this.state.activeSearchQuery();
+      if (query) {
+        this.client().searchTweets(query, (tweets) => {
+          for (let tweet of tweets) {
+            this.addTweet(tweet, this.state.activeAccount(), 'search');
+          }
+        });
+      }
+    });
+  }
+
+  addTweet(tweet, account, tab) {
+    this.dispatch(Actions.addTweet(tweet, account, tab));
+  }
+
+  client() {
+    return new TwitterClient(this.state.activeAccount());
   }
 
   refreshTime(index) {
