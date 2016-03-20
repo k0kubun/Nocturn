@@ -23,8 +23,11 @@ export default class Tweet extends React.Component {
   autolinkedText(tweet) {
     let text = tweet.text;
 
-    for (let entity of [...tweet.entities.urls, ...(tweet.entities.media || [])]) {
+    for (let entity of tweet.entities.urls) {
       text = text.replace(entity.url, entity.expanded_url);
+    }
+    for (let entity of (tweet.entities.media || [])) {
+      text = text.replace(entity.url, entity.display_url);
     }
 
     return {
