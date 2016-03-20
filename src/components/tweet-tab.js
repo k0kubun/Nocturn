@@ -12,13 +12,13 @@ export default class TweetTab extends React.Component {
 
   unreadMarker() {
     if (this.props.unread == 0) return '';
-    return <span>({this.props.unread})</span>;
+    return <span className='unread_counter'>{this.props.unread}</span>;
   }
 
   render() {
     return(
       <li
-        className={`tab ${this.props.active ? 'active' : ''}`}
+        className={`tab ${this.props.active ? 'active' : ''} ${this.props.tab}_tab`}
         onClick={this.props.onTabClicked}
       >
         {this.props.children}
