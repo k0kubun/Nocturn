@@ -1,4 +1,10 @@
 # Change Log
+## v0.5.0
+- Show a counter of unread mentions
+- Desktop notification of mention and favorite
+- Limit minimum width of window
+- List selector becamse smaller a bit
+
 ## v0.4.3
 - Show relative time for tweet timestamp
 - Downgrade Electron to v0.36
