@@ -6,6 +6,7 @@ const mapStateToProps = (state, props) => {
   let selectedTab = state.selectedTabByUserId[props.account.id_str] || 'home';
   return {
     active: selectedTab === props.tab,
+    unread: 0,
   };
 }
 

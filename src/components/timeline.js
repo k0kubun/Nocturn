@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListContainer        from '../containers/list-container';
+import MentionTabContainer  from '../containers/mention-tab-container';
 import SearchContainer      from '../containers/search-container';
 import TweetListContainer   from '../containers/tweet-list-container';
 import TweetTabContainer    from '../containers/tweet-tab-container';
@@ -26,7 +27,7 @@ export default class Timeline extends React.Component {
       <div className={`timeline ${this.props.active ? 'active' : ''}`}>
         <ul className='tabs clearfix'>
           <TweetTabContainer account={this.props.account} tab='home'>Timeline</TweetTabContainer>
-          <TweetTabContainer account={this.props.account} tab='mentions'>Mentions</TweetTabContainer>
+          <MentionTabContainer account={this.props.account} tab='mentions'>Mentions</MentionTabContainer>
           <TweetTabContainer account={this.props.account} tab='lists'>Lists</TweetTabContainer>
           <TweetTabContainer account={this.props.account} tab='search'>Search</TweetTabContainer>
         </ul>

@@ -65,6 +65,12 @@ export default class RichState {
     ) || [];
   }
 
+  latestMention() {
+    let mentions = this.state.tabsByUserId[this.activeAccount().id_str] &&
+      this.state.tabsByUserId[this.activeAccount().id_str]['mentions'] || [];
+    return mentions[0];
+  }
+
   activeTweet() {
     if (this.activeTweetCache) return this.activeTweetCache;
     return this.activeTweetCache = this.findTweet(

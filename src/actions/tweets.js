@@ -5,6 +5,7 @@ export const POST_TWEET = 'POST_TWEET';
 export const REMOVE_TWEET = 'REMOVE_TWEET';
 export const SELECT_TWEET = 'SELECT_TWEET';
 export const SET_IN_REPLY_TO = 'SET_IN_REPLY_TO';
+export const MARK_AS_READ = 'MARK_AS_READ';
 
 export const addTweet = (tweet, account, tab) => {
   return { type: ADD_TWEET, tweet, account, tab }
@@ -28,4 +29,8 @@ export const selectTweet = (tweet, tab, account) => {
 
 export const setInReplyTo = (tweet) => {
   return { type: SET_IN_REPLY_TO, tweet }
+}
+
+export const markAsRead = (tweet, account) => {
+  return { type: MARK_AS_READ, tweet, account }
 }

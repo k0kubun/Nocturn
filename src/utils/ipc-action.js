@@ -53,11 +53,13 @@ export default class IpcAction {
     ipcRenderer.on('select-next-tab', (event) => {
       let tab = this.state.nextTab();
       this.dispatch(Actions.selectTab(tab, this.state.activeAccount()));
+      this.updateMarkAsRead(tab);
     });
 
     ipcRenderer.on('select-prev-tab', (event) => {
       let tab = this.state.prevTab();
       this.dispatch(Actions.selectTab(tab, this.state.activeAccount()));
+      this.updateMarkAsRead(tab);
     });
 
     ipcRenderer.on('select-next-account', (event) => {
@@ -77,5 +79,14 @@ export default class IpcAction {
     let account = this.state.state.accounts[index];
     let tab = this.state.state.selectedTabByUserId[account.id_str] || 'home';
     this.dispatch(Actions.refreshTabTime(tab, account));
+  }
+
+  updateMarkAsRead(tab) {
+    if (tab === 'mentions') {
+      let mention = this.state.latestMention();
+      if (mention) {
+        this.dispatch(Actions.markAsRead(mention, this.state.activeAccount()));
+      }
+    }
   }
 }

@@ -6,7 +6,13 @@ export default class TweetTab extends React.Component {
     active:       PropTypes.bool,
     children:     PropTypes.string.isRequired,
     tab:          PropTypes.string.isRequired,
+    unread:       PropTypes.number.isRequired,
     onTabClicked: PropTypes.func.isRequired,
+  }
+
+  unreadMarker() {
+    if (this.props.unread == 0) return '';
+    return <span>({this.props.unread})</span>;
   }
 
   render() {
@@ -16,6 +22,7 @@ export default class TweetTab extends React.Component {
         onClick={this.props.onTabClicked}
       >
         {this.props.children}
+        {this.unreadMarker()}
       </li>
     );
   }

@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch, props) => {
         for (let tweet of tweets) {
           proxy.addTweet(tweet, props.account, 'mentions');
         }
+        dispatch(Actions.markAsRead(tweets[0], props.account));
       })
     },
     loadLists: () => {
