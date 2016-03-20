@@ -1,4 +1,7 @@
 # Change Log
+## v1.0.0
+- Renew the application's design
+
 ## v0.5.1
 - Drop application header
   - Home and Refresh buttons are dropped too

@@ -1,8 +1,8 @@
 # Nocturn
 
-YoruFukurou-like Twitter Client built on Electron
+Multi-platform Twitter Client built on Electron
 
-![](https://i.gyazo.com/f50b8192eed6adfcb49c9b3374d5a7bb.png)
+<img src='https://i.gyazo.com/b7fb495a0b9aea0f66e8ee58861a61b9.png' width='400px' />
 
 ## Features
 - Realtime timeline using UserStream
@@ -12,7 +12,7 @@ YoruFukurou-like Twitter Client built on Electron
 
 ### Demo
 
-![](https://i.gyazo.com/3f89eaf9e85820ef0ba79bc2db7c478e.gif)
+<img src='https://i.gyazo.com/ae886c77a2dee1f20daebc4f3c28ddc5.gif' width='444px' />
 
 ## Installation
 
@@ -48,7 +48,7 @@ https://github.com/k0kubun/Nocturn/releases
 
 ### Multi account
 
-![](https://i.gyazo.com/be91e798686c0a83a89b9b42a94b24c1.gif)
+<img src='https://i.gyazo.com/b8a9455ff33ef05b002f6d8dc5173fa6.gif' width='444px' />
 
 ## Development
 
