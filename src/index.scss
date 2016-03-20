@@ -2,7 +2,6 @@
 @import "bootstrap";
 @import "font-awesome";
 
-$header_height: 46px;
 $editor_height: 47px;
 $tabs_height: 28px;
 $timeline_height: 640px;
@@ -32,54 +31,15 @@ body {
   user-select: none;
   -webkit-user-select: none;
 
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: linear-gradient(#e0e0e0, #cccbcc);
-    width: 100%;
-    height: $header_height;
-    z-index: 400;
-    overflow: hidden;
-    border-bottom: 1px solid #b4b4b4;
-    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.14);
-    box-sizing: border-box;
-    padding: 5px 0 0 8px;
-
-    .button_wrapper {
-      float: left;
-      font-size: 11px;
-      text-align: center;
-      margin: 0 12px 0 4px;
-      color: #403638;
-    }
-
-    .button {
-      background: #fbfafb;
-      color: #606060;
-      font-size: 14px;
-      width: 38px;
-      margin: auto;
-      height: 24px;
-      padding-top: 4px;
-      border-radius: 3px;
-      border-bottom: 1px solid #b5b2b5;
-    }
-
-    .button:active {
-      background: #ccc;
-    }
-  }
-
   #account_selector {
     position: absolute;
-    top: 60px;
+    top: 14px;
     left: 16px;
   }
 
   .editor {
     position: fixed;
-    top: $header_height;
+    top: 0;
     left: 0;
     background: $white;
     width: 100%;
@@ -136,7 +96,7 @@ body {
 
   .tabs {
     position: fixed;
-    top: $header_height + $editor_height;
+    top: $editor_height;
     left: 0;
     background: #bbb;
     width: 100%;
@@ -190,19 +150,19 @@ body {
 
   .tweets {
     position: fixed;
-    top: $header_height + $editor_height + $tabs_height;
+    top: $editor_height + $tabs_height;
     left: 0;
     background: $white;
     width: 100%;
-    height: calc(100% - #{$header_height + $editor_height + $tabs_height});
+    height: calc(100% - #{$editor_height + $tabs_height});
     overflow: scroll;
     overflow-x: hidden;
     padding: 0;
     display: none;
 
     &.with_header {
-      height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
-      top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+      height: calc(100% - #{$editor_height + $tabs_height + $tweets_header_height});
+      top: $editor_height + $tabs_height + $tweets_header_height;
     }
 
     &.active {
@@ -362,7 +322,7 @@ body {
 
   .tweets_header {
     position: absolute;
-    top: $header_height + $editor_height + $tabs_height;
+    top: $editor_height + $tabs_height;
     width: 100%;
     height: $tweets_header_height;
     background: linear-gradient(#efefef, #cccbcc);
@@ -402,7 +362,7 @@ body {
 
 .timeline_container.darwin {
   $title_bar_offset: 20px;
-  $header_height: $header_height + $title_bar_offset;
+  $header_height: $title_bar_offset;
 
   .header {
     height: $header_height;

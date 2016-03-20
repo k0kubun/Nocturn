@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import AccountContainer     from '../containers/account-container';
 import EditorContainer      from '../containers/editor-container';
-import HeaderContainer      from '../containers/header-container';
 import TimelineContainer    from '../containers/timeline-container';
 
 export default class App extends React.Component {
@@ -17,8 +16,6 @@ export default class App extends React.Component {
   render() {
     return(
       <div className={`timeline_container ${process.platform}`}>
-        <HeaderContainer />
-
         <AccountContainer />
         <EditorContainer />
 
