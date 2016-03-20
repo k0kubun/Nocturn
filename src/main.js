@@ -11,8 +11,9 @@ app.on('ready', () => {
 
   Authentication.authorized(() => {
     mainWindow = new BrowserWindow({
-      width:  350,
-      height: 640,
+      width:         350,
+      height:        640,
+      'min-width':   260,
       titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'normal',
     });
     mainWindow.webContents.on('new-window', (event, url) => {
