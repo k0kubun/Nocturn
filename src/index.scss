@@ -2,10 +2,14 @@
 @import "bootstrap";
 @import "font-awesome";
 
-$editor_height: 47px;
-$tabs_height: 28px;
+$editor_height: 68px;
+$editor_vertical_padding: 8px;
+$editor_horizontal_padding: 8px;
+$tabs_height: 30px;
 $timeline_height: 640px;
 $tweet_padding: 8px;
+$profile_image_size: 24px;
+$profile_image_offset: 9px;
 $icon_size: 48px;
 $retweeted_icon_size: 34px;
 $icon_overlay_size: 8px;
@@ -15,6 +19,7 @@ $red: #d40d12;
 $grey: #999;
 $dark_grey: #555;
 $white: #fff;
+$dark_blue: #0084b4;
 
 // Reject over scrolling
 html,
@@ -41,29 +46,38 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background: $white;
+    background: #e5f2f7;
     width: 100%;
     height: $editor_height;
     z-index: 300;
     overflow: hidden;
-    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.06);
+    border-top: 1px solid #bfe0ec;
+    border-bottom: 1px solid #bfe0ec;
 
     .tweet_editor {
-      width: calc(100% - 28px);
-      height: $editor_height;
+      position: absolute;
+      top: $editor_vertical_padding;
+      left: $profile_image_offset + $profile_image_size + $editor_horizontal_padding;
+      width: calc(100% - #{$profile_image_offset + $profile_image_size + 2 * $editor_horizontal_padding});
+      height: $editor_height - 2 * $editor_vertical_padding;
       resize: none;
       border: 0;
       outline: 0;
-      padding: 4px 0 4px 41px;
-      font-size: 13px;
+      padding: 4px 6px;
+      font-size: 12px;
+      line-height: 1.2;
+      border-radius: 3px;
+      //border: 1px solid #99cde1;
+      border: 1px solid #bfe0ec;
     }
 
     .tweet_counter {
       position: absolute;
-      top: 2px;
-      right: 4px;
+      top: $profile_image_size + $profile_image_offset;
+      left: $profile_image_offset;
       color: $grey;
-      font-weight: bold;
+      width: 22px;
+      text-align: right;
       display: none;
 
       &.active {
@@ -81,12 +95,11 @@ body {
 
     .twitter_icon {
       position: absolute;
-      top: 9px;
-      left: 9px;
-      width: 24px;
-      height: 24px;
+      top: $profile_image_offset;
+      left: $profile_image_offset;
+      width: $profile_image_size;
+      height: $profile_image_size;
       border-radius: 3px;
-      box-shadow: 0 0 1px 1px rgba(0,0,0,0.14);
 
       &:hover {
         -webkit-filter: brightness(0.60);
@@ -98,53 +111,48 @@ body {
     position: fixed;
     top: $editor_height;
     left: 0;
-    background: #bbb;
+    background: #fff;
     width: 100%;
     height: $tabs_height;
     z-index: 100;
     overflow: hidden;
-    border-top: 1px solid #777;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid #eee;
     padding: 0 0 0 8px;
-    box-shadow: 0 -1px 3px 1px rgba(0,0,0,0.06) inset;
+  }
 
-    .tab {
-      height: $tabs_height;
-      padding: 6px 8px;
-      font-size: 11px;
+  .tabs .tab {
+    height: $tabs_height;
+    padding: 6px 8px;
+    font-size: 11px;
+    text-align: center;
+    list-style: none;
+    float: left;
+    margin-right: -1px;
+
+    &.lists_tab,
+    &.search_tab {
+      padding: 6px 14px;
+    }
+
+    .unread_counter {
+      display: inline-block;
+      background: #777;
+      color: $white;
+      border-radius: 6px;
+      margin-left: 4px;
+      padding: 0 5px;
       font-weight: bold;
-      text-align: center;
-      list-style: none;
-      float: left;
-      border-left: 1px solid #666;
-      border-right: 1px solid #666;
-      margin-right: -1px;
-
-      &.lists_tab,
-      &.search_tab {
-        padding: 6px 14px;
-      }
-
-      .unread_counter {
-        display: inline-block;
-        background: #777;
-        color: $white;
-        border-radius: 6px;
-        margin-left: 4px;
-        padding: 0 5px;
-        font-weight: bold;
-        font-size: 10px;
-        line-height: 1.2;
-      }
+      font-size: 10px;
+      line-height: 1.2;
     }
 
-    .tab:hover {
-      background: #aaa;
+    &:hover {
+      color: $dark_blue;
     }
 
-    .tab.active {
-      background: linear-gradient(#fbfbfb, #d9d9d9);
+    &.active {
       z-index: 800;
+      border-bottom: 4px solid $dark_blue;
     }
   }
 
