@@ -1,4 +1,7 @@
 # Change Log
+## v1.0.1
+- Fix the bug in tweet deletion by key binding
+
 ## v1.0.0
 - Renew the application's design
 
