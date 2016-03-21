@@ -35,7 +35,7 @@ export default class IpcAction {
 
       if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
         this.client().retweetStatus(active.id_str, (tweet) => {
-          this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), state.activeTab()));
+          this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
         });
       }
     });
@@ -45,7 +45,7 @@ export default class IpcAction {
       if (!active) return null;
 
       this.client().deleteStatus(active.id_str, (tweet) => {
-        this.dispatch(Actions.removeTweet(tweet, this.state.activeAccount(), state.activeTab()));
+        this.dispatch(Actions.removeTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
       });
     });
 
