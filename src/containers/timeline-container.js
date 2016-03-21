@@ -59,10 +59,12 @@ const mapDispatchToProps = (dispatch, props) => {
         });
 
         stream.on('favorite', (event) => {
-          new Notification(
-            `${event.source.screen_name} favorited:`,
-            { body: `${event.target.screen_name} "${event.target_object.text}"` },
-          );
+          if (props.account.id_str !== event.source.id_str) {
+            new Notification(
+              `${event.source.screen_name} favorited:`,
+              { body: `${event.target.screen_name} "${event.target_object.text}"` },
+            );
+          }
         });
       });
     },
