@@ -397,6 +397,7 @@ body {
 
   .editor {
     height: $editor_height + $title_bar_offset;
+    border-top: 0;
   }
 
   .tweet_editor {
