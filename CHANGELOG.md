@@ -1,4 +1,8 @@
 # Change Log
+## v1.0.2
+- Don't notify favorite by using account
+- Drop top-border of OSX window
+
 ## v1.0.1
 - Fix the bug in tweet deletion by key binding
 
