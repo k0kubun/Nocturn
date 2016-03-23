@@ -47,6 +47,9 @@ export default class GlobalKeyBind {
           case Keycode.ENTER:
             this.handleEnter(event);
             break;
+          case Keycode.R:
+            if (event.shiftKey) this.handleShiftR(event);
+            break;
         }
       }
     });
@@ -138,6 +141,20 @@ export default class GlobalKeyBind {
 
     // FIXME: Use better way to focus
     document.getElementById('tweet_editor').focus();
+  }
+
+  handleShiftR(event) {
+    event.preventDefault();
+
+    let active = this.state.activeTweet();
+    if (!active) return null;
+
+    if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
+      let client = new TwitterClient(this.state.activeAccount());
+      client.retweetStatus(active.id_str, (tweet) => {
+        this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
+      });
+    }
   }
 
   isEditing() {

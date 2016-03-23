@@ -18,17 +18,6 @@ export default class IpcAction {
   }
 
   subscribe(store) {
-    ipcRenderer.on('invoke-retweet', (event) => {
-      let active = this.state.activeTweet();
-      if (!active) return null;
-
-      if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
-        this.client().retweetStatus(active.id_str, (tweet) => {
-          this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
-        });
-      }
-    });
-
     ipcRenderer.on('invoke-delete', (event) => {
       let active = this.state.activeTweet();
       if (!active) return null;
