@@ -1,16 +1,36 @@
 'use strict';
 
 require('shelljs/global');
-const fs = require('fs');
+const packager = require('electron-packager');
+const pkg = require(`${__dirname}/../package.json`);
+const devDeps = Object.keys(pkg.devDependencies);
 
-const json = JSON.parse(fs.readFileSync(`${__dirname}/../package.json`));
-const vNocturn  = json['version'];
-const vElectron = json['devDependencies']['electron-prebuilt'];
+const DEFAULT_OPTS = {
+  dir:   './',
+  name:  'Nocturn',
+  asar:  false,
+  prune: false,
+  out:   `packages/v${pkg.version}`,
+  'app-version': pkg.version,
+  ignore: [
+    '.DS_Store',
+    'accounts.json',
+    '/packages($|/)',
+    '/script($|/)',
+  ].concat(devDeps.map(name => `/node_modules/${name}($|/)`)),
+}
+
+const pack = (platform, arch, callback) => {
+  const opts = Object.assign({}, DEFAULT_OPTS, { platform, arch });
+  packager(opts, (err, filepath) => {
+    if (err) return console.error(err);
+    console.log(`${platform}-${arch} finished!`);
+  });
+}
 
 exec('rm -rf packages');
-exec(
-  `electron-packager . Nocturn --arch=ia32,x64 --out=packages/v${vNocturn} ` +
-  `--platform=darwin,linux,win32 --version=${vElectron} --ignore=.DS_Store --ignore=accounts.json ` +
-  '--ignore=packages/* --ignore=node_modules/bower --ignore=node_modules/electron* ' +
-  '--ignore=node_modules/babel* --ignore=node_modules/gulp* '
-);
+pack('darwin', 'x64');
+pack('linux',  'ia32');
+pack('linux',  'x64');
+pack('win32',  'ia32');
+pack('win32',  'x64');
