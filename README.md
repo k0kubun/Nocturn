@@ -32,7 +32,7 @@ https://github.com/k0kubun/Nocturn/releases
 <tr><td> Tweet, Reply, Search           </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
 <tr><td> Delete a tweet                 </td><td>             <kbd>Cmd-Backspace</kbd>       </td><td> <kbd>Alt-Backspace</kbd> </td></tr>
 <tr><td> Add a tweet to favorites       </td><td colspan='2'> <kbd>F</kbd>                   </td></tr>
-<tr><td> Retweet a tweet                </td><td>             <kbd>Shift-R</kbd>             </td></tr>
+<tr><td> Retweet a tweet                </td><td colspan='2'> <kbd>Shift-R</kbd>             </td></tr>
 <tr><td> Select a next tweet            </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>     </td></tr>
 <tr><td> Select a previous tweet        </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>     </td></tr>
 <tr><td> Select the first tweet         </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
