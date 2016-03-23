@@ -1,4 +1,11 @@
 # Change Log
+## v1.1.0
+- Key binding for retweet is changed to <kbd>Shift-R</kbd>
+- Reduce package size
+- Increase the number of loaded tweets to 50 when loading a list tab or a search tab
+- Disable reply key binding on authentication window
+- Disable desktop notification for self mention
+
 ## v1.0.2
 - Don't notify favorite by using account
 - Drop top-border of OSX window
