@@ -20,9 +20,11 @@ export default class TimelineProxy {
   }
 
   notifyMention(tweet) {
-    new Notification(
-      `@${tweet.user.screen_name} - Reply from ${tweet.user.name}`,
-      { body: tweet.text },
-    );
+    if (this.account.id_str !== tweet.user.id_str) {
+      new Notification(
+        `@${tweet.user.screen_name} - Reply from ${tweet.user.name}`,
+        { body: tweet.text },
+      );
+    }
   }
 }
