@@ -18,17 +18,6 @@ export default class IpcAction {
   }
 
   subscribe(store) {
-    ipcRenderer.on('invoke-reply', (event) => {
-      let tweet = this.state.activeTweet();
-      if (!tweet) return null;
-
-      this.dispatch(Actions.setText(`@${tweet.user.screen_name} `));
-      this.dispatch(Actions.setInReplyTo(tweet));
-
-      // FIXME: Use better way to focus
-      document.getElementById('tweet_editor').focus();
-    });
-
     ipcRenderer.on('invoke-retweet', (event) => {
       let active = this.state.activeTweet();
       if (!active) return null;

@@ -44,6 +44,9 @@ export default class GlobalKeyBind {
           case Keycode.ZERO:
             this.handleZero(event);
             break;
+          case Keycode.ENTER:
+            this.handleEnter(event);
+            break;
         }
       }
     });
@@ -122,6 +125,19 @@ export default class GlobalKeyBind {
     this.dispatch(Actions.selectTweet(tweet, this.state.activeTab(), this.state.activeAccount()));
     let element = document.querySelector('.timeline.active .tweets.active');
     element.scrollTop = 0;
+  }
+
+  handleEnter(event) {
+    event.preventDefault();
+
+    let tweet = this.state.activeTweet();
+    if (!tweet) return null;
+
+    this.dispatch(Actions.setText(`@${tweet.user.screen_name} `));
+    this.dispatch(Actions.setInReplyTo(tweet));
+
+    // FIXME: Use better way to focus
+    document.getElementById('tweet_editor').focus();
   }
 
   isEditing() {
