@@ -9,7 +9,7 @@ const DEFAULT_OPTS = {
   dir:   './',
   name:  'Nocturn',
   asar:  false,
-  prune: false,
+  prune: true,
   out:   `packages/v${pkg.version}`,
   'app-version': pkg.version,
   ignore: [
