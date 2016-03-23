@@ -64,7 +64,7 @@ export default class IpcAction {
 
     ipcRenderer.on('reload-timeline', (event) => {
       let proxy = new TimelineProxy(this.addTweet.bind(this), this.state.activeAccount());
-      this.client().homeTimeline((tweets) => {
+      this.client().homeTimeline({ count: 50 }, (tweets) => {
         for (let tweet of tweets) {
           proxy.addTweet(tweet);
         }

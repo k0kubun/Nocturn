@@ -21,11 +21,11 @@ const mapDispatchToProps = (dispatch, props) => {
 
   return {
     loadHome: () => {
-      client.homeTimeline((tweets) => {
+      client.homeTimeline({ count: 50 }, (tweets) => {
         for (let tweet of tweets) {
           proxy.addTweet(tweet);
         }
-      }, { count: 50 });
+      });
     },
     loadMentions: () => {
       client.mentionsTimeline((tweets) => {
