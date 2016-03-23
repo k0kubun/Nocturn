@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
         let query = event.target.value;
         let client = new TwitterClient(props.account);
-        client.searchTweets(query, (tweets) => {
+        client.searchTweets(query, 50, (tweets) => {
           dispatch(Actions.setSearchQuery(query, props.account));
           dispatch(Actions.clearAndSetTweets(tweets, props.account, 'search'));
         });

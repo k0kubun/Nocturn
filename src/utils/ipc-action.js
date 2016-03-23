@@ -72,7 +72,7 @@ export default class IpcAction {
 
       let listId = this.state.activeListId();
       if (listId) {
-        this.client().listsStatuses(listId, (tweets) => {
+        this.client().listsStatuses(listId, 50, (tweets) => {
           for (let tweet of tweets) {
             this.addTweet(tweet, this.state.activeAccount(), 'lists');
           }
@@ -81,7 +81,7 @@ export default class IpcAction {
 
       let query = this.state.activeSearchQuery();
       if (query) {
-        this.client().searchTweets(query, (tweets) => {
+        this.client().searchTweets(query, 50, (tweets) => {
           for (let tweet of tweets) {
             this.addTweet(tweet, this.state.activeAccount(), 'search');
           }

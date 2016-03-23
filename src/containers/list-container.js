@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, props) => {
         dispatch(Actions.setActiveListId(listId, props.account));
 
         let client = new TwitterClient(props.account);
-        client.listsStatuses(listId, (tweets) => {
+        client.listsStatuses(listId, 50, (tweets) => {
           dispatch(Actions.clearAndSetTweets(tweets, props.account, 'lists'));
         });
       }

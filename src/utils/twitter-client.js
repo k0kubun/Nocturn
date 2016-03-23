@@ -111,8 +111,8 @@ export default class TwitterClient {
     });
   }
 
-  listsStatuses(id, callback) {
-    this.client.get('lists/statuses', { list_id: id }, (error, tweets, response) => {
+  listsStatuses(id, count, callback) {
+    this.client.get('lists/statuses', { list_id: id, count: count }, (error, tweets, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
@@ -121,10 +121,10 @@ export default class TwitterClient {
     });
   }
 
-  searchTweets(query, callback) {
+  searchTweets(query, count, callback) {
     if (query === '') return;
 
-    this.client.get('search/tweets', { q: query }, (error, data, response) => {
+    this.client.get('search/tweets', { q: query, count: count }, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
