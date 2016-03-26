@@ -1,7 +1,8 @@
 # Change Log
 ## v1.1.0
 - Key binding for retweet is changed to <kbd>Shift-R</kbd>
-- Reduce package size
+- Reduce package size [#12](https://github.com/k0kubun/Nocturn/pull/12)
+  - Thanks to @rhysd
 - Increase the number of loaded tweets to 50 when loading a list tab or a search tab
 - Disable reply key binding on authentication window
 - Disable desktop notification for self mention
