@@ -99,13 +99,15 @@ export default class GlobalKeyBind {
   handleF(event) {
     event.preventDefault();
 
-    let client = new TwitterClient(this.state.activeAccount());
-    let active = this.state.activeTweet();
-    if (!active) return null;
-
-    client.favoriteStatus(active.id_str, (tweet) => {
-      this.dispatch(Actions.addTweetToTab(tweet, this.state.activeAccount(), this.state.activeTab()));
-    });
+    if (this.state.activeTweet()) {
+      this.dispatch(
+        Actions.favoriteTweet(
+          this.state.activeTweet(),
+          this.state.activeAccount(),
+          this.state.activeTab(),
+        ),
+      );
+    }
   }
 
   handleT(event) {
