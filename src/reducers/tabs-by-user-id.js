@@ -29,7 +29,7 @@ const removeFromSet = (set, tweet) => {
 
 export const tabsByUserId = (state = {}, action) => {
   switch (action.type) {
-    case Actions.ADD_TWEET:
+    case Actions.ADD_TWEET_TO_TAB:
       return {
         ...state,
         [action.account.id_str]: {

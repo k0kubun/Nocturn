@@ -12,11 +12,11 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-  const addTweet = (tweet, account, tab) => {
-    dispatch(Actions.addTweet(tweet, account, tab));
+  const addTweetToTab = (tweet, account, tab) => {
+    dispatch(Actions.addTweetToTab(tweet, account, tab));
   }
 
-  const proxy  = new TimelineProxy(addTweet, props.account);
+  const proxy  = new TimelineProxy(addTweetToTab, props.account);
   const client = new TwitterClient(props.account);
 
   return {
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch, props) => {
       });
     },
     startStreaming: () => {
-      const proxy = new TimelineProxy(addTweet, props.account, true);
+      const proxy = new TimelineProxy(addTweetToTab, props.account, true);
       client.userStream((stream) => {
         stream.on('data', function(data) {
           if (data['friends']) {

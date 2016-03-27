@@ -104,7 +104,7 @@ export default class GlobalKeyBind {
     if (!active) return null;
 
     client.favoriteStatus(active.id_str, (tweet) => {
-      this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
+      this.dispatch(Actions.addTweetToTab(tweet, this.state.activeAccount(), this.state.activeTab()));
     });
   }
 
@@ -152,7 +152,7 @@ export default class GlobalKeyBind {
     if (window.confirm(`Are you sure to retweet?: ${active.text}`)) {
       let client = new TwitterClient(this.state.activeAccount());
       client.retweetStatus(active.id_str, (tweet) => {
-        this.dispatch(Actions.addTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
+        this.dispatch(Actions.addTweetToTab(tweet, this.state.activeAccount(), this.state.activeTab()));
       });
     }
   }

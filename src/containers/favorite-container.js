@@ -12,7 +12,7 @@ export default class FavoriteContainer extends BaseContainer {
   onClick(event) {
     let client = new TwitterClient(this.props.account);
     client.favoriteStatus(this.props.tweet.id_str, (tweet) => {
-      this.store.dispatch(Actions.addTweet(tweet, this.props.account, this.props.tab));
+      this.store.dispatch(Actions.addTweetToTab(tweet, this.props.account, this.props.tab));
     });
   }
 

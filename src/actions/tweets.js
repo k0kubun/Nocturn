@@ -1,4 +1,4 @@
-export const ADD_TWEET = 'ADD_TWEET';
+export const ADD_TWEET_TO_TAB = 'ADD_TWEET_TO_TAB';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
 export const FAVORITE_TWEET = 'FAVORITE_TWEET';
 export const POST_TWEET = 'POST_TWEET';
@@ -7,8 +7,8 @@ export const SELECT_TWEET = 'SELECT_TWEET';
 export const SET_IN_REPLY_TO = 'SET_IN_REPLY_TO';
 export const MARK_AS_READ = 'MARK_AS_READ';
 
-export const addTweet = (tweet, account, tab) => {
-  return { type: ADD_TWEET, tweet, account, tab }
+export const addTweetToTab = (tweet, account, tab) => {
+  return { type: ADD_TWEET_TO_TAB, tweet, account, tab }
 }
 
 export const clearAndSetTweets = (tweets, account, tab) => {

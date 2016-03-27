@@ -52,7 +52,7 @@ export default class IpcAction {
     });
 
     ipcRenderer.on('reload-timeline', (event) => {
-      let proxy = new TimelineProxy(this.addTweet.bind(this), this.state.activeAccount());
+      let proxy = new TimelineProxy(this.addTweetToTab.bind(this), this.state.activeAccount());
       this.client().homeTimeline({ count: 50 }, (tweets) => {
         for (let tweet of tweets) {
           proxy.addTweet(tweet);
@@ -63,7 +63,7 @@ export default class IpcAction {
       if (listId) {
         this.client().listsStatuses(listId, 50, (tweets) => {
           for (let tweet of tweets) {
-            this.addTweet(tweet, this.state.activeAccount(), 'lists');
+            this.addTweetToTab(tweet, this.state.activeAccount(), 'lists');
           }
         });
       }
@@ -72,15 +72,15 @@ export default class IpcAction {
       if (query) {
         this.client().searchTweets(query, 50, (tweets) => {
           for (let tweet of tweets) {
-            this.addTweet(tweet, this.state.activeAccount(), 'search');
+            this.addTweetToTab(tweet, this.state.activeAccount(), 'search');
           }
         });
       }
     });
   }
 
-  addTweet(tweet, account, tab) {
-    this.dispatch(Actions.addTweet(tweet, account, tab));
+  addTweetToTab(tweet, account, tab) {
+    this.dispatch(Actions.addTweetToTab(tweet, account, tab));
   }
 
   client() {

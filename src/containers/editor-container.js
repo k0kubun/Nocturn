@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    addTweet: (tweet, account, tab) => {
-      dispatch(Actions.addTweet(tweet, account, tab));
+    addTweetToTab: (tweet, account, tab) => {
+      dispatch(Actions.addTweetToTab(tweet, account, tab));
     },
     clearText: () => {
       dispatch(Actions.clearText());
@@ -44,7 +44,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         event.preventDefault();
 
         let client = new TwitterClient(stateProps.activeAccount);
-        let proxy = new TimelineProxy(dispatchProps.addTweet, stateProps.activeAccount);
+        let proxy = new TimelineProxy(dispatchProps.addTweetToTab, stateProps.activeAccount);
         client.updateStatus(stateProps.text, stateProps.inReplyTo, (tweet) => {
           proxy.addTweet(tweet);
         });
