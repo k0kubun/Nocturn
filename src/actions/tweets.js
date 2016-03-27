@@ -1,5 +1,5 @@
 import TwitterClient from '../utils/twitter-client';
-import { clearText } from './texts';
+import { clearText, setSearchQuery } from './texts';
 
 export const ADD_TWEET_TO_TAB = 'ADD_TWEET_TO_TAB';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
@@ -94,6 +94,21 @@ export const loadList = (listId, account, reset = false) => {
       } else {
         for (let tweet of tweets) {
           dispatch(addTweetToTab(tweet, account, 'lists'));
+        }
+      }
+    });
+  }
+}
+
+export const loadSearch = (query, account, reset = false) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.searchTweets(query, 50, (tweets) => {
+      if (reset) {
+        dispatch(clearAndSetTweets(tweets, account, 'search'));
+      } else {
+        for (let tweet of tweets) {
+          dispatch(addTweetToTab(tweet, account, 'search'));
         }
       }
     });

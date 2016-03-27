@@ -59,19 +59,11 @@ export default class IpcAction {
         }
       });
 
-      let listId = this.state.activeListId();
-      if (listId) {
-        this.dispatch(Actions.loadList(listId, this.state.activeAccount()));
-      }
+      const listId = this.state.activeListId();
+      if (listId) this.dispatch(Actions.loadList(listId, this.state.activeAccount()));
 
-      let query = this.state.activeSearchQuery();
-      if (query) {
-        this.client().searchTweets(query, 50, (tweets) => {
-          for (let tweet of tweets) {
-            this.addTweetToTab(tweet, this.state.activeAccount(), 'search');
-          }
-        });
-      }
+      const query = this.state.activeSearchQuery();
+      if (query) this.dispatch(Actions.loadSearch(query, this.state.activeAccount()));
 
       this.dispatch(Actions.reconnectStreaming(this.state.activeAccount()));
     });
