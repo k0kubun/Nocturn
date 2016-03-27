@@ -29,14 +29,14 @@ https://github.com/k0kubun/Nocturn/releases
 <tr><th></th><th>OSX</th><th>Linux, Windows</th></tr>
 </thead>
 <tbody>
-<tr><td> Tweet, Reply, Search           </td><td colspan='2'> <kbd>Enter</kbd>               </td></tr>
+<tr><td> Tweet, Reply, Search           </td><td colspan='2'> <kbd>Enter</kbd>                                                  </td></tr>
 <tr><td> Delete a tweet                 </td><td>             <kbd>Cmd-Backspace</kbd>       </td><td> <kbd>Alt-Backspace</kbd> </td></tr>
-<tr><td> Favourite a tweet       </td><td colspan='2'> <kbd>F</kbd>                   </td></tr>
-<tr><td> Retweet a tweet                </td><td colspan='2'> <kbd>Shift-R</kbd>             </td></tr>
-<tr><td> Select a next tweet            </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>     </td></tr>
-<tr><td> Select a previous tweet        </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>     </td></tr>
-<tr><td> Select the first tweet         </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd> </td></tr>
-<tr><td> Open url with external browser </td><td colspan='2'> <kbd>T</kbd>                   </td></tr>
+<tr><td> Favorite a tweet               </td><td colspan='2'> <kbd>F</kbd>                                                      </td></tr>
+<tr><td> Retweet a tweet                </td><td colspan='2'> <kbd>Shift-R</kbd>                                                </td></tr>
+<tr><td> Select a next tweet            </td><td colspan='2'> <kbd>J</kbd>, <kbd>↓</kbd>                                        </td></tr>
+<tr><td> Select a previous tweet        </td><td colspan='2'> <kbd>K</kbd>, <kbd>↑</kbd>                                        </td></tr>
+<tr><td> Select the first tweet         </td><td colspan='2'> <kbd>0</kbd>, <kbd>Space</kbd>                                    </td></tr>
+<tr><td> Open url with external browser </td><td colspan='2'> <kbd>T</kbd>                                                      </td></tr>
 <tr><td> Select a next tab              </td><td>             <kbd>Cmd-Shift-]</kbd>         </td><td> <kbd>Alt-P</kbd>         </td></tr>
 <tr><td> Select a previous tab          </td><td>             <kbd>Cmd-Shift-[</kbd>         </td><td> <kbd>Alt-O</kbd>         </td></tr>
 <tr><td> Select a next account          </td><td>             <kbd>Cmd-J</kbd>               </td><td> <kbd>Alt-J</kbd>         </td></tr>
