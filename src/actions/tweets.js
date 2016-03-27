@@ -1,9 +1,9 @@
 import TwitterClient from '../utils/twitter-client';
+import { clearText } from './texts';
 
 export const ADD_TWEET_TO_TAB = 'ADD_TWEET_TO_TAB';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
 export const FAVORITE_TWEET = 'FAVORITE_TWEET';
-export const POST_TWEET = 'POST_TWEET';
 export const REMOVE_TWEET = 'REMOVE_TWEET';
 export const SELECT_TWEET = 'SELECT_TWEET';
 export const SET_IN_REPLY_TO = 'SET_IN_REPLY_TO';
@@ -41,8 +41,14 @@ export const clearAndSetTweets = (tweets, account, tab) => {
   return { type: CLEAR_AND_SET_TWEETS, tweets, account, tab }
 }
 
-export const postTweet = (text) => {
-  return { type: POST_TWEET, text }
+export const postTweet = (text, account, inReplyTo) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.updateStatus(text, inReplyTo, (tweet) => {
+      dispatch(addTweet(tweet, account));
+    });
+    dispatch(clearText());
+  }
 }
 
 export const removeTweet = (tweet, account, tab) => {

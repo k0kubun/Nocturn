@@ -1,7 +1,6 @@
 import * as Keycode  from '../utils/keycode';
 import Actions       from '../actions';
 import Editor        from '../components/editor';
-import TwitterClient from '../utils/twitter-client';
 import { connect }   from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -15,12 +14,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    addTweet: (tweet, account) => {
-      dispatch(Actions.addTweet(tweet, account));
-    },
-    clearText: () => {
-      dispatch(Actions.clearText());
-    },
     dispatch,
     onTextareaChanged: (event) => {
       dispatch(Actions.setText(event.target.value));
@@ -35,6 +28,7 @@ const mapDispatchToProps = (dispatch, props) => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const { dispatch } = dispatchProps;
   return {
     ...ownProps,
     ...stateProps,
@@ -42,13 +36,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     onTextareaKeyDown: (event) => {
       if (event.keyCode === Keycode.ENTER && !event.altKey && !event.shiftKey) {
         event.preventDefault();
-
-        const account = stateProps.activeAccount;
-        const client  = new TwitterClient(account);
-        client.updateStatus(stateProps.text, stateProps.inReplyTo, (tweet) => {
-          dispatchProps.addTweet(tweet, account);
-        });
-        dispatchProps.clearText();
+        dispatch(Actions.postTweet(stateProps.text, stateProps.activeAccount, stateProps.inReplyTo));
       }
     },
   }
