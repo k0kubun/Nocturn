@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { ipcRenderer }      from 'electron';
-import TwitterClient        from '../utils/twitter-client';
 
 export default class Account extends React.Component {
   static propTypes = {

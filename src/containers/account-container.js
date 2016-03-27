@@ -1,6 +1,5 @@
 import Account         from '../components/account';
 import Actions         from '../actions';
-import TwitterClient   from '../utils/twitter-client';
 import { connect }     from 'react-redux';
 import { ipcRenderer } from 'electron';
 
@@ -24,11 +23,6 @@ const mapDispatchToProps = (dispatch) => {
     subscribeIpc: () => {
       ipcRenderer.on('finish-authentication', (event, token) => {
         dispatch(Actions.addAccount(token));
-
-        let client = new TwitterClient(token);
-        client.verifyCredentials((user) => {
-          dispatch(Actions.refreshUserInfo(user));
-        });
       });
     },
   };
