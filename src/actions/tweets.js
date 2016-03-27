@@ -1,3 +1,5 @@
+import TwitterClient from '../utils/twitter-client';
+
 export const ADD_TWEET_TO_TAB = 'ADD_TWEET_TO_TAB';
 export const CLEAR_AND_SET_TWEETS  = 'CLEAR_AND_SET_TWEETS';
 export const FAVORITE_TWEET = 'FAVORITE_TWEET';
@@ -7,8 +9,32 @@ export const SELECT_TWEET = 'SELECT_TWEET';
 export const SET_IN_REPLY_TO = 'SET_IN_REPLY_TO';
 export const MARK_AS_READ = 'MARK_AS_READ';
 
+const notifyMention = (tweet, account) => {
+  if (account.id_str !== tweet.user.id_str) {
+    new Notification(
+      `@${tweet.user.screen_name} - Reply from ${tweet.user.name}`,
+      { body: tweet.text },
+    );
+  }
+}
+
 export const addTweetToTab = (tweet, account, tab) => {
   return { type: ADD_TWEET_TO_TAB, tweet, account, tab }
+}
+
+export const addTweet = (tweet, account, notify = false) => {
+  return dispatch => {
+    dispatch(addTweetToTab(tweet, account, 'home'));
+
+    if (tweet.entities && tweet.entities.user_mentions) {
+      for (let mention of tweet.entities.user_mentions) {
+        if (mention.id_str == account.id_str) {
+          dispatch(addTweetToTab(tweet, account, 'mentions'));
+          if (notify) notifyMention(tweet, account);
+        }
+      }
+    }
+  }
 }
 
 export const clearAndSetTweets = (tweets, account, tab) => {

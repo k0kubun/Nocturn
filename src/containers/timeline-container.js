@@ -1,6 +1,5 @@
 import Actions       from '../actions';
 import Timeline      from '../components/timeline';
-import TimelineProxy from '../utils/timeline-proxy';
 import TwitterClient from '../utils/twitter-client';
 import { connect }   from 'react-redux';
 
@@ -12,25 +11,20 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-  const addTweetToTab = (tweet, account, tab) => {
-    dispatch(Actions.addTweetToTab(tweet, account, tab));
-  }
-
-  const proxy  = new TimelineProxy(addTweetToTab, props.account);
   const client = new TwitterClient(props.account);
 
   return {
     loadHome: () => {
       client.homeTimeline({ count: 50 }, (tweets) => {
         for (let tweet of tweets) {
-          proxy.addTweet(tweet);
+          dispatch(Actions.addTweet(tweet, props.account));
         }
       });
     },
     loadMentions: () => {
       client.mentionsTimeline((tweets) => {
         for (let tweet of tweets) {
-          proxy.addTweet(tweet);
+          dispatch(Actions.addTweet(tweet, props.account));
         }
         dispatch(Actions.markAsRead(tweets[0], props.account));
       })
@@ -43,7 +37,6 @@ const mapDispatchToProps = (dispatch, props) => {
       });
     },
     startStreaming: () => {
-      const proxy = new TimelineProxy(addTweetToTab, props.account, true);
       client.userStream((stream) => {
         stream.on('data', function(data) {
           if (data['friends']) {
@@ -54,7 +47,7 @@ const mapDispatchToProps = (dispatch, props) => {
             // noop
           } else if (data['created_at']) {
             // This is a normal tweet
-            proxy.addTweet(data);
+            dispatch(Actions.addTweet(tweet, props.account, true));
           }
         });
 

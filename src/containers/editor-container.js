@@ -1,7 +1,6 @@
 import * as Keycode  from '../utils/keycode';
 import Actions       from '../actions';
 import Editor        from '../components/editor';
-import TimelineProxy from '../utils/timeline-proxy';
 import TwitterClient from '../utils/twitter-client';
 import { connect }   from 'react-redux';
 
@@ -16,12 +15,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    addTweetToTab: (tweet, account, tab) => {
-      dispatch(Actions.addTweetToTab(tweet, account, tab));
+    addTweet: (tweet, account) => {
+      dispatch(Actions.addTweet(tweet, account));
     },
     clearText: () => {
       dispatch(Actions.clearText());
     },
+    dispatch,
     onTextareaChanged: (event) => {
       dispatch(Actions.setText(event.target.value));
     },
@@ -43,10 +43,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       if (event.keyCode === Keycode.ENTER && !event.altKey && !event.shiftKey) {
         event.preventDefault();
 
-        let client = new TwitterClient(stateProps.activeAccount);
-        let proxy = new TimelineProxy(dispatchProps.addTweetToTab, stateProps.activeAccount);
+        const account = stateProps.activeAccount;
+        const client  = new TwitterClient(account);
         client.updateStatus(stateProps.text, stateProps.inReplyTo, (tweet) => {
-          proxy.addTweet(tweet);
+          dispatchProps.addTweet(tweet, account);
         });
         dispatchProps.clearText();
       }
