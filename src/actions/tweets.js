@@ -85,6 +85,17 @@ export const markAsRead = (tweet, account) => {
   return { type: MARK_AS_READ, tweet, account }
 }
 
+export const loadHome = (account) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.homeTimeline({ count: 50 }, (tweets) => {
+      for (let tweet of tweets) {
+        dispatch(addTweet(tweet, account));
+      }
+    });
+  }
+}
+
 export const loadList = (listId, account, reset = false) => {
   return dispatch => {
     const client = new TwitterClient(account);

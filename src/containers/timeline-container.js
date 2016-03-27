@@ -15,11 +15,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
   return {
     loadHome: () => {
-      client.homeTimeline({ count: 50 }, (tweets) => {
-        for (let tweet of tweets) {
-          dispatch(Actions.addTweet(tweet, props.account));
-        }
-      });
+      dispatch(Actions.loadHome(props.account));
     },
     loadMentions: () => {
       client.mentionsTimeline((tweets) => {

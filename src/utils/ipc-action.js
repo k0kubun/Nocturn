@@ -53,19 +53,16 @@ export default class IpcAction {
     });
 
     ipcRenderer.on('reload-timeline', (event) => {
-      this.client().homeTimeline({ count: 50 }, (tweets) => {
-        for (let tweet of tweets) {
-          this.dispatch(Actions.addTweet(tweet, this.state.activeAccount()));
-        }
-      });
+      const account = this.state.activeAccount();
+      this.dispatch(Actions.loadHome(account));
 
       const listId = this.state.activeListId();
-      if (listId) this.dispatch(Actions.loadList(listId, this.state.activeAccount()));
+      if (listId) this.dispatch(Actions.loadList(listId, account));
 
       const query = this.state.activeSearchQuery();
-      if (query) this.dispatch(Actions.loadSearch(query, this.state.activeAccount()));
+      if (query) this.dispatch(Actions.loadSearch(query, account));
 
-      this.dispatch(Actions.reconnectStreaming(this.state.activeAccount()));
+      this.dispatch(Actions.reconnectStreaming(account));
     });
   }
 
