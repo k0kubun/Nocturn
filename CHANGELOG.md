@@ -1,4 +1,8 @@
 # Change Log
+## v1.1.1
+- Reconnect streaming by <kbd>Cmd-R</kbd> / <kbd>Ctrl-R</kbd>
+- Fix list box size in OSX
+
 ## v1.1.0
 - Key binding for retweet is changed to <kbd>Shift-R</kbd>
 - Reduce package size [#12](https://github.com/k0kubun/Nocturn/pull/12)
