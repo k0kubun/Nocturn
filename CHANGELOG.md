@@ -2,6 +2,7 @@
 ## v1.1.1
 - Reconnect streaming by <kbd>Cmd-R</kbd> / <kbd>Ctrl-R</kbd>
 - Fix list box size in OSX
+- Reduce package size
 
 ## v1.1.0
 - Key binding for retweet is changed to <kbd>Shift-R</kbd>
