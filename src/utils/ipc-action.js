@@ -61,11 +61,7 @@ export default class IpcAction {
 
       let listId = this.state.activeListId();
       if (listId) {
-        this.client().listsStatuses(listId, 50, (tweets) => {
-          for (let tweet of tweets) {
-            this.addTweetToTab(tweet, this.state.activeAccount(), 'lists');
-          }
-        });
+        this.dispatch(Actions.loadList(listId, this.state.activeAccount()));
       }
 
       let query = this.state.activeSearchQuery();

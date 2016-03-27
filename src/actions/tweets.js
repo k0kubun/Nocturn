@@ -84,3 +84,18 @@ export const setInReplyTo = (tweet) => {
 export const markAsRead = (tweet, account) => {
   return { type: MARK_AS_READ, tweet, account }
 }
+
+export const loadList = (listId, account, reset = false) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.listsStatuses(listId, 50, (tweets) => {
+      if (reset) {
+        dispatch(clearAndSetTweets(tweets, account, 'lists'));
+      } else {
+        for (let tweet of tweets) {
+          dispatch(addTweetToTab(tweet, account, 'lists'));
+        }
+      }
+    });
+  }
+}
