@@ -60,8 +60,17 @@ export const postTweet = (text, account, inReplyTo) => {
   }
 }
 
-export const removeTweet = (tweet, account, tab) => {
+export const deleteTweetFromTab = (tweet, account, tab) => {
   return { type: REMOVE_TWEET, tweet, account, tab }
+}
+
+export const deleteTweet = (tweet, account, tab) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.deleteStatus(tweet.id_str, (updatedTweet) => {
+      dispatch(deleteTweetFromTab(updatedTweet, account, tab));
+    });
+  }
 }
 
 export const selectTweet = (tweet, tab, account) => {

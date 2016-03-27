@@ -18,12 +18,14 @@ export default class IpcAction {
 
   subscribe(store) {
     ipcRenderer.on('invoke-delete', (event) => {
-      let active = this.state.activeTweet();
-      if (!active) return null;
-
-      this.client().deleteStatus(active.id_str, (tweet) => {
-        this.dispatch(Actions.removeTweet(tweet, this.state.activeAccount(), this.state.activeTab()));
-      });
+      if (!this.state.activeTweet()) return;
+      this.dispatch(
+        Actions.deleteTweet(
+          this.state.activeTweet(),
+          this.state.activeAccount(),
+          this.state.activeTab(),
+        ),
+      );
     });
 
     ipcRenderer.on('select-next-tab', (event) => {
