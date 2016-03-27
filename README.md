@@ -42,7 +42,7 @@ https://github.com/k0kubun/Nocturn/releases
 <tr><td> Select a next account          </td><td>             <kbd>Cmd-J</kbd>               </td><td> <kbd>Alt-J</kbd>         </td></tr>
 <tr><td> Select a previous account      </td><td>             <kbd>Cmd-K</kbd>               </td><td> <kbd>Alt-K</kbd>         </td></tr>
 <tr><td> Insert a newline               </td><td>             <kbd>Alt-Enter</kbd>           </td><td> <kbd>Shift-Enter</kbd>   </td></tr>
-<tr><td> Reload tweets for current user </td><td>             <kbd>Cmd-R</kbd>               </td><td> <kbd>Ctrl-R</kbd>        </td></tr>
+<tr><td> Reload tweets and streaming    </td><td>             <kbd>Cmd-R</kbd>               </td><td> <kbd>Ctrl-R</kbd>        </td></tr>
 </tbody>
 </table>
 

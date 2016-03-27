@@ -74,6 +74,8 @@ export default class IpcAction {
           }
         });
       }
+
+      this.dispatch(Actions.reconnectStreaming(this.state.activeAccount()));
     });
   }
 

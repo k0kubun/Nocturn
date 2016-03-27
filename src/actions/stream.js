@@ -1,6 +1,17 @@
 import TwitterClient from '../utils/twitter-client';
 import { addTweet } from './tweets';
 
+export const SET_OPEN_STREAM = 'SET_OPEN_STREAM';
+export const CLOSE_STREAM = 'CLOSE_STREAM';
+
+export const setOpenStream = (stream, account) => {
+  return { type: SET_OPEN_STREAM, stream, account }
+}
+
+export const closeStream = (account) => {
+  return { type: CLOSE_STREAM, account }
+}
+
 export const startStreaming = (account) => {
   return dispatch => {
     const client = new TwitterClient(account);
@@ -26,6 +37,15 @@ export const startStreaming = (account) => {
           );
         }
       });
+
+      dispatch(setOpenStream(stream, account));
     });
+  }
+}
+
+export const reconnectStreaming = (account) => {
+  return (dispatch) => {
+    dispatch(closeStream(account));
+    dispatch(startStreaming(account));
   }
 }
