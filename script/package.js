@@ -8,7 +8,7 @@ const devDeps = Object.keys(pkg.devDependencies);
 const DEFAULT_OPTS = {
   dir:   './',
   name:  'Nocturn',
-  asar:  false,
+  asar:  true,
   prune: true,
   out:   `packages/v${pkg.version}`,
   'app-version': pkg.version,
