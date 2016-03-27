@@ -433,5 +433,14 @@ body {
 
   .tweets_header {
     top: $header_height + $editor_height + $tabs_height;
+
+    .list_field {
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
+    .search_field {
+      border-radius: 5px;
+    }
   }
 }
