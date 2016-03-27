@@ -37,29 +37,7 @@ const mapDispatchToProps = (dispatch, props) => {
       });
     },
     startStreaming: () => {
-      client.userStream((stream) => {
-        stream.on('data', function(data) {
-          if (data['friends']) {
-            // noop
-          } else if (data['event']) {
-            // noop
-          } else if (data['delete']) {
-            // noop
-          } else if (data['created_at']) {
-            // This is a normal tweet
-            dispatch(Actions.addTweet(tweet, props.account, true));
-          }
-        });
-
-        stream.on('favorite', (event) => {
-          if (props.account.id_str !== event.source.id_str) {
-            new Notification(
-              `${event.source.screen_name} favorited:`,
-              { body: `${event.target.screen_name} "${event.target_object.text}"` },
-            );
-          }
-        });
-      });
+      dispatch(Actions.startStreaming(props.account));
     },
   };
 }
