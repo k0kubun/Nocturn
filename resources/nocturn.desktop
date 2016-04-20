@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+# Expects the Nocturn packages binary to be stripped of it's architechture
+# and be placed/linked to `/opt/Nocturn-linux/`
+
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Nocturn
+Comment=Multi-platform Twitter Client built with React, Redux and Electron
+Path=/opt/Nocturn-linux
+Exec=/opt/Nocturn-linux/Nocturn
+Icon=/opt/Nocturn-linux/resources/icon.png
+Terminal=false
+Categories=Internet;Communication;Electron;
