@@ -6,6 +6,7 @@ import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
 
 export default class Tweet extends React.Component {
+  
   static propTypes = {
     account: PropTypes.object.isRequired,
     active:  PropTypes.bool.isRequired,
@@ -38,6 +39,18 @@ export default class Tweet extends React.Component {
     };
   }
 
+  tweetMedia(tweet) {
+    let images = [];
+    if (tweet.entities.media) {
+      tweet.entities.media.forEach(function(media) {
+        if (media.type === 'photo') {
+          images.push(media.media_url);
+          }
+        });
+      };
+      return images;
+    }
+
   reactionButtonFor(tweet) {
     if (tweet.user.id_str === this.props.account.id_str) {
       return <DeleteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />;
@@ -53,9 +66,10 @@ export default class Tweet extends React.Component {
           <div className='left_box'>
             <img className='user_icon' src={this.largeProfileImage(this.props.tweet.user)} />
           </div>
-          <div className='right_box'>
-            <TweetHeader tweet={this.props.tweet} now={this.props.now} />
+          <div className="right_box">
+            <TweetHeader tweet={this.props.tweet} now={this.props.now}/>
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
+            <img className='tweet_media' src={this.tweetMedia(this.props.tweet)}/>
           </div>
           <div className='right_widget'>
             {this.reactionButtonFor(this.props.tweet)}
