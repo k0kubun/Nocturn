@@ -6,7 +6,6 @@ import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
 
 export default class Tweet extends React.Component {
-  
   static propTypes = {
     account: PropTypes.object.isRequired,
     active:  PropTypes.bool.isRequired,
@@ -42,14 +41,14 @@ export default class Tweet extends React.Component {
   tweetMedia(tweet) {
     let images = [];
     if (tweet.entities.media) {
-      tweet.entities.media.forEach(function(media) {
+      tweet.entities.media.forEach((media) => {
         if (media.type === 'photo') {
           images.push(media.media_url);
-          }
-        });
-      };
-      return images;
-    }
+        }
+      });
+    };
+    return images;
+  }
 
   reactionButtonFor(tweet) {
     if (tweet.user.id_str === this.props.account.id_str) {
