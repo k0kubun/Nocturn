@@ -1,4 +1,8 @@
 # Change Log
+## v1.1.2
+- Show a thumbnail of photos in tweet [#19](https://github.com/k0kubun/Nocturn/pull/19)
+  - Thanks to @CandyFace
+
 ## v1.1.1
 - Reconnect streaming by <kbd>Cmd-R</kbd> / <kbd>Ctrl-R</kbd>
 - Fix list box size in OSX
