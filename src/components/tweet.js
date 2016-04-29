@@ -38,16 +38,20 @@ export default class Tweet extends React.Component {
     };
   }
 
-  tweetImageUrls(tweet) {
-    let urls = [];
-    if (tweet.entities.media) {
-      tweet.entities.media.forEach((media) => {
-        if (media.type === 'photo') {
-          urls.push(media.media_url);
-        }
-      });
-    };
-    return urls;
+  tweetMedia() {
+    if (!this.props.tweet.entities.media) return [];
+
+    return this.props.tweet.entities.media.map((media) => {
+      if (media.type === 'photo') {
+        return (
+          <a href={media.expanded_url} key={media.id_str} target='_blank'>
+            <img className='tweet_media' src={media.media_url} />
+          </a>
+        );
+      } else {
+        return '';
+      }
+    });
   }
 
   reactionButtonFor(tweet) {
@@ -68,9 +72,7 @@ export default class Tweet extends React.Component {
           <div className='right_box'>
             <TweetHeader tweet={this.props.tweet} now={this.props.now}/>
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
-            {this.tweetImageUrls(this.props.tweet).map((url) =>
-              <img className='tweet_media' key={url} src={url} />
-            )}
+            {this.tweetMedia()}
           </div>
           <div className='right_widget'>
             {this.reactionButtonFor(this.props.tweet)}

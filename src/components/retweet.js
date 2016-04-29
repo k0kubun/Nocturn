@@ -26,9 +26,7 @@ export default class Retweet extends Tweet {
           <div className='right_box'>
             <TweetHeader tweet={this.props.tweet.retweeted_status} now={this.props.now} />
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet.retweeted_status)} />
-            {this.tweetImageUrls(this.props.tweet).map((url) =>
-              <img className='tweet_media' key={url} src={url} />
-            )}
+            {this.tweetMedia()}
             <div className='retweeted_by_wrapper'>
               <span className='retweeted_by'>Retweeted by</span>
               <span className='retweeted_user'>{this.props.tweet.user.name}</span>
