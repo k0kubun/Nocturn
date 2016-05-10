@@ -50,6 +50,15 @@ export const favoriteTweet = (tweet, account, tab) => {
   }
 }
 
+export const unfavoriteTweet = (tweet, account, tab) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.unfavoriteStatus(tweet.id_str, (updatedTweet) => {
+      dispatch(addTweetToTab(updatedTweet, account, tab));
+    });
+  }
+}
+
 export const postTweet = (text, account, inReplyTo) => {
   return dispatch => {
     const client = new TwitterClient(account);

@@ -9,13 +9,23 @@ export default class FavoriteContainer extends BaseContainer {
   }
 
   onClick(event) {
-    this.store.dispatch(
-      Actions.favoriteTweet(
-        this.props.tweet,
-        this.props.account,
-        this.props.tab,
-      ),
-    );
+    if (this.props.tweet.favorited) {
+      this.store.dispatch(
+        Actions.unfavoriteTweet(
+          this.props.tweet,
+          this.props.account,
+          this.props.tab,
+        ),
+      );
+    } else {
+      this.store.dispatch(
+        Actions.favoriteTweet(
+          this.props.tweet,
+          this.props.account,
+          this.props.tab,
+        ),
+      );
+    }
   }
 
   render() {

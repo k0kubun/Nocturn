@@ -71,6 +71,16 @@ export default class TwitterClient {
     });
   }
 
+  unfavoriteStatus(tweetId, callback) {
+    this.client.post('favorites/destroy', { id: tweetId }, (error, data, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(data);
+    });
+  }
+
   retweetStatus(tweetId, callback) {
     this.client.post(`statuses/retweet/${tweetId}`, {}, (error, data, response) => {
       if (error) {
