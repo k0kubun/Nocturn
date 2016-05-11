@@ -55,6 +55,7 @@ export default class IpcAction {
     ipcRenderer.on('reload-timeline', (event) => {
       const account = this.state.activeAccount();
       this.dispatch(Actions.loadHome(account));
+      this.dispatch(Actions.loadMentions(account));
 
       const listId = this.state.activeListId();
       if (listId) this.dispatch(Actions.loadList(listId, account));
