@@ -25,8 +25,8 @@ export default class TwitterClient {
     });
   }
 
-  mentionsTimeline(callback) {
-    this.client.get('statuses/mentions_timeline', {}, (error, tweets, response) => {
+  mentionsTimeline(params, callback) {
+    this.client.get('statuses/mentions_timeline', params, (error, tweets, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;

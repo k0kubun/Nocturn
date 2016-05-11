@@ -18,12 +18,7 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(Actions.loadHome(props.account));
     },
     loadMentions: () => {
-      client.mentionsTimeline((tweets) => {
-        for (let tweet of tweets) {
-          dispatch(Actions.addTweet(tweet, props.account));
-        }
-        dispatch(Actions.markAsRead(tweets[0], props.account));
-      })
+      dispatch(Actions.loadMentions(props.account, true));
     },
     loadLists: () => {
       client.listsList((lists) => {

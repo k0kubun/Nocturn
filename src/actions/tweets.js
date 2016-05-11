@@ -102,6 +102,20 @@ export const loadHome = (account) => {
   }
 }
 
+export const loadMentions = (account, ignore = false) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.mentionsTimeline({ count: 50 }, (tweets) => {
+      for (let tweet of tweets) {
+        dispatch(addTweet(tweet, account));
+      }
+      if (ignore) {
+        dispatch(markAsRead(tweets[0], account));
+      }
+    });
+  }
+}
+
 export const loadList = (listId, account, reset = false) => {
   return dispatch => {
     const client = new TwitterClient(account);
