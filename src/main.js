@@ -2,6 +2,7 @@
 
 import Authentication from './utils/authentication';
 import MenuBuilder    from './utils/menu-builder';
+import path           from 'path';
 import { app, BrowserWindow, ipcMain, shell } from 'electron';
 
 let mainWindow = null;
@@ -10,12 +11,18 @@ app.on('ready', () => {
   if (mainWindow) return;
 
   Authentication.authorized(() => {
-    mainWindow = new BrowserWindow({
+    let options = {
       width:         350,
       height:        640,
       'min-width':   260,
-      titleBarStyle: process.platform === 'darwin' ? 'hidden' : 'normal',
-    });
+    };
+    if (process.platform === 'darwin') {
+      Object.assign(options, { titleBarStyle: 'hidden' });
+    } else if (process.platform === 'linux') {
+      Object.assign(options, { icon: path.join(__dirname, '/../resources/Nocturn.png') });
+    }
+
+    mainWindow = new BrowserWindow(options);
     mainWindow.webContents.on('new-window', (event, url) => {
       event.preventDefault();
       shell.openExternal(url);
