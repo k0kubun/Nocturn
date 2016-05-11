@@ -1,5 +1,5 @@
 import TwitterClient from '../utils/twitter-client';
-import { addTweet } from './tweets';
+import { addTweet, removeTweet } from './tweets';
 
 export const SET_OPEN_STREAM = 'SET_OPEN_STREAM';
 export const CLOSE_STREAM = 'CLOSE_STREAM';
@@ -22,7 +22,7 @@ export const startStreaming = (account) => {
         } else if (data['event']) {
           // noop
         } else if (data['delete']) {
-          // noop
+          dispatch(removeTweet(data['delete']['status'], account));
         } else if (data['created_at']) {
           // This is a normal tweet
           dispatch(addTweet(data, account, true));

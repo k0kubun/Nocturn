@@ -70,6 +70,13 @@ export const deleteTweetFromTab = (tweet, account, tab) => {
   return { type: REMOVE_TWEET, tweet, account, tab }
 }
 
+export const removeTweet = (tweet, account) => {
+  return dispatch => {
+    dispatch(deleteTweetFromTab(tweet, account, 'home'));
+    dispatch(deleteTweetFromTab(tweet, account, 'mentions'));
+  }
+}
+
 export const deleteTweet = (tweet, account, tab) => {
   return dispatch => {
     const client = new TwitterClient(account);
