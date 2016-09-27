@@ -20,6 +20,7 @@ $grey: #999;
 $dark_grey: #555;
 $white: #fff;
 $dark_blue: #0084b4;
+$orange: #f4c142;
 $account_selector_top: $profile_image_size + $editor_vertical_padding;
 
 // Reject over scrolling
@@ -307,6 +308,11 @@ body {
       right: 0;
       color: #ccc;
       font-size: 12px;
+
+      > .reply_button > .fa.fa-reply:hover,
+      > .favorite_widget_wrapper > .fa.fa-star.favorite_button:hover {
+        color: $orange;
+      }
     }
 
     .active .right_widget {
@@ -314,7 +320,7 @@ body {
     }
 
     .favorite_widget_wrapper .favorite_button.active {
-      color: #f4c142;
+      color: $orange;
     }
 
     .user_icon {
