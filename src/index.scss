@@ -136,6 +136,7 @@ body {
   }
 
   .tabs .tab {
+    cursor: pointer;
     height: $tabs_height;
     padding: 6px 8px 2px 8px;
     font-size: 12px;
