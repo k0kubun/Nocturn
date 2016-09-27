@@ -1,4 +1,10 @@
 # Change Log
+## v1.2.2
+- Set cursor style on tabs [#29](https://github.com/k0kubun/Nocturn/pull/29)
+  - Thanks to @IzumiSy
+- Hover stylings for right widgets [#30](https://github.com/k0kubun/Nocturn/pull/30)
+  - Thanks to @IzumiSy
+
 ## v1.2.1
 - Show application icon on Linux too
 - Remove tweet from timeline with deleted event
