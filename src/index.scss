@@ -215,7 +215,6 @@ body {
     }
 
     .user_name {
-      cursor: pointer;
       font-weight: bold;
       color: $dark_grey;
       margin-right: 4px;
@@ -259,7 +258,6 @@ body {
     }
 
     .screen_name {
-      cursor: pointer;
       font-weight: bold;
       color: $grey;
 
@@ -269,6 +267,7 @@ body {
     }
 
     .name_wrapper {
+      cursor: pointer;
       float: left;
       white-space: nowrap;
       width: calc(100% - #{$icon_size + 10px});
