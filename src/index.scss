@@ -215,6 +215,7 @@ body {
     }
 
     .user_name {
+      cursor: pointer;
       font-weight: bold;
       color: $dark_grey;
       margin-right: 4px;
@@ -258,6 +259,7 @@ body {
     }
 
     .screen_name {
+      cursor: pointer;
       font-weight: bold;
       color: $grey;
 
