@@ -13,10 +13,10 @@ export default class TweetHeader extends React.Component {
 
   render() {
     const tweetUser = this.props.tweet.user
-    const nameWrapperCommonClasses = 'external-link external-link-twitter'
+    const twitterExtLinkClasses = 'external-link external-link-twitter'
     const classes = {
-      userName: `user_name ${nameWrapperCommonClasses}`,
-      screenName: `screen_name ${nameWrapperCommonClasses}`
+      userName: `user_name ${twitterExtLinkClasses}`,
+      screenName: `screen_name ${twitterExtLinkClasses}`
     }
 
     return (
