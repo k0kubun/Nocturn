@@ -8,7 +8,7 @@ export default class TweetHeader extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className='tweet_header clearfix'>
         <div className='name_wrapper'>
           <span className='user_name'>{this.props.tweet.user.name}</span>
