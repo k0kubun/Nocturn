@@ -7,12 +7,26 @@ export default class TweetHeader extends React.Component {
     now:   PropTypes.number,
   }
 
+  generateTwitterProfileUrl(screen_name) {
+    return `https://twitter.com/${screen_name}`
+  }
+
   render() {
-    return(
+    const tweetUser = this.props.tweet.user
+
+    return (
       <div className='tweet_header clearfix'>
         <div className='name_wrapper'>
-          <span className='user_name'>{this.props.tweet.user.name}</span>
-          <span className='screen_name'>{this.props.tweet.user.screen_name}</span>
+          <a
+            href={this.generateTwitterProfileUrl(tweetUser.screen_name)}
+            className='user_name external-link external-link-twitter'
+            target='_blank'
+          >
+            {tweetUser.name}
+          </a>
+          <span className='screen_name'>
+            {tweetUser.screen_name}
+          </span>
         </div>
         <Time className='created_at' time={this.props.tweet.created_at} now={this.props.now} />
       </div>
