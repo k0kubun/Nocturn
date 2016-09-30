@@ -208,9 +208,19 @@ body {
         background: #389cd7;
       }
 
-      &.active .external-link {
-        color: white;
-        text-decoration: underline;
+      &.active {
+        .external-link {
+          color: white;
+          text-decoration: underline;
+        }
+
+        .user_name, .screen_name {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
 
