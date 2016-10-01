@@ -8,6 +8,7 @@ $editor_horizontal_padding: 8px;
 $tabs_height: 30px;
 $timeline_height: 640px;
 $tweet_padding: 8px;
+$tweet_padding_darwin: 12px;
 $profile_image_size: 24px;
 $profile_image_offset: 9px;
 $icon_size: 48px;
@@ -452,6 +453,10 @@ body {
     &.with_header {
       height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
       top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+    }
+
+    .tweet {
+      padding: $tweet_padding_darwin;
     }
   }
 
