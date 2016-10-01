@@ -1,4 +1,10 @@
 # Change Log
+## v1.2.3
+- Fix scrollbar overlap in macOS [#31](https://github.com/k0kubun/Nocturn/pull/31)
+  - Thanks to @IzumiSy
+- Link user profile on tweets [#32](https://github.com/k0kubun/Nocturn/pull/32)
+  - Thanks to @IzumiSy
+
 ## v1.2.2
 - Set cursor style on tabs [#29](https://github.com/k0kubun/Nocturn/pull/29)
   - Thanks to @IzumiSy
