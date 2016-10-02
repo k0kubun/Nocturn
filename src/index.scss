@@ -24,6 +24,12 @@ $dark_blue: #0084b4;
 $orange: #f4c142;
 $account_selector_top: $profile_image_size + $editor_vertical_padding;
 
+@keyframes favorite_animation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
 // Reject over scrolling
 html,
 body {
@@ -331,6 +337,9 @@ body {
     }
 
     .favorite_widget_wrapper .favorite_button.active {
+      animation-name: favorite_animation;
+      animation-duration: 170ms;
+      animation-timing-function: linear;
       color: $orange;
     }
 
