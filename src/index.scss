@@ -17,6 +17,7 @@ $icon_overlay_size: 8px;
 $icon_column: $icon_size + $tweet_padding * 2;
 $tweets_header_height: 34px;
 $red: #d40d12;
+$light_grey: #b8b8b8;
 $grey: #999;
 $dark_grey: #555;
 $white: #fff;
@@ -327,8 +328,8 @@ body {
       font-size: 12px;
 
       > .reply_button > .fa.fa-reply:hover,
-      > .favorite_widget_wrapper > .fa.fa-star.favorite_button:hover {
-        color: $orange;
+      > .favorite_widget_wrapper > .fa.fa-star.favorite_button:not(.active):hover {
+        color: $light_grey;
       }
     }
 
