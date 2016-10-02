@@ -44,17 +44,19 @@ export const clearAndSetTweets = (tweets, account, tab) => {
 export const favoriteTweet = (tweet, account, tab) => {
   return dispatch => {
     const client = new TwitterClient(account);
-
-    if (tweet.favorited) {
-      client.unfavoriteStatus(tweet.id_str, (()=>{}));
-    } else {
-      client.favoriteStatus(tweet.id_str, (()=>{}));
+    const dispatchAddTweetToTab = (tweet) => {
+      dispatch(addTweetToTab(tweet, account, tab));
     }
 
-    const updateTweet = Object.assign({}, tweet, {
+    if (tweet.favorited) {
+      client.unfavoriteStatus(tweet.id_str, dispatchAddTweetToTab);
+    } else {
+      client.favoriteStatus(tweet.id_str, dispatchAddTweetToTab);
+    }
+
+    dispatchAddTweetToTab(Object.assign({}, tweet, {
       favorited: !tweet.favorited
-    })
-    dispatch(addTweetToTab(updateTweet, account, tab));
+    }))
   }
 }
 
