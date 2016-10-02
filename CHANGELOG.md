@@ -1,4 +1,10 @@
 # Change Log
+## v1.2.4
+- Update favorite icon immediately [#33](https://github.com/k0kubun/Nocturn/pull/33)
+  - Thanks to @IzumiSy
+- Add favorite animation [#34](https://github.com/k0kubun/Nocturn/pull/34)
+  - Thanks to @IzumiSy
+
 ## v1.2.3
 - Fix scrollbar overlap in macOS [#31](https://github.com/k0kubun/Nocturn/pull/31)
   - Thanks to @IzumiSy
