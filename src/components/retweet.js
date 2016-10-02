@@ -34,7 +34,7 @@ export default class Retweet extends Tweet {
           </div>
           <div className='right_widget'>
             <ReplyContainer tweet={this.props.tweet.retweeted_status} account={this.props.account} />
-            <FavoriteContainer tweet={this.props.tweet.retweeted_status} account={this.props.account} tab={this.props.tab} />
+            <FavoriteContainer tweet={this.props.tweet} account={this.props.account} tab={this.props.tab} />
           </div>
         </div>
       </li>
