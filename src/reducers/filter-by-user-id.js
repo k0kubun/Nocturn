@@ -7,6 +7,14 @@ export const filterByUserId = (state = {}, action) => {
         ...state,
         [action.account.id_str]: action.stream,
       };
+    case Actions.CLOSE_FILTER:
+      if (state[action.account.id_str]) {
+        state[action.account.id_str].destroy();
+      }
+      return {
+        ...state,
+        [action.account.id_str]: null,
+      }
     default:
       return state;
   }

@@ -61,7 +61,10 @@ export default class IpcAction {
       if (listId) this.dispatch(Actions.loadList(listId, account));
 
       const query = this.state.activeSearchQuery();
-      if (query) this.dispatch(Actions.loadSearch(query, account));
+      if (query) {
+        this.dispatch(Actions.loadSearch(query, account));
+        this.dispatch(Actions.reconnectFilter(query, account));
+      }
 
       this.dispatch(Actions.reconnectStreaming(account));
     });

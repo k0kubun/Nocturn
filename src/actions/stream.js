@@ -4,6 +4,7 @@ import { addTweet, addTweetToTab, removeTweet } from './tweets';
 export const SET_OPEN_STREAM = 'SET_OPEN_STREAM';
 export const SET_OPEN_FILTER = 'SET_OPEN_FILTER';
 export const CLOSE_STREAM = 'CLOSE_STREAM';
+export const CLOSE_FILTER = 'CLOSE_FILTER';
 
 export const setOpenStream = (stream, account) => {
   return { type: SET_OPEN_STREAM, stream, account }
@@ -55,6 +56,10 @@ export const setOpenFilter = (stream, account) => {
   return { type: SET_OPEN_FILTER, stream, account }
 }
 
+export const closeFilter = (account) => {
+  return { type: CLOSE_FILTER, account }
+}
+
 export const startFilter = (query, account) => {
   return dispatch => {
     const client = new TwitterClient(account);
@@ -74,5 +79,12 @@ export const startFilter = (query, account) => {
 
       dispatch(setOpenFilter(stream, account));
     });
+  }
+}
+
+export const reconnectFilter = (query, account) => {
+  return (dispatch) => {
+    dispatch(closeFilter(account));
+    dispatch(startFilter(query, account));
   }
 }
