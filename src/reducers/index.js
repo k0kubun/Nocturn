@@ -3,6 +3,7 @@ import { accounts } from './accounts';
 import { activeAccountIndex } from './active-account-index';
 import { activeListIdByUserId } from './active-list-id-by-user-id';
 import { editorFocused } from './editor-focused';
+import { filterByUserId } from './filter-by-user-id';
 import { inReplyTo } from './in-reply-to';
 import { listsByUserId } from './lists-by-user-id';
 import { nowsByUserId } from './nows-by-user-id';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   activeAccountIndex,
   activeListIdByUserId,
   editorFocused,
+  filterByUserId,
   inReplyTo,
   listsByUserId,
   nowsByUserId,

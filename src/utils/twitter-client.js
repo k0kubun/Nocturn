@@ -46,6 +46,12 @@ export default class TwitterClient {
     });
   }
 
+  filterStream(track, callback) {
+    this.client.stream('statuses/filter', { track: track }, (stream) => {
+      callback(stream);
+    });
+  }
+
   updateStatus(tweet, inReplyTo, callback) {
     if (tweet === '') return;
 
