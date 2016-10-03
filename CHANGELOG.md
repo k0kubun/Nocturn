@@ -1,4 +1,12 @@
 # Change Log
+## v1.3.0
+- Support multiple attached photos [#37](https://github.com/k0kubun/Nocturn/pull/37)
+  - Thanks to @IzumiSy
+- Tweak favorite button's hover color to be the same as official one [#35](https://github.com/k0kubun/Nocturn/pull/35)
+  - Thanks to @IzumiSy
+- Fix the bug that retweet cannot be favorited [#36](https://github.com/k0kubun/Nocturn/pull/36)
+  - Thanks to @IzumiSy
+
 ## v1.2.4
 - Update favorite icon immediately [#33](https://github.com/k0kubun/Nocturn/pull/33)
   - Thanks to @IzumiSy
