@@ -66,6 +66,9 @@ export default class Tweet extends React.Component {
   }
 
   render() {
+    const tweetMedia = this.tweetMedia()
+    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '')
+
     return(
       <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
         <div className='box_wrapper'>
@@ -75,7 +78,9 @@ export default class Tweet extends React.Component {
           <div className='right_box'>
             <TweetHeader tweet={this.props.tweet} now={this.props.now}/>
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
-            {this.tweetMedia()}
+            <div className={`tweet_entities ${multpleMediaClass}`}>
+              {tweetMedia}
+            </div>
           </div>
           <div className='right_widget'>
             {this.reactionButtonFor(this.props.tweet)}
