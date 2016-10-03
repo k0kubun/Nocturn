@@ -319,15 +319,10 @@ body {
     .right_box {
       padding-left: $icon_size + 10px;
 
-      .tweet_entities {
+      .tweet_entities.multiple {
         img.tweet_media {
           padding: 5px;
-        }
-
-        &.multiple {
-          img.tweet_media {
-            width: 50%;
-          }
+          width: 50%;
         }
       }
     }
