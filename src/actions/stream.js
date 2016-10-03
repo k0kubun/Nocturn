@@ -1,5 +1,5 @@
 import TwitterClient from '../utils/twitter-client';
-import { addTweet, removeTweet } from './tweets';
+import { addTweet, addTweetToTab, removeTweet } from './tweets';
 
 export const SET_OPEN_STREAM = 'SET_OPEN_STREAM';
 export const CLOSE_STREAM = 'CLOSE_STREAM';
@@ -47,5 +47,25 @@ export const reconnectStreaming = (account) => {
   return (dispatch) => {
     dispatch(closeStream(account));
     dispatch(startStreaming(account));
+  }
+}
+
+export const startFilter = (query, account) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.filterStream(query, (stream) => {
+      stream.on('data', (data) => {
+        if (data['friends']) {
+          // noop
+        } else if (data['event']) {
+          // noop
+        } else if (data['delete']) {
+          // noop
+        } else if (data['created_at']) {
+          // This is a normal tweet
+          dispatch(addTweetToTab(data, account, 'search'));
+        }
+      });
+    });
   }
 }
