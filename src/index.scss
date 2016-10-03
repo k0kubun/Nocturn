@@ -318,6 +318,13 @@ body {
 
     .right_box {
       padding-left: $icon_size + 10px;
+
+      .tweet_entities.multiple {
+        img.tweet_media {
+          padding: 5px;
+          width: 50%;
+        }
+      }
     }
 
     .right_widget {
