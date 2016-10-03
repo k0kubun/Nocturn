@@ -1,4 +1,7 @@
 # Change Log
+## v1.3.1
+- Update a search tab in real time
+
 ## v1.3.0
 - Support multiple attached photos [#37](https://github.com/k0kubun/Nocturn/pull/37)
   - Thanks to @IzumiSy
