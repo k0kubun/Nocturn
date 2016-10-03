@@ -41,7 +41,10 @@ export default class Tweet extends React.Component {
   tweetMedia() {
     if (!this.props.tweet.entities.media) return [];
 
-    return this.props.tweet.entities.media.map((media) => {
+    const tweet = this.props.tweet
+    const entities = Object.assign({}, tweet.entities, tweet.extended_entities)
+
+    return entities.media.map((media) => {
       if (media.type === 'photo') {
         return (
           <a href={media.expanded_url} key={media.id_str} target='_blank'>
