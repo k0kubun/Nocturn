@@ -39,9 +39,14 @@ export default class Tweet extends React.Component {
   }
 
   tweetMedia() {
-    if (!this.props.tweet.entities.media) return [];
+    let tweet = this.props.tweet
 
-    const tweet = this.props.tweet
+    if (tweet.retweeted_status && tweet.retweeted_status.entities.media) {
+      tweet = tweet.retweeted_status
+    } else if (!tweet.entities.media) {
+      return []
+    }
+
     const entities = Object.assign({}, tweet.entities, tweet.extended_entities)
 
     return entities.media.map((media) => {
