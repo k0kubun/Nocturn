@@ -56,7 +56,7 @@ export const favoriteTweet = (tweet, account, tab) => {
 
     dispatchAddTweetToTab(Object.assign({}, tweet, {
       favorited: !tweet.favorited
-    }))
+    }));
   }
 }
 

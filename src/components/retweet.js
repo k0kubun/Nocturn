@@ -15,8 +15,8 @@ export default class Retweet extends Tweet {
   }
 
   render() {
-    const tweetMedia = this.tweetMedia()
-    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '')
+    const tweetMedia = this.tweetMedia();
+    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '');
 
     return(
       <li className={`tweet retweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>

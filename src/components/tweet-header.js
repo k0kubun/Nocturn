@@ -8,11 +8,11 @@ export default class TweetHeader extends React.Component {
   }
 
   generateTwitterProfileUrl(screen_name) {
-    return `https://twitter.com/${screen_name}`
+    return `https://twitter.com/${screen_name}`;
   }
 
   render() {
-    const tweetUser = this.props.tweet.user
+    const tweetUser = this.props.tweet.user;
 
     return (
       <div className='tweet_header clearfix'>

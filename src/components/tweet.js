@@ -39,15 +39,15 @@ export default class Tweet extends React.Component {
   }
 
   tweetMedia() {
-    let tweet = this.props.tweet
+    let tweet = this.props.tweet;
 
     if (tweet.retweeted_status && tweet.retweeted_status.entities.media) {
-      tweet = tweet.retweeted_status
+      tweet = tweet.retweeted_status;
     } else if (!tweet.entities.media) {
-      return []
+      return [];
     }
 
-    const entities = Object.assign({}, tweet.entities, tweet.extended_entities)
+    const entities = Object.assign({}, tweet.entities, tweet.extended_entities);
 
     return entities.media.map((media) => {
       if (media.type === 'photo') {
@@ -71,8 +71,8 @@ export default class Tweet extends React.Component {
   }
 
   render() {
-    const tweetMedia = this.tweetMedia()
-    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '')
+    const tweetMedia = this.tweetMedia();
+    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '');
 
     return(
       <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
