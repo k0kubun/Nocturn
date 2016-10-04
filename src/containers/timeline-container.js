@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, props) => {
     loadMentions: () => {
       dispatch(Actions.loadMentions(props.account, true));
     },
+    loadFavorites: () => {
+      dispatch(Actions.loadFavorites(prop.account));
+    },
     loadLists: () => {
       client.listsList((lists) => {
         for (let list of lists) {
