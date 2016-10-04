@@ -127,6 +127,17 @@ export const loadMentions = (account, ignore = false) => {
   }
 }
 
+export const loadFavorites = (account) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.favoritesList({ count: 50 }, (tweets) => {
+      for (let tweet of tweets) {
+        dispatch(addTweet(tweet, account));
+      }
+    }
+  });
+}
+
 export const loadList = (listId, account, reset = false) => {
   return dispatch => {
     const client = new TwitterClient(account);
