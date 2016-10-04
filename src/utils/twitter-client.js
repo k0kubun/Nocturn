@@ -35,6 +35,16 @@ export default class TwitterClient {
     });
   }
 
+  favoritesList(params, callback) {
+    this.client('favorites/list', params, (error, tweets, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(tweet);
+    });
+  }
+
   userStream(callback) {
     this.client.stream('user', {}, (stream) => {
       callback(stream);
