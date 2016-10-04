@@ -20,7 +20,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     active,
     unread,
     onTabClicked() {
-      // TODO call dispatch and execute data fetching
+      dispatch(Actions.selectTab(ownProps.tab, ownProps.account));
     }
   };
 }
