@@ -19,6 +19,7 @@ export default class Timeline extends React.Component {
   componentDidMount() {
     this.props.loadHome();
     this.props.loadMentions();
+    this.props.loadFavorites();
     this.props.loadLists();
     this.props.startStreaming();
   }

@@ -41,7 +41,7 @@ export default class TwitterClient {
         console.log(JSON.stringify(error));
         return;
       }
-      callback(tweet);
+      callback(tweets);
     });
   }
 
