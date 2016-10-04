@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => {
   const selectedTab = state.selectedTabByUserId[props.account.id_str] || 'home';
+  const tweetsByTab = state.tabsByUserId[props.account.id_str] || {};
+  const tweets = tweetsByTab[props.tab] || [];
 
   return {
     active: selectedTab === props.tab,
+    tweets: tweets,
     unread: 0
   };
 }

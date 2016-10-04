@@ -34,6 +34,10 @@ export const addTweet = (tweet, account, notify = false) => {
         }
       }
     }
+
+    if (tweet.favorited) {
+      addTweetToTab(tweet, account, 'favorites');
+    }
   }
 }
 
@@ -134,8 +138,8 @@ export const loadFavorites = (account) => {
       for (let tweet of tweets) {
         dispatch(addTweet(tweet, account));
       }
-    }
-  });
+    });
+  }
 }
 
 export const loadList = (listId, account, reset = false) => {
