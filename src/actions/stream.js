@@ -1,5 +1,5 @@
 import TwitterClient from '../utils/twitter-client';
-import { addTweet, deleteTweetFromTab, addTweetToTab, removeTweet } from './tweets';
+import { addTweet, addTweetToTab, removeTweet } from './tweets';
 
 export const SET_OPEN_STREAM = 'SET_OPEN_STREAM';
 export const SET_OPEN_FILTER = 'SET_OPEN_FILTER';
