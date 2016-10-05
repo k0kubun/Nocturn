@@ -47,11 +47,11 @@ export const clearAndSetTweets = (tweets, account, tab) => {
   return { type: CLEAR_AND_SET_TWEETS, tweets, account, tab }
 }
 
-export const favoriteTweet = (tweet, account, tab) => {
+export const favoriteTweet = (tweet, account) => {
   return dispatch => {
     const client = new TwitterClient(account);
     const dispatchAddTweetToTab = (tweet) => {
-      dispatch(addTweetToTab(tweet, account, tab));
+      dispatch(addTweet(tweet, account))
     }
 
     if (tweet.favorited) {

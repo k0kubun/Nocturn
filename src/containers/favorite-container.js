@@ -12,8 +12,7 @@ export default class FavoriteContainer extends BaseContainer {
     this.store.dispatch(
       Actions.favoriteTweet(
         this.props.tweet,
-        this.props.account,
-        this.props.tab,
+        this.props.account
       ),
     );
   }
