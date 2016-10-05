@@ -38,7 +38,7 @@ export const startStreaming = (account) => {
             { body: `${event.target.screen_name} "${event.target_object.text}"` },
           );
         } else {
-          const tweet = Object.assign(event.target_object, {
+          const tweet = Object.assign({}, event.target_object, {
             favorited: true
           })
           dispatch(addTweetToTab(tweet, account, 'favorites'))
