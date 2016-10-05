@@ -41,13 +41,13 @@ export const startStreaming = (account) => {
           const tweet = Object.assign({}, event.target_object, {
             favorited: true
           })
-          dispatch(addTweetToTab(tweet, account, 'favorites'))
+          dispatch(addTweet(tweet, account))
         }
       });
 
       stream.on('unfavorite', (event) => {
         if (account.id_str === event.source.id_str) {
-          dispatch(deleteTweetFromTab(event.target_object, account, 'favorites'))
+          dispatch(addTweet(event.target_object, account))
         }
       });
 
