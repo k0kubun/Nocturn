@@ -37,6 +37,8 @@ export const addTweet = (tweet, account, notify = false) => {
 
     if (tweet.favorited) {
       dispatch(addTweetToTab(tweet, account, 'favorites'));
+    } else {
+      dispatch(deleteTweetFromTab(tweet, account, 'favorites'));
     }
   }
 }
