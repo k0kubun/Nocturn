@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ListContainer        from '../containers/list-container';
 import MentionTabContainer  from '../containers/mention-tab-container';
+import FavoritesTabContainer from '../containers/favorites-tab-container';
 import SearchContainer      from '../containers/search-container';
 import TweetListContainer   from '../containers/tweet-list-container';
 import TweetTabContainer    from '../containers/tweet-tab-container';
@@ -18,6 +19,7 @@ export default class Timeline extends React.Component {
   componentDidMount() {
     this.props.loadHome();
     this.props.loadMentions();
+    this.props.loadFavorites();
     this.props.loadLists();
     this.props.startStreaming();
   }
@@ -30,12 +32,14 @@ export default class Timeline extends React.Component {
           <MentionTabContainer account={this.props.account} tab='mentions'>Mentions</MentionTabContainer>
           <TweetTabContainer account={this.props.account} tab='lists'>Lists</TweetTabContainer>
           <TweetTabContainer account={this.props.account} tab='search'>Search</TweetTabContainer>
+          <FavoritesTabContainer account={this.props.account} tab='favorites'>Favorites</FavoritesTabContainer>
         </ul>
 
         <TweetListContainer account={this.props.account} tab='home' />
         <TweetListContainer account={this.props.account} tab='mentions' />
         <TweetListContainer account={this.props.account} tab='lists'  withHeader={true} />
         <TweetListContainer account={this.props.account} tab='search' withHeader={true} />
+        <TweetListContainer account={this.props.account} tab='favorites' />
 
         <ListContainer account={this.props.account} />
         <SearchContainer account={this.props.account} />

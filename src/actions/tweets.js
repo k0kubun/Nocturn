@@ -34,6 +34,12 @@ export const addTweet = (tweet, account, notify = false) => {
         }
       }
     }
+
+    if (tweet.favorited) {
+      dispatch(addTweetToTab(tweet, account, 'favorites'));
+    } else {
+      dispatch(deleteTweetFromTab(tweet, account, 'favorites'));
+    }
   }
 }
 
@@ -41,11 +47,11 @@ export const clearAndSetTweets = (tweets, account, tab) => {
   return { type: CLEAR_AND_SET_TWEETS, tweets, account, tab }
 }
 
-export const favoriteTweet = (tweet, account, tab) => {
+export const favoriteTweet = (tweet, account) => {
   return dispatch => {
     const client = new TwitterClient(account);
     const dispatchAddTweetToTab = (tweet) => {
-      dispatch(addTweetToTab(tweet, account, tab));
+      dispatch(addTweet(tweet, account))
     }
 
     if (tweet.favorited) {
@@ -122,6 +128,17 @@ export const loadMentions = (account, ignore = false) => {
       }
       if (ignore) {
         dispatch(markAsRead(tweets[0], account));
+      }
+    });
+  }
+}
+
+export const loadFavorites = (account) => {
+  return dispatch => {
+    const client = new TwitterClient(account);
+    client.favoritesList({ count: 50 }, (tweets) => {
+      for (let tweet of tweets) {
+        dispatch(addTweet(tweet, account));
       }
     });
   }

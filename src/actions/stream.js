@@ -37,6 +37,17 @@ export const startStreaming = (account) => {
             `${event.source.screen_name} favorited:`,
             { body: `${event.target.screen_name} "${event.target_object.text}"` },
           );
+        } else {
+          const tweet = Object.assign({}, event.target_object, {
+            favorited: true
+          })
+          dispatch(addTweet(tweet, account))
+        }
+      });
+
+      stream.on('unfavorite', (event) => {
+        if (account.id_str === event.source.id_str) {
+          dispatch(addTweet(event.target_object, account))
         }
       });
 
