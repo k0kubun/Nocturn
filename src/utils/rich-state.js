@@ -25,19 +25,21 @@ export default class RichState {
 
   nextTab() {
     return {
-      home:     'mentions',
-      mentions: 'lists',
-      lists:    'search',
-      search:   'search',
+      home:      'mentions',
+      mentions:  'search',
+      search:    'lists',
+      lists:     'favorites',
+      favorites: 'favorites',
     }[this.activeTab()];
   }
 
   prevTab() {
     return {
-      home:     'home',
-      mentions: 'home',
-      lists:    'mentions',
-      search:   'lists',
+      home:      'home',
+      mentions:  'home',
+      search:    'mentions',
+      lists:     'search',
+      favorites: 'lists',
     }[this.activeTab()];
   }
 
