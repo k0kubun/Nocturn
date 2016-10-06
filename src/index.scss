@@ -350,11 +350,16 @@ body {
       color: #eee;
     }
 
-    .favorite_widget_wrapper .favorite_button.active {
-      animation-name: favorite_animation;
-      animation-duration: 170ms;
-      animation-timing-function: linear;
-      color: $orange;
+    .favorite_widget_wrapper {
+      .favorite_button.active {
+        color: $orange;
+      }
+
+      &:active {
+        animation-name: favorite_animation;
+        animation-duration: 170ms;
+        animation-timing-function: linear;
+      }
     }
 
     .user_icon {
