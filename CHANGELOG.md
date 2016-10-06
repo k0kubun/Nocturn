@@ -1,4 +1,9 @@
 # Change Log
+## v1.4.0
+- Add favorites tab [#40](https://github.com/k0kubun/Nocturn/pull/40)
+  - Thanks to @IzumiSy
+- Change tab order
+
 ## v1.3.1
 - Update a search tab in real time
 
