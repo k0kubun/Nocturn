@@ -1,4 +1,10 @@
 # Change Log
+## v1.4.1
+- Silence favorite button animation on page load [#41](https://github.com/k0kubun/Nocturn/pull/41)
+  - Thanks to @IzumiSy
+- Fix 2FA bug
+- Use Electron v1.4.3
+
 ## v1.4.0
 - Add favorites tab [#40](https://github.com/k0kubun/Nocturn/pull/40)
   - Thanks to @IzumiSy
