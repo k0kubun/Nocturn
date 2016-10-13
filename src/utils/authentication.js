@@ -94,7 +94,9 @@ export default class Authentication {
       authWindow = new BrowserWindow({
         width:  800,
         height: 600,
-        'node-integration': false,
+        webPreferences: {
+          nodeIntegration: false,
+        },
       });
 
       authWindow.webContents.on('will-navigate', (event, url) => {
