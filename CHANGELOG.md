@@ -1,4 +1,9 @@
 # Change Log
+## v1.4.2
+- Fix error on authentication failure [#25](https://github.com/k0kubun/Nocturn/pull/41)
+  - Thanks to @chkrl
+- Roll back to Electron v1.3.6 to fix bug in Nocturn v1.4.1
+
 ## v1.4.1
 - Silence favorite button animation on page load [#41](https://github.com/k0kubun/Nocturn/pull/41)
   - Thanks to @IzumiSy
