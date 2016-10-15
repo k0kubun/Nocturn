@@ -117,6 +117,7 @@ export default class Authentication {
                 callback(token);
                 if (authWindow) {
                   authWindow.close();
+                  authWindow = null;
                 }
               });
             }
@@ -131,10 +132,6 @@ export default class Authentication {
           // regard current session as invalid submission and retry
           new Authentication(callback);
         }
-      });
-
-      authWindow.on('closed', function() {
-        authWindow = null;
       });
 
       if (oldWindow) {
