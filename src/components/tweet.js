@@ -4,6 +4,7 @@ import DeleteContainer      from '../containers/delete-container';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
+const {BrowserWindow} = require('electron').remote;
 
 export default class Tweet extends React.Component {
   static propTypes = {
@@ -44,14 +45,39 @@ export default class Tweet extends React.Component {
     return this.props.tweet.entities.media.map((media) => {
       if (media.type === 'photo') {
         return (
-          <a href={media.expanded_url} key={media.id_str} target='_blank'>
-            <img className='tweet_media' src={media.media_url} />
+          <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
+            <img id ="tweet_mediaID"className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
         return '';
       }
     });
+  }
+  openImageInWindow (med) {
+    let image = new Image();
+    let loaded = false;
+    let mediaUrl = med.media_url;
+    let mediaWidth = 0;
+    let mediaHeight = 0;
+    image = document.getElementById('tweet_mediaID');
+    image.onload = function () { loaded = true; };
+
+    if (loaded) {
+        clearInterval(wait);
+    } else {
+      mediaWidth = image.width * 3;
+      mediaHeight = image.height * 3;
+      let win = new BrowserWindow({title: "image" ,width: mediaWidth, height: mediaHeight});
+      //win.webContents.openDevTools()
+      win.loadURL(mediaUrl);
+     // win.on("did-finish-load", () => {
+     //   win.webContents.insertCSS("image{width:100vw;}"); // doesn't seem to work
+     // });
+      win.on('closed', () => {
+      win = null
+      })
+    }
   }
 
   reactionButtonFor(tweet) {
