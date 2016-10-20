@@ -46,7 +46,7 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img id ="tweet_mediaID"className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
+            <img id ="tweet_mediaid"className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
@@ -54,29 +54,27 @@ export default class Tweet extends React.Component {
       }
     });
   }
+
   openImageInWindow (med) {
     let image = new Image();
     let loaded = false;
     let mediaUrl = med.media_url;
     let mediaWidth = 0;
     let mediaHeight = 0;
-    image = document.getElementById('tweet_mediaID');
+    image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
 
     if (loaded) {
-        clearInterval(wait);
+      clearInterval(wait);
     } else {
       mediaWidth = image.width * 3;
       mediaHeight = image.height * 3;
-      let win = new BrowserWindow({title: "image" ,width: mediaWidth, height: mediaHeight});
-      //win.webContents.openDevTools()
+      let win = new BrowserWindow({resizable: false, title: "image" , width: mediaWidth, height: mediaHeight, maxHeight: 1000, maxWidth: 1000});
+      win.webContents.openDevTools()
       win.loadURL(mediaUrl);
-     // win.on("did-finish-load", () => {
-     //   win.webContents.insertCSS("image{width:100vw;}"); // doesn't seem to work
-     // });
       win.on('closed', () => {
-      win = null
-      })
+        win = null
+      });
     }
   }
 
