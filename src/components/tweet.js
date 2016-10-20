@@ -69,8 +69,7 @@ export default class Tweet extends React.Component {
     } else {
       mediaWidth = image.width * 3;
       mediaHeight = image.height * 3;
-      let win = new BrowserWindow({resizable: false, title: "image" , width: mediaWidth, height: mediaHeight, maxHeight: 1000, maxWidth: 1000});
-      win.webContents.openDevTools()
+      let win = new BrowserWindow({resizable: false, title: "image" , width: mediaWidth, height: mediaHeight});
       win.loadURL(mediaUrl);
       win.on('closed', () => {
         win = null
