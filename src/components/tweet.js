@@ -5,6 +5,7 @@ import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
 const {BrowserWindow} = require('electron').remote;
+var ipcMain           = require("electron").remote.ipcMain;
 
 export default class Tweet extends React.Component {
   static propTypes = {
@@ -46,7 +47,7 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img id ="tweet_mediaid"className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
+            <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
@@ -58,21 +59,30 @@ export default class Tweet extends React.Component {
   openImageInWindow (med) {
     let image = new Image();
     let loaded = false;
-    let mediaUrl = med.media_url;
-    let mediaWidth = 0;
-    let mediaHeight = 0;
+    var mediaUrl = med.media_url;
     image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
 
     if (loaded) {
       clearInterval(wait);
     } else {
-      mediaWidth = image.width * 3;
-      mediaHeight = image.height * 3;
-      let win = new BrowserWindow({resizable: false, title: "image" , width: mediaWidth, height: mediaHeight});
-      win.loadURL(mediaUrl);
+      let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100, title: "image",maxWidth: screen.width/2,maxHeight:screen.height/2});
+      win.loadURL('file://' + __dirname + '../..' + '/imagePopup.html');
+      win.webContents.executeJavaScript(`
+      var ipcRenderer = require('electron').ipcRenderer;
+        var img = new Image();
+        img = document.getElementById('loadedImage');
+        img.onload = function() {
+          ipcRenderer.send('imageDimensions', this.width, this.height)
+      }
+      img.src = "${mediaUrl}";
+      `);
+      ipcMain.on('imageDimensions', function (event, width, height) {
+        win.setSize(width,height,true);
+        win.center();
+      });
       win.on('closed', () => {
-        win = null
+         win = null;
       });
     }
   }
