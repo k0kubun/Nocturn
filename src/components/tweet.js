@@ -41,10 +41,18 @@ export default class Tweet extends React.Component {
   }
 
   tweetMedia() {
-    if (!this.props.tweet.entities.media) return [];
+    let tweet = this.props.tweet;
 
-    return this.props.tweet.entities.media.map((media) => {
-      if (media.type === 'photo') {
+    if (tweet.retweeted_status && tweet.retweeted_status.entities.media) {
+      tweet = tweet.retweeted_status;
+    } else if (!tweet.entities.media) {
+      return [];
+    }
+
+    const entities = Object.assign({}, tweet.entities, tweet.extended_entities);
+
+    return entities.media.map((media) => {
+      if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
             <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
@@ -62,7 +70,6 @@ export default class Tweet extends React.Component {
     var mediaUrl = med.media_url;
     image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
-
     if (loaded) {
       clearInterval(wait);
     } else {
