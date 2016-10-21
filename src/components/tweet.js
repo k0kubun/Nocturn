@@ -70,11 +70,11 @@ export default class Tweet extends React.Component {
     var mediaUrl = med.media_url;
     image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
+    let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
+    win.loadURL('file://' + __dirname + '../..' + '/imagePopup.html');
     if (loaded) {
       clearInterval(wait);
     } else {
-      let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
-      win.loadURL('file://' + __dirname + '../..' + '/imagePopup.html');
       win.webContents.executeJavaScript(`
         var ipcRenderer = require('electron').ipcRenderer;
         var img = new Image();
@@ -109,13 +109,15 @@ export default class Tweet extends React.Component {
       img.src = "${mediaUrl}";
       `);
       ipcMain.on('imageDimensions', function (event, width, height) {
-        win.setSize(width,height+20,true);
-        win.center();
-      });
-      win.on('closed', () => {
-        win = null;
+        if (win != null) {
+          win.setSize(width,height+20,true);
+          win.center();
+        }
       });
     }
+    win.on('closed', () => {
+      win = null;
+    });
   }
 
   reactionButtonFor(tweet) {
