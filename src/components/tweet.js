@@ -66,23 +66,47 @@ export default class Tweet extends React.Component {
     if (loaded) {
       clearInterval(wait);
     } else {
-      let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100, title: "image",maxWidth: screen.width/2,maxHeight:screen.height/2});
+      let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
       win.loadURL('file://' + __dirname + '../..' + '/imagePopup.html');
       win.webContents.executeJavaScript(`
-      var ipcRenderer = require('electron').ipcRenderer;
+        var ipcRenderer = require('electron').ipcRenderer;
         var img = new Image();
         img = document.getElementById('loadedImage');
         img.onload = function() {
-          ipcRenderer.send('imageDimensions', this.width, this.height)
-      }
+          var imageWidth = this.width,
+          imageHeight = this.height,
+          maxWidth = 800,
+          maxHeight = 600;
+
+          //Scale image proportionally if larger than maxWidth and maxHeight
+          if (imageWidth > maxWidth){
+            imageHeight = imageHeight * (maxWidth / imageWidth);
+            imageWidth = maxWidth;
+            if (imageHeight > maxHeight) {
+              imageWidth = imageWidth * (maxHeight / imageHeight);
+              imageHeight = maxHeight;
+            }
+          } else if (imageHeight > maxHeight) {
+            imageWidth = imageWidth * (maxHeight / imageHeight);
+            imageHeight = maxHeight;
+            if (imageWidth > maxWidth) {
+              imageHeight = imageHeight * (maxWidth / imageWidth);
+              imageWidth = maxWidth;
+            }
+          }
+
+          img.height = imageHeight;
+          img.width = imageWidth;
+          ipcRenderer.send('imageDimensions', Math.round(imageWidth), Math.round(imageHeight))
+        }
       img.src = "${mediaUrl}";
       `);
       ipcMain.on('imageDimensions', function (event, width, height) {
-        win.setSize(width,height,true);
+        win.setSize(width,height+20,true);
         win.center();
       });
       win.on('closed', () => {
-         win = null;
+        win = null;
       });
     }
   }
