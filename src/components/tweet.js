@@ -55,7 +55,7 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openImageInWindow(media)}} src={media.media_url} />
+            <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
@@ -64,49 +64,79 @@ export default class Tweet extends React.Component {
     });
   }
 
-  openImageInWindow (med) {
+  openMediaInWindow (med) {
     let image = new Image();
     let loaded = false;
-    var mediaUrl = med.media_url;
+    var mediaUrl = 0;
+    var media = med.video_info;
+    if (med.video_info != null) {
+      mediaUrl = med.video_info.variants[0].url;
+      var mediaType = med.video_info.variants[0].content_type;
+    } else {
+      mediaUrl = med.media_url;
+    }
     image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
     let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
-    win.loadURL('file://' + __dirname + '../..' + '/imagePopup.html');
+    win.loadURL('file://' + __dirname + '../..' + '/mediaPopup.html');
     if (loaded) {
       clearInterval(wait);
     } else {
       win.webContents.executeJavaScript(`
         var ipcRenderer = require('electron').ipcRenderer;
-        var img = new Image();
-        img = document.getElementById('loadedImage');
-        img.onload = function() {
-          var imageWidth = this.width,
-          imageHeight = this.height,
-          maxWidth = 800,
-          maxHeight = 600;
+        var img = document.getElementById('loadedImage');
+        var video = document.getElementById('loadedVideo');
+        var mediaWidth = 0,
+        mediaHeight = 0,
+        maxWidth = 800,
+        maxHeight = 600;
 
-          //Scale image proportionally if larger than maxWidth and maxHeight
-          if (imageWidth > maxWidth){
-            imageHeight = imageHeight * (maxWidth / imageWidth);
-            imageWidth = maxWidth;
-            if (imageHeight > maxHeight) {
-              imageWidth = imageWidth * (maxHeight / imageHeight);
-              imageHeight = maxHeight;
+        function resizeMedia(media){
+            if (media.path[0].id === img.id){
+              mediaWidth = this.width;
+              mediaHeight = this.height;
+            } else {
+              mediaWidth = this.videoWidth;
+              mediaHeight = this.videoHeight;
             }
-          } else if (imageHeight > maxHeight) {
-            imageWidth = imageWidth * (maxHeight / imageHeight);
-            imageHeight = maxHeight;
-            if (imageWidth > maxWidth) {
-              imageHeight = imageHeight * (maxWidth / imageWidth);
-              imageWidth = maxWidth;
+  
+            //Scale media proportionally if larger than maxWidth and maxHeight
+            if (mediaWidth > maxWidth){
+              mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+              mediaWidth = maxWidth;
+              if (mediaHeight > maxHeight) {
+                mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+                mediaHeight = maxHeight;
+              }
+            } else if (mediaHeight > maxHeight) {
+              mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+              mediaHeight = maxHeight;
+              if (mediaWidth > maxWidth) {
+                mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+                mediaWidth = maxWidth;
+              }
             }
-          }
-
-          img.height = imageHeight;
-          img.width = imageWidth;
-          ipcRenderer.send('imageDimensions', Math.round(imageWidth), Math.round(imageHeight))
+            if (this.width > 0 ){
+              this.width = mediaWidth;
+              this.height = mediaHeight;
+            } else {
+              this.videoWidth = mediaWidth;
+              this.videoHeight = mediaHeight;
+            }
+            ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight))
         }
-      img.src = "${mediaUrl}";
+        if ("${mediaType}" !== "video/mp4"){
+          img.src = "${mediaUrl}";
+          img.onload = resizeMedia.bind(img)
+        } else {
+          video.src = "${mediaUrl}";
+          video.onloadedmetadata = resizeMedia.bind(video)
+          video.preload = "auto";
+          video.loop = true;
+          video.autoplay = true;
+          video.playbackRate = 1;
+        }
+
       `);
       ipcMain.on('imageDimensions', function (event, width, height) {
         if (win != null) {
