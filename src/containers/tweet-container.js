@@ -15,9 +15,7 @@ export default class TweetContainer extends BaseContainer {
     this.store.dispatch(Actions.selectTweet(this.props.tweet, this.props.tab, this.props.account));
   }
 
-  // FIXME: Some parts of this should be moved to a better place.
   openMediaInWindow(media) {
-    // FIXME: Use import
     const { BrowserWindow } = require('electron').remote;
     const ipcMain           = require('electron').remote.ipcMain;
 
@@ -43,7 +41,7 @@ export default class TweetContainer extends BaseContainer {
       if (win != null) {
         const screenWidth  = Math.round((screen.width/2) - (width/2));
         const screenHeight = Math.round((screen.height/3) - (height/3));
-        let options = { x: screenWidth, y: screenHeight, width: width, height: height };
+        let options = { x: screenWidth, y: screenHeight, width: width, height: height }
         if (process.platform === 'darwin') {
           Object.assign(options, { height: height+20 });
         }
