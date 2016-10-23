@@ -99,7 +99,7 @@ export default class Tweet extends React.Component {
               mediaWidth = this.videoWidth;
               mediaHeight = this.videoHeight;
             }
-  
+
             //Scale media proportionally if larger than maxWidth and maxHeight
             if (mediaWidth > maxWidth){
               mediaHeight = mediaHeight * (maxWidth / mediaWidth);
