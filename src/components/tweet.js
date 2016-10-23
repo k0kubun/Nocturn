@@ -77,8 +77,10 @@ export default class Tweet extends React.Component {
     }
     image = document.getElementById('tweet_mediaid');
     image.onload = function () { loaded = true; };
-    let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
-    win.loadURL('file://' + __dirname + '../..' + '/media-popup.html');
+
+    let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
+    win.loadURL(`file://${__dirname}../../media-popup.html`);
+
     if (loaded) {
       clearInterval(wait);
     } else {
@@ -92,7 +94,7 @@ export default class Tweet extends React.Component {
         maxHeight = 600;
 
         function resizeMedia(media){
-          if (media.path[0].id === img.id){
+          if (media.path[0].id === img.id) {
             mediaWidth = this.width;
             mediaHeight = this.height;
           } else {
@@ -100,7 +102,7 @@ export default class Tweet extends React.Component {
             mediaHeight = this.videoHeight;
           }
 
-          //Scale media proportionally if larger than maxWidth and maxHeight
+          // Scale media proportionally if larger than maxWidth and maxHeight
           if (mediaWidth > maxWidth){
             mediaHeight = mediaHeight * (maxWidth / mediaWidth);
             mediaWidth = maxWidth;
@@ -116,14 +118,14 @@ export default class Tweet extends React.Component {
               mediaWidth = maxWidth;
             }
           }
-          if (this.width > 0 ){
+          if (this.width > 0 ) {
             this.width = mediaWidth;
             this.height = mediaHeight;
           } else {
             this.videoWidth = mediaWidth;
             this.videoHeight = mediaHeight;
           }
-          ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight))
+          ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
         }
         if ("${mediaType}" !== "video/mp4"){
           img.src = "${mediaUrl}";
@@ -136,15 +138,16 @@ export default class Tweet extends React.Component {
           video.autoplay = true;
           video.playbackRate = 1;
         }
-
       `);
-      ipcMain.on('imageDimensions', function (event, width, height) {
+
+      ipcMain.on('imageDimensions', (event, width, height) => {
         if (win != null) {
-          win.setSize(width,height+20,true);
+          win.setSize(width, height+20, true);
           win.center();
         }
       });
     }
+
     win.on('closed', () => {
       win = null;
     });
