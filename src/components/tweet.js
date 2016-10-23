@@ -67,7 +67,6 @@ export default class Tweet extends React.Component {
   openMediaInWindow (med) {
     let loaded = false;
     var mediaUrl = 0;
-    var media = med.video_info;
     if (med.video_info != null) {
       mediaUrl = med.video_info.variants[0].url;
       var mediaType = med.video_info.variants[0].content_type;
