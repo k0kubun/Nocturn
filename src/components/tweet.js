@@ -65,36 +65,43 @@ export default class Tweet extends React.Component {
   }
 
   openMediaInWindow (media) {
-    let options = { resizable: false, width: 100, height: 100 };
+    let mediaUrl  = media.media_url;
+    let mediaType = '';
+    if (media.video_info != null) {
+      mediaUrl  = media.video_info.variants[0].url;
+      mediaType = media.video_info.variants[0].content_type;
+    }
+
+    let options = {
+      resizable: false,
+      width: 100,
+      height: 100
+    }
     if (process.platform === 'darwin'){
       Object.assign(options, { titleBarStyle: 'hidden' });
     }
     let win = new BrowserWindow(options);
-
     win.loadURL(`file://${__dirname}../../media-popup.html`);
-
     win.webContents.on('did-finish-load', () => {
-      let mediaUrl  = media.media_url;
-      let mediaType = '';
-      if (media.video_info != null) {
-        mediaUrl  = media.video_info.variants[0].url;
-        mediaType = media.video_info.variants[0].content_type;
-      }
       win.webContents.send('load-media', mediaUrl, mediaType);
     });
 
     ipcMain.on('imageDimensions', (event, width, height) => {
       if (win != null) {
-        const screenWidth  = Math.round((screen.width/2) - (width/2));
-        const screenHeight = Math.round((screen.height/3) - (height/3));
-        let options = { x: screenWidth, y: screenHeight, width: width, height: height }
-        if (process.platform === 'darwin') {
+        var screenWidth = Math.round((screen.width/2)-(width/2))
+        var screenHeight = Math.round((screen.height/3)-(height/3))
+        let options = {
+          x:screenWidth,
+          y:screenHeight,
+          width:width,
+          height:height,
+        }
+        if (process.platform === 'darwin'){
           Object.assign(options, { height: height+20 });
         }
-        win.setBounds(options, true);
+        win.setBounds(options,true);
       }
     });
-
     win.on('closed', () => {
       win = null;
     });
