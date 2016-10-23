@@ -84,7 +84,7 @@ export default class Tweet extends React.Component {
       maxWidth = 800,
       maxHeight = 600;
 
-      function resizeMedia(media){
+      function resizeMedia(media) {
         if (media.path[0].id === img.id) {
           mediaWidth = this.width;
           mediaHeight = this.height;
@@ -94,7 +94,7 @@ export default class Tweet extends React.Component {
         }
 
         // Scale media proportionally if larger than maxWidth and maxHeight
-        if (mediaWidth > maxWidth){
+        if (mediaWidth > maxWidth) {
           mediaHeight = mediaHeight * (maxWidth / mediaWidth);
           mediaWidth = maxWidth;
           if (mediaHeight > maxHeight) {
@@ -118,6 +118,7 @@ export default class Tweet extends React.Component {
         }
         ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
       }
+
       if ("${mediaType}" !== "video/mp4"){
         img.src = "${mediaUrl}";
         img.onload = resizeMedia.bind(img)
