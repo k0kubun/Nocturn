@@ -65,15 +65,14 @@ export default class Tweet extends React.Component {
   }
 
   openMediaInWindow (med) {
-    let loaded = false;
-    var mediaUrl = 0;
+    let mediaUrl  = med.media_url;
+    let mediaType = '';
     if (med.video_info != null) {
-      mediaUrl = med.video_info.variants[0].url;
-      var mediaType = med.video_info.variants[0].content_type;
-    } else {
-      mediaUrl = med.media_url;
+      mediaUrl  = med.video_info.variants[0].url;
+      mediaType = med.video_info.variants[0].content_type;
     }
 
+    let loaded = false;
     let image = document.getElementById('tweet_mediaid');
     image.onload = () => { loaded = true; };
 
