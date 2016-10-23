@@ -73,8 +73,8 @@ export default class Tweet extends React.Component {
     }
 
     let options = {
-      resizable: false, 
-      width: 100, 
+      resizable: false,
+      width: 100,
       height: 100
     }
     if (process.platform === 'darwin'){
@@ -150,7 +150,7 @@ export default class Tweet extends React.Component {
         var screenWidth = Math.round((screen.width/2)-(width/2))
         var screenHeight = Math.round((screen.height/3)-(height/3))
         let options = {
-          x:screenWidth, 
+          x:screenWidth,
           y:screenHeight,
           width:width,
           height:height,
