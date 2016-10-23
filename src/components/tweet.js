@@ -65,7 +65,6 @@ export default class Tweet extends React.Component {
   }
 
   openMediaInWindow (med) {
-    let image = new Image();
     let loaded = false;
     var mediaUrl = 0;
     var media = med.video_info;
@@ -75,7 +74,8 @@ export default class Tweet extends React.Component {
     } else {
       mediaUrl = med.media_url;
     }
-    image = document.getElementById('tweet_mediaid');
+
+    let image = document.getElementById('tweet_mediaid');
     image.onload = () => { loaded = true; };
 
     let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
