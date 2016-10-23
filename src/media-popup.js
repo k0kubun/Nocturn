@@ -33,8 +33,8 @@ function resizeMedia(media) {
     }
   }
   if (this.width > 0 ) {
-    media.width = mediaWidth;
-    media.height = mediaHeight;
+    this.width = mediaWidth;
+    this.height = mediaHeight;
   } else {
     media.videoWidth = mediaWidth;
     media.videoHeight = mediaHeight;
