@@ -36,8 +36,8 @@ function resizeMedia(media) {
     this.width = mediaWidth;
     this.height = mediaHeight;
   } else {
-    this.videoWidth = mediaWidth;
-    this.videoHeight = mediaHeight;
+    media.videoWidth = mediaWidth;
+    media.videoHeight = mediaHeight;
   }
   ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
 }
