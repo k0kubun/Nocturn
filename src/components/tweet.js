@@ -76,7 +76,7 @@ export default class Tweet extends React.Component {
       mediaUrl = med.media_url;
     }
     image = document.getElementById('tweet_mediaid');
-    image.onload = function () { loaded = true; };
+    image.onload = () => { loaded = true; };
 
     let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
     win.loadURL(`file://${__dirname}../../media-popup.html`);
