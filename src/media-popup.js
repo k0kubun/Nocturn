@@ -1,7 +1,9 @@
 // FIXME: Refactor later
 var ipcRenderer = require('electron').ipcRenderer;
+var hls = require('hls.js');
 var img = document.getElementById('loadedImage');
 var video = document.getElementById('loadedVideo');
+var hlsMedia = new hls();
 var mediaWidth = 0,
 mediaHeight = 0,
 maxWidth = 800,
@@ -12,10 +14,14 @@ function resizeMedia(media) {
     mediaWidth = this.width;
     mediaHeight = this.height;
   } else {
-    mediaWidth = this.videoWidth;
-    mediaHeight = this.videoHeight;
+    if (video.title === "application/x-mpegURL"){
+      mediaWidth = this.videoWidth * 4;
+      mediaHeight = this.videoHeight * 4;
+    } else {
+      mediaWidth = this.videoWidth
+      mediaHeight = this.videoHeight
+    }
   }
-
   // Scale media proportionally if larger than maxWidth and maxHeight
   if (mediaWidth > maxWidth) {
     mediaHeight = mediaHeight * (maxWidth / mediaWidth);
@@ -43,12 +49,19 @@ function resizeMedia(media) {
 }
 
 ipcRenderer.on('load-media', (event, mediaUrl, mediaType) => {
-  if (mediaType !== "video/mp4"){
+  if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL"){
     img.src = mediaUrl;
     img.onload = resizeMedia.bind(img)
   } else {
-    video.src = mediaUrl;
-    video.onloadedmetadata = resizeMedia.bind(video);
+    if (mediaType === "application/x-mpegURL"){
+      hlsMedia.loadSource(mediaUrl);
+      hlsMedia.attachMedia(video);
+      video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
+      video.title = "application/x-mpegURL"
+    } else {
+      video.src = mediaUrl
+      video.onloadedmetadata = resizeMedia.bind(video);
+    }
     video.preload = "auto";
     video.loop = true;
     video.autoplay = true;
