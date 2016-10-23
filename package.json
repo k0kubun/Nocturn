@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "npm run package && npm run zip",
+    "build": "which wine && npm run package && npm run zip",
     "compile": "rm -rf app && gulp compile",
     "decaf": "node script/decaf.js",
     "package": "cross-env NODE_ENV=production npm run compile && node script/package.js",
