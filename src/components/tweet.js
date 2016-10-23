@@ -55,7 +55,7 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
+            <img id="tweet_mediaid" className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
