@@ -74,6 +74,9 @@ export default class Tweet extends React.Component {
 
     let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
     win.loadURL(`file://${__dirname}../../media-popup.html`);
+    win.webContents.on('did-finish-load', () => {
+      win.webContents.send('load-media', mediaUrl, mediaType);
+    });
 
     win.webContents.executeJavaScript(`
       var ipcRenderer = require('electron').ipcRenderer;
@@ -119,17 +122,19 @@ export default class Tweet extends React.Component {
         ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
       }
 
-      if ("${mediaType}" !== "video/mp4"){
-        img.src = "${mediaUrl}";
-        img.onload = resizeMedia.bind(img)
-      } else {
-        video.src = "${mediaUrl}";
-        video.onloadedmetadata = resizeMedia.bind(video)
-        video.preload = "auto";
-        video.loop = true;
-        video.autoplay = true;
-        video.playbackRate = 1;
-      }
+      ipcRenderer.on('load-media', (mediaType, mediaUrl) => {
+        if (mediaType !== "video/mp4"){
+          img.src = mediaUrl;
+          img.onload = resizeMedia.bind(img)
+        } else {
+          video.src = mediaUrl;
+          video.onloadedmetadata = resizeMedia.bind(video);
+          video.preload = "auto";
+          video.loop = true;
+          video.autoplay = true;
+          video.playbackRate = 1;
+        }
+      });
     `);
 
     ipcMain.on('imageDimensions', (event, width, height) => {
