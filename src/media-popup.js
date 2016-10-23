@@ -1,3 +1,4 @@
+// FIXME: Refactor later
 var ipcRenderer = require('electron').ipcRenderer;
 var img = document.getElementById('loadedImage');
 var video = document.getElementById('loadedVideo');
