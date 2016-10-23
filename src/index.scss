@@ -451,10 +451,12 @@ body {
   .editor {
     height: $editor_height + $title_bar_offset;
     border-top: 0;
+    -webkit-app-region: drag;
   }
 
   .tweet_editor {
     top: $editor_vertical_padding + $title_bar_offset;
+    -webkit-app-region: no-drag;
   }
 
   .tweet_counter {
@@ -463,6 +465,7 @@ body {
 
   .twitter_icon {
     top: $profile_image_offset + $title_bar_offset;
+    -webkit-app-region: no-drag;
   }
 
   #account_selector {
