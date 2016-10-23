@@ -21,7 +21,19 @@ const DEFAULT_OPTS = {
 }
 
 const pack = (platform, arch, callback) => {
-  const opts = Object.assign({}, DEFAULT_OPTS, { platform, arch });
+  const iconObj = {
+    icon: 'resources/Nocturn' + (() => {
+      let extension = '.png';
+      if (platform === 'darwin') {
+        extension = '.icns';
+      } else if (platform === 'win32') {
+        extension = '.ico';
+      }
+      return extension;
+    })()
+  };
+
+  const opts = Object.assign({}, DEFAULT_OPTS, iconObj, { platform, arch });
   packager(opts, (err, filepath) => {
     if (err) return console.error(err);
     console.log(`${platform}-${arch} finished!`);

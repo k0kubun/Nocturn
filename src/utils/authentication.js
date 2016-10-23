@@ -94,7 +94,9 @@ export default class Authentication {
       authWindow = new BrowserWindow({
         width:  800,
         height: 600,
-        'node-integration': false,
+        webPreferences: {
+          nodeIntegration: false,
+        },
       });
 
       authWindow.webContents.on('will-navigate', (event, url) => {
@@ -115,6 +117,7 @@ export default class Authentication {
                 callback(token);
                 if (authWindow) {
                   authWindow.close();
+                  authWindow = null;
                 }
               });
             }
@@ -129,10 +132,6 @@ export default class Authentication {
           // regard current session as invalid submission and retry
           new Authentication(callback);
         }
-      });
-
-      authWindow.on('closed', function() {
-        authWindow = null;
       });
 
       if (oldWindow) {

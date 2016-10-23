@@ -4,6 +4,8 @@ import DeleteContainer      from '../containers/delete-container';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
+const {BrowserWindow} = require('electron').remote;
+var ipcMain           = require("electron").remote.ipcMain;
 
 export default class Tweet extends React.Component {
   static propTypes = {
@@ -39,18 +41,112 @@ export default class Tweet extends React.Component {
   }
 
   tweetMedia() {
-    if (!this.props.tweet.entities.media) return [];
+    let tweet = this.props.tweet;
 
-    return this.props.tweet.entities.media.map((media) => {
-      if (media.type === 'photo') {
+    if (tweet.retweeted_status && tweet.retweeted_status.entities.media) {
+      tweet = tweet.retweeted_status;
+    } else if (!tweet.entities.media) {
+      return [];
+    }
+
+    const entities = Object.assign({}, tweet.entities, tweet.extended_entities);
+
+    return entities.media.map((media) => {
+      if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
-          <a href={media.expanded_url} key={media.id_str} target='_blank'>
-            <img className='tweet_media' src={media.media_url} />
+          <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
+            <img id ="tweet_mediaid" className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
         return '';
       }
+    });
+  }
+
+  openMediaInWindow (med) {
+    let image = new Image();
+    let loaded = false;
+    var mediaUrl = 0;
+    var media = med.video_info;
+    if (med.video_info != null) {
+      mediaUrl = med.video_info.variants[0].url;
+      var mediaType = med.video_info.variants[0].content_type;
+    } else {
+      mediaUrl = med.media_url;
+    }
+    image = document.getElementById('tweet_mediaid');
+    image.onload = function () { loaded = true; };
+    let win = new BrowserWindow({titleBarStyle: 'hidden', x:(screen.width/2)-(450/2),y:(screen.height/2)-(450/2), resizable: false, width: 100, height: 100});
+    win.loadURL('file://' + __dirname + '../..' + '/media-popup.html');
+    if (loaded) {
+      clearInterval(wait);
+    } else {
+      win.webContents.executeJavaScript(`
+        var ipcRenderer = require('electron').ipcRenderer;
+        var img = document.getElementById('loadedImage');
+        var video = document.getElementById('loadedVideo');
+        var mediaWidth = 0,
+        mediaHeight = 0,
+        maxWidth = 800,
+        maxHeight = 600;
+
+        function resizeMedia(media){
+          if (media.path[0].id === img.id){
+            mediaWidth = this.width;
+            mediaHeight = this.height;
+          } else {
+            mediaWidth = this.videoWidth;
+            mediaHeight = this.videoHeight;
+          }
+
+          //Scale media proportionally if larger than maxWidth and maxHeight
+          if (mediaWidth > maxWidth){
+            mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+            mediaWidth = maxWidth;
+            if (mediaHeight > maxHeight) {
+              mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+              mediaHeight = maxHeight;
+            }
+          } else if (mediaHeight > maxHeight) {
+            mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+            mediaHeight = maxHeight;
+            if (mediaWidth > maxWidth) {
+              mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+              mediaWidth = maxWidth;
+            }
+          }
+          if (this.width > 0 ){
+            this.width = mediaWidth;
+            this.height = mediaHeight;
+          } else {
+            this.videoWidth = mediaWidth;
+            this.videoHeight = mediaHeight;
+          }
+          ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight))
+        }
+        if ("${mediaType}" !== "video/mp4"){
+          img.src = "${mediaUrl}";
+          img.onload = resizeMedia.bind(img)
+        } else {
+          video.src = "${mediaUrl}";
+          video.onloadedmetadata = resizeMedia.bind(video)
+          video.preload = "auto";
+          video.loop = true;
+          video.autoplay = true;
+          video.playbackRate = 1;
+        }
+
+      `);
+      ipcMain.on('imageDimensions', function (event, width, height) {
+        if (win != null) {
+          win.setSize(width,height+20,true);
+          win.center();
+        }
+      });
+    }
+    win.on('closed', () => {
+      win = null;
     });
   }
 
@@ -63,6 +159,9 @@ export default class Tweet extends React.Component {
   }
 
   render() {
+    const tweetMedia = this.tweetMedia();
+    const multpleMediaClass = (tweetMedia.length > 1 ? 'multiple' : '');
+
     return(
       <li className={`tweet ${this.props.active ? 'active' : ''}`} onClick={this.props.onClick}>
         <div className='box_wrapper'>
@@ -72,7 +171,9 @@ export default class Tweet extends React.Component {
           <div className='right_box'>
             <TweetHeader tweet={this.props.tweet} now={this.props.now}/>
             <div className='tweet_body' dangerouslySetInnerHTML={this.autolinkedText(this.props.tweet)} />
-            {this.tweetMedia()}
+            <div className={`tweet_entities ${multpleMediaClass}`}>
+              {tweetMedia}
+            </div>
           </div>
           <div className='right_widget'>
             {this.reactionButtonFor(this.props.tweet)}

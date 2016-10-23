@@ -8,6 +8,7 @@ $editor_horizontal_padding: 8px;
 $tabs_height: 30px;
 $timeline_height: 640px;
 $tweet_padding: 8px;
+$tweet_padding_darwin: 12px;
 $profile_image_size: 24px;
 $profile_image_offset: 9px;
 $icon_size: 48px;
@@ -16,11 +17,19 @@ $icon_overlay_size: 8px;
 $icon_column: $icon_size + $tweet_padding * 2;
 $tweets_header_height: 34px;
 $red: #d40d12;
+$light_grey: #b8b8b8;
 $grey: #999;
 $dark_grey: #555;
 $white: #fff;
 $dark_blue: #0084b4;
+$orange: #f4c142;
 $account_selector_top: $profile_image_size + $editor_vertical_padding;
+
+@keyframes favorite_animation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
 
 // Reject over scrolling
 html,
@@ -136,6 +145,7 @@ body {
   }
 
   .tabs .tab {
+    cursor: pointer;
     height: $tabs_height;
     padding: 6px 8px 2px 8px;
     font-size: 12px;
@@ -206,9 +216,19 @@ body {
         background: #389cd7;
       }
 
-      &.active .external-link {
-        color: white;
-        text-decoration: underline;
+      &.active {
+        .external-link {
+          color: white;
+          text-decoration: underline;
+        }
+
+        .user_name {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
 
@@ -298,6 +318,19 @@ body {
 
     .right_box {
       padding-left: $icon_size + 10px;
+
+      .tweet_entities {
+        padding-right: 16px;
+
+        .tweet_media {
+          width: 100%;
+        }
+
+        &.multiple .tweet_media {
+          margin-right: 5px;
+          width: calc(50% - 5px);
+        }
+      }
     }
 
     .right_widget {
@@ -306,14 +339,27 @@ body {
       right: 0;
       color: #ccc;
       font-size: 12px;
+
+      > .reply_button > .fa.fa-reply:hover,
+      > .favorite_widget_wrapper > .fa.fa-star.favorite_button:not(.active):hover {
+        color: $light_grey;
+      }
     }
 
     .active .right_widget {
       color: #eee;
     }
 
-    .favorite_widget_wrapper .favorite_button.active {
-      color: #f4c142;
+    .favorite_widget_wrapper {
+      .favorite_button.active {
+        color: $orange;
+      }
+
+      &:active {
+        animation-name: favorite_animation;
+        animation-duration: 170ms;
+        animation-timing-function: linear;
+      }
     }
 
     .user_icon {
@@ -405,10 +451,12 @@ body {
   .editor {
     height: $editor_height + $title_bar_offset;
     border-top: 0;
+    -webkit-app-region: drag;
   }
 
   .tweet_editor {
     top: $editor_vertical_padding + $title_bar_offset;
+    -webkit-app-region: no-drag;
   }
 
   .tweet_counter {
@@ -417,6 +465,7 @@ body {
 
   .twitter_icon {
     top: $profile_image_offset + $title_bar_offset;
+    -webkit-app-region: no-drag;
   }
 
   #account_selector {
@@ -435,6 +484,10 @@ body {
     &.with_header {
       height: calc(100% - #{$header_height + $editor_height + $tabs_height + $tweets_header_height});
       top: $header_height + $editor_height + $tabs_height + $tweets_header_height;
+    }
+
+    .tweet {
+      padding: $tweet_padding_darwin;
     }
   }
 

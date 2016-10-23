@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch, props) => {
         event.preventDefault();
         dispatch(Actions.setSearchQuery(event.target.value, props.account));
         dispatch(Actions.loadSearch(event.target.value, props.account, true))
+        dispatch(Actions.startFilter(event.target.value, props.account));
       }
     }
   }

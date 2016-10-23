@@ -1,4 +1,60 @@
 # Change Log
+## v1.4.2
+- Fix error on authentication failure [#25](https://github.com/k0kubun/Nocturn/pull/41)
+  - Thanks to @chkrl
+- Roll back to Electron v1.3.6 to fix bug in Nocturn v1.4.1
+
+## v1.4.1
+- Silence favorite button animation on page load [#41](https://github.com/k0kubun/Nocturn/pull/41)
+  - Thanks to @IzumiSy
+- Fix 2FA bug
+- Use Electron v1.4.3
+
+## v1.4.0
+- Add favorites tab [#40](https://github.com/k0kubun/Nocturn/pull/40)
+  - Thanks to @IzumiSy
+- Change tab order
+
+## v1.3.1
+- Update a search tab in real time
+
+## v1.3.0
+- Support multiple attached photos [#37](https://github.com/k0kubun/Nocturn/pull/37)
+  - Thanks to @IzumiSy
+- Tweak favorite button's hover color to be the same as official one [#35](https://github.com/k0kubun/Nocturn/pull/35)
+  - Thanks to @IzumiSy
+- Fix the bug that retweet cannot be favorited [#36](https://github.com/k0kubun/Nocturn/pull/36)
+  - Thanks to @IzumiSy
+
+## v1.2.4
+- Update favorite icon immediately [#33](https://github.com/k0kubun/Nocturn/pull/33)
+  - Thanks to @IzumiSy
+- Add favorite animation [#34](https://github.com/k0kubun/Nocturn/pull/34)
+  - Thanks to @IzumiSy
+
+## v1.2.3
+- Fix scrollbar overlap in macOS [#31](https://github.com/k0kubun/Nocturn/pull/31)
+  - Thanks to @IzumiSy
+- Link user profile on tweets [#32](https://github.com/k0kubun/Nocturn/pull/32)
+  - Thanks to @IzumiSy
+
+## v1.2.2
+- Set cursor style on tabs [#29](https://github.com/k0kubun/Nocturn/pull/29)
+  - Thanks to @IzumiSy
+- Hover stylings for right widgets [#30](https://github.com/k0kubun/Nocturn/pull/30)
+  - Thanks to @IzumiSy
+
+## v1.2.1
+- Show application icon on Linux too
+- Remove tweet from timeline with deleted event
+
+## v1.2.0
+- Show application icon on Windows and OSX [#20](https://github.com/k0kubun/Nocturn/pull/20)
+  - Thanks to @CandyFace
+- Use Electron 1.0
+- Support unfavorite by favoriting twice
+- Load mentions on reloading
+
 ## v1.1.2
 - Show a thumbnail of photos in tweet [#19](https://github.com/k0kubun/Nocturn/pull/19)
   - Thanks to @CandyFace

@@ -55,12 +55,16 @@ export default class IpcAction {
     ipcRenderer.on('reload-timeline', (event) => {
       const account = this.state.activeAccount();
       this.dispatch(Actions.loadHome(account));
+      this.dispatch(Actions.loadMentions(account));
 
       const listId = this.state.activeListId();
       if (listId) this.dispatch(Actions.loadList(listId, account));
 
       const query = this.state.activeSearchQuery();
-      if (query) this.dispatch(Actions.loadSearch(query, account));
+      if (query) {
+        this.dispatch(Actions.loadSearch(query, account));
+        this.dispatch(Actions.reconnectFilter(query, account));
+      }
 
       this.dispatch(Actions.reconnectStreaming(account));
     });

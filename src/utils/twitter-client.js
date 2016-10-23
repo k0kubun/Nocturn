@@ -25,8 +25,18 @@ export default class TwitterClient {
     });
   }
 
-  mentionsTimeline(callback) {
-    this.client.get('statuses/mentions_timeline', {}, (error, tweets, response) => {
+  mentionsTimeline(params, callback) {
+    this.client.get('statuses/mentions_timeline', params, (error, tweets, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(tweets);
+    });
+  }
+
+  favoritesList(params, callback) {
+    this.client.get('favorites/list', params, (error, tweets, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
@@ -43,6 +53,12 @@ export default class TwitterClient {
         // ignoring because of too many errors
         // return console.log(JSON.stringify(error));
       });
+    });
+  }
+
+  filterStream(track, callback) {
+    this.client.stream('statuses/filter', { track: track }, (stream) => {
+      callback(stream);
     });
   }
 
@@ -63,6 +79,16 @@ export default class TwitterClient {
 
   favoriteStatus(tweetId, callback) {
     this.client.post('favorites/create', { id: tweetId }, (error, data, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(data);
+    });
+  }
+
+  unfavoriteStatus(tweetId, callback) {
+    this.client.post('favorites/destroy', { id: tweetId }, (error, data, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;
