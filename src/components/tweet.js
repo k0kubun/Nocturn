@@ -64,12 +64,12 @@ export default class Tweet extends React.Component {
     });
   }
 
-  openMediaInWindow (med) {
-    let mediaUrl  = med.media_url;
+  openMediaInWindow (media) {
+    let mediaUrl  = media.media_url;
     let mediaType = '';
-    if (med.video_info != null) {
-      mediaUrl  = med.video_info.variants[0].url;
-      mediaType = med.video_info.variants[0].content_type;
+    if (media.video_info != null) {
+      mediaUrl  = media.video_info.variants[0].url;
+      mediaType = media.video_info.variants[0].content_type;
     }
 
     let loaded = false;
