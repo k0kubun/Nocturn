@@ -74,13 +74,18 @@ export default class Tweet extends React.Component {
     } else {
       mediaUrl = med.media_url;
     }
-
-    let image = document.getElementById('tweet_mediaid');
-    image.onload = () => { loaded = true; };
-
-    let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
-    win.loadURL(`file://${__dirname}../../media-popup.html`);
-
+    image = document.getElementById('tweet_mediaid');
+    image.onload = function () { loaded = true; };
+    let options = {
+      resizable: false, 
+      width: 100, 
+      height: 100
+    }
+    if (process.platform === 'darwin'){
+      Object.assign(options, { titleBarStyle: 'hidden' });
+    }
+    let win = new BrowserWindow(options);
+    win.loadURL('file://' + __dirname + '../..' + '/media-popup.html');
     if (loaded) {
       clearInterval(wait);
     } else {
@@ -142,8 +147,19 @@ export default class Tweet extends React.Component {
 
       ipcMain.on('imageDimensions', (event, width, height) => {
         if (win != null) {
-          win.setSize(width, height+20, true);
-          win.center();
+          var screenWidth = Math.round((screen.width/2)-(width/2))
+          var screenHeight = Math.round((screen.height/3)-(height/3))
+          let options = {
+            x:screenWidth, 
+            y:screenHeight,
+            width:width,
+            height:height,
+          }
+          if (process.platform === 'darwin'){
+            Object.assign(options, { height: height+20 });
+          }
+        
+          win.setBounds(options,true);
         }
       });
     }
