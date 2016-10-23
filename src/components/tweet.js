@@ -4,8 +4,6 @@ import DeleteContainer      from '../containers/delete-container';
 import FavoriteContainer    from '../containers/favorite-container';
 import ReplyContainer       from '../containers/reply-container';
 import TweetHeader          from '../components/tweet-header';
-const {BrowserWindow} = require('electron').remote;
-var ipcMain           = require("electron").remote.ipcMain;
 
 export default class Tweet extends React.Component {
   static propTypes = {
@@ -15,6 +13,7 @@ export default class Tweet extends React.Component {
     tab:     PropTypes.string.isRequired,
     tweet:   PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
+    openMediaInWindow: PropTypes.func.isRequired,
   }
 
   largeProfileImage(user) {
@@ -55,48 +54,12 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
+            <img className='tweet_media' onClick={(event) => {this.props.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
         return '';
       }
-    });
-  }
-
-  openMediaInWindow (media) {
-    let options = { resizable: false, width: 100, height: 100 };
-    if (process.platform === 'darwin'){
-      Object.assign(options, { titleBarStyle: 'hidden' });
-    }
-    let win = new BrowserWindow(options);
-
-    win.loadURL(`file://${__dirname}../../media-popup.html`);
-
-    win.webContents.on('did-finish-load', () => {
-      let mediaUrl  = media.media_url;
-      let mediaType = '';
-      if (media.video_info != null) {
-        mediaUrl  = media.video_info.variants[0].url;
-        mediaType = media.video_info.variants[0].content_type;
-      }
-      win.webContents.send('load-media', mediaUrl, mediaType);
-    });
-
-    ipcMain.on('imageDimensions', (event, width, height) => {
-      if (win != null) {
-        const screenWidth  = Math.round((screen.width/2) - (width/2));
-        const screenHeight = Math.round((screen.height/3) - (height/3));
-        let options = { x: screenWidth, y: screenHeight, width: width, height: height }
-        if (process.platform === 'darwin') {
-          Object.assign(options, { height: height+20 });
-        }
-        win.setBounds(options, true);
-      }
-    });
-
-    win.on('closed', () => {
-      win = null;
     });
   }
 
