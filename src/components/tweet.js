@@ -92,38 +92,38 @@ export default class Tweet extends React.Component {
         maxHeight = 600;
 
         function resizeMedia(media){
-            if (media.path[0].id === img.id){
-              mediaWidth = this.width;
-              mediaHeight = this.height;
-            } else {
-              mediaWidth = this.videoWidth;
-              mediaHeight = this.videoHeight;
-            }
+          if (media.path[0].id === img.id){
+            mediaWidth = this.width;
+            mediaHeight = this.height;
+          } else {
+            mediaWidth = this.videoWidth;
+            mediaHeight = this.videoHeight;
+          }
 
-            //Scale media proportionally if larger than maxWidth and maxHeight
-            if (mediaWidth > maxWidth){
-              mediaHeight = mediaHeight * (maxWidth / mediaWidth);
-              mediaWidth = maxWidth;
-              if (mediaHeight > maxHeight) {
-                mediaWidth = mediaWidth * (maxHeight / mediaHeight);
-                mediaHeight = maxHeight;
-              }
-            } else if (mediaHeight > maxHeight) {
+          //Scale media proportionally if larger than maxWidth and maxHeight
+          if (mediaWidth > maxWidth){
+            mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+            mediaWidth = maxWidth;
+            if (mediaHeight > maxHeight) {
               mediaWidth = mediaWidth * (maxHeight / mediaHeight);
               mediaHeight = maxHeight;
-              if (mediaWidth > maxWidth) {
-                mediaHeight = mediaHeight * (maxWidth / mediaWidth);
-                mediaWidth = maxWidth;
-              }
             }
-            if (this.width > 0 ){
-              this.width = mediaWidth;
-              this.height = mediaHeight;
-            } else {
-              this.videoWidth = mediaWidth;
-              this.videoHeight = mediaHeight;
+          } else if (mediaHeight > maxHeight) {
+            mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+            mediaHeight = maxHeight;
+            if (mediaWidth > maxWidth) {
+              mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+              mediaWidth = maxWidth;
             }
-            ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight))
+          }
+          if (this.width > 0 ){
+            this.width = mediaWidth;
+            this.height = mediaHeight;
+          } else {
+            this.videoWidth = mediaWidth;
+            this.videoHeight = mediaHeight;
+          }
+          ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight))
         }
         if ("${mediaType}" !== "video/mp4"){
           img.src = "${mediaUrl}";
