@@ -55,7 +55,7 @@ export default class Tweet extends React.Component {
       if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
           <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img id="tweet_mediaid" className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
+            <img className='tweet_media' onClick={() => {this.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
@@ -72,79 +72,71 @@ export default class Tweet extends React.Component {
       mediaType = media.video_info.variants[0].content_type;
     }
 
-    let loaded = false;
-    let image = document.getElementById('tweet_mediaid');
-    image.onload = () => { loaded = true; };
-
     let win = new BrowserWindow({ titleBarStyle: 'hidden', x: (screen.width/2)-(450/2), y: (screen.height/2)-(450/2), resizable: false, width: 100, height: 100 });
     win.loadURL(`file://${__dirname}../../media-popup.html`);
 
-    if (loaded) {
-      clearInterval(wait);
-    } else {
-      win.webContents.executeJavaScript(`
-        var ipcRenderer = require('electron').ipcRenderer;
-        var img = document.getElementById('loadedImage');
-        var video = document.getElementById('loadedVideo');
-        var mediaWidth = 0,
-        mediaHeight = 0,
-        maxWidth = 800,
-        maxHeight = 600;
+    win.webContents.executeJavaScript(`
+      var ipcRenderer = require('electron').ipcRenderer;
+      var img = document.getElementById('loadedImage');
+      var video = document.getElementById('loadedVideo');
+      var mediaWidth = 0,
+      mediaHeight = 0,
+      maxWidth = 800,
+      maxHeight = 600;
 
-        function resizeMedia(media){
-          if (media.path[0].id === img.id) {
-            mediaWidth = this.width;
-            mediaHeight = this.height;
-          } else {
-            mediaWidth = this.videoWidth;
-            mediaHeight = this.videoHeight;
-          }
+      function resizeMedia(media){
+        if (media.path[0].id === img.id) {
+          mediaWidth = this.width;
+          mediaHeight = this.height;
+        } else {
+          mediaWidth = this.videoWidth;
+          mediaHeight = this.videoHeight;
+        }
 
-          // Scale media proportionally if larger than maxWidth and maxHeight
-          if (mediaWidth > maxWidth){
-            mediaHeight = mediaHeight * (maxWidth / mediaWidth);
-            mediaWidth = maxWidth;
-            if (mediaHeight > maxHeight) {
-              mediaWidth = mediaWidth * (maxHeight / mediaHeight);
-              mediaHeight = maxHeight;
-            }
-          } else if (mediaHeight > maxHeight) {
+        // Scale media proportionally if larger than maxWidth and maxHeight
+        if (mediaWidth > maxWidth){
+          mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+          mediaWidth = maxWidth;
+          if (mediaHeight > maxHeight) {
             mediaWidth = mediaWidth * (maxHeight / mediaHeight);
             mediaHeight = maxHeight;
-            if (mediaWidth > maxWidth) {
-              mediaHeight = mediaHeight * (maxWidth / mediaWidth);
-              mediaWidth = maxWidth;
-            }
           }
-          if (this.width > 0 ) {
-            this.width = mediaWidth;
-            this.height = mediaHeight;
-          } else {
-            this.videoWidth = mediaWidth;
-            this.videoHeight = mediaHeight;
+        } else if (mediaHeight > maxHeight) {
+          mediaWidth = mediaWidth * (maxHeight / mediaHeight);
+          mediaHeight = maxHeight;
+          if (mediaWidth > maxWidth) {
+            mediaHeight = mediaHeight * (maxWidth / mediaWidth);
+            mediaWidth = maxWidth;
           }
-          ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
         }
-        if ("${mediaType}" !== "video/mp4"){
-          img.src = "${mediaUrl}";
-          img.onload = resizeMedia.bind(img)
+        if (this.width > 0 ) {
+          this.width = mediaWidth;
+          this.height = mediaHeight;
         } else {
-          video.src = "${mediaUrl}";
-          video.onloadedmetadata = resizeMedia.bind(video)
-          video.preload = "auto";
-          video.loop = true;
-          video.autoplay = true;
-          video.playbackRate = 1;
+          this.videoWidth = mediaWidth;
+          this.videoHeight = mediaHeight;
         }
-      `);
+        ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
+      }
+      if ("${mediaType}" !== "video/mp4"){
+        img.src = "${mediaUrl}";
+        img.onload = resizeMedia.bind(img)
+      } else {
+        video.src = "${mediaUrl}";
+        video.onloadedmetadata = resizeMedia.bind(video)
+        video.preload = "auto";
+        video.loop = true;
+        video.autoplay = true;
+        video.playbackRate = 1;
+      }
+    `);
 
-      ipcMain.on('imageDimensions', (event, width, height) => {
-        if (win != null) {
-          win.setSize(width, height+20, true);
-          win.center();
-        }
-      });
-    }
+    ipcMain.on('imageDimensions', (event, width, height) => {
+      if (win != null) {
+        win.setSize(width, height+20, true);
+        win.center();
+      }
+    });
 
     win.on('closed', () => {
       win = null;
