@@ -130,7 +130,7 @@ export default class Tweet extends React.Component {
         ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
       }
 
-      ipcRenderer.on('load-media', (mediaType, mediaUrl) => {
+      ipcRenderer.on('load-media', (event, mediaUrl, mediaType) => {
         if (mediaType !== "video/mp4"){
           img.src = mediaUrl;
           img.onload = resizeMedia.bind(img)
