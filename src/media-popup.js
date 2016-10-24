@@ -14,7 +14,7 @@ function resizeMedia(media) {
     mediaWidth = this.width;
     mediaHeight = this.height;
   } else {
-    if (video.title === "application/x-mpegURL"){
+    if (video.title === "HLS media"){
       mediaWidth = this.videoWidth * 4;
       mediaHeight = this.videoHeight * 4;
     } else {
@@ -52,16 +52,14 @@ ipcRenderer.on('load-media', (event, mediaUrl, mediaType) => {
   if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL"){
     img.src = mediaUrl;
     img.onload = resizeMedia.bind(img)
+  } else if (mediaType === "application/x-mpegURL"){
+    hlsMedia.loadSource(mediaUrl);
+    hlsMedia.attachMedia(video);
+    video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
+    video.title = "HLS media"
   } else {
-    if (mediaType === "application/x-mpegURL"){
-      hlsMedia.loadSource(mediaUrl);
-      hlsMedia.attachMedia(video);
-      video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
-      video.title = "application/x-mpegURL"
-    } else {
-      video.src = mediaUrl
-      video.onloadedmetadata = resizeMedia.bind(video);
-    }
+    video.src = mediaUrl
+    video.onloadedmetadata = resizeMedia.bind(video);
     video.preload = "auto";
     video.loop = true;
     video.autoplay = true;

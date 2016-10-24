@@ -3,6 +3,7 @@ import Actions              from '../actions';
 import BaseContainer        from '../containers/base-container';
 import Tweet                from '../components/tweet';
 import Retweet              from '../components/retweet';
+import { remote } from 'electron';
 
 export default class TweetContainer extends BaseContainer {
   shouldComponentUpdate(nextProps, nextState) {
@@ -17,18 +18,15 @@ export default class TweetContainer extends BaseContainer {
 
   // FIXME: Some parts of this should be moved to a better place.
   openMediaInWindow(media) {
-    // FIXME: Use import
-    const { BrowserWindow } = require('electron').remote;
-    const ipcMain           = require('electron').remote.ipcMain;
+    const BrowserWindow = remote.BrowserWindow;
+    const ipcMain = remote.ipcMain;
 
     let options = { resizable: false, width: 100, height: 100 };
     if (process.platform === 'darwin'){
       Object.assign(options, { titleBarStyle: 'hidden' });
     }
     let win = new BrowserWindow(options);
-
     win.loadURL(`file://${__dirname}../../media-popup.html`);
-
     win.webContents.on('did-finish-load', () => {
       let mediaUrl  = media.media_url;
       let mediaType = '';
