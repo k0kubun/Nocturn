@@ -3,7 +3,7 @@ import Actions              from '../actions';
 import BaseContainer        from '../containers/base-container';
 import Tweet                from '../components/tweet';
 import Retweet              from '../components/retweet';
-import { remote } from 'electron';
+import { remote }           from 'electron';
 
 export default class TweetContainer extends BaseContainer {
   shouldComponentUpdate(nextProps, nextState) {

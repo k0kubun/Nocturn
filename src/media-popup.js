@@ -1,5 +1,6 @@
 // FIXME: Refactor later
-import { ipcRenderer } from 'electron';
+import { ipcRenderer }        from 'electron';
+
 var hls = require('hls.js');
 var img = document.getElementById('loadedImage');
 var video = document.getElementById('loadedVideo');
