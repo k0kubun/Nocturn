@@ -37,7 +37,7 @@ export default class TweetContainer extends BaseContainer {
       win.webContents.send('load-media', mediaUrl, mediaType);
     });
 
-    ipcMain.on('imageDimensions', (event, width, height) => {
+    ipcMain.once('imageDimensions', (event, width, height) => {
       if (win != null) {
         const screenWidth  = Math.round((screen.width/2) - (width/2));
         const screenHeight = Math.round((screen.height/3) - (height/3));

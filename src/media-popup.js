@@ -1,5 +1,5 @@
 // FIXME: Refactor later
-var ipcRenderer = require('electron').ipcRenderer;
+import { ipcRenderer } from 'electron';
 var hls = require('hls.js');
 var img = document.getElementById('loadedImage');
 var video = document.getElementById('loadedVideo');
@@ -48,7 +48,7 @@ function resizeMedia(media) {
   ipcRenderer.send('imageDimensions', Math.round(mediaWidth), Math.round(mediaHeight));
 }
 
-ipcRenderer.on('load-media', (event, mediaUrl, mediaType) => {
+ipcRenderer.once('load-media', (event, mediaUrl, mediaType) => {
   if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL"){
     img.src = mediaUrl;
     img.onload = resizeMedia.bind(img)
@@ -66,3 +66,4 @@ ipcRenderer.on('load-media', (event, mediaUrl, mediaType) => {
     video.playbackRate = 1;
   }
 });
+
