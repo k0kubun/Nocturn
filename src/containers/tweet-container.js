@@ -41,10 +41,7 @@ export default class TweetContainer extends BaseContainer {
       if (win != null) {
         const screenWidth  = Math.round((screen.width/2) - (width/2));
         const screenHeight = Math.round((screen.height/3) - (height/3));
-        let options = { x: screenWidth, y: screenHeight, width: width, height: height };
-        if (process.platform === 'darwin') {
-          Object.assign(options, { height: height+20 });
-        }
+        let options = { x: screenWidth, y: screenHeight, width: width, height: height+20 };
         win.setBounds(options, true);
       }
     });

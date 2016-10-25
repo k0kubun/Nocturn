@@ -4,11 +4,16 @@ import { ipcRenderer }        from 'electron';
 var hls = require('hls.js');
 var img = document.getElementById('loadedImage');
 var video = document.getElementById('loadedVideo');
+var body = document.getElementsByTagName("body")[0];
 var hlsMedia = new hls();
 var mediaWidth = 0,
 mediaHeight = 0,
 maxWidth = 800,
 maxHeight = 600;
+
+if (process.platform !== 'darwin'){
+  body.style = "padding-top: 0px;"
+}
 
 function resizeMedia(media) {
   if (media.path[0].id === img.id) {
