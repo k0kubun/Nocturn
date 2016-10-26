@@ -1,4 +1,8 @@
 # Change Log
+## v1.5.0
+- Window popup for media [#43](https://github.com/k0kubun/Nocturn/pull/43)
+  - Thanks to @CandyFace
+
 ## v1.4.3
 - Fix draggable region on macOS
 
