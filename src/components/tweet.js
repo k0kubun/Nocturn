@@ -13,6 +13,7 @@ export default class Tweet extends React.Component {
     tab:     PropTypes.string.isRequired,
     tweet:   PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
+    openMediaInWindow: PropTypes.func.isRequired,
   }
 
   largeProfileImage(user) {
@@ -50,10 +51,10 @@ export default class Tweet extends React.Component {
     const entities = Object.assign({}, tweet.entities, tweet.extended_entities);
 
     return entities.media.map((media) => {
-      if (media.type === 'photo') {
+      if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
-          <a href={media.expanded_url} key={media.id_str} target='_blank'>
-            <img className='tweet_media' src={media.media_url} />
+          <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
+            <img className='tweet_media' onClick={(event) => {this.props.openMediaInWindow(media)}} src={media.media_url} />
           </a>
         );
       } else {
