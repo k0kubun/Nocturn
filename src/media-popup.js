@@ -1,5 +1,5 @@
 // FIXME: Refactor later
-import { ipcRenderer }        from 'electron';
+import { ipcRenderer } from 'electron';
 
 var hls = require('hls.js');
 var img = document.getElementById('loadedImage');
@@ -11,8 +11,8 @@ mediaHeight = 0,
 maxWidth = 800,
 maxHeight = 600;
 
-if (process.platform !== 'darwin'){
-  body.style = "padding-top: 0px;"
+if (process.platform !== 'darwin') {
+  body.style = "padding-top: 0px;";
 }
 
 function resizeMedia(media) {
@@ -20,12 +20,12 @@ function resizeMedia(media) {
     mediaWidth = this.width;
     mediaHeight = this.height;
   } else {
-    if (video.title === "HLS media"){
+    if (video.title === "HLS media") {
       mediaWidth = this.videoWidth * 4;
       mediaHeight = this.videoHeight * 4;
     } else {
-      mediaWidth = this.videoWidth
-      mediaHeight = this.videoHeight
+      mediaWidth = this.videoWidth;
+      mediaHeight = this.videoHeight;
     }
   }
   // Scale media proportionally if larger than maxWidth and maxHeight
@@ -57,14 +57,14 @@ function resizeMedia(media) {
 ipcRenderer.once('load-media', (event, mediaUrl, mediaType) => {
   if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL"){
     img.src = mediaUrl;
-    img.onload = resizeMedia.bind(img)
-  } else if (mediaType === "application/x-mpegURL"){
+    img.onload = resizeMedia.bind(img);
+  } else if (mediaType === "application/x-mpegURL") {
     hlsMedia.loadSource(mediaUrl);
     hlsMedia.attachMedia(video);
     video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
-    video.title = "HLS media"
+    video.title = "HLS media";
   } else {
-    video.src = mediaUrl
+    video.src = mediaUrl;
     video.onloadedmetadata = resizeMedia.bind(video);
     video.preload = "auto";
     video.loop = true;
@@ -72,4 +72,3 @@ ipcRenderer.once('load-media', (event, mediaUrl, mediaType) => {
     video.playbackRate = 1;
   }
 });
-
