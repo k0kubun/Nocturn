@@ -1,4 +1,7 @@
 # Change Log
+## v1.4.3
+- Fix draggable region on macOS
+
 ## v1.4.2
 - Fix error on authentication failure [#25](https://github.com/k0kubun/Nocturn/pull/41)
   - Thanks to @chkrl
