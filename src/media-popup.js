@@ -63,9 +63,9 @@ ipcRenderer.once('load-media', (event, mediaUrl, mediaType) => {
       mediaUrl =  mediaUrl.replace(/\.[^\.]+$/, '.m3u8');
     }
     hlsMedia.attachMedia(video);
-    hlsMedia.on(hls.Events.MEDIA_ATTACHED, function()  {
+    hlsMedia.on(hls.Events.MEDIA_ATTACHED, () => {
       hlsMedia.loadSource(mediaUrl);
-      hlsMedia.on(hls.Events.MANIFEST_PARSED, function() {
+      hlsMedia.on(hls.Events.MANIFEST_PARSED, () => {
         video.title = "HLS media";
         video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
         video.loop = true;
