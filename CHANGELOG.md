@@ -1,4 +1,10 @@
 # Change Log
+## v1.5.1
+- Change application icon [#52](https://github.com/k0kubun/Nocturn/pull/52)
+  - Thanks to @CandyFace
+- Support mpd in media popup [#53](https://github.com/k0kubun/Nocturn/pull/53)
+  - Thanks to @CandyFace
+
 ## v1.5.0
 - Window popup for media [#43](https://github.com/k0kubun/Nocturn/pull/43)
   - Thanks to @CandyFace
