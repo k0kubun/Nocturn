@@ -55,14 +55,23 @@ function resizeMedia(media) {
 }
 
 ipcRenderer.once('load-media', (event, mediaUrl, mediaType) => {
-  if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL"){
+  if (mediaType !== "video/mp4" && mediaType !== "application/x-mpegURL" && mediaType !== "application/dash+xml"){
     img.src = mediaUrl;
     img.onload = resizeMedia.bind(img);
-  } else if (mediaType === "application/x-mpegURL") {
-    hlsMedia.loadSource(mediaUrl);
+  } else if (mediaType === "application/x-mpegURL" || mediaType === "application/dash+xml") {
+    if (mediaType === "application/dash+xml") {
+      mediaUrl =  mediaUrl.replace(/\.[^\.]+$/, '.m3u8');
+    }
     hlsMedia.attachMedia(video);
-    video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
-    video.title = "HLS media";
+    hlsMedia.on(hls.Events.MEDIA_ATTACHED, () => {
+      hlsMedia.loadSource(mediaUrl);
+      hlsMedia.on(hls.Events.MANIFEST_PARSED, () => {
+        video.title = "HLS media";
+        video.onloadedmetadata = resizeMedia.bind(hlsMedia.media);
+        video.loop = true;
+        video.autoplay = true;
+      });
+    });
   } else {
     video.src = mediaUrl;
     video.onloadedmetadata = resizeMedia.bind(video);
