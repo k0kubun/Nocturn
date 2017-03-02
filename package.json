@@ -1,5 +1,6 @@
 {
   "name": "Nocturn",
+  "description": "Multi-platform Twitter Client built with React, Redux and Electron",
   "version": "1.5.1",
   "main": "app/main.js",
   "repository": "https://github.com/k0kubun/Nocturn",
@@ -9,7 +10,16 @@
     "url": "https://github.com/k0kubun"
   },
   "license": "MIT",
+  "build": {
+    "productName": "Nocturn",
+    "linux": {
+      "target": [
+        "snap"
+      ]
+    }
+  },
   "scripts": {
+    "dist": "cross-env NODE_ENV=production build",
     "build": "which wine && npm run package && npm run zip",
     "compile": "rm -rf app && gulp compile",
     "decaf": "node script/decaf.js",
@@ -44,6 +54,7 @@
     "cross-env": "^1.0.7",
     "decafjs": "^0.3.1",
     "electron": "1.3.6",
+    "electron-builder": "^14.5.3",
     "electron-packager": "^7.0.1",
     "glob": "^7.0.0",
     "gulp": "^3.9.0",
