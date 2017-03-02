@@ -124,6 +124,8 @@ export default class Authentication {
           });
         } else if (url.match(/\/account\/login_verification/)) {
           // noop (start of 2FA session)
+        } else if (url.match(/\/account\/login_challenge/)) {
+          // noop (start of login challenge)
         } else if (url.match(/\/oauth\/authenticate/)) {
           // noop (redirection to successful callback)
         } else {
