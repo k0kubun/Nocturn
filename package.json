@@ -28,6 +28,7 @@
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
     "twitter": "^1.2.5",
     "hls.js": "^0.6.6"
@@ -49,7 +50,6 @@
     "gulp-babel": "^6.1.2",
     "gulp-bower": "^0.0.10",
     "gulp-sass": "^2.2.0",
-    "redux-logger": "^2.6.1",
     "shelljs": "^0.6.0"
   }
 }
