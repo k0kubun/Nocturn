@@ -69,8 +69,8 @@ export default class TwitterClient {
     if (inReplyTo !== null) params['in_reply_to_status_id'] = inReplyTo;
 
     this.client.post('statuses/update', params, (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
+      if (data.error) {
+        TwitterClient.handleError('tweet', data.error);
         return;
       }
       callback(data);
@@ -79,8 +79,8 @@ export default class TwitterClient {
 
   favoriteStatus(tweetId, callback) {
     this.client.post('favorites/create', { id: tweetId }, (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
+      if (data.error) {
+        TwitterClient.handleError('favorite', data.error);
         return;
       }
       callback(data);
@@ -89,8 +89,8 @@ export default class TwitterClient {
 
   unfavoriteStatus(tweetId, callback) {
     this.client.post('favorites/destroy', { id: tweetId }, (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
+      if (data.error) {
+        TwitterClient.handleError('unfavorite', data.error);
         return;
       }
       callback(data);
@@ -99,8 +99,8 @@ export default class TwitterClient {
 
   retweetStatus(tweetId, callback) {
     this.client.post(`statuses/retweet/${tweetId}`, {}, (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
+      if (data.error) {
+        TwitterClient.handleError('retweet', data.error);
         return;
       }
       callback(data);
@@ -109,8 +109,8 @@ export default class TwitterClient {
 
   deleteStatus(tweetId, callback) {
     this.client.post(`statuses/destroy/${tweetId}`, {}, (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
+      if (data.error) {
+        TwitterClient.handleError('delete', data.error);
         return;
       }
       callback(data);
@@ -157,5 +157,13 @@ export default class TwitterClient {
       }
       callback(data['statuses']);
     });
+  }
+
+  static handleError(action, error) {
+    alert(`Failed to ${action}!
+Error: ${JSON.stringify(error)}
+
+Please see: https://github.com/k0kubun/Nocturn/releases
+or notify this error message to @k0kubun.`);
   }
 }
