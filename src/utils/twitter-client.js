@@ -4,6 +4,24 @@ import path           from 'path';
 import Authentication from './authentication';
 
 export default class TwitterClient {
+  // For throttling over 20 mentions per minute to avoid application BAN.
+  static countMentions(count) {
+    if (!this.mentionsCount && this.mentionsCount != 0) {
+      this.mentionsCount = 0;
+    }
+
+    var date = new Date();
+    if (!this.mentionsCountExpiredAt) {
+      this.mentionsCountExpiredAt = date.getTime() + 5 * 60 * 1000; // 1min
+    }
+    if (this.mentionsCountExpiredAt < date.getTime()) {
+      this.mentionsCount = 0;
+      this.mentionsCountExpiredAt = date.getTime() + 5 * 60 * 1000; // 1min
+    }
+
+    return this.mentionsCount += count;
+  }
+
   constructor(accessToken) {
     var credentials = Authentication.credentials();
 
@@ -67,6 +85,17 @@ export default class TwitterClient {
 
     var params = { status: tweet };
     if (inReplyTo !== null) params['in_reply_to_status_id'] = inReplyTo;
+
+    // Throttling over 20 mentions per minute to avoid application BAN.
+    const count = (tweet.match(/@/g) || []).length;
+    if (count > 0) {
+      const totalCount = TwitterClient.countMentions(count);
+      if (totalCount > count && count > 20) {
+        alert(`Failed to tweet!
+Nocturn prohibits over 20 mentions per minute.`);
+        return;
+      }
+    }
 
     this.client.post('statuses/update', params, (error, data, response) => {
       if (data.error) {
