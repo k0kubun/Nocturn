@@ -1,4 +1,12 @@
 # Change Log
+## v1.6.0
+- Show error message when failed to tweet, favorite, retweet, etc.
+- Add throttring of frequent mention to avoid application restriction by Twitter.
+  - Now 20+ mentions in 1 minute is prevented automatically.
+
+## v1.5.2
+- Temporarily changed Twitter consumer credentials.
+
 ## v1.5.1
 - Change application icon [#52](https://github.com/k0kubun/Nocturn/pull/52)
   - Thanks to @CandyFace
