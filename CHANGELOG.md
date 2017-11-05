@@ -1,4 +1,9 @@
 # Change Log
+## v1.6.1
+- Prefer Mairyo font on Windows
+- New credentails introduced at v1.5.2 is official now and named as "Nocturn"
+  - Old credentials are named as "Nocturn v1.5.1"
+
 ## v1.6.0
 - Show error message when failed to tweet, favorite, retweet, etc.
 - Add throttring of frequent mention to avoid application restriction by Twitter.
