@@ -76,6 +76,14 @@ $ npm start
 $ npm run build
 ```
 
+## Release
+
+```bash
+$ vim credentials.json # set consumerKey, consumerSecret
+$ export GITHUB_TOKEN="..." # set github token for ghr
+$ npm run release
+```
+
 ## License
 
 MIT License
