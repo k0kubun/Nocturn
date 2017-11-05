@@ -80,7 +80,6 @@ $ npm run build
 
 ```bash
 $ brew install wine # if on macOs
-$ vim resources/credentials.json # update consumerKey, consumerSecret
 $ export GITHUB_TOKEN="..." # set github token for ghr
 $ npm run release
 ```
