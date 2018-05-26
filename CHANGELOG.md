@@ -1,4 +1,7 @@
 # Change Log
+## v1.6.2
+- Sort tweets whose id is larger than 1000000000000000000 in timeline
+
 ## v1.6.1
 - Prefer Mairyo font on Windows
 - New credentails introduced at v1.5.2 is official now and named as "Nocturn"
