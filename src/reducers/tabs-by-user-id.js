@@ -1,11 +1,12 @@
 import Actions from '../actions';
+import bigInt from 'big-integer';
 
 const MAX_TWEETS_FOR_EACH_TAB = 100;
 
 // Return set order by id DESC.
 const sortedAdd = (set, tweet) => {
   for (let i in set) {
-    let result = set[i].id_str.localeCompare(tweet.id_str);
+    let result = bigInt(set[i].id_str).compare(bigInt(tweet.id_str));
     if (result == -1) {
       // If set[i].id_str is smaller than tweet.id_str, prepend tweet to set[i].
       return [...set.slice(0, i), tweet, ...set.slice(i)];
