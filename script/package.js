@@ -41,9 +41,11 @@ const pack = (platform, arch, callback) => {
 }
 
 exec('rm -rf packages');
-if (process.env.TRAVIS_OS_NAME === 'linux') {
+if (process.env.PACKAGE_PLATFORM === 'linux') {
   pack('linux',  'ia32');
   pack('linux',  'x64');
+}
+else if (process.env.PACKAGE_PLATFORM === 'win32') {
   pack('win32',  'ia32');
   pack('win32',  'x64');
 }

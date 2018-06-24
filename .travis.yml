@@ -40,9 +40,9 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         k0kubun/node-wine:testing \
-        /bin/bash -c "cd /project && yarn package"
+        /bin/bash -c "cd /project && PACKAGE_PLATFORM=linux yarn package && PACKAGE_PLATFORM=win32 yarn package"
     else
-      yarn package
+      PACKAGE_PLATFORM=darwin yarn package && yarn zip
     fi
     find packages # testing, with k0kubun/node-wine:testing
 
