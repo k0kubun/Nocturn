@@ -26,12 +26,12 @@ script:
         -v ${PWD}:/project \
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        k0kubun/node-wine:latest \
+        k0kubun/node-wine:testing \
         /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn setup && yarn release"
     else
       yarn setup && yarn release
     fi
-    find packages # testing
+    find packages # testing, with k0kubun/node-wine:testing
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
