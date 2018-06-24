@@ -3,17 +3,8 @@
 require('shelljs/global');
 const version = require('./version').version;
 
-[
-  'Nocturn-darwin-x64',
-  'Nocturn-linux-x64',
-  'Nocturn-win32-x64',
-  'Nocturn-linux-ia32',
-  'Nocturn-win32-ia32',
-].forEach((name) => {
-  exec(`
-    cd "packages/v${version}"
-    if [ -d "${name}" ]; then
-      zip -r --symlinks "${name}.zip" "${name}"
-    fi
-  `)
-});
+exec(`cd packages/v${version} && zip -r --symlinks Nocturn-darwin-x64.zip Nocturn-darwin-x64`)
+exec(`cd packages/v${version} && zip -r --symlinks Nocturn-linux-x64.zip Nocturn-linux-x64`)
+exec(`cd packages/v${version} && zip -r --symlinks Nocturn-win32-x64.zip Nocturn-win32-x64`)
+exec(`cd packages/v${version} && zip -r --symlinks Nocturn-linux-ia32.zip Nocturn-linux-ia32`)
+exec(`cd packages/v${version} && zip -r --symlinks Nocturn-win32-ia32.zip Nocturn-win32-ia32`)
