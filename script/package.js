@@ -10,7 +10,7 @@ const DEFAULT_OPTS = {
   name:  'Nocturn',
   asar:  true,
   prune: true,
-  out:   `packages/v${pkg.version}`,
+  out:   `packages`,
   'app-version': pkg.version,
   ignore: [
     '.DS_Store',
