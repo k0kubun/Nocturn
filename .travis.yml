@@ -27,7 +27,7 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "echo hello"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && echo hello"
         #/bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --linux --win"
     else
       echo hello
