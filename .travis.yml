@@ -36,7 +36,7 @@ before_deploy:
         -v ${PWD}:/project k0kubun/node-wine:latest \
         /bin/bash -c "cd /project && yarn package"
     else
-      PACKAGE_PLATFORM=darwin yarn package
+      yarn package
     fi
 deploy:
   provider: releases
