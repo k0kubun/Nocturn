@@ -16,6 +16,9 @@ matrix:
       language: generic
       env:
         - PACKAGE_PLATFORM=linux
+cache:
+  directories:
+    - node_modules
 script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
