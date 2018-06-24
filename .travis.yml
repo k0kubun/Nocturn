@@ -17,7 +17,7 @@ matrix:
       services: docker
       language: generic
       env:
-        - PACKAGE_PLATFORM=darwin
+        - PACKAGE_PLATFORM=linux
 
 cache:
   directories:
