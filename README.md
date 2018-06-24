@@ -1,4 +1,4 @@
-# Nocturn
+# Nocturn [![Build Status](https://travis-ci.org/k0kubun/Nocturn.svg?branch=master)](https://travis-ci.org/k0kubun/Nocturn)
 
 Multi-platform Twitter Client built with React, Redux and Electron.
 
