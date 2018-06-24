@@ -1,4 +1,7 @@
 # Change Log
+## v1.6.3
+- Release binaries are built from Travis CI instead of k0kubun's machine
+
 ## v1.6.2
 - Sort tweets whose id is larger than 1000000000000000000 in timeline
 
