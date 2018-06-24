@@ -33,7 +33,9 @@
   "dependencies": {
     "autolinker": "^0.19.0",
     "big-integer": "^1.6.28",
+    "hls.js": "^0.6.6",
     "moment": "^2.11.2",
+    "node-sass": "^4.9.0",
     "node-twitter-api": "^1.6.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -41,8 +43,7 @@
     "redux": "^3.3.1",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
-    "twitter": "^1.2.5",
-    "hls.js": "^0.6.6"
+    "twitter": "^1.2.5"
   },
   "devDependencies": {
     "babel-plugin-syntax-trailing-function-commas": "^6.5.0",
