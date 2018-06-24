@@ -5,28 +5,30 @@ matrix:
       language: node_js
       node_js: "9"
       env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - PACKAGE_PLATFORM=darwin
 
     - os: linux
       services: docker
       language: generic
+      env:
+        - PACKAGE_PLATFORM=win32
+
+    - os: linux
+      services: docker
+      language: generic
+      env:
+        - PACKAGE_PLATFORM=darwin
 
 cache:
   directories:
   - node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
 
 script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        k0kubun/node-wine:testing \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
+        -v ${PWD}:/project k0kubun/node-wine:testing \
         /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn build"
     else
       yarn build
@@ -35,19 +37,13 @@ script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        k0kubun/node-wine:testing \
-        /bin/bash -c "cd /project && PACKAGE_PLATFORM=linux yarn package && PACKAGE_PLATFORM=win32 yarn package"
+        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
+        -v ${PWD}:/project k0kubun/node-wine:testing \
+        /bin/bash -c "cd /project && yarn package"
     else
-      PACKAGE_PLATFORM=darwin yarn package && yarn zip
+      PACKAGE_PLATFORM=darwin yarn package
     fi
     find packages # testing, with k0kubun/node-wine:testing
-
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
 
 branches:
   except:
