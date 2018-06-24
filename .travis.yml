@@ -16,9 +16,6 @@ matrix:
       language: generic
       env:
         - PACKAGE_PLATFORM=linux
-cache:
-  directories:
-    - node_modules
 script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -27,6 +24,7 @@ script:
         -v ${PWD}:/project k0kubun/node-wine:latest \
         /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn build"
     else
+      yarn --link-duplicates --pure-lockfile
       yarn build
     fi
 
