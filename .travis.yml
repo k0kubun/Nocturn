@@ -27,7 +27,7 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         k0kubun/node-wine:latest \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn setup && yarn release --linux --win"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn setup && yarn release"
     else
       yarn setup && yarn release
     fi
