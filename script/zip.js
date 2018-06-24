@@ -2,10 +2,12 @@
 
 require('shelljs/global');
 
-if (process.env.TRAVIS_OS_NAME === 'linux') {
+if (process.env.PACKAGE_PLATFORM === 'linux') {
   exec(`cd packages && zip -r --symlinks Nocturn-linux-x64.zip Nocturn-linux-x64 && rm -rf Nocturn-linux-x64`)
-  exec(`cd packages && zip -r --symlinks Nocturn-win32-x64.zip Nocturn-win32-x64 && rm -rf Nocturn-win32-x64`)
   exec(`cd packages && zip -r --symlinks Nocturn-linux-ia32.zip Nocturn-linux-ia32 && rm -rf Nocturn-linux-ia32`)
+}
+else if (process.env.PACKAGE_PLATFORM === 'win32') {
+  exec(`cd packages && zip -r --symlinks Nocturn-win32-x64.zip Nocturn-win32-x64 && rm -rf Nocturn-win32-x64`)
   exec(`cd packages && zip -r --symlinks Nocturn-win32-ia32.zip Nocturn-win32-ia32 && rm -rf Nocturn-win32-ia32`)
 }
 else {
