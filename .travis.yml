@@ -27,9 +27,9 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         k0kubun/node-wine:testing \
-        /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn setup && yarn release"
+        /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn package"
     else
-      yarn setup && yarn release
+      yarn package
     fi
     find packages # testing, with k0kubun/node-wine:testing
 

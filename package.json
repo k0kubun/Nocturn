@@ -19,12 +19,10 @@
     }
   },
   "scripts": {
-    "dist": "cross-env NODE_ENV=production build",
-    "build": "npm run package && npm run zip",
+    "build": "cross-env NODE_ENV=production npm run compile && node script/package.js",
     "compile": "rm -rf app && gulp compile",
     "decaf": "node script/decaf.js",
-    "package": "cross-env NODE_ENV=production npm run compile && node script/package.js",
-    "release": "npm run build",
+    "package": "npm run setup && npm run build && npm run zip",
     "setup": "gulp bower && gulp compile-fonts",
     "start": "cross-env NODE_ENV=development npm run compile && electron .",
     "zip": "node script/zip.js"
