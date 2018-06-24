@@ -14,10 +14,8 @@ const DEFAULT_OPTS = {
   'app-version': pkg.version,
   ignore: [
     '.DS_Store',
-    'accounts.json',
-    '/packages($|/)',
-    '/script($|/)',
-  ].concat(devDeps.map(name => `/node_modules/${name}($|/)`)),
+    '^accounts.json',
+  ],
 }
 
 const pack = (platform, arch, callback) => {
