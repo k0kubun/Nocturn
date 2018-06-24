@@ -28,19 +28,25 @@ script:
         /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn build"
     else
       yarn --link-duplicates --pure-lockfile
+      find node_modules
       yarn build
+    fi
+  - |
+    if [ "$TRAVIS_OS_NAME" != "linux" ]; then
+      yarn package
+      find packages
     fi
 
 before_deploy:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
-        -v ${PWD}:/project k0kubun/node-wine:latest \
-        /bin/bash -c "cd /project && yarn package"
-    else
-      yarn package
-    fi
+#  - |
+#    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+#      docker run --rm \
+#        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
+#        -v ${PWD}:/project k0kubun/node-wine:latest \
+#        /bin/bash -c "cd /project && yarn package"
+#    else
+#      yarn package
+#    fi
 deploy:
   provider: releases
   api_key:
