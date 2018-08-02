@@ -7,6 +7,10 @@ import { app, BrowserWindow, ipcMain, shell } from 'electron';
 
 let mainWindow = null;
 
+if (process.platform === 'win32') {
+  app.setAppUserModelId('com.github.k0kubun.Nocturn');
+}
+
 app.on('ready', () => {
   if (mainWindow) return;
 
