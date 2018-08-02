@@ -1,7 +1,4 @@
 # Change Log
-## v1.6.4
-- Add a workaround to make notification work on Windows
-
 ## v1.6.3
 - Release binaries are built from Travis CI instead of k0kubun's machine
 
