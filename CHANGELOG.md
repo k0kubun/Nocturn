@@ -1,4 +1,9 @@
 # Change Log
+## v1.6.4
+- Remove realtime home timeline support
+  - UserStream API is no longer available
+- Poll home timeline every 60 seconds
+
 ## v1.6.3
 - Release binaries are built from Travis CI instead of k0kubun's machine
 
