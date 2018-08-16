@@ -22,14 +22,14 @@ export default class TwitterClient {
     return this.mentionsCount += count;
   }
 
-  constructor(accessToken) {
+  constructor(account) {
     var credentials = Authentication.credentials();
 
     this.client = Twitter({
-      consumer_key:        credentials['consumerKey'],
-      consumer_secret:     credentials['consumerSecret'],
-      access_token_key:    accessToken['accessToken'],
-      access_token_secret: accessToken['accessTokenSecret'],
+      consumer_key:        account['consumerKey'] || credentials['consumerKey'],
+      consumer_secret:     account['consumerSecret'] || credentials['consumerSecret'],
+      access_token_key:    account['accessToken'],
+      access_token_secret: account['accessTokenSecret'],
     });
   }
 
@@ -60,17 +60,6 @@ export default class TwitterClient {
         return;
       }
       callback(tweets);
-    });
-  }
-
-  userStream(callback) {
-    this.client.stream('user', {}, (stream) => {
-      callback(stream);
-
-      stream.on('error', (error) => {
-        // ignoring because of too many errors
-        // return console.log(JSON.stringify(error));
-      });
     });
   }
 

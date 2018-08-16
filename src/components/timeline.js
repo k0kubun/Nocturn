@@ -13,7 +13,7 @@ export default class Timeline extends React.Component {
     loadHome:       PropTypes.func.isRequired,
     loadLists:      PropTypes.func.isRequired,
     loadMentions:   PropTypes.func.isRequired,
-    startStreaming: PropTypes.func.isRequired,
+    pollHome:       PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -21,7 +21,7 @@ export default class Timeline extends React.Component {
     this.props.loadMentions();
     this.props.loadFavorites();
     this.props.loadLists();
-    this.props.startStreaming();
+    this.props.pollHome();
   }
 
   render() {

@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch, props) => {
         }
       });
     },
-    startStreaming: () => {
-      dispatch(Actions.startStreaming(props.account));
+    pollHome: () => {
+      dispatch(Actions.pollHome(props.account));
     },
   };
 }
