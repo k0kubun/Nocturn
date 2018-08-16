@@ -91,6 +91,10 @@ Nocturn prohibits over 20 mentions per minute.`);
         TwitterClient.handleError('tweet', data.error);
         return;
       }
+      if (data.errors) {
+        TwitterClient.handleError('tweet', data.errors);
+        return;
+      }
       callback(data);
     });
   }
@@ -179,9 +183,6 @@ Nocturn prohibits over 20 mentions per minute.`);
 
   static handleError(action, error) {
     alert(`Failed to ${action}!
-Error: ${JSON.stringify(error)}
-
-Please see: https://github.com/k0kubun/Nocturn/releases
-or notify this error message to @k0kubun.`);
+Error: ${JSON.stringify(error)}`);
   }
 }
