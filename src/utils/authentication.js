@@ -6,7 +6,16 @@ import TwitterClient     from './twitter-client'
 let authWindow = null;
 
 export default class Authentication {
-  static ACCOUNTS_JSON    = '.nocturn';
+  // {
+  //   "id_str":            String,
+  //   "screen_name":       String,
+  //   "accessToken":       String,
+  //   "accessTokenSecret": String,
+  //   "consumerKey":       String,  // optional
+  //   "consumerSecret":    String,  // optional
+  //   "pollInterval":      Integer, // optional
+  // }
+  static NOCTURN_CONFIG   = '.nocturn';
   static CREDENTIALS_JSON = 'credentials.json';
 
   static authorized(callback) {
@@ -25,12 +34,12 @@ export default class Authentication {
   }
 
   static addToken(token, callback) {
-    var tokens = JsonLoader.readHome(this.ACCOUNTS_JSON);
+    var tokens = JsonLoader.readHome(this.NOCTURN_CONFIG);
     if (tokens == null) {
       tokens = [];
     }
     tokens.push(token);
-    JsonLoader.writeHome(this.ACCOUNTS_JSON, Authentication.uniqTokens(tokens));
+    JsonLoader.writeHome(this.NOCTURN_CONFIG, Authentication.uniqTokens(tokens));
     callback();
   }
 
@@ -66,7 +75,7 @@ export default class Authentication {
   }
 
   static allAccounts() {
-    return JsonLoader.readHome(this.ACCOUNTS_JSON) || [];
+    return JsonLoader.readHome(this.NOCTURN_CONFIG) || [];
   }
 
   static credentials() {
