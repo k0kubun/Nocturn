@@ -13,6 +13,7 @@ export default class Authentication {
   //   "accessTokenSecret": String,
   //   "consumerKey":       String,  // optional
   //   "consumerSecret":    String,  // optional
+  //   "homeList":          String,  // optional
   //   "pollInterval":      Integer, // optional
   // }
   static NOCTURN_CONFIG   = '.nocturn';

@@ -159,8 +159,18 @@ Nocturn prohibits over 20 mentions per minute.`);
     });
   }
 
-  listsStatuses(id, count, callback) {
+  listStatuses(id, count, callback) {
     this.client.get('lists/statuses', { list_id: id, count: count }, (error, tweets, response) => {
+      if (error) {
+        console.log(JSON.stringify(error));
+        return;
+      }
+      callback(tweets);
+    });
+  }
+
+  listStatusesBySlug(owner, slug, count, callback) {
+    this.client.get('lists/statuses', { owner_screen_name: owner, slug: slug, count: count }, (error, tweets, response) => {
       if (error) {
         console.log(JSON.stringify(error));
         return;

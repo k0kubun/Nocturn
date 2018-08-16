@@ -108,9 +108,20 @@ export const markAsRead = (tweet, account) => {
   return { type: MARK_AS_READ, tweet, account }
 }
 
-export const loadHome = (account) => {
-  return dispatch => {
-    const client = new TwitterClient(account);
+const loadHomeOrList = (dispatch, account) => {
+  const homeList = (account['homeList'] || '').split('/'); // k0kubun/listname
+  const client = new TwitterClient(account);
+
+  if (homeList.length == 2) {
+    const homeListOwner = homeList[0]; // k0kubun
+    const homeListSlug  = homeList[1]; // listname
+
+    client.listStatusesBySlug(homeListOwner, homeListSlug, 50, (tweets) => {
+      for (let tweet of tweets) {
+        dispatch(addTweet(tweet, account));
+      }
+    });
+  } else {
     client.homeTimeline({ count: 50 }, (tweets) => {
       for (let tweet of tweets) {
         dispatch(addTweet(tweet, account));
@@ -119,17 +130,17 @@ export const loadHome = (account) => {
   }
 }
 
+export const loadHome = (account) => {
+  return dispatch => {
+    loadHomeOrList(dispatch, account);
+  }
+}
+
 export const pollHome = (account) => {
   return dispatch => {
     const intervalSeconds = account['pollInterval'] || 60;
-    const client = new TwitterClient(account);
-
     setInterval(() => {
-      client.homeTimeline({ count: 50 }, (tweets) => {
-        for (let tweet of tweets) {
-          dispatch(addTweet(tweet, account));
-        }
-      });
+      loadHomeOrList(dispatch, account);
     }, intervalSeconds * 1000);
   }
 }
@@ -162,7 +173,7 @@ export const loadFavorites = (account) => {
 export const loadList = (listId, account, reset = false) => {
   return dispatch => {
     const client = new TwitterClient(account);
-    client.listsStatuses(listId, 50, (tweets) => {
+    client.listStatuses(listId, 50, (tweets) => {
       if (reset) {
         dispatch(clearAndSetTweets(tweets, account, 'lists'));
       } else {
