@@ -1,4 +1,8 @@
 # Change Log
+## v1.6.5
+- Allow using developer console from help menu
+- Notify tweet failure properly
+
 ## v1.6.4
 - Remove realtime home timeline support
   - UserStream API is no longer available
