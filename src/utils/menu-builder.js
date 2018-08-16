@@ -35,10 +35,7 @@ export default class MenuBuilder {
         ],
       }, {
         label: 'View',
-        submenu: (process.env.NODE_ENV === 'development') ? [
-          { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
-          { label: 'Toggle Developer Tools', accelerator: 'Alt+Command+I', click() { window.toggleDevTools(); } },
-        ] : [
+        submenu: [
           { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click() { window.setFullScreen(!window.isFullScreen()); } },
         ]
       }, {
@@ -66,6 +63,7 @@ export default class MenuBuilder {
       }, {
         label: 'Help',
         submenu: [
+          { label: 'Toggle Developer Tools', accelerator: 'Alt+Command+I', click() { window.toggleDevTools(); } },
           { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
         ],
       },
@@ -86,7 +84,6 @@ export default class MenuBuilder {
         submenu: (process.env.NODE_ENV === 'development') ? [
           { label: '&Reload', accelerator: 'Ctrl+R', click() { window.reload(); } },
           { label: 'Toggle Full Screen', accelerator: 'F11', click() { window.setFullScreen(!window.isFullScreen()); } },
-          { label: 'Toggle Developer Tools', accelerator: 'Alt+Ctrl+I', click() { window.toggleDevTools(); } },
         ] : [
           { label: 'Toggle Full Screen', accelerator: 'F11', click() { window.setFullScreen(!window.isFullScreen()); } },
         ]
@@ -107,6 +104,7 @@ export default class MenuBuilder {
       }, {
         label: 'Help',
         submenu: [
+          { label: 'Toggle Developer Tools', accelerator: 'Alt+Ctrl+I', click() { window.toggleDevTools(); } },
           { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
         ],
       },
