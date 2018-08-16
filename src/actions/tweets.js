@@ -121,7 +121,7 @@ export const loadHome = (account) => {
 
 export const pollHome = (account) => {
   return dispatch => {
-    const intervalSeconds = 60;
+    const intervalSeconds = account['pollInterval'] || 60;
     const client = new TwitterClient(account);
 
     setInterval(() => {
