@@ -1,4 +1,8 @@
 # Change Log
+## v1.6.6
+- `~/.nocturn` accepts "homeList" field to replace home timeline with list
+  - "pollInterval" field can reduce the interval from default 60 to 1 or 4 or whatever
+
 ## v1.6.5
 - Allow using developer console from help menu
 - Notify tweet failure properly
