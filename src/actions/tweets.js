@@ -119,6 +119,21 @@ export const loadHome = (account) => {
   }
 }
 
+export const pollHome = (account) => {
+  return dispatch => {
+    const intervalSeconds = 60;
+    const client = new TwitterClient(account);
+
+    setInterval(() => {
+      client.homeTimeline({ count: 50 }, (tweets) => {
+        for (let tweet of tweets) {
+          dispatch(addTweet(tweet, account));
+        }
+      });
+    }, intervalSeconds * 1000);
+  }
+}
+
 export const loadMentions = (account, ignore = false) => {
   return dispatch => {
     const client = new TwitterClient(account);

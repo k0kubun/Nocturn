@@ -30,6 +30,9 @@ const mapDispatchToProps = (dispatch, props) => {
         }
       });
     },
+    pollHome: () => {
+      dispatch(Actions.pollHome(props.account));
+    },
   };
 }
 
