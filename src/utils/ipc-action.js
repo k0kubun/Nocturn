@@ -65,8 +65,6 @@ export default class IpcAction {
         this.dispatch(Actions.loadSearch(query, account));
         this.dispatch(Actions.reconnectFilter(query, account));
       }
-
-      this.dispatch(Actions.reconnectStreaming(account));
     });
   }
 

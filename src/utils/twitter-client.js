@@ -63,17 +63,6 @@ export default class TwitterClient {
     });
   }
 
-  userStream(callback) {
-    this.client.stream('user', {}, (stream) => {
-      callback(stream);
-
-      stream.on('error', (error) => {
-        // ignoring because of too many errors
-        // return console.log(JSON.stringify(error));
-      });
-    });
-  }
-
   filterStream(track, callback) {
     this.client.stream('statuses/filter', { track: track }, (stream) => {
       callback(stream);

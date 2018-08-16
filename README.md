@@ -5,7 +5,6 @@ Multi-platform Twitter Client built with React, Redux and Electron.
 <img src='https://i.gyazo.com/b7fb495a0b9aea0f66e8ee58861a61b9.png' width='400px' />
 
 ## Features
-- Realtime timeline using UserStream
 - Multi-account support
 - Vim-like key bindings
 - Works on Windows, OSX and Linux

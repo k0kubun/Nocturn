@@ -30,9 +30,6 @@ const mapDispatchToProps = (dispatch, props) => {
         }
       });
     },
-    startStreaming: () => {
-      dispatch(Actions.startStreaming(props.account));
-    },
   };
 }
 
