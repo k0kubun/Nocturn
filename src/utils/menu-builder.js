@@ -63,8 +63,12 @@ export default class MenuBuilder {
           { type: 'separator' },
           { label: 'Bring All to Front', selector: 'arrangeInFront:' },
         ]
+      }, {
+        label: 'Help',
+        submenu: [
+          { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
+        ],
       },
-      this.helpMenu(),
     ];
   }
 
@@ -100,17 +104,12 @@ export default class MenuBuilder {
           { label: 'Next Account',     accelerator: 'Alt+J',  click() { window.webContents.send('select-next-account') } },
           { label: 'Previous Account', accelerator: 'Alt+K',  click() { window.webContents.send('select-prev-account') } },
         ],
+      }, {
+        label: 'Help',
+        submenu: [
+          { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
+        ],
       },
-      this.helpMenu(),
     ];
-  }
-
-  static helpMenu() {
-    return {
-      label: 'Help',
-      submenu: [
-        { label: 'Search Issues', click() { shell.openExternal('https://github.com/k0kubun/Nocturn/issues'); } },
-      ],
-    };
   }
 }
