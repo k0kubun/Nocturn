@@ -23,7 +23,7 @@ script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_' | grep -v ' ') \
         -v ${PWD}:/project k0kubun/node-wine:latest \
         /bin/bash -c "cd /project && yarn --link-duplicates --pure-lockfile && yarn build"
     else
@@ -35,7 +35,7 @@ before_deploy:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_') \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|YARN_|NPM_|CI|TRAVIS|BUILD_|PACKAGE_' | grep -v ' ') \
         -v ${PWD}:/project k0kubun/node-wine:latest \
         /bin/bash -c "cd /project && yarn package"
     else
