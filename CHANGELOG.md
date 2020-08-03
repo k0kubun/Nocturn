@@ -1,4 +1,7 @@
 # Change Log
+## v1.6.8
+- A bunch of version upgrades of libraries (except Electron) for security fixes
+
 ## v1.6.7
 - Rewrite the account selector's implementation
   - The design was made similar to my Linux environment.
