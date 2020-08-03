@@ -46,10 +46,34 @@ body {
   user-select: none;
   -webkit-user-select: none;
 
-  #account_selector {
+  .account_selector {
     position: absolute;
-    top: $account_selector_top - 12px;
+    top: $account_selector_top + 6px;
     left: $profile_image_offset;
+    background: $white;
+    border: 1px solid #d5d5d5;
+    box-shadow: 0 0 8px #d5d5d5;
+    z-index: 400;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    .account_option {
+      padding: 0 16px 0 4px;
+
+      &.active {
+        background: #e5f2f7;
+      }
+
+      &:hover,
+      &.active:hover {
+        background: #3399ff;
+        color: $white;
+        cursor: default;
+      }
+    }
   }
 
   .editor {

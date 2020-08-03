@@ -3,10 +3,11 @@ import { ipcRenderer }      from 'electron';
 
 export default class Account extends React.Component {
   static propTypes = {
-    activeAccount:   PropTypes.object,
-    accounts:        PropTypes.array.isRequired,
-    onAccountChange: PropTypes.func.isRequired,
-    subscribeIpc:    PropTypes.func.isRequired,
+    accounts:              PropTypes.array.isRequired,
+    activeAccountIndex:    PropTypes.number.isRequired,
+    activeAccountSelector: PropTypes.bool.isRequired,
+    onAccountChange:       PropTypes.func.isRequired,
+    subscribeIpc:          PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -15,12 +16,17 @@ export default class Account extends React.Component {
 
   render() {
     return(
-      <select id='account_selector' name='account_list' onChange={this.props.onAccountChange} value={this.props.activeAccountIndex}>
+      <div className={`account_selector ${this.props.activeAccountSelector ? 'active' : ''}`}>
         {this.props.accounts.map((account, index) =>
-          <option value={index} key={account.id_str}>{account.screenName}</option>
+          <div
+            key={account.id_str}
+            data-value={index}
+            className={`account_option ${this.props.activeAccountIndex == index ? 'active' : ''}`}
+            onClick={this.props.onAccountChange}
+          >{account.screenName}</div>
         )}
-        <option value='add-account'>Add...</option>
-      </select>
+        <div className='account_option' data-value='add-account' onClick={this.props.onAccountChange}>Add...</div>
+      </div>
     );
   }
 }

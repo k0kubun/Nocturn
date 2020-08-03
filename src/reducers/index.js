@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { accounts } from './accounts';
 import { activeAccountIndex } from './active-account-index';
+import { activeAccountSelector } from './active-account-selector';
 import { activeListIdByUserId } from './active-list-id-by-user-id';
 import { editorFocused } from './editor-focused';
 import { filterByUserId } from './filter-by-user-id';
@@ -18,6 +19,7 @@ import { userByUserId } from './user-by-user-id';
 const rootReducer = combineReducers({
   accounts,
   activeAccountIndex,
+  activeAccountSelector,
   activeListIdByUserId,
   editorFocused,
   filterByUserId,

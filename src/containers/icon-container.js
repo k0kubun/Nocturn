@@ -1,3 +1,4 @@
+import Actions     from '../actions';
 import { connect } from 'react-redux';
 import Icon        from '../components/icon';
 
@@ -12,14 +13,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onTwitterIconClicked: (event) => {
       event.preventDefault();
-      let document = event.target.ownerDocument;
-
-      // Dirty hack to toggle select element
-      // FIXME: This doesn't work on Electron >= 1.4.0
-      let dropdown = document.getElementById('account_selector');
-      let mouseEvent = document.createEvent('MouseEvents');
-      mouseEvent.initMouseEvent('mousedown', true, true, window);
-      dropdown.dispatchEvent(mouseEvent);
+      dispatch(Actions.toggleAccountSelector());
     }
   }
 }

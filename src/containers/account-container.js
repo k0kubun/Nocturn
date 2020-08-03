@@ -5,20 +5,23 @@ import { ipcRenderer } from 'electron';
 
 const mapStateToProps = (state) => {
   return {
-    accounts:           state.accounts,
-    activeAccountIndex: state.activeAccountIndex,
+    accounts:              state.accounts,
+    activeAccountIndex:    state.activeAccountIndex,
+    activeAccountSelector: state.activeAccountSelector,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAccountChange: (event) => {
-      if (event.target.value === 'add-account') {
+      const value = event.target.dataset.value;
+      if (value === 'add-account') {
         event.preventDefault();
         ipcRenderer.send('start-authentication');
       } else {
-        dispatch(Actions.activateAccount(event.target.value));
+        dispatch(Actions.activateAccount(value));
       }
+      dispatch(Actions.toggleAccountSelector());
     },
     subscribeIpc: () => {
       ipcRenderer.on('finish-authentication', (event, token) => {

@@ -3,6 +3,7 @@ import TwitterClient from '../utils/twitter-client';
 export const ACTIVATE_ACCOUNT = 'ACTIVATE_ACCOUNT';
 export const ADD_ACCOUNT_TO_LIST = 'ADD_ACCOUNT_TO_LIST';
 export const REFRESH_USER_INFO = 'REFRESH_USER_INFO';
+export const TOGGLE_ACCOUNT_SELECTOR = 'TOGGLE_ACCOUNT_SELECTOR';
 
 export const activateAccount = (index) => {
   return { type: ACTIVATE_ACCOUNT, index: parseInt(index) }
@@ -25,4 +26,8 @@ export const addAccount = (token) => {
       dispatch(refreshUserInfo(user));
     });
   }
+}
+
+export const toggleAccountSelector = () => {
+  return { type: TOGGLE_ACCOUNT_SELECTOR }
 }
