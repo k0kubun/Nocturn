@@ -1,4 +1,9 @@
 # Change Log
+## v1.7.0
+- Upgrade Electron from v1.3.6 to v1.8.8
+  - We finally fixed the issue mentioned in v1.4.2 at v1.6.7.
+  - This includes fixes for security vulnerabilities like CVE-2018-1000136.
+
 ## v1.6.8
 - A bunch of version upgrades of libraries (except Electron) for security fixes
 
