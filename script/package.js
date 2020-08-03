@@ -32,7 +32,7 @@ const pack = (platform, arch, callback) => {
   };
 
   const opts = Object.assign({}, DEFAULT_OPTS, iconObj, { platform, arch });
-  packager(opts, (err, filepath) => {
+  packager(opts).then((err, filepath) => {
     if (err) return console.error(err);
     console.log(`${platform}-${arch} finished!`);
   });
