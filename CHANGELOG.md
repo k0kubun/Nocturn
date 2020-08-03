@@ -1,4 +1,9 @@
 # Change Log
+## v1.6.7
+- Rewrite the account selector's implementation
+  - The design was made similar to my Linux environment.
+    Windows and macOS users may see bigger difference.
+
 ## v1.6.6
 - `~/.nocturn` accepts "homeList" field to replace home timeline with list
   - "pollInterval" field can reduce the interval from default 60 to 1 or 4 or whatever
