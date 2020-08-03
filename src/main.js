@@ -12,9 +12,12 @@ app.on('ready', () => {
 
   Authentication.authorized(() => {
     let options = {
-      width:         350,
-      height:        640,
-      'min-width':   260,
+      width:       350,
+      height:      640,
+      'min-width': 260,
+      webPreferences: {
+        nodeIntegration: true,
+      },
     };
     if (process.platform === 'darwin') {
       Object.assign(options, { titleBarStyle: 'hidden' });

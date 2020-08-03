@@ -21,7 +21,14 @@ export default class TweetContainer extends BaseContainer {
     const BrowserWindow = remote.BrowserWindow;
     const ipcMain = remote.ipcMain;
 
-    let options = { resizable: false, width: 100, height: 100 };
+    let options = {
+      resizable: false,
+      width: 100,
+      height: 100,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    };
     if (process.platform === 'darwin'){
       Object.assign(options, { titleBarStyle: 'hidden' });
     }
