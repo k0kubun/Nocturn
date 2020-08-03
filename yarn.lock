@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/node@^10.1.4":
+"@types/node@^10.12.18":
   version "10.17.28"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.28.tgz#0e36d718a29355ee51cec83b42d921299200f6d9"
   integrity sha512-dzjES1Egb4c1a89C7lKwQh8pwjYmlOAG9dW1pBgxEk57tMrLnssOfEthz8kdkNaBd7lIqQx7APm5+mZ619IiCQ==
@@ -1416,12 +1416,12 @@ electron-packager@^12.2.0:
     semver "^5.3.0"
     yargs-parser "^10.0.0"
 
-electron@3.1.13:
-  version "3.1.13"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-3.1.13.tgz#aeb276f4cf5e3785078b6495e982ee46d553a5d2"
-  integrity sha512-aRNywoUSO1Va/lpU4nz3K6GDyFqYtlOnHGLcERAAHfhB+IJrJ34cUJW4FVBpm43AwvUdAeuCkVKRLtOmrgx5CA==
+electron@4.2.12:
+  version "4.2.12"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-4.2.12.tgz#8e8926a6a6654cde5eb0612952fed98a56941875"
+  integrity sha512-EES8eMztoW8gEP5E4GQLP8slrfS2jqTYtHbu36mlu3k1xYAaNPyQQr6mCILkYxqj4l3la4CT2Vcs89CUG62vcQ==
   dependencies:
-    "@types/node" "^10.1.4"
+    "@types/node" "^10.12.18"
     electron-download "^4.1.0"
     extract-zip "^1.0.3"
 
