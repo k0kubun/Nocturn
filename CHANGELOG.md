@@ -1,4 +1,7 @@
 # Change Log
+## v1.8.0
+- Upgrade Electron from v1.8.8 to v9.1.2
+
 ## v1.7.0
 - Upgrade Electron from v1.3.6 to v1.8.8
   - We finally fixed the issue mentioned in v1.4.2 at v1.6.7.

@@ -1,7 +1,7 @@
 {
   "name": "Nocturn",
   "description": "Multi-platform Twitter Client built with React, Redux and Electron",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "main": "app/main.js",
   "repository": "https://github.com/k0kubun/Nocturn",
   "author": {
