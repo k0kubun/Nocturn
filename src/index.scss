@@ -23,7 +23,7 @@ $dark_grey: #555;
 $white: #fff;
 $dark_blue: #0084b4;
 $orange: #f4c142;
-$account_selector_top: $profile_image_size + $editor_vertical_padding;
+$account_selector_top: $profile_image_size + $editor_vertical_padding + 6px;
 
 @keyframes favorite_animation {
   0% { transform: scale(1); }
@@ -48,7 +48,7 @@ body {
 
   .account_selector {
     position: absolute;
-    top: $account_selector_top + 6px;
+    top: $account_selector_top;
     left: $profile_image_offset;
     background: $white;
     border: 1px solid #d5d5d5;
@@ -492,8 +492,8 @@ body {
     -webkit-app-region: no-drag;
   }
 
-  #account_selector {
-    top: $account_selector_top + $title_bar_offset + 8px;
+  .account_selector {
+    top: $account_selector_top + $title_bar_offset;
   }
 
   .tabs,
