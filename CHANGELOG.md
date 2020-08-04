@@ -1,4 +1,9 @@
 # Change Log
+## v1.8.1
+- Downgrade Electron from v9.1.2 to v5.0.13
+  - Electron v6 seems to have a boot issue on macOS with electron-packager.
+    This version's package should work for macOS users.
+
 ## v1.8.0
 - Upgrade Electron from v1.8.8 to v9.1.2
 
