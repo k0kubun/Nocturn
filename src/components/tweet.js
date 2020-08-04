@@ -22,7 +22,7 @@ export default class Tweet extends React.Component {
   }
 
   autolinkedText(tweet) {
-    let text = tweet.text;
+    let text = tweet.full_text || tweet.text; // full_text doesn't appear on search. TODO: make sure full_text is always available
 
     for (let entity of tweet.entities.urls) {
       text = text.replace(entity.url, entity.expanded_url);

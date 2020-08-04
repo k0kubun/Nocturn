@@ -1,5 +1,6 @@
 # Change Log
 ## Unreleased
+- Support over-140-char tweets properly
 - Focus on an invisible element with Tab when focusing on the editor
   - Since v1.6.7, the focus had unintended behaviors. This fixes the issue of v1.6.7+.
 
