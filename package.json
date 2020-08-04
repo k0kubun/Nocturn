@@ -28,7 +28,7 @@
     "zip": "node script/zip.js"
   },
   "dependencies": {
-    "autolinker": "^3.14.1",
+    "autolinker": "^0.19.0",
     "big-integer": "^1.6.48",
     "hls.js": "^0.14.7",
     "moment": "^2.27.0",
