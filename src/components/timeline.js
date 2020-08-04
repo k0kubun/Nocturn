@@ -32,7 +32,7 @@ export default class Timeline extends React.Component {
           <MentionTabContainer account={this.props.account} tab='mentions'>Mentions</MentionTabContainer>
           <TweetTabContainer account={this.props.account} tab='search'>Search</TweetTabContainer>
           <TweetTabContainer account={this.props.account} tab='lists'>Lists</TweetTabContainer>
-          <FavoritesTabContainer account={this.props.account} tab='favorites'>Favorites</FavoritesTabContainer>
+          <FavoritesTabContainer account={this.props.account} tab='favorites'>Likes</FavoritesTabContainer>
         </ul>
 
         <TweetListContainer account={this.props.account} tab='home' />

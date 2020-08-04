@@ -1,4 +1,7 @@
 # Change Log
+## Unreleased
+- Rename the "Favorites" tab to "Likes"
+
 ## v1.8.2
 - Support over-140-char tweets properly
 - Focus on an invisible element with Tab when focusing on the editor
