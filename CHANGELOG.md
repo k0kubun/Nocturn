@@ -1,6 +1,5 @@
 # Change Log
-## v1.8.3
-- Upgrade Electron from v5.0.13 to v9.4.4
+## Unreleased
 - Rename the "Favorites" tab to "Likes"
 
 ## v1.8.2
