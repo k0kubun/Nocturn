@@ -51,7 +51,7 @@
     "babel-preset-react": "^6.24.1",
     "bower": "^1.8.8",
     "cross-env": "^1.0.7",
-    "electron": "6.1.12",
+    "electron": "9.4.0",
     "electron-packager": "^14.0.4",
     "glob": "^7.1.6",
     "gulp": "^3.9.0",
