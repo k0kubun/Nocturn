@@ -12,7 +12,7 @@ export default class Retweet extends Tweet {
     tab:     PropTypes.string.isRequired,
     tweet:   PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
-    openMediaInWindow: PropTypes.func.isRequired,
+    openMediaInWindow: PropTypes.func.isRequired, // Used in the superclass
   }
 
   render() {

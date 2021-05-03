@@ -53,8 +53,11 @@ export default class Tweet extends React.Component {
     return entities.media.map((media) => {
       if (media.type === 'photo' || media.type === 'video' || media.type === 'animated_gif') {
         return (
-          <a href="javascript:void(0);"  key={media.id_str} target='_blank'>
-            <img className='tweet_media' onClick={(event) => {this.props.openMediaInWindow(media)}} src={media.media_url} />
+          <a href='javascript:void(0);' key={media.id_str} target='_blank'>
+            <img className='tweet_media' onClick={ (event) => {
+              event.preventDefault();
+              this.props.openMediaInWindow(media);
+            } } src={media.media_url} />
           </a>
         );
       } else {
