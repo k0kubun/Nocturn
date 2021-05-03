@@ -1,4 +1,7 @@
 # Change Log
+## v1.8.4
+- Fix a bug that opens a browser on click of a media
+
 ## v1.8.3
 - Upgrade Electron from v5.0.13 to v9.4.4
 - Rename the "Favorites" tab to "Likes"
