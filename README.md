@@ -28,8 +28,8 @@ For some platforms, you can use a package manager to install Nocturn.
   - You can use [homebrew-cask](https://github.com/caskroom/homebrew-cask).
   - `brew install --cask nocturn`
 - Arch Linux
-  - [Arch user repository](https://aur.archlinux.org/packages/nocturn/) is available.
-  - `yaourt -S nocturn`
+  - [Arch User Repository](https://aur.archlinux.org/packages/nocturn/) is available (via AUR helper like `yay`).
+  - `yay -S nocturn`
 
 ## Usage
 
