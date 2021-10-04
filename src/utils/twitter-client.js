@@ -1,4 +1,4 @@
-import Twitter        from 'twitter';
+import TwitterApi     from 'twitter-api-v2';
 import fs             from 'fs';
 import path           from 'path';
 import Authentication from './authentication';
@@ -25,48 +25,35 @@ export default class TwitterClient {
   constructor(account) {
     var credentials = Authentication.credentials();
 
-    this.client = Twitter({
-      consumer_key:        account['consumerKey'] || credentials['consumerKey'],
-      consumer_secret:     account['consumerSecret'] || credentials['consumerSecret'],
-      access_token_key:    account['accessToken'],
-      access_token_secret: account['accessTokenSecret'],
+    this.client = new TwitterApi({
+      appKey:              account['consumerKey'] || credentials['consumerKey'],
+      appSecret:           account['conumerSecret' ] || credentials['consumerSecret'],
+      accessToken:         account['accessToken'],
+      accessSecret:        account['accessTokenSecret'],
     });
   }
 
   homeTimeline(params, callback) {
-    this.client.get('statuses/home_timeline', this.extendParams(params), (error, tweets, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(tweets);
-    });
+    this.client.v1.homeTimeline(this.extendParams(params))
+      .then(tweets => callback(tweets))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   mentionsTimeline(params, callback) {
-    this.client.get('statuses/mentions_timeline', this.extendParams(params), (error, tweets, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(tweets);
-    });
+    this.client.v1.mentionTimeline(this.extendParams(params))
+      .then(tweets => callback(tweets))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   favoritesList(params, callback) {
-    this.client.get('favorites/list', this.extendParams(params), (error, tweets, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(tweets);
-    });
+    this.client.v1.get('favorites/list.json', this.extendParams(params))
+      .then(tweets => callback(tweets))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   filterStream(track, callback) {
-    this.client.stream('statuses/filter', this.extendParams({ track: track }), (stream) => {
-      callback(stream);
-    });
+    this.client.v1.filterStream(this.extendParams({ track: track }))
+      .then(stream => callback(stream));
   }
 
   updateStatus(tweet, inReplyTo, callback) {
@@ -86,109 +73,92 @@ Nocturn prohibits over 20 mentions per minute.`);
       }
     }
 
-    this.client.post('statuses/update', this.extendParams(params), (error, data, response) => {
-      if (data.error) {
-        TwitterClient.handleError('tweet', data.error);
-        return;
-      }
-      if (data.errors) {
-        TwitterClient.handleError('tweet', data.errors);
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.post('statuses/update.json', this.extendParams(params))
+      .then(data => {
+        callback(data);
+        if (data.error) {
+          throw new Error(data.error);
+        } else if (data.errors) {
+          throw new Error(data.errors);
+        }
+      })
+      .catch(error => TwitterClient.handleError('tweet', error));
   }
 
   favoriteStatus(tweetId, callback) {
-    this.client.post('favorites/create', this.extendParams({ id: tweetId }), (error, data, response) => {
-      if (data.error) {
-        TwitterClient.handleError('favorite', data.error);
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.post('favorites/create.json', this.extendParams({ id: tweetId }))
+      .then(data => { 
+        callback(data);
+        if (data.error) {
+          throw new Error(data.error);
+        }
+      })
+      .catch(error => TwitterClient.handleError('favorite', error));
   }
 
   unfavoriteStatus(tweetId, callback) {
-    this.client.post('favorites/destroy', this.extendParams({ id: tweetId }), (error, data, response) => {
-      if (data.error) {
-        TwitterClient.handleError('unfavorite', data.error);
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.post('favorites/destroy.json', this.extendParams({ id: tweetId }))
+      .then(data => {
+        callback(data);
+        if (data.error) {
+          throw new Error(data.error);
+        }
+      })
+      .catch(error => TwitterClient.handleError('unfavorite', error));
   }
 
   retweetStatus(tweetId, callback) {
-    this.client.post(`statuses/retweet/${tweetId}`, this.extendParams({}), (error, data, response) => {
-      if (data.error) {
-        TwitterClient.handleError('retweet', data.error);
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.post(`statuses/retweet/${tweetId}`, this.extendParams({ id: tweetId }))
+      .then(data => { 
+        callback(data);
+        if (data.error) {
+          throw new Error(data.error);
+        }
+      })
+      .catch(error => TwitterClient.handleError('retweet', error));
   }
 
   deleteStatus(tweetId, callback) {
-    this.client.post(`statuses/destroy/${tweetId}`, this.extendParams({}), (error, data, response) => {
-      if (data.error) {
-        TwitterClient.handleError('delete', data.error);
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.post(`statuses/destroy/${tweetId}`, this.extendParams({ id: tweetId }))
+      .then(data => { 
+        callback(data);
+        if (data.error) {
+          throw new Error(data.error);
+        }
+      })
+      .catch(error => TwitterClient.handleError('delete', error));
   }
 
   verifyCredentials(callback) {
-    this.client.get('account/verify_credentials', this.extendParams({}), (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.verifyCredentials(this.extendParams({}))
+      .then(data => callback(data))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   listsList(callback) {
-    this.client.get('lists/list', this.extendParams({}), (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(data);
-    });
+    this.client.v1.lists(this.extendParams({}))
+      .then(data => callback(data))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   listStatuses(id, count, callback) {
-    this.client.get('lists/statuses', this.extendParams({ list_id: id, count: count }), (error, tweets, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(tweets);
-    });
+    this.client.v1.listStatuses(this.extendParams({ list_id: id, count: count }))
+      .then(tweets => callback(tweets))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   listStatusesBySlug(owner, slug, count, callback) {
-    this.client.get('lists/statuses', this.extendParams({ owner_screen_name: owner, slug: slug, count: count }), (error, tweets, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(tweets);
-    });
+    this.client.v1.listStatuses(this.extendParams({ owner_screen_name: owner, slug: slug, count: count }))
+      .then(tweets => callback(tweets))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   searchTweets(query, count, callback) {
     if (query === '') return;
 
-    this.client.get('search/tweets', this.extendParams({ q: query, count: count }), (error, data, response) => {
-      if (error) {
-        console.log(JSON.stringify(error));
-        return;
-      }
-      callback(data['statuses']);
-    });
+    this.client.v1.get('search/tweets.json', this.extendParams({ q: query, count: count }))
+      .then(data => callback(data['statuses']))
+      .catch(error => console.log(JSON.stringify(error)));
   }
 
   // https://developer.twitter.com/en/docs/tweets/tweet-updates
@@ -198,6 +168,6 @@ Nocturn prohibits over 20 mentions per minute.`);
 
   static handleError(action, error) {
     alert(`Failed to ${action}!
-Error: ${JSON.stringify(error)}`);
+      Error: ${JSON.stringify(error)}`);
   }
 }
