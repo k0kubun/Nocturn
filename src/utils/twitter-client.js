@@ -126,7 +126,7 @@ Nocturn prohibits over 20 mentions per minute.`);
           throw new Error(data.error);
         }
       })
-      .catch(error => console.log(JSON.stringify(error)));
+      .catch(error => TwitterClient.handleError('delete', error));
   }
 
   verifyCredentials(callback) {
