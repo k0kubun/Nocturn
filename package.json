@@ -19,13 +19,16 @@
     }
   },
   "scripts": {
-    "build": "npm run setup && cross-env NODE_ENV=production npm run compile",
+    "build": "yarn setup && cross-env NODE_ENV=production yarn compile",
     "compile": "rm -rf app && gulp compile",
     "decaf": "node script/decaf.js",
-    "package": "node script/package.js && npm run zip",
+    "package": "node script/package.js && yarn zip",
     "setup": "gulp bower && gulp compile-fonts",
-    "start": "cross-env NODE_ENV=development npm run compile && electron .",
+    "start": "cross-env NODE_ENV=development yarn compile && electron .",
     "zip": "node script/zip.js"
+  },
+  "engines": {
+    "node": "10.24.1"
   },
   "dependencies": {
     "autolinker": "^0.19.0",
@@ -58,6 +61,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-bower": "^0.0.10",
     "gulp-sass": "^2.2.0",
+    "node": "10.24.1",
     "shelljs": "^0.8.4"
   }
 }
