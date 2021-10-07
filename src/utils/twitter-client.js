@@ -27,7 +27,7 @@ export default class TwitterClient {
 
     this.client = new TwitterApi({
       appKey:              account['consumerKey'] || credentials['consumerKey'],
-      appSecret:           account['conumerSecret' ] || credentials['consumerSecret'],
+      appSecret:           account['consumerSecret'] || credentials['consumerSecret'],
       accessToken:         account['accessToken'],
       accessSecret:        account['accessTokenSecret'],
     });
