@@ -168,6 +168,6 @@ Nocturn prohibits over 20 mentions per minute.`);
 
   static handleError(action, error) {
     alert(`Failed to ${action}!
-      Error: ${JSON.stringify(error)}`);
+Error: ${JSON.stringify(error)}`);
   }
 }
