@@ -108,7 +108,7 @@ Nocturn prohibits over 20 mentions per minute.`);
   }
 
   retweetStatus(tweetId, callback) {
-    this.client.v1.post(`statuses/retweet/${tweetId}`, this.extendParams({ id: tweetId }))
+    this.client.v1.post(`statuses/retweet/${tweetId}.json`, this.extendParams({ id: tweetId }))
       .then(data => { 
         callback(data);
         if (data.error) {
@@ -119,7 +119,7 @@ Nocturn prohibits over 20 mentions per minute.`);
   }
 
   deleteStatus(tweetId, callback) {
-    this.client.v1.post(`statuses/destroy/${tweetId}`, this.extendParams({ id: tweetId }))
+    this.client.v1.post(`statuses/destroy/${tweetId}.json`, this.extendParams({ id: tweetId }))
       .then(data => { 
         callback(data);
         if (data.error) {
