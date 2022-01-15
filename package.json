@@ -58,6 +58,6 @@
     "gulp-babel": "^6.1.2",
     "gulp-bower": "^0.0.10",
     "gulp-sass": "^2.2.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   }
 }
